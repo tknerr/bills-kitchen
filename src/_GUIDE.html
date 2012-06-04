@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<title>Guide</title>
+<link rel="stylesheet" href="docs/DevPack/style.css">
+</head>
+<body>
+<header>
+
+</header>
+<section id="title">
+<h1>Guide</h1>
+
+<p>All things that deserve some more explanation than just <a href="file://W:/_GETTING_STARTED.html">GETTING_STARTED</a> </p>
+<section id="several-ways-for-setting-up-vms-using-chef/vagrant">
+<h2>Several Ways For Setting Up VMs using Chef/Vagrant</h2>
+
+<p>There are several ways for setting up a new node using Chef and Vagrant for development purposes. </p>
+
+<ol>
+<li> <a href="http://vagrantup.com/docs/provisioners/chef_solo.html">vagrant/chef-solo</a>
+
+<ul>
+<li>with this method no chef server is required. The VM is started via Vagrant, cookbooks are mounted to a VirtualBox shared folder, and the node is configured by chef-solo. </li>
+<li>Chef and Ruby are already installed on the node (comes with the Vagrant base box).</li>
+<li>easiest approach but has several limitations due to chef-solo (e.g. any recipes using search won&#39;t work)</li>
+<li>useful for testing single cookbooks</li>
+<li>workflow:
+
+<ul>
+<li><code>vagrant up</code> to bring up the VM and start provisioning of roles/recipes defined in <code>Vagrantfile</code></li>
+<li><code>vagrant provision</code> to rerun the chef client (e.g. after editing a recipe)</li>
+</ul></li>
+</ul></li>
+<li> <a href="http://vagrantup.com/docs/provisioners/chef_server.html">vagrant/chef-server</a>
+
+<ul>
+<li>with this method the VM is started via Vagrant, but a chef server is required for hosting the cookbooks and node configuration.</li>
+<li>Chef and Ruby are already installed on the node (comes with the Vagrant base box).</li>
+<li>useful for integration testing, or testing features which require chef server</li>
+<li>upload cookbooks, roles, etc.. to chef server:
+
+<ul>
+<li><code>librarian-chef install</code> to download cookbook dependencies defined in <code>Cheffile</code> to cookbooks dir</li>
+<li><code>rake install</code> to upload all cookbooks, roles, environments from the chef-repo to chef server</li>
+</ul></li>
+<li>workflow:
+
+<ul>
+<li><code>vagrant up</code> to bring up the VM, register the node with chef-server, and modify the node&#39;s run_list according to what is defined in <code>Vagrantfile</code></li>
+<li><code>vagrant provision</code> to rerun the chef client (e.g. after making some changes)</li>
+<li><code>knife node delete &lt;hostname&gt;</code> to clean up and remove the registered node</li>
+<li><code>knife client delete &lt;hostname&gt;</code> to clean up and remove the registered client</li>
+</ul></li>
+</ul></li>
+<li> <a href="http://wiki.opscode.com/display/chef/Knife+Bootstrap">knife_bootstrap/chef-server</a>
+
+<ul>
+<li>with this method you need a machine with a base OS installation runnnig somewhere and accessible via ssh. This could be
+
+<ul>
+<li>an amazon cloud AMI instance</li>
+<li>an ESX instance created from a vsphere template</li>
+<li>a bare OS VM image started via Vagrant</li>
+<li>...</li>
+</ul></li>
+<li>nothing is installed on the node, then it is bootstrapped with Chef and Ruby, registered with chef server, and initial run_list applied </li>
+<li>this is the &#39;production&#39; setup</li>
+<li>upload cookbooks, roles, etc.. to chef server:
+
+<ul>
+<li><code>librarian-chef install</code> to download cookbook dependencies defined in <code>Cheffile</code> to cookbooks dir</li>
+<li><code>rake install</code> to upload all cookbooks, roles, environments from the chef-repo to chef server</li>
+</ul></li>
+<li>workflow:
+
+<ul>
+<li><code>knife bootstrap ...</code> to ssh into that machine, bootstrap with the given template, register it with chef server and set the initial run_list</li>
+<li><code>knife node run_list ...</code> or <code>knife node from file ...</code> if you want to modify the node&#39;s run_list</li>
+</ul></li>
+</ul></li>
+</ol>
+</section>
+<section id="how-to-fix-ohai-ip-address-detection-in-vagrant-/-virtualbox">
+<h2>How to Fix Ohai IP Address Detection in Vagrant / VirtualBox</h2>
+
+<p>When running inside a VirtualBox Host Only Network ohai detects the wrong default IP address (i.e. the one that is shown in <code>knife node show</code>). It uses eth0 as the default interface, but in a VBox host only network the node&#39;s real IP is bound to eth1. You can fix this by adding the <code>vagrant-ohai</code> cookbook to the node&#39;s run_list (should be done only when running inside vagrant).</p>
+
+<p>This is what you have to do:<br/>
+* <code>knife cookbook upload vagrant-ohai</code><br/>
+* <code>knife node run_list add my-node &#39;recipe[vagrant-ohai]&#39;</code><br/>
+* <code>vagrant ssh my-node</code> and <code>sudo chef-client --once</code> (or use <code>knife ssh -m 33.33.3.11 -x vagrant -P vagrant &#39;sudo chef-client --once&#39;</code>)<br/>
+* <code>knife node show my-node</code> should now show the correct IP address</p>
+
+<p>Or, do it right at the beginning when bootstrapping the node:<br/>
+* <code>knife bootstrap 33.33.3.11 -x vagrant -P vagrant --sudo -N my-node -r &#39;role[webserver],recipe[vagrant-ohai]&#39;</code></p>
+</section>
+<section id="frequently-used-commands">
+<h2>Frequently Used Commands</h2>
+<section id="vagrant">
+<h3>Vagrant</h3>
+
+<ul>
+<li><code>vagrant status &lt;name&gt;</code>      shows the status of the VM </li>
+<li><code>vagrant up &lt;name&gt;</code>          bring up a VM (will be created if not exists)</li>
+<li><code>vagrant halt &lt;name&gt;</code>        halt/shutdown a VM</li>
+<li><code>vagrant destroy &lt;name&gt;</code>     destroy a VM (so that it will be recreated from scratch the next time you <code>vagrant up</code>)</li>
+<li><code>vagrant provision &lt;name&gt;</code>   runs the provisioner (e.g. chef-client) in the VM so to provision the latest recipes</li>
+<li><code>vagrant ssh &lt;name&gt;</code>         ssh into a VM</li>
+</ul>
+
+<p>Note that <code>&lt;name&gt;</code> is optional and only applicable in a Multi-VM environment (i.e. multiple VMs defined in a single <code>Vagrantfile</code>). In that case <code>vagrant up foo</code> brings up only the VM named &#39;foo&#39;, whereas <code>vagrant up</code> would bring up all VMs in that environment.</p>
+</section>
+<section id="knife">
+<h3>Knife</h3>
+
+<ul>
+<li><code>knife cookbook upload &lt;name&gt;</code>   upload the cookbook <name> to the chef server</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<title>Development Package for creating VMs with Vagrant and Chef</title>
+<link rel="stylesheet" href="docs/DevPack/style.css">
+</head>
+<body>
+<header>
+
+</header>
+<section id="title">
+<h1>Development Package for creating VMs with Vagrant and Chef</h1>
+
+<p>All you need for cooking with Chef and Vagrant (on Windows).</p>
+<section id="contents">
+<h2>Contents</h2>
+<pre><code> |-- boxes          => the Vagrant base boxes that we reference in the .Vagrantfile
+ |-- docs           => various documentation artifacts, shortcuts to online documentation of the provided tools
+ |-- home           => %HOME% folder where .gitconfig, VirtualBox VMs, .vagrant.d and other user-specific stuff goes to
+ |-- install        => files that need to be installed manually such as the MONACO.TTF font
+ |-- repo           => the chef-repo and separate repositories for the cookbooks
+ `-- tools          => preinstalled tools, such as:
+        |-- console2        => a better command prompt for windows (with tabs, better copy & paste, etc..)
+        |-- notepad++       => text editor (our IDE)
+        |-- p4merge         => diff/merge tool to be used when using `git difftool ...` or `git mergetool ...`
+        |-- portablegit     => git installation from portable apps
+        |-- putty           => in case you want to ssh / scp using putty
+        |-- sshwindows      => ssh.exe ported to windows, required to make `vagrant ssh` work on windows
+        `-- vagrant         => a devkit enhanced Ruby 1.9.3 with the following gems pre-installed:
+                                * vagrant (patched to make `vagrant ssh` work on windows)
+                                * chef
+                                * sahara (patched to work on windows)
+                                * chefspec
+                                * foodcritic
+                                * librarian
+</code></pre></section>
+<section id="installation">
+<h2>Installation</h2>
+
+<p>You only need to install <strong>VirtualBox</strong> from <a href="http://download.virtualbox.org/virtualbox/4.1.14/VirtualBox-4.1.14-77440-Win.exe">here</a>, everything else comes already preinstalled.</p>
+</section>
+<section id="usage">
+<h2>Usage</h2>
+
+<p>Mount the DevPack to the <code>W:\</code> drive by double-clicking the <code>mount-w-drive.bat</code> file. Then open a command prompt (either <code>cmd</code> or <code>W:\tools\console2\Console.exe</code>) and call the <code>W:\set-env.bat</code> script. This will set up your environment so that you have all the required tools in the PATH and you are ready to <a href="file://W:/_GETTING_STARTED.html">GETTING_STARTED</a> with Chef, Vagrant and Co.</p>
+</body>
+</html>

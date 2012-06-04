@@ -1,0 +1,13 @@
+
+[ ] automate devpack creation from source
+[ ] move cookbooks outside of devpack
+[ ] librarian for Vagranfile
+[ ] base role
+[ ] document cookbook creation
+[ ] use hosts/etc instead of ip addresses
+[ ] testing examples with chefspec, cuken, cucumber-nagios, toft
+[ ] create base role with ntp, chef-client, etc...
+[ ] cache apt repo via vbox shared-folder or apt-cacher vm
+[ ] copyright, email, license to knife.rb
+[ ] chef server should be client for himself
+[ ] debugging with shef 
