@@ -16,6 +16,9 @@ set OPENSSHDIR=%SCRIPT_DIR%tools\sshwindows
 set CONSOLE2DIR=%SCRIPT_DIR%tools\console2
 set SUBLIMEDIR=%SCRIPT_DIR%tools\sublimetext2
 
+:: set devkit vars
+cmd /C %RUBYDIR%\devkitvars.bat
+
 :: use portable git, looks for %HOME%\.gitconfig 
 set GITDIR=%SCRIPT_DIR%tools\portablegit-1.7.4-preview
 set HOME=%SCRIPT_DIR%home
