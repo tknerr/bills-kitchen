@@ -26,6 +26,7 @@ task :build do
 	download_tools
 	# download_baseboxes
 	# download_virtualbox
+	create_gemfile
 	install_gems
 	#clone_repositories
 	zip_devpack
@@ -74,15 +75,33 @@ def download_virtualbox
 		"#{BUILD_DIR}/install/VirtualBox-4.1.16-78094-Win.exe"
 end
 
+def create_gemfile
+	gem_file = <<GEMFILE
+source 'http://rubygems.org'
+
+# core gems we need for cookin'
+gem 'vagrant', '1.0.2.patch1', :git => 'git://github.com/tknerr/vagrant.git', :branch => 'GH-247'	
+gem 'chef', '0.10.10'
+gem 'librarian', '0.0.20'
+
+# gems we need for t[e|a]sting
+gem 'foodcritic', '~>1.0.1'
+gem 'chefspec', '~>0.5.0'
+gem 'cucumber-nagios', '~>0.6.8'
+
+# optional but useful (for dessert)
+gem 'veewee', '0.3.0.alpha9'
+gem 'sahara', '0.0.10.patch1', :git => 'git://github.com/tknerr/sahara.git'
+GEMFILE
+
+	File.open("#{BUILD_DIR}/Gemfile", 'w') { |f| f.write(gem_file) }
+end
+
 def install_gems
 	Bundler.with_clean_env {
-		File.open("#{CACHE_DIR}/install_gems.bat", 'w') do |f|
-			f.write "echo installing gems...\n"
-			f.write "call #{BUILD_DIR}/set-env.bat\n"
-			f.write "gem install bundler --no-ri --no-rdoc\n"
-			f.write "bundle install --gemfile=#{BUILD_DIR}/Gemfile --verbose\n"
-		end
-		system "#{CACHE_DIR}/install_gems.bat"
+		system("#{BUILD_DIR}/set-env.bat \
+			&& gem install bundler --no-ri --no-rdoc \
+			&& bundle install --gemfile=#{BUILD_DIR}/Gemfile --verbose")
 	}
 end
 
