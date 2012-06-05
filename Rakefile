@@ -120,7 +120,6 @@ def download_extract(url, target_dir, type)
 end
 
 def download(url, outfile)
-	#puts "downloading '#{url}' to '#{outfile}'"
 	puts "downloading '#{url}'"
 	url_hash = Digest::MD5.hexdigest(url)
 	cached_file = "#{CACHE_DIR}/#{url_hash}"
@@ -129,10 +128,7 @@ def download(url, outfile)
 		FileUtils.cp cached_file, outfile
 	else
 		uri = URI(url)
-		require 'openssl'
-		Net::HTTP.start(uri.host, uri.port, 
-				:use_ssl => uri.scheme == 'https',
-				:verify_mode => OpenSSL::SSL::VERIFY_NONE) do |http|
+		Net::HTTP.start(uri.host, uri.port) do |http|
 			f = open(outfile, 'wb')
 			begin
 				http.request_get(uri.path + (uri.query ? "?#{uri.query}" : "")) do |resp|
@@ -149,35 +145,23 @@ def download(url, outfile)
 	end
 end
 
-def unpack_zip(zip_file, target_dir, includes = [ /.*/ ], excludes = [])	
-	#puts "extracting '#{zip_file}' into '#{target_dir}'"		
+def unpack_zip(zip_file, target_dir)	
 	puts "extracting zip file to '#{target_dir}'"		
 	Zip::ZipFile.open(zip_file) do |file|
 		file.each do |entry|
-			if includes.find { |x| entry.name =~ x }
-				target_path=File.join(target_dir, entry.name)
-     			FileUtils.mkdir_p(File.dirname(target_path))	
-     			file.extract(entry, target_path) unless File.exist?(target_path)
-     		end	
-		end
+			target_path=File.join(target_dir, entry.name)
+     		FileUtils.mkdir_p(File.dirname(target_path))	
+     		file.extract(entry, target_path) unless File.exist?(target_path)
+     	end
 	end
 end
 
 def unpack_msi(msi_file, target_dir)
 	puts "extracting msi file to '#{target_dir}'"		
-	
-	# msiexec wants absolute path names and backslashes
 	abs_msi_file = File.expand_path(msi_file).gsub('/', '\\')
 	abs_target_dir = File.expand_path(target_dir).gsub('/', '\\')
 	system("start /wait msiexec /a \"#{abs_msi_file}\" /qb TARGETDIR=\"#{abs_target_dir}\"")
 	# TODO: remove intermediary files from msi
-end
-
-def copy_filtered(from, to, excludes = [])
-	Find.find(from) do |path|
-		next if excludes.find { |x| path =~ x }
-		FileUtils.cp_r path, to
-	end 	
 end
 
 def zip_devpack
@@ -186,7 +170,6 @@ def zip_devpack
 		Find.find(BUILD_DIR) do |path|
 			next if path == BUILD_DIR
 			dest = path.sub /^#{BUILD_DIR}\//, ''
-			# puts "adding #{path} to zipfile as #{dest}"
 			zipfile.add(dest, path)
 		end 
 	end	
