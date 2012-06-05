@@ -21,9 +21,6 @@ end
 
 desc "downloads required resources and builds the devpack binary"
 task :build do
-	
-	unpack_zip "#{SRC_DIR}/cygwin-1.7.15-1.tar.bz2", "#{BUILD_DIR}/tools/ssh"
-	raise "stop"
 	recreate_dirs
 	copy_files
 	download_tools
@@ -78,7 +75,15 @@ def download_virtualbox
 end
 
 def install_gems
-	puts "TODO: install gems to vagrant embedded ruby"
+	Bundler.with_clean_env {
+		File.open("#{CACHE_DIR}/install_gems.bat", 'w') do |f|
+			f.write "echo installing gems...\n"
+			f.write "call #{BUILD_DIR}/set-env.bat\n"
+			f.write "gem install bundler --no-ri --no-rdoc\n"
+			f.write "bundle install --gemfile=#{BUILD_DIR}/Gemfile --verbose\n"
+		end
+		system "#{CACHE_DIR}/install_gems.bat"
+	}
 end
 
 def clone_repositories

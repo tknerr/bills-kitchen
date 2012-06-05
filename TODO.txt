@@ -2,7 +2,6 @@
 [ ] automate devpack creation from source
 	[ ] download/extract openssh for windows
 	[ ] windows ssh patch for vagrant
-	[ ] fix PATHs in set-env.bat
 	[ ] switch to libarchive instead of rubyzip
 [ ] move cookbooks outside of devpack
 [ ] librarian for Vagranfile
