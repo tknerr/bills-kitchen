@@ -52,6 +52,8 @@ def copy_files
 end
 
 def download_tools
+	cache_download 'http://www.gringod.com/wp-upload/MONACO.TTF', 
+		"#{BUILD_DIR}/install/MONACO.TTF"
 	download_extract_zip 'http://cloud.github.com/downloads/adoxa/ansicon/ansi151.zip', 
 		"#{BUILD_DIR}/tools/ansicon" 
 	download_extract_zip 'http://dfn.dl.sourceforge.net/project/console/console-devel/2.00/Console-2.00b148-Beta_32bit.zip', 
@@ -64,8 +66,8 @@ def download_tools
 		"#{BUILD_DIR}/tools/portablegit-1.7.10-preview"
 	download_extract_msi 'http://files.vagrantup.com/packages/eb590aa3d936ac71cbf9c64cf207f148ddfc000a/vagrant_1.0.3.msi',
 		"#{BUILD_DIR}/tools/vagrant"
-	cache_download 'http://www.gringod.com/wp-upload/MONACO.TTF', 
-		"#{BUILD_DIR}/install/MONACO.TTF"
+	download_extract_exe 'http://miked.ict.rave.ac.uk/download/attachments/589834/OpenSSH_for_Windows_5.6p1-2.exe?version=1&modificationDate=1330804261635',
+		"#{BUILD_DIR}/tools/sshwindows", ['ssh.exe', 'scp.exe', 'cygz.dll', 'cygwin1.dll', 'cygssp-0.dll', 'cyggcc_s-1.dll', 'cygcrypto-0.9.8.dll']
 end
 
 def download_baseboxes
@@ -133,7 +135,11 @@ def download_extract_msi(url, target_dir)
 	download_extract url, target_dir, :msi
 end
 
-def download_extract(url, target_dir, type)	
+def download_extract_exe(url, target_dir, includes)
+	download_extract url, target_dir, :exe, includes
+end
+
+def download_extract(url, target_dir, type, includes = [])	
 	Dir.mktmpdir do |tmp| 
 		outfile = "#{tmp}/out.zip"
 		cache_download(url, outfile)
@@ -141,6 +147,7 @@ def download_extract(url, target_dir, type)
 		case type
 		when :zip; unpack_zip(outfile, target_dir)
 		when :msi; unpack_msi(outfile, target_dir)
+		when :exe; unpack_exe(outfile, target_dir, includes)
 		end
 	end
 end
@@ -178,7 +185,12 @@ end
 
 def unpack_zip(zip_file, target_dir)
 	puts "extracting zip file to '#{target_dir}'"	
-	system("\"#{ZIP_EXE}\" x -o\"#{abs(target_dir)}\" \"#{abs(zip_file)}\" 1> NUL")
+	system("\"#{ZIP_EXE}\" x -o\"#{abs(target_dir)}\" -y \"#{abs(zip_file)}\" 1> NUL")
+end
+
+def unpack_exe(exe_file, target_dir, includes = [])
+	puts "extracting exe file to '#{target_dir}'"	
+	system("\"#{ZIP_EXE}\" e -o\"#{abs(target_dir)}\" -y \"#{abs(exe_file)}\" -r #{includes.join(' ')} 1> NUL")
 end
 
 def unpack_msi(msi_file, target_dir)
