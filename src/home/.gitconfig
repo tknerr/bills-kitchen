@@ -1,0 +1,31 @@
+[core]
+	editor = sublime_text.exe
+	autocrlf = input
+[diff]
+	tool = kdiff3
+[difftool]
+	prompt = false
+[difftool "kdiff3"]
+	path = "kdiff3.exe"
+	trustExitCode = false
+[merge]
+	tool = kdiff3
+[mergetool]
+	prompt = false
+[mergetool "kdiff3"]
+	path = "kdiff3.exe"
+	trustExitCode = false
+	keepBackup = false
+[alias]
+	co = checkout
+	ci = commit
+	br = branch
+	st = status
+	unstage = reset HEAD --
+	slog = log --pretty=oneline --abbrev-commit
+[http]
+	sslVerify = false
+	# proxy = your.proxy.org:8080
+[user]
+	name = will be overriden
+	email = from@set-env.bat

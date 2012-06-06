@@ -3,7 +3,6 @@
 	[ ] windows ssh patch for vagrant
 	[ ] add README for github
 	[ ] generate devpack html docs
-	[ ] kdiff3 plus gitconfig
 	[ ] remove intermediary files when extracting msi
 [ ] move cookbooks outside of devpack
 [ ] librarian for Vagranfile

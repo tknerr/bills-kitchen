@@ -67,6 +67,8 @@ def download_tools
 		"#{BUILD_DIR}/tools/vagrant"
 	download_extract_exe 'http://miked.ict.rave.ac.uk/download/attachments/589834/OpenSSH_for_Windows_5.6p1-2.exe?version=1&modificationDate=1330804261635',
 		"#{BUILD_DIR}/tools/sshwindows", ['ssh.exe', 'scp.exe', 'cygz.dll', 'cygwin1.dll', 'cygssp-0.dll', 'cyggcc_s-1.dll', 'cygcrypto-0.9.8.dll']
+	download_extract_exe 'http://switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe',
+		"#{BUILD_DIR}/tools/kdiff3", ['kdiff3.exe']
 end
 
 def download_baseboxes
