@@ -1,7 +1,3 @@
 
-# ignore devpack builds
-chef-devpack*.zip
-
-# ignore temp and build dirs
-tmp/
-out/
+# ignore target dir
+target/

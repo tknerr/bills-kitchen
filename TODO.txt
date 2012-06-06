@@ -2,7 +2,8 @@
 [ ] automate devpack creation from source
 	[ ] download/extract openssh for windows
 	[ ] windows ssh patch for vagrant
-	[ ] switch to libarchive instead of rubyzip
+	[ ] add README for github
+	[ ] generate devpack html docs
 [ ] move cookbooks outside of devpack
 [ ] librarian for Vagranfile
 [ ] base role
