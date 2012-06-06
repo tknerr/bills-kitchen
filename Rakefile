@@ -1,6 +1,5 @@
 require 'bundler/setup'
 require 'rubygems'
-require 'zip/zip'
 require 'find'
 require 'fileutils'
 require 'uri'
@@ -141,7 +140,7 @@ end
 
 def download_extract(url, target_dir, type, includes = [])	
 	Dir.mktmpdir do |tmp| 
-		outfile = "#{tmp}/out.zip"
+		outfile = "#{tmp}/out.packed"
 		cache_download(url, outfile)
 		FileUtils.rm_rf target_dir
 		case type
@@ -185,34 +184,21 @@ end
 
 def unpack_zip(zip_file, target_dir)
 	puts "extracting zip file to '#{target_dir}'"	
-	system("\"#{ZIP_EXE}\" x -o\"#{abs(target_dir)}\" -y \"#{abs(zip_file)}\" 1> NUL")
+	system("\"#{ZIP_EXE}\" x -o\"#{target_dir}\" -y \"#{zip_file}\" 1> NUL")
 end
 
 def unpack_exe(exe_file, target_dir, includes = [])
 	puts "extracting exe file to '#{target_dir}'"	
-	system("\"#{ZIP_EXE}\" e -o\"#{abs(target_dir)}\" -y \"#{abs(exe_file)}\" -r #{includes.join(' ')} 1> NUL")
+	system("\"#{ZIP_EXE}\" e -o\"#{target_dir}\" -y \"#{exe_file}\" -r #{includes.join(' ')} 1> NUL")
 end
 
 def unpack_msi(msi_file, target_dir)
 	puts "extracting msi file to '#{target_dir}'"		
-	abs_msi_file = abs(msi_file).gsub('/', '\\')
-	abs_target_dir = abs(target_dir).gsub('/', '\\')
-	system("start /wait msiexec /a \"#{abs_msi_file}\" /qb TARGETDIR=\"#{abs_target_dir}\"")
-	# TODO: remove intermediary files from msi
+	system("start /wait msiexec /a \"#{msi_file.gsub('/', '\\')}\" /qb TARGETDIR=\"#{target_dir.gsub('/', '\\')}\"")
 end
 
 def zip_devpack
-	target = "#{TARGET_DIR}/chef-devpack-#{VERSION}.zip"
-	puts "zipping devpack to '#{target}'"
-	Zip::ZipFile.open(target, Zip::ZipFile::CREATE) do |zipfile|
-		Find.find(BUILD_DIR) do |path|
-			next if path == BUILD_DIR
-			dest = path.sub /^#{BUILD_DIR}\//, ''
-			zipfile.add(dest, path)
-		end 
-	end	
-end
-
-def abs(file)
-	File.expand_path(file)
+	archive = "#{TARGET_DIR}/chef-devpack-#{VERSION}.7z"
+	puts "zipping devpack to '#{archive}'"
+	system("\"#{ZIP_EXE}\" a -t7z -y \"#{archive}\" \"#{BUILD_DIR}\" 1> NUL")
 end
