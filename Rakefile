@@ -73,7 +73,6 @@ end
 def download_installables
 	%w{ 
 		www.gringod.com/wp-upload/MONACO.TTF
-		download.virtualbox.org/virtualbox/4.1.16/VirtualBox-4.1.16-78094-Win.exe
 	}
 	.each do |host_and_path|
 		download "http://#{host_and_path}", "#{BUILD_DIR}/install/#{File.basename(host_and_path)}"
