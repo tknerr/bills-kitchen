@@ -18,7 +18,7 @@ set SUBLIMEDIR=%SCRIPT_DIR%tools\sublimetext2
 cmd /C %RUBYDIR%\devkitvars.bat
 
 :: use portable git, looks for %HOME%\.gitconfig 
-set GITDIR=%SCRIPT_DIR%tools\portablegit-1.7.10-preview
+set GITDIR=%SCRIPT_DIR%tools\portablegit
 set HOME=%SCRIPT_DIR%home
 :: set username/email
 cmd /C %GITDIR%\cmd\git config --global --replace user.name %USERNAME%
