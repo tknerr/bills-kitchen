@@ -82,8 +82,7 @@ end
 def install_gems
 	gem_file = "#{BUILD_DIR}/Gemfile"
 
-	File.open(gem_file, 'w') do |f| 
-		f.write(<<-GEMFILE)
+	File.open(gem_file, 'w') { |f| f.write(<<-GEMFILE) }
 source 'http://rubygems.org'
 
 # core gems we need for cookin'
@@ -100,8 +99,7 @@ gem 'cucumber-nagios', '~>0.6.8'
 gem 'veewee', '0.3.0.alpha9'
 gem 'sahara', '0.0.10.patch1', :git => 'git://github.com/tknerr/sahara.git'
 GEMFILE
-	end
-	
+
 	# need a clean env without bundler env vars
 	Bundler.with_clean_env {
 		system("#{BUILD_DIR}/set-env.bat \
@@ -121,6 +119,19 @@ def clone_repositories
 	]
 	.each do |repo, dest|
 		system("git clone git://github.com/#{repo} #{BUILD_DIR}/#{dest}")
+	end
+end
+
+def bundle_devpack
+	pack BUILD_DIR, "#{TARGET_DIR}/chef-devpack-#{VERSION}.7z"
+end
+
+
+def download_and_unpack(url, target_dir, includes = [])	
+	Dir.mktmpdir do |tmp_dir| 
+		outfile = "#{tmp_dir}/#{File.basename(url)}"
+		download(url, outfile)
+		unpack(outfile, target_dir, includes)
 	end
 end
 
@@ -152,34 +163,21 @@ def download_no_cache(url, outfile)
 	end
 end
 
-def download_and_unpack(url, target_dir, includes = [])	
-	Dir.mktmpdir do |tmp_dir| 
-		outfile = "#{tmp_dir}/out.packed"
-		download(url, outfile)
-		unpack(outfile, target_dir, get_type(url), includes)
-	end
-end
-
-def get_type(url)
-	File.extname(url).slice(1..-1).to_sym
-end
-
-def unpack(archive, target_dir, type, includes = [])
-	puts "extracting #{type} file to '#{target_dir}'"	
-	case type
-	when :zip, :'7z'
+def unpack(archive, target_dir, includes = [])
+	puts "extracting '#{archive}' to '#{target_dir}'"	
+	case File.extname(archive)
+	when '.zip', '.7z'
 		system("\"#{ZIP_EXE}\" x -o\"#{target_dir}\" -y \"#{archive}\" 1> NUL")
-	when :exe
+	when '.exe'
 		system("\"#{ZIP_EXE}\" e -o\"#{target_dir}\" -y \"#{archive}\" -r #{includes.join(' ')} 1> NUL")
-	when :msi
+	when '.msi'
 		system("start /wait msiexec /a \"#{archive.gsub('/', '\\')}\" /qb TARGETDIR=\"#{target_dir.gsub('/', '\\')}\"")
 	else 
-		raise "don't know how to unpack #{type} file"
+		raise "don't know how to unpack '#{archive}'"
 	end
 end
 
-def bundle_devpack
-	archive = "#{TARGET_DIR}/chef-devpack-#{VERSION}.7z"
-	puts "bundling devpack to '#{archive}'"
-	system("\"#{ZIP_EXE}\" a -t7z -y \"#{archive}\" \"#{BUILD_DIR}\" 1> NUL")
+def pack(target_dir, archive)
+	puts "packing '#{target_dir}' into '#{archive}'"
+	system("\"#{ZIP_EXE}\" a -t7z -y \"#{archive}\" \"#{target_dir}\" 1> NUL")
 end
