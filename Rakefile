@@ -24,6 +24,7 @@ task :build do
 	download_installables
 	copy_files
 	install_gems
+	install_patched_gems
 	clone_repositories
 	bundle_devpack
 end
@@ -86,7 +87,7 @@ def install_gems
 source 'http://rubygems.org'
 
 # core gems we need for cookin'
-gem 'vagrant', '1.0.2.patch1', :git => 'git://github.com/tknerr/vagrant.git', :branch => 'GH-247'	
+# gem 'vagrant', '1.0.2.patch1', git => 'git://github.com/tknerr/vagrant.git', :branch => 'GH-247'
 gem 'chef', '0.10.10'
 gem 'librarian', '0.0.20'
 
@@ -97,7 +98,7 @@ gem 'cucumber-nagios', '~>0.6.8'
 
 # optional but useful (for dessert)
 gem 'veewee', '0.3.0.alpha9'
-gem 'sahara', '0.0.10.patch1', :git => 'git://github.com/tknerr/sahara.git'
+# gem 'sahara', '0.0.10.patch1', :git => 'git://github.com/tknerr/sahara.git'
 GEMFILE
 
 	# need a clean env without bundler env vars
@@ -106,6 +107,27 @@ GEMFILE
 			&& gem install bundler --no-ri --no-rdoc \
 			&& bundle install --gemfile=#{gem_file} --verbose")
 	}
+end
+
+def install_patched_gems
+	[
+		%w{ sahara 0.0.10.patch1 },
+		# %w{ vagrant 1.0.2.patch1 GH-247 }
+	]
+	.each do |name, version, branch = 'master'|
+		Bundler.with_clean_env do
+			Dir.mktmpdir do |tmp_dir|
+				system(<<-CMD)
+#{BUILD_DIR}/set-env.bat \
+&& git clone git://github.com/tknerr/#{name}.git -b #{branch} "#{tmp_dir}" \
+&& cd "#{tmp_dir}" \
+&& dir \
+&& gem build #{name}.gemspec \
+&& gem install "#{tmp_dir}/#{name}-#{version}.gem" --no-ri --no-rdoc
+CMD
+			end
+		end
+	end
 end
 
 def clone_repositories
