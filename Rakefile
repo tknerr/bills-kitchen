@@ -24,7 +24,6 @@ task :build do
 	download_installables
 	copy_files
 	install_gems
-	install_patched_gems
 	clone_repositories
 	bundle_devpack
 end
@@ -81,51 +80,21 @@ def download_installables
 end
 
 def install_gems
-	gem_file = "#{BUILD_DIR}/Gemfile"
-
-	File.open(gem_file, 'w') { |f| f.write(<<-GEMFILE) }
-source 'http://rubygems.org'
-
-# core gems we need for cookin'
-# gem 'vagrant', '1.0.2.patch1', git => 'git://github.com/tknerr/vagrant.git', :branch => 'GH-247'
-gem 'chef', '0.10.10'
-gem 'librarian', '0.0.20'
-
-# gems we need for t[e|a]sting
-gem 'foodcritic', '~>1.0.1'
-gem 'chefspec', '~>0.5.0'
-gem 'cucumber-nagios', '~>0.6.8'
-
-# optional but useful (for dessert)
-gem 'veewee', '0.3.0.alpha9'
-# gem 'sahara', '0.0.10.patch1', :git => 'git://github.com/tknerr/sahara.git'
-GEMFILE
-
-	# need a clean env without bundler env vars
-	Bundler.with_clean_env {
+	Bundler.with_clean_env do
 		system("#{BUILD_DIR}/set-env.bat \
 			&& gem install bundler --no-ri --no-rdoc \
-			&& bundle install --gemfile=#{gem_file} --verbose")
-	}
-end
+			&& bundle install --gemfile=#{BUILD_DIR}/Gemfile --verbose")
 
-def install_patched_gems
-	[
-		%w{ sahara 0.0.10.patch1 },
-		# %w{ vagrant 1.0.2.patch1 GH-247 }
-	]
-	.each do |name, version, branch = 'master'|
-		Bundler.with_clean_env do
-			Dir.mktmpdir do |tmp_dir|
-				system(<<-CMD)
-#{BUILD_DIR}/set-env.bat \
-&& git clone git://github.com/tknerr/#{name}.git -b #{branch} "#{tmp_dir}" \
-&& cd "#{tmp_dir}" \
-&& dir \
-&& gem build #{name}.gemspec \
-&& gem install "#{tmp_dir}/#{name}-#{version}.gem" --no-ri --no-rdoc
-CMD
-			end
+		# XXX: need to re-install/override the :git gems as bundler does not install them properly
+		# (i.e. they won't show up in `gem list` neither will the binaries by installed)
+		[
+			%w{ sahara 0.0.10.patch1 },
+			%w{ vagrant 1.0.2.patch1 }
+		]
+		.each do |name, version|
+			system("#{BUILD_DIR}/set-env.bat \
+				&& gem uninstall #{name} -a -x -I \
+				&& gem install #{BUILD_DIR}/install/#{name}-#{version}.gem --no-ri --no-rdoc")
 		end
 	end
 end

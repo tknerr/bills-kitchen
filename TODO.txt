@@ -1,7 +1,7 @@
 
 [ ] automate devpack creation from source
-	[ ] windows ssh patch for vagrant
-	[ ] update chef-devpack-chef-repo with .box urls
+	[ ] revisit handling of bundler :git gems 
+		(for each :git gem in Gemfile: cd to `bundle show <xxx>`, `gem build <xxx>`, `gem install <xxx>`)
 	[ ] add README for github
 	[ ] generate devpack html docs
 	[ ] remove intermediary files when extracting msi

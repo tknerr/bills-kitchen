@@ -1,0 +1,15 @@
+source 'http://rubygems.org'
+
+# core gems we need for cookin'
+gem 'vagrant', '1.0.2.patch1', :git => 'git://github.com/tknerr/vagrant.git', :branch => 'GH-247'	
+gem 'chef', '0.10.10'
+gem 'librarian', '0.0.20'
+
+# gems we need for t[e|a]sting
+gem 'foodcritic', '~>1.0.1'
+gem 'chefspec', '~>0.5.0'
+gem 'cucumber-nagios', '~>0.6.8'
+
+# optional but useful (for dessert)
+gem 'veewee', '0.3.0.alpha9'
+gem 'sahara', '0.0.10.patch1', :git => 'git://github.com/tknerr/sahara.git'
