@@ -1,6 +1,7 @@
 
 [ ] automate devpack creation from source
 	[ ] windows ssh patch for vagrant
+	[ ] update chef-devpack-chef-repo with .box urls
 	[ ] add README for github
 	[ ] generate devpack html docs
 	[ ] remove intermediary files when extracting msi
