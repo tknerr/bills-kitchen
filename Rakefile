@@ -4,7 +4,6 @@ end
 
 VERSION = '0.4'
 BASE_DIR = File.expand_path('.', File.dirname(__FILE__)) 
-SRC_DIR 	= "#{BASE_DIR}/src"
 TARGET_DIR 	= "#{BASE_DIR}/target" 
 BUILD_DIR 	= "#{BASE_DIR}/target/build"
 CACHE_DIR 	= "#{BASE_DIR}/target/cache"
@@ -39,7 +38,7 @@ def recreate_dirs
 end
 
 def copy_files
-	FileUtils.cp_r Dir.glob("#{SRC_DIR}/*"), "#{BUILD_DIR}"
+	FileUtils.cp_r Dir.glob("#{BASE_DIR}/files/*"), "#{BUILD_DIR}"
 end
 
 def generate_docs
