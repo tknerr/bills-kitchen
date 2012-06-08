@@ -1,8 +1,8 @@
-%w{ bundler/setup rubygems fileutils uri net/http tmpdir digest/md5 }.each do |file|
+%w{ bundler/setup rubygems fileutils uri net/http tmpdir digest/md5 ./doc/markit }.each do |file|
 	require file
 end
 
-VERSION = '0.4-SNAPSHOT'
+VERSION = '0.4'
 BASE_DIR = File.expand_path('.', File.dirname(__FILE__)) 
 SRC_DIR 	= "#{BASE_DIR}/src"
 TARGET_DIR 	= "#{BASE_DIR}/target" 
@@ -23,6 +23,7 @@ task :build do
 	# download_boxes
 	download_installables
 	copy_files
+	generate_docs
 	install_gems
 	clone_repositories
 	bundle_devpack
@@ -39,6 +40,14 @@ end
 
 def copy_files
 	FileUtils.cp_r Dir.glob("#{SRC_DIR}/*"), "#{BUILD_DIR}"
+end
+
+def generate_docs
+	Dir.glob("#{BASE_DIR}/*.md").each do |md_file|
+		html = MarkIt.to_html(IO.read(md_file))
+		outfile = "#{BUILD_DIR}/_#{File.basename(md_file, '.md')}.html"
+		File.open(outfile, 'w') {|f| f.write(html) }
+	end
 end
 
 def download_tools
