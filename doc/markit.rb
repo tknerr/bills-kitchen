@@ -94,7 +94,7 @@ end
 class MarkIt
   def self.to_html(text)
     renderer = SyntaxRenderer.new(
-      :style         => "https://raw.github.com/tknerr/chef-devpack/master/doc/style.css",
+      :style         => "http://tknerr.github.com/chef-devpack/stylesheets/docs_stylesheet.css",
       :toc           => false,
       :hard_wrap     => true,
       :xhtml         => true
