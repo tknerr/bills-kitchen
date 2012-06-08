@@ -1,5 +1,5 @@
 
-Description
+Chef DevPack
 ===========
 
 All you need for cooking with Chef and Vagrant on Windows in a portable package, including:
@@ -47,5 +47,5 @@ Make sure you have  [VirtualBox](https://www.virtualbox.org/wiki/Downloads) inst
 2. mount the devpack to the `W:\` drive by double-clicking the `mount-w-drive.bat` file
 3. click `W:\Launch Console.lnk` to open a command prompt
 4. in the command prompt run `W:\set-env.bat` to set up the PATH etc 
-5. walk through the [W:\_GETTING_STARTED.html](file://W:/_GETTING_STARTED.html) tutorial and start cooking!
+5. walk through the [GETTING_STARTED.html](file://W:/_GETTING_STARTED.html) tutorial and start cooking!
 
