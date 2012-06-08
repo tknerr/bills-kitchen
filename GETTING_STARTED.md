@@ -132,8 +132,7 @@ Great! Our chef server now knows all our cookbooks, roles, environments etc.
 
 You can also use the chef server webui to explore any data on the chef server. Just point your browser to http://33.33.3.10:4040/cookbooks (log in with admin/p@ssw0rd1) and explore the cookbooks we have just uploaded:
 
-![Chef Server - Explore Cookbooks](https://github.com/tknerr/chef-devpack/tree/master/doc/chef-server_cookbooks.png)  
-
+![Chef Server - Explore Cookbooks](https://raw.github.com/tknerr/chef-devpack/master/doc/chef-server_cookbooks.png) 
 
 ### Setup a Web Server using Chef
 
