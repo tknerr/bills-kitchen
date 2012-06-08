@@ -7,7 +7,6 @@ gem 'librarian', '0.0.20'
 
 # gems we need for t[e|a]sting
 gem 'foodcritic', '~>1.0.1'
-gem 'chefspec', '~>0.5.0'
 gem 'cucumber-nagios', '~>0.6.8'
 
 # optional but useful (for dessert)
