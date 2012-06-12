@@ -1,5 +1,9 @@
 
-# [0.4-SNAPSHOT] 
+# [0.5-SNAPSHOT]
+
+ * ...
+
+# [0.4] 
  
  * switched to 7z packaging greatly reducing filesize
  * updated Vagrantfiles to use public basebox URLs
