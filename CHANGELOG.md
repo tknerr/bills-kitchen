@@ -1,6 +1,7 @@
 
 # [0.5-SNAPSHOT]
 
+ * fixed devkitvars not being set
  * renamed chef-devpack to bill's kitchen
 
 # [0.4] 
