@@ -9,7 +9,7 @@ require 'albino'
 class SyntaxRenderer < Redcarpet::Render::HTML
   def initialize(options)
     super options
-	@style  = options[:style]
+	@style  = options[:style
     @otoc   = options[:toc]
     @toc    = ""
     @rlevel = nil
@@ -94,7 +94,7 @@ end
 class MarkIt
   def self.to_html(text)
     renderer = SyntaxRenderer.new(
-      :style         => "http://tknerr.github.com/chef-devpack/stylesheets/docs_stylesheet.css",
+      :style         => "http://tknerr.github.com/bills-kitchen/stylesheets/docs_stylesheet.css",
       :toc           => false,
       :hard_wrap     => true,
       :xhtml         => true

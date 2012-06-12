@@ -1,7 +1,7 @@
 
 # [0.5-SNAPSHOT]
 
- * ...
+ * renamed chef-devpack to bill's kitchen
 
 # [0.4] 
  

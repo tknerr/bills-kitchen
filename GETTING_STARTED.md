@@ -9,7 +9,7 @@ Make sure that VirtualBox is installed as described in the [README](file://W:/_R
 
 Internet connectivity is a must as we will bootstrap new VMs from scratch which requires downloading packages etc...
 
-We assume you mounted the DevPack to the `W:\` drive by double-clicking the `mount-w-drive.bat` file and that the environment has been set up via `W:\set-env.bat`. 
+We assume you mounted Bill's Kitchen to the `W:\` drive by double-clicking the `mount-w-drive.bat` file and that the environment has been set up via `W:\set-env.bat`. 
 
 
 ## The Scenario
@@ -132,7 +132,7 @@ Great! Our chef server now knows all our cookbooks, roles, environments etc.
 
 You can also use the chef server webui to explore any data on the chef server. Just point your browser to http://33.33.3.10:4040/cookbooks (log in with admin/p@ssw0rd1) and explore the cookbooks we have just uploaded:
 
-![Chef Server - Explore Cookbooks](https://raw.github.com/tknerr/chef-devpack/master/doc/chef-server_cookbooks.png) 
+![Chef Server - Explore Cookbooks](https://raw.github.com/tknerr/bills-kitchen/master/doc/chef-server_cookbooks.png) 
 
 ### Setup a Web Server using Chef
 
