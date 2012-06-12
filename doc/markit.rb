@@ -9,7 +9,7 @@ require 'albino'
 class SyntaxRenderer < Redcarpet::Render::HTML
   def initialize(options)
     super options
-	@style  = options[:style
+	@style  = options[:style]
     @otoc   = options[:toc]
     @toc    = ""
     @rlevel = nil
