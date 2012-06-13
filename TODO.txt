@@ -1,8 +1,6 @@
 
 [ ] automate devpack creation from source
-	[ ] revisit handling of bundler :git gems 
-		(for each :git gem in Gemfile: cd to `bundle show <xxx>`, `gem build <xxx>`, `gem install <xxx>`)
-	[ ] remove intermediary files when extracting msi
+	[ ] install devkit and ruby separately instead of using vagrant.msi
 [ ] move cookbooks outside of devpack
 [ ] librarian for Vagranfile
 [ ] base role
