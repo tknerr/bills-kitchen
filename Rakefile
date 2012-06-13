@@ -25,7 +25,7 @@ task :build do
 	generate_docs
 	install_gems
 	clone_repositories
-	assemble_kitchen
+	# assemble_kitchen
 end
 
 
@@ -90,20 +90,15 @@ end
 def install_gems
 	Bundler.with_clean_env do
 		system("#{BUILD_DIR}/set-env.bat \
+			&& gem uninstall vagrant -a -x -I \
 			&& gem install bundler --no-ri --no-rdoc \
 			&& bundle install --gemfile=#{BUILD_DIR}/Gemfile --verbose")
 
 		# XXX: need to re-install/override the :git gems as bundler does not install them properly
 		# (i.e. they won't show up in `gem list` neither will the binaries by installed)
-		[
-			%w{ sahara 0.0.10.patch1 },
-			%w{ vagrant 1.0.2.patch1 }
-		]
-		.each do |name, version|
-			system("#{BUILD_DIR}/set-env.bat \
-				&& gem uninstall #{name} -a -x -I \
-				&& gem install #{BUILD_DIR}/install/#{name}-#{version}.gem --no-ri --no-rdoc")
-		end
+		system("#{BUILD_DIR}/set-env.bat \
+			&& gem install #{BUILD_DIR}/install/vagrant-1.0.2.patch1.gem --no-ri --no-rdoc \
+			&& gem install #{BUILD_DIR}/install/sahara-0.0.10.patch1.gem --no-ri --no-rdoc")
 	end
 end
 
