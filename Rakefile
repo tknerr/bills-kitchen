@@ -101,7 +101,7 @@ def clone_repositories
 		%w{ npverni/cucumber-sublime2-bundle.git 	tools/sublimetext2/Data/Packages/Cucumber },
 		%w{ cabeca/SublimeChef.git 					tools/sublimetext2/Data/Packages/Chef },
 		%w{ tknerr/bills-kitchen-repo.git 			repo/my-chef-repo },
-		%w{ tknerr/vagrant-ohai.git 				repo/my-cookbooks/vagrant-ohai },
+		%w{ tknerr/cookbooks-vagrant-ohai.git 		repo/my-cookbooks/vagrant-ohai },
 		%w{ tknerr/cookbooks-motd.git 				repo/my-cookbooks/motd },
 		%w{ tknerr/vagrant-baseboxes.git 			repo/my-baseboxes }
 	]
