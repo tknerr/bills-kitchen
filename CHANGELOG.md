@@ -1,10 +1,10 @@
 
 # [0.5-SNAPSHOT]
 
- * fixed devkitvars not being set
+ * fixed devkitvars not being set causing problems with compiling native gems
  * renamed chef-devpack to bill's kitchen
 
-# [0.4] 
+# [0.4] from 08/06/2012 
  
  * switched to 7z packaging greatly reducing filesize
  * updated Vagrantfiles to use public basebox URLs
