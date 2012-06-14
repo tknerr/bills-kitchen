@@ -25,7 +25,7 @@ task :build do
 	generate_docs
 	install_gems
 	clone_repositories
-	# assemble_kitchen
+	assemble_kitchen
 end
 
 
