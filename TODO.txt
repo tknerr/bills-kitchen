@@ -1,5 +1,6 @@
 
 [ ] automate devpack creation from source
+	[ ] http proxy support
 	[ ] create bills-kitchen_0.5 tags and branches in other repos before 0.5 release
 	[ ] update gems (vagrant, librarian, etc..)
 	[ ] install devkit and ruby separately instead of using vagrant.msi
