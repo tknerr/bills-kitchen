@@ -1,6 +1,7 @@
 
 # [0.5-SNAPSHOT]
 
+ * check out 'bills-kitchen-0.5_branch' after clone for dependent repositories
  * fixed devkitvars not being set causing problems with compiling native gems
  * renamed chef-devpack to bill's kitchen
 

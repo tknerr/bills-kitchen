@@ -107,11 +107,17 @@ def clone_repositories
 	]
 	.each do |repo, dest|
 		system("git clone git://github.com/#{repo} #{BUILD_DIR}/#{dest}")
+		# for release check out branches as per https://gist.github.com/2928593
+		if release? && repo.start_with?('tknerr/')
+			system("cd #{BUILD_DIR}/#{dest} && git checkout -t origin/bills-kitchen-#{VERSION}_branch")
+		end
 	end
 end
 
 def assemble_kitchen
-	pack BUILD_DIR, "#{TARGET_DIR}/bills-kitchen-#{VERSION}.7z"
+	if release?
+		pack BUILD_DIR, "#{TARGET_DIR}/bills-kitchen-#{VERSION}.7z"
+	end
 end
 
 
@@ -168,4 +174,8 @@ end
 def pack(target_dir, archive)
 	puts "packing '#{target_dir}' into '#{archive}'"
 	system("\"#{ZIP_EXE}\" a -t7z -y \"#{archive}\" \"#{target_dir}\" 1> NUL")
+end
+
+def release?
+	!VERSION.end_with?('-SNAPSHOT')
 end
