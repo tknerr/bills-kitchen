@@ -1,4 +1,8 @@
 
+# [0.6-SNAPSHOT]
+  
+  * ...
+
 # [0.5] from 27/06/2012
 
  * check out 'bills-kitchen-0.5_branch' after clone for dependent repositories
