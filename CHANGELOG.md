@@ -1,5 +1,5 @@
 
-# [0.5-SNAPSHOT]
+# [0.5] from 27/06/2012
 
  * check out 'bills-kitchen-0.5_branch' after clone for dependent repositories
  * fixed devkitvars not being set causing problems with compiling native gems
