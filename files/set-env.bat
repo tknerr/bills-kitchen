@@ -24,6 +24,12 @@ set HOME=%SCRIPT_DIR%home
 :: set username/email
 cmd /C %GITDIR%\cmd\git config --global --replace user.name %USERNAME%
 cmd /C %GITDIR%\cmd\git config --global --replace user.email %USERNAME%@zuehlke.com
+:: toggle proxy based on env var
+if "%HTTP_PROXY%"=="" (
+	cmd /C %GITDIR%\cmd\git config --global --unset http.proxy
+) else (
+	cmd /C %GITDIR%\cmd\git config --global --replace http.proxy %HTTP_PROXY%
+)
 
 :: don't let VirtualBox use %HOME% instead of %USERPROFILE%, 
 :: otherwise it would become confused when W:\ is unmounted 
