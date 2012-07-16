@@ -2,7 +2,7 @@
 	require file
 end
 
-VERSION = '0.6-SNAPSHOT'
+VERSION = '0.5.1'
 BASE_DIR = File.expand_path('.', File.dirname(__FILE__)) 
 TARGET_DIR 	= "#{BASE_DIR}/target" 
 BUILD_DIR 	= "#{BASE_DIR}/target/build"
@@ -109,7 +109,7 @@ def clone_repositories
 		system("git clone git://github.com/#{repo} #{BUILD_DIR}/#{dest}")
 		# for release check out branches as per https://gist.github.com/2928593
 		if release? && repo.start_with?('tknerr/')
-			system("cd #{BUILD_DIR}/#{dest} && git checkout -t origin/bills-kitchen-#{VERSION}_branch")
+			system("cd #{BUILD_DIR}/#{dest} && git checkout -t origin/bills-kitchen-#{major_version}_branch")
 		end
 	end
 end
@@ -178,4 +178,8 @@ end
 
 def release?
 	!VERSION.end_with?('-SNAPSHOT')
+end
+
+def major_version
+	VERSION.gsub(/^(\d+\.\d+).*$/, '\1')
 end

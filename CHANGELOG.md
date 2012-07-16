@@ -1,9 +1,10 @@
 
-# [0.6-SNAPSHOT]
+# [0.5.1] from 16/07/2012
   
- * added knife-solo gem (patched for windows)
  * added putty to tools
-
+ * added knife-solo gem (patched for windows)
+ * better http proxy support: updated librarian gem (proxy patch), setting proxy in .gitconfig
+ 
 # [0.5] from 27/06/2012
 
  * check out 'bills-kitchen-0.5_branch' after clone for dependent repositories
