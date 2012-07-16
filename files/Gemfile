@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 source 'https://gems.gemfury.com/jrmchJyCqbzo27hc1jcm/' # vagrant-1.0.2.patch1
 source 'https://gems.gemfury.com/qWjNBFssqt7qLqWWvxWk/' # sahara-0.0.10.patch1
+source 'https://gems.gemfury.com/X4uQmyNx9E9vzdr2SVxe/' # knife-solo-0.0.12.patch1
 
 # core gems we need for cookin'
 gem 'vagrant', '1.0.2.patch1' #, :git => 'git://github.com/tknerr/vagrant.git', :branch => 'GH-247'
@@ -14,3 +15,6 @@ gem 'cucumber-nagios', '~>0.6.8'
 # optional but useful (for dessert)
 gem 'veewee', '0.3.0.alpha9'
 gem 'sahara', '0.0.10.patch1' #, :git => 'git://github.com/tknerr/sahara.git'
+
+# for bootstrapping via chef-solo
+gem 'knife-solo', '0.0.12.patch1' #,	:git => 'https://github.com/tknerr/knife-solo.git', :branch => 'windows-support'

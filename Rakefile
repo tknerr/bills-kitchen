@@ -28,7 +28,6 @@ task :build do
 	assemble_kitchen
 end
 
-
 def recreate_dirs
 	FileUtils.rm_rf BUILD_DIR
 	%w{ boxes docs home install repo tools }.each do |dir|
@@ -60,7 +59,9 @@ def download_tools
 		%w{ miked.ict.rave.ac.uk/download/attachments/589834/OpenSSH_for_Windows_5.6p1-2.exe 			sshwindows 
 			ssh.exe|scp.exe|cygz.dll|cygwin1.dll|cygssp-0.dll|cyggcc_s-1.dll|cygcrypto-0.9.8.dll },
 		%w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe 				kdiff3 
-			kdiff3.exe }
+			kdiff3.exe },
+		%w{ http://the.earth.li/~sgtatham/putty/latest/x86/putty.zip 									putty
+			putty.exe|pscp.exe|puttygen.exe }
 	]
 	.each do |host_and_path, target_dir, includes = ''|
 		download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')		
