@@ -60,7 +60,7 @@ def download_tools
 			ssh.exe|scp.exe|cygz.dll|cygwin1.dll|cygssp-0.dll|cyggcc_s-1.dll|cygcrypto-0.9.8.dll },
 		%w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe 				kdiff3 
 			kdiff3.exe },
-		%w{ http://the.earth.li/~sgtatham/putty/latest/x86/putty.zip 									putty }
+		%w{ the.earth.li/~sgtatham/putty/latest/x86/putty.zip 											putty }
 	]
 	.each do |host_and_path, target_dir, includes = ''|
 		download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')		
