@@ -13,10 +13,12 @@ All you need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a p
  	* sahara (patched to work on windows)
  	* foodcritic
  	* cucumber-nagios
+ 	* knife-solo (patched to work on windows)
  * supporting tools such as:
  	* Console2 (with ansicon)
  	* SublimeText2 (with additional packages for Chef and Cucumber)
  	* PortableGit (preconfigured with kdiff3 as diff/merge tool)
+ 	* putty
  * walkthrough tutorial and example cookbooks
 
 The only requirement for using the devpack is a recent version of [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (couldn't make that one portable).

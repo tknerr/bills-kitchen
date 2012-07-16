@@ -1,7 +1,8 @@
 
 # [0.6-SNAPSHOT]
   
-  * ...
+ * added knife-solo gem (patched for windows)
+ * added putty to tools
 
 # [0.5] from 27/06/2012
 
