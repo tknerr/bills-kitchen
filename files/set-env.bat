@@ -49,6 +49,7 @@ echo CONSOLE2DIR=%CONSOLE2DIR%
 echo SUBLIMEDIR=%SUBLIMEDIR%
 echo PUTTYDIR=%PUTTYDIR%
 echo GITDIR=%GITDIR%
+echo HTTP_PROXY=%HTTP_PROXY%
 
 :: command aliases
 @doskey vi=sublime_text $*
