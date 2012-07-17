@@ -2,7 +2,7 @@
 	require file
 end
 
-VERSION = '0.5.1'
+VERSION = '0.6-SNAPSHOT'
 BASE_DIR = File.expand_path('.', File.dirname(__FILE__)) 
 TARGET_DIR 	= "#{BASE_DIR}/target" 
 BUILD_DIR 	= "#{BASE_DIR}/target/build"

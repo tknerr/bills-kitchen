@@ -1,4 +1,8 @@
 
+# [0.6-SNAPSHOT]
+
+ * ...
+
 # [0.5.1] from 16/07/2012
   
  * added putty to tools
