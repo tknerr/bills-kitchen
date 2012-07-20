@@ -1,7 +1,8 @@
 
 # [0.6-SNAPSHOT]
 
- * ...
+ * bugfixes:
+   * GH-5: rake install fails due to missing gems 
 
 # [0.5.1] from 16/07/2012
   
