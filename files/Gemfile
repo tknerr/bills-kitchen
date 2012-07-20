@@ -10,6 +10,10 @@ gem 'vagrant', '1.0.2.patch1' #, :git => 'git://github.com/tknerr/vagrant.git', 
 gem 'chef', '0.10.10'
 gem 'librarian', '0.0.20.1' #, :git => 'git://github.com/tknerr/librarian.git', :branch => 'http_proxy_0.0.20'
 
+# extra gems required by chef on windows (see GH-5)
+gem 'ruby-wmi', '~> 0.4.0'
+gem 'win32-service', '~> 0.7.2'
+
 # gems we need for t[e|a]sting
 gem 'foodcritic', '~>1.0.1'
 gem 'cucumber-nagios', '~>0.6.8'
