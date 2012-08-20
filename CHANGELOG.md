@@ -1,7 +1,10 @@
 
 # [0.6-SNAPSHOT]
-
+ 
+ * updated knife-solo to latest version (now much faster using rsync.exe)
+ * add latest version of cygwin rsync.exe and ssh.exe 
  * bugfixes:
+   * GH-6: "This build of Sublime Text 2 has expired..."
    * GH-5: rake install fails due to missing gems 
 
 # [0.5.1] from 16/07/2012
