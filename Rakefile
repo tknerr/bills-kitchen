@@ -53,7 +53,7 @@ def download_tools
 		%w{ cloud.github.com/downloads/adoxa/ansicon/ansi153.zip 										ansicon },
 		%w{ dfn.dl.sourceforge.net/project/console/console-devel/2.00/Console-2.00b148-Beta_32bit.zip 	console2 },
 		%w{ www.holistech.co.uk/sw/hostsedit/hostsedit.zip 												hostedit },
-		%w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202%20Build%202181%20x64.zip 					sublimetext2 },
+		%w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.zip 								sublimetext2 },
 		%w{ msysgit.googlecode.com/files/PortableGit-1.7.10-preview20120409.7z							portablegit },
 		%w{ files.vagrantup.com/packages/eb590aa3d936ac71cbf9c64cf207f148ddfc000a/vagrant_1.0.3.msi 	vagrant },
 		%w{ miked.ict.rave.ac.uk/download/attachments/589834/OpenSSH_for_Windows_5.6p1-2.exe 			sshwindows 
