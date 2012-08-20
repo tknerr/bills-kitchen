@@ -2,12 +2,12 @@ source 'http://rubygems.org'
 
 source 'https://gems.gemfury.com/jrmchJyCqbzo27hc1jcm/' # vagrant-1.0.2.patch1
 source 'https://gems.gemfury.com/qWjNBFssqt7qLqWWvxWk/' # sahara-0.0.10.patch1
-source 'https://gems.gemfury.com/X4uQmyNx9E9vzdr2SVxe/' # knife-solo-0.0.12.patch1
+source 'https://gems.gemfury.com/mqHzVYLeTtjGwAvJUyvd/' # knife-solo-0.0.12.2
 source 'https://gems.gemfury.com/kScKBqfdzHYxrGNi4SfS/' # librarian-0.0.20.1
 
 # core gems we need for cookin'
 gem 'vagrant', '1.0.2.patch1' #, :git => 'git://github.com/tknerr/vagrant.git', :branch => 'GH-247'
-gem 'chef', '0.10.10'
+gem 'chef', '10.12.0'
 gem 'librarian', '0.0.20.1' #, :git => 'git://github.com/tknerr/librarian.git', :branch => 'http_proxy_0.0.20'
 
 # extra gems required by chef on windows (see GH-5)
@@ -23,4 +23,4 @@ gem 'veewee', '0.3.0.alpha9'
 gem 'sahara', '0.0.10.patch1' #, :git => 'git://github.com/tknerr/sahara.git'
 
 # for bootstrapping via chef-solo
-gem 'knife-solo', '0.0.12.patch1' #,	:git => 'https://github.com/tknerr/knife-solo.git', :branch => 'windows-support'
+gem 'knife-solo', '0.0.12.2' #,	:git => 'https://github.com/tknerr/knife-solo.git', :branch => 'windows-support'
