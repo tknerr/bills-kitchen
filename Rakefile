@@ -56,8 +56,6 @@ def download_tools
 		%w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.zip 								sublimetext2 },
 		%w{ msysgit.googlecode.com/files/PortableGit-1.7.10-preview20120409.7z							portablegit },
 		%w{ files.vagrantup.com/packages/eb590aa3d936ac71cbf9c64cf207f148ddfc000a/vagrant_1.0.3.msi 	vagrant },
-		%w{ miked.ict.rave.ac.uk/download/attachments/589834/OpenSSH_for_Windows_5.6p1-2.exe 			sshwindows 
-			ssh.exe|scp.exe|cygz.dll|cygwin1.dll|cygssp-0.dll|cyggcc_s-1.dll|cygcrypto-0.9.8.dll },
 		%w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe 				kdiff3 
 			kdiff3.exe },
 		%w{ the.earth.li/~sgtatham/putty/0.62/x86/putty.zip 											putty }
