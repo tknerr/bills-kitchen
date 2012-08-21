@@ -36,8 +36,9 @@ if "%HTTP_PROXY%"=="" (
 :: otherwise it would become confused when W:\ is unmounted 
 set VBOX_USER_HOME=%USERPROFILE%
 
-:: fix for http://code.google.com/p/msysgit/issues/detail?id=184
-set TERM=msys
+:: fix for http://code.google.com/p/msysgit/issues/detail?id=184,
+:: but use TERM=rxvt instead of TERM=msys to not break `vagrant ssh` terminal
+set TERM=rxvt
 
 :: show the environment
 echo VAGRANTDIR=%VAGRANTDIR%
