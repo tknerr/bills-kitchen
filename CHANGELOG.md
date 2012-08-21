@@ -1,6 +1,7 @@
 
 # [0.6-SNAPSHOT]
  
+ * updated sahara to latest version
  * updated knife-solo to latest version (now much faster using rsync.exe)
  * add latest version of cygwin rsync.exe and ssh.exe 
  * bugfixes:

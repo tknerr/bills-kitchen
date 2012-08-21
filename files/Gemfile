@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 source 'https://gems.gemfury.com/jrmchJyCqbzo27hc1jcm/' # vagrant-1.0.2.patch1
-source 'https://gems.gemfury.com/qWjNBFssqt7qLqWWvxWk/' # sahara-0.0.10.patch1
 source 'https://gems.gemfury.com/q2HF2xTDVWamcKx4XCvL/' # knife-solo-0.0.13.1
 source 'https://gems.gemfury.com/kScKBqfdzHYxrGNi4SfS/' # librarian-0.0.20.1
 
@@ -20,7 +19,7 @@ gem 'cucumber-nagios', '~>0.6.8'
 
 # optional but useful (for dessert)
 gem 'veewee', '0.3.0.alpha9'
-gem 'sahara', '0.0.10.patch1' #, :git => 'git://github.com/tknerr/sahara.git'
+gem 'sahara', '0.0.13'
 
 # for bootstrapping via chef-solo
 gem 'knife-solo', '0.0.13.1' #,	:git => 'https://github.com/tknerr/knife-solo.git', :branch => 'gh-90-windows-client-compatibility'
