@@ -1,13 +1,14 @@
 source 'http://rubygems.org'
 
-source 'https://gems.gemfury.com/jrmchJyCqbzo27hc1jcm/' # vagrant-1.0.2.patch1
+source 'https://gems.gemfury.com/9X5Aram3rKQ65ss5e8pg/' # vagrant-1.0.3.1
 source 'https://gems.gemfury.com/q2HF2xTDVWamcKx4XCvL/' # knife-solo-0.0.13.1
+source 'https://gems.gemfury.com/Ksaec3D1ryGFfJJzzMs4/' # mccloud-0.0.13.1
 source 'https://gems.gemfury.com/kScKBqfdzHYxrGNi4SfS/' # librarian-0.0.20.1
 
 # core gems we need for cookin'
-gem 'vagrant', '1.0.2.patch1' #, :git => 'git://github.com/tknerr/vagrant.git', :branch => 'GH-247'
+gem 'vagrant', '1.0.3.1' #, :git => 'git://github.com/tknerr/vagrant.git', :branch => 'bills-kitchen'
 gem 'chef', '10.12.0'
-gem 'librarian', '0.0.20.1' #, :git => 'git://github.com/tknerr/librarian.git', :branch => 'http_proxy_0.0.20'
+gem 'librarian', '0.0.20.1' #, :git => 'git://github.com/tknerr/librarian.git', :branch => 'bills-kitchen'
 
 # extra gems required by chef on windows (see GH-5)
 gem 'ruby-wmi', '~> 0.4.0'
@@ -22,4 +23,7 @@ gem 'veewee', '0.3.0.alpha9'
 gem 'sahara', '0.0.13'
 
 # for bootstrapping via chef-solo
-gem 'knife-solo', '0.0.13.1' #,	:git => 'https://github.com/tknerr/knife-solo.git', :branch => 'gh-90-windows-client-compatibility'
+gem 'knife-solo', '0.0.13.1' #,	:git => 'https://github.com/tknerr/knife-solo.git', :branch => 'bills-kitchen'
+
+# for bootstrapping in da cloud
+gem 'mccloud', '0.0.13.1' #, :git => 'https://github.com/tknerr/mccloud.git', :branch => 'bills-kitchen'
