@@ -1,9 +1,12 @@
 
 # [0.6-SNAPSHOT]
  
- * updated sahara to latest version
- * updated knife-solo to latest version (now much faster using rsync.exe)
- * add latest version of cygwin rsync.exe and ssh.exe 
+ * added recent version of cygwin rsync.exe and ssh.exe
+ * gem updates:
+ 	* added mccloud 0.0.13.1
+ 	* updated vagrant to 1.0.3.1
+ 	* updated sahara to 0.0.13 (patches now merged in upstream version)
+ 	* updated knife-solo to latest version (now much faster using rsync.exe) 0.0.13.1
  * bugfixes:
    * GH-7: TERM=msys breaks `vagrant ssh` terminal
    * GH-6: "This build of Sublime Text 2 has expired..."
