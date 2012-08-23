@@ -11,12 +11,11 @@ gem 'chef', '10.12.0'
 gem 'librarian', '0.0.20.1' #, :git => 'git://github.com/tknerr/librarian.git', :branch => 'bills-kitchen'
 
 # extra gems required by chef on windows (see GH-5)
-gem 'ruby-wmi', '~> 0.4.0'
-gem 'win32-service', '~> 0.7.2'
+gem 'ruby-wmi', '0.4.0'
+gem 'win32-service', '0.7.2'
 
-# gems we need for t[e|a]sting
-gem 'foodcritic', '~>1.0.1'
-gem 'cucumber-nagios', '~>0.6.8'
+# the holistic cookbook testing framework from Opscode
+gem 'test-kitchen', '0.5.2'
 
 # optional but useful (for dessert)
 gem 'veewee', '0.3.0.alpha9'
