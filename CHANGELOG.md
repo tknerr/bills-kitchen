@@ -1,6 +1,7 @@
 
 # [0.6-SNAPSHOT]
  
+ * added `COOKBOOK_DEVELOPMENT` guide
  * added recent version of cygwin rsync.exe and ssh.exe
  * gem updates:
  	* added testing gems:

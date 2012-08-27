@@ -226,3 +226,7 @@ Roles:       webserver
 Recipes:     apache2, apache2::mod_ssl, vagrant-ohai
 Platform:    ubuntu 12.04
 ```
+
+## Next Steps
+
+Now that you have the basic environment up and running, continue with the [COOKBOOK_DEVELOPMENT](file://W:/_COOKBOOK_DEVELOPMENT.html) guide...
