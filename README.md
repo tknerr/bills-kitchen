@@ -5,15 +5,23 @@ Bill's Kitchen
 All you need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a portable package:
 
  * pre-configured Chef Repo with Vagrantfile to bring up a ready-to-use Chef Server 
- * devkit enhanced Ruby 1.9.3 with the following gems pre-installed:
- 	* vagrant (patched to make `vagrant ssh` work on windows)
- 	* chef
- 	* librarian
- 	* veewee
- 	* sahara (patched to work on windows)
- 	* foodcritic
- 	* cucumber-nagios
- 	* knife-solo (patched to work on windows)
+ * devkit enhanced Ruby 1.9.3 with lots of useful gems pre-installed:
+ 	* basic gems:
+ 		* [vagrant](http://vagrantup.com/) (patched to make `vagrant ssh` work on windows)
+ 		* [chef](http://www.opscode.com/chef/) (yeah you know what Chef is...)
+ 		* [librarian](https://github.com/applicationsonline/librarian) (dependency management for cookbooks)
+ 	* testing-related:
+ 		* [foodcritic](https://github.com/acrmp/foodcritic) (linting for your cookbooks)
+ 		* [chefspec](https://github.com/acrmp/chefspec) (rspec examples for chef_run/cookbooks)
+ 		* [fauxhai](https://github.com/customink/fauxhai) (for mocking ohai attributes)
+ 		* [minitest-chef-handler](https://github.com/calavera/minitest-chef-handler/) (run tests on the converged node)
+ 		* [cuken](https://github.com/hedgehog/cuken) (reusable cucumber steps for systems testing)
+ 		* [test-kitchen](https://github.com/opscode/test-kitchen) (the "holistic test runner" from Opscode)
+ 	* other:
+ 		* [veewee](https://github.com/jedi4ever/veewee) (for building vagrant baseboxes)
+ 		* [sahara](https://github.com/tknerr/sahara) (lets you take and restore virtualbox snapshots)
+ 		* [knife-solo](https://github.com/matschaffer/knife-solo) (if you prefer to work in chef-solo mode)
+ 		* [mccloud](https://github.com/jedi4ever/mccloud) (like vagrant but for the cloud not local vms)
  * supporting tools such as:
  	* Console2 (with ansicon)
  	* SublimeText2 (with additional packages for Chef and Cucumber)
@@ -22,6 +30,11 @@ All you need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a p
  * walkthrough tutorial and example cookbooks
 
 The only requirement for using the devpack is a recent version of [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (couldn't make that one portable).
+
+Screenshot
+==========
+
+![Bill's Kitchen Screenshot](https://raw.github.com/tknerr/bills-kitchen/master/doc/bills_kitchen_screenshot.png) 
 
 
 Installation
