@@ -24,6 +24,7 @@ task :build do
 	copy_files
 	generate_docs
 	install_gems
+	patch_for_faster_require
 	clone_repositories
 	assemble_kitchen
 end
@@ -94,6 +95,18 @@ def install_gems
 	end
 end
 
+def patch_for_faster_require
+	rubygems_rb = "#{BUILD_DIR}/tools/vagrant/vagrant/vagrant/embedded/lib/ruby/site_ruby/1.9.1/rubygems.rb"
+	patch = <<-EOF
+# Patch to make require faster on windows. Assumes that faster_require gem is installed
+# and must be explicitly enabled by setting env var USE_FASTER_REQUIRE=TRUE
+if (ENV['USE_FASTER_REQUIRE'] == 'TRUE')
+  require File.expand_path('../../../gems/1.9.1/gems/faster_require-0.9.2/lib/faster_require.rb', __FILE__)
+end
+EOF
+	prepend(patch, rubygems_rb)
+end
+
 def clone_repositories
 	[ 
 		%w{ npverni/cucumber-sublime2-bundle.git 	tools/sublimetext2/Data/Packages/Cucumber },
@@ -118,6 +131,13 @@ def assemble_kitchen
 	end
 end
 
+def prepend(text, file)
+	content = File.read(file)
+	File.open(file, "w") do |f|
+		f << text
+		f << content
+	end
+end
 
 def download_and_unpack(url, target_dir, includes = [])	
 	Dir.mktmpdir do |tmp_dir| 

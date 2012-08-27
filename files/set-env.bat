@@ -40,6 +40,11 @@ set VBOX_USER_HOME=%USERPROFILE%
 :: but use TERM=rxvt instead of TERM=msys to not break `vagrant ssh` terminal
 set TERM=rxvt
 
+:: make requires faster on Windows. If 'TRUE' the globally installed faster_require
+:: in rubygems.rb (see https://github.com/rdp/faster_require/blob/master/README) 
+:: is enabled, otherwise it will remain disabled 
+set USE_FASTER_REQUIRE=TRUE
+
 :: show the environment
 echo VAGRANTDIR=%VAGRANTDIR%
 echo RUBYDIR=%RUBYDIR%
@@ -53,6 +58,7 @@ echo SUBLIMEDIR=%SUBLIMEDIR%
 echo PUTTYDIR=%PUTTYDIR%
 echo GITDIR=%GITDIR%
 echo HTTP_PROXY=%HTTP_PROXY%
+echo USE_FASTER_REQUIRE=%USE_FASTER_REQUIRE%
 
 :: command aliases
 @doskey vi=sublime_text $*
