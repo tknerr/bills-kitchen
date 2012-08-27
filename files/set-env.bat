@@ -44,6 +44,8 @@ set TERM=rxvt
 :: in rubygems.rb (see https://github.com/rdp/faster_require/blob/master/README) 
 :: is enabled, otherwise it will remain disabled 
 set USE_FASTER_REQUIRE=TRUE
+:: make sure we don't run into any problems after installing new gems via bundler
+rmdir /S /Q %SCRIPT_DIR%home\.ruby_faster_require_cache
 
 :: show the environment
 echo VAGRANTDIR=%VAGRANTDIR%

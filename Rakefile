@@ -8,7 +8,7 @@ TARGET_DIR 	= "#{BASE_DIR}/target"
 BUILD_DIR 	= "#{BASE_DIR}/target/build"
 CACHE_DIR 	= "#{BASE_DIR}/target/cache"
 ZIP_EXE = 'C:\Program Files\7-Zip\7z.exe'
-	
+
 
 desc 'cleans all output and cache directories'
 task :clean do 
@@ -105,6 +105,8 @@ if (ENV['USE_FASTER_REQUIRE'] == 'TRUE')
 end
 EOF
 	prepend(patch, rubygems_rb)
+	# the cache directory must be cleared after installing gems via bundler!
+	FileUtils.rm_rf "#{BUILD_DIR}/home/.ruby_faster_require_cache"
 end
 
 def clone_repositories
