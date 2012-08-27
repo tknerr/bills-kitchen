@@ -1,6 +1,7 @@
 
 # [0.6-SNAPSHOT]
  
+ * greatly reduced startup times using [faster_require](https://github.com/rdp/faster_require)  
  * added recent version of cygwin rsync.exe and ssh.exe
  * gem updates:
  	* added testing gems:
