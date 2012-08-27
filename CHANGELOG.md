@@ -3,7 +3,11 @@
  
  * added recent version of cygwin rsync.exe and ssh.exe
  * gem updates:
- 	* added mccloud 0.0.13.1
+ 	* added testing gems:
+ 		* test-kitchen 0.5.2 as the holistic test runner
+ 		* chefspec 0.6.1.1 for fast-running spec tests 
+ 		* fauxhai 0.0.2 for mocking ohai attributes  
+ 	* added mccloud 0.0.13.1 for cloud deployments
  	* updated vagrant to 1.0.3.1
  	* updated sahara to 0.0.13 (patches now merged in upstream version)
  	* updated knife-solo to latest version (now much faster using rsync.exe) 0.0.13.1
