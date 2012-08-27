@@ -100,7 +100,7 @@ def patch_for_faster_require
 	patch = <<-EOF
 # Patch to make require faster on windows. Assumes that faster_require gem is installed
 # and must be explicitly enabled by setting env var USE_FASTER_REQUIRE=TRUE
-if (ENV['USE_FASTER_REQUIRE'] == 'TRUE')
+if (ENV['USE_FASTER_REQUIRE_GLOBALLY'] == 'TRUE')
   require File.expand_path('../../../gems/1.9.1/gems/faster_require-0.9.2/lib/faster_require.rb', __FILE__)
 end
 EOF

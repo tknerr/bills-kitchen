@@ -43,9 +43,7 @@ set TERM=rxvt
 :: make requires faster on Windows. If 'TRUE' the globally installed faster_require
 :: in rubygems.rb (see https://github.com/rdp/faster_require/blob/master/README) 
 :: is enabled, otherwise it will remain disabled 
-set USE_FASTER_REQUIRE=TRUE
-:: make sure we don't run into any problems after installing new gems via bundler
-rmdir /S /Q %SCRIPT_DIR%home\.ruby_faster_require_cache
+set USE_FASTER_REQUIRE_GLOBALLY=FALSE
 
 :: show the environment
 echo VAGRANTDIR=%VAGRANTDIR%
@@ -60,7 +58,7 @@ echo SUBLIMEDIR=%SUBLIMEDIR%
 echo PUTTYDIR=%PUTTYDIR%
 echo GITDIR=%GITDIR%
 echo HTTP_PROXY=%HTTP_PROXY%
-echo USE_FASTER_REQUIRE=%USE_FASTER_REQUIRE%
+echo USE_FASTER_REQUIRE_GLOBALLY=%USE_FASTER_REQUIRE_GLOBALLY%
 
 :: command aliases
 @doskey vi=sublime_text $*
