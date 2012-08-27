@@ -1,18 +1,19 @@
 
 # [0.6-SNAPSHOT]
  
- * greatly reduced startup times using [faster_require](https://github.com/rdp/faster_require)  
  * added recent version of cygwin rsync.exe and ssh.exe
  * gem updates:
  	* added testing gems:
  		* test-kitchen 0.5.2 as the holistic test runner
- 		* chefspec 0.6.1.1 for fast-running spec tests
+ 		* chefspec 0.7.0 for fast-running spec tests
  		* fauxhai 0.0.2 for mocking ohai attributes
  		* cuken 0.1.22.1 for cucumber acceptance tests (replacing cucumber-nagios)
  	* added mccloud 0.0.13.1 for cloud deployments
  	* updated vagrant to 1.0.3.1
  	* updated sahara to 0.0.13 (patches now merged in upstream version)
  	* updated knife-solo to latest version (now much faster using rsync.exe) 0.0.13.1
+ 	* added [faster_require](https://github.com/rdp/faster_require) gem for reducing startup times 
+ 
  * bugfixes:
    * GH-7: TERM=msys breaks `vagrant ssh` terminal
    * GH-6: "This build of Sublime Text 2 has expired..."

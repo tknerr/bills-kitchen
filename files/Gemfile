@@ -4,7 +4,6 @@ source 'https://gems.gemfury.com/9X5Aram3rKQ65ss5e8pg/' # vagrant-1.0.3.1
 source 'https://gems.gemfury.com/q2HF2xTDVWamcKx4XCvL/' # knife-solo-0.0.13.1
 source 'https://gems.gemfury.com/Ksaec3D1ryGFfJJzzMs4/' # mccloud-0.0.13.1
 source 'https://gems.gemfury.com/kScKBqfdzHYxrGNi4SfS/' # librarian-0.0.20.1
-source 'https://gems.gemfury.com/LgURarNo9rFsXEDrrvJd/' # chefspec-0.6.1.1
 source 'https://gems.gemfury.com/2PqkitZvqRYpwBwWu7fo/' # cuken-0.1.22.1
 
 # core gems we need for cookin'
@@ -20,7 +19,7 @@ gem 'win32-service', '0.7.2'
 gem 'test-kitchen', '0.5.2'
 
 # chefspec and friends
-gem 'chefspec', '0.6.1.1' #, :git => 'https://github.com/tknerr/chefspec.git', :branch => 'bills-kitchen'
+gem 'chefspec', '0.7.0'
 gem 'fauxhai', '0.0.2'
 gem 'cuken', '0.1.22.1' #, :git => 'https://github.com/tknerr/cuken.git', :branch => 'bills-kitchen'
 
