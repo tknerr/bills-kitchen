@@ -455,3 +455,78 @@ Yay! Smoke tests are passing :-)
  * there is also this [fully documented example](https://github.com/calavera/minitest-chef-handler/blob/master/examples/spec_examples/files/default/tests/minitest/example_test.rb) for spec-based minitests 
  * apart from [Librarian](https://github.com/applicationsonline/librarian) there is also [Berkshelf](https://github.com/RiotGames/berkshelf), which looks very promising, but does not run on Windows yet.
  * both Librarian and Berkshelf also support resolving dependencies from git or the local filesystem in addition to the Opscode Community site, check [the](http://berkshelf.com/) [docs](https://github.com/applicationsonline/librarian) for this. 
+
+
+## Add a Cucumber Feature Test
+
+Now that we have a fully converged node passing the smoke tests we may want to do something more acceptance-testy. For this purpose we will now create some [Cuken](https://github.com/hedgehog/cuken)-based cucumber steps.
+
+Cuken provides [reusable Cucumber steps](https://www.relishapp.com/hedgehog/cuken/docs/about) that are generally useful for systems testing using Cucumber. 
+
+Let's start by creating the `foo/features/foo.feature` file and write down what we expect:
+
+	Feature: the world-changing foo file
+
+	  Background:
+	    Given a Vagrant VM is up and running
+	      And the foo recipe is deployed
+
+	  Scenario: check the foo file
+	    When I ssh into the Vagrant VM
+	     And I run 'cat /tmp/foo'
+	    Then the output should contain "hey, I'm running on ubuntu!"
+
+Now we run `cucumber` so that it generates the test steps that we need to implement:
+
+	W:\repo\my-cookbooks\foo>cucumber
+	Feature: the world-changing foo file
+
+	  Background:                            # features\foo.feature:3
+	    Given a Vagrant VM is up and running # features\foo.feature:4
+	    And the foo recipe is deployed       # features\foo.feature:5
+
+	  Scenario: check the foo file                                   # features\foo.feature:7
+	    When I ssh into the Vagrant VM                               # features\foo.feature:8
+	    And I run 'cat /tmp/foo'                                     # features\foo.feature:9
+	    Then the output should contain "hey, I'm running on ubuntu!" # features\foo.feature:10
+
+	1 scenario (1 undefined)
+	5 steps (5 undefined)
+	0m0.011s
+
+	You can implement step definitions for undefined steps with these snippets:
+
+	Given /^a Vagrant VM is up and running$/ do
+	  pending # express the regexp above with the code you wish you had
+	end
+
+	Given /^the foo recipe is deployed$/ do
+	  pending # express the regexp above with the code you wish you had
+	end
+
+	When /^I ssh into the Vagrant VM$/ do
+	  pending # express the regexp above with the code you wish you had
+	end
+
+	When /^I run 'cat \/tmp\/foo'$/ do
+	  pending # express the regexp above with the code you wish you had
+	end
+
+	Then /^the output should contain "([^"]*)"$/ do |arg1|
+	  pending # express the regexp above with the code you wish you had
+	end
+
+	If you want snippets in a different programming language,
+	just make sure a file with the appropriate file extension
+	exists where cucumber looks for step definitions.
+
+Then we can copy/paste the steps definitions into `foo/features/steps/foo_steps.rb` and gradually fill them with life until there are no pending steps anymore and all scenarios pass. 
+
+
+
+
+### More Information
+
+ * the available steps in Cuken are best discovered by example [in the docs](https://www.relishapp.com/hedgehog/cuken/docs)
+ * Dan North has some nice introductions to [BDD](http://dannorth.net/introducing-bdd/) and [Cucumber](http://dannorth.net/whats-in-a-story/) 
+ * the syntax of a .feature file is named Gherkin. It's structure is [best described here](http://docs.behat.org/guides/1.gherkin.html)
