@@ -3,7 +3,7 @@
 
 This guide describes a test-driven appraoch to Chef cookbook development using [Knife](http://wiki.opscode.com/display/chef/Knife), [foodcritic](https://github.com/acrmp/foodcritic), [Chefspec](https://github.com/acrmp/chefspec) and [Fauxhai](https://github.com/customink/fauxhai/) for basic syntax checking, liniting and unit-level spec testing.
 
-For integration-testing we set up a VM environment using [Vagrant](http://vagrantup.com), [Librarian](https://github.com/applicationsonline/librarian) and [Chef Solo](http://wiki.opscode.com/display/chef/Chef+Solo), against which we run some [Cuken](https://github.com/hedgehog/cuken)-based cucumber features and finally add a post-converge smoke test using [minitest-chef-handler](https://github.com/calavera/minitest-chef-handler/). 
+For integration-testing we set up a VM environment using [Vagrant](http://vagrantup.com), [Librarian](https://github.com/applicationsonline/librarian) and [Chef Solo](http://wiki.opscode.com/display/chef/Chef+Solo), against which we run some post-convergence smoke tests using [minitest-chef-handler](https://github.com/calavera/minitest-chef-handler/) and some [Cuken](https://github.com/hedgehog/cuken)-based cucumber feature tests.
 
 ## Create the Cookbook
 
@@ -446,12 +446,12 @@ Upon the next `vagrant up` / `vagrant provision` cycle (actually we have to do a
 	2 tests, 2 assertions, 0 failures, 0 errors, 0 skips
 	[Tue, 28 Aug 2012 10:03:27 +0000] INFO: Report handlers complete
 
-Yay! Some tests are passing :-)
+Yay! Smoke tests are passing :-)
 
 
 ### More Information
 
  * take a look at the minitest-chef-handler tests for the [apache2](https://github.com/opscode-cookbooks/apache2/tree/master/files/default/tests/minitest) and [mysql](https://github.com/opscode-cookbooks/mysql/tree/master/files/default/tests/minitest) cookbooks for inspiration
- * there is also this [fully documented example](https://github.com/calavera/minitest-chef-handler/blob/master/examples/spec_examples/files/default/tests/minitest/example_test.rb) which is very informative 
+ * there is also this [fully documented example](https://github.com/calavera/minitest-chef-handler/blob/master/examples/spec_examples/files/default/tests/minitest/example_test.rb) for spec-based minitests 
  * apart from [Librarian](https://github.com/applicationsonline/librarian) there is also [Berkshelf](https://github.com/RiotGames/berkshelf), which looks very promising, but does not run on Windows yet.
  * both Librarian and Berkshelf also support resolving dependencies from git or the local filesystem in addition to the Opscode Community site, check [the](http://berkshelf.com/) [docs](https://github.com/applicationsonline/librarian) for this. 
