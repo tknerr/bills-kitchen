@@ -3,7 +3,7 @@
 
 This guide describes a test-driven appraoch to Chef cookbook development using [Knife](http://wiki.opscode.com/display/chef/Knife), [foodcritic](https://github.com/acrmp/foodcritic), [Chefspec](https://github.com/acrmp/chefspec) and [Fauxhai](https://github.com/customink/fauxhai/) for basic syntax checking, liniting and unit-level spec testing.
 
-For integration-testing we set up a VM environment using [Vagrant](http://vagrantup.com), [Librarian](https://github.com/applicationsonline/librarian) and [Chef Solo](http://wiki.opscode.com/display/chef/Chef+Solo), against which we run some post-convergence smoke tests using [minitest-chef-handler](https://github.com/calavera/minitest-chef-handler/) and some [Cuken](https://github.com/hedgehog/cuken)-based cucumber feature tests.
+For integration-testing we set up a VM environment using [Vagrant](http://vagrantup.com), [Librarian](https://github.com/applicationsonline/librarian) and [Chef Solo](http://wiki.opscode.com/display/chef/Chef+Solo), against which we run some post-convergence smoke tests using [minitest-chef-handler](https://github.com/calavera/minitest-chef-handler/) and some cucumber/features tests using [cucumber-nagios](https://github.com/auxesis/cucumber-nagios).
 
 ## Create the Cookbook
 
@@ -459,9 +459,7 @@ Yay! Smoke tests are passing :-)
 
 ## Add a Cucumber Feature Test
 
-Now that we have a fully converged node passing the smoke tests we may want to do something more acceptance-testy. For this purpose we will now create some [Cuken](https://github.com/hedgehog/cuken)-based cucumber steps.
-
-Cuken provides [reusable Cucumber steps](https://www.relishapp.com/hedgehog/cuken/docs/about) that are generally useful for systems testing using Cucumber. 
+Now that we have a fully converged node passing the smoke tests we may want to do something more acceptance-testy. For this purpose we will now create a cucumber feature based on [cucumber-nagios](https://github.com/auxesis/cucumber-nagios). For this we create the `foo/features/foo.feature` file and write down what we expect:
 
 Let's start by creating the `foo/features/foo.feature` file and write down what we expect:
 

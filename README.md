@@ -15,7 +15,7 @@ All you need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a p
  		* [chefspec](https://github.com/acrmp/chefspec) (rspec examples for chef_run/cookbooks)
  		* [fauxhai](https://github.com/customink/fauxhai) (for mocking ohai attributes)
  		* [minitest-chef-handler](https://github.com/calavera/minitest-chef-handler/) (run smoke tests on the converged node)
- 		* [cuken](https://github.com/hedgehog/cuken) (reusable cucumber steps for systems testing)
+ 		* [cucumber-nagios](https://github.com/auxesis/cucumber-nagios) (cucumber steps for systems testing)
  		* [test-kitchen](https://github.com/opscode/test-kitchen) (the "holistic test runner" from Opscode)
  	* other:
  		* [veewee](https://github.com/jedi4ever/veewee) (for building vagrant baseboxes)
