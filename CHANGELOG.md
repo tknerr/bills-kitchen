@@ -8,7 +8,7 @@
  		* test-kitchen 0.5.2 as the holistic test runner
  		* chefspec 0.7.0 for fast-running spec tests
  		* fauxhai 0.0.2 for mocking ohai attributes
- 		* cuken 0.1.22.1 for cucumber acceptance tests (replacing cucumber-nagios)
+ 		* cucumber-nagios 0.9.2.1 for cucumber acceptance testing
  	* added mccloud 0.0.13.1 for cloud deployments
  	* updated vagrant to 1.0.3.1
  	* updated sahara to 0.0.13 (patches now merged in upstream version)

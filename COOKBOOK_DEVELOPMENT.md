@@ -3,7 +3,7 @@
 
 This guide describes a test-driven appraoch to Chef cookbook development using [Knife](http://wiki.opscode.com/display/chef/Knife), [foodcritic](https://github.com/acrmp/foodcritic), [Chefspec](https://github.com/acrmp/chefspec) and [Fauxhai](https://github.com/customink/fauxhai/) for basic syntax checking, liniting and unit-level spec testing.
 
-For integration-testing we set up a VM environment using [Vagrant](http://vagrantup.com), [Librarian](https://github.com/applicationsonline/librarian) and [Chef Solo](http://wiki.opscode.com/display/chef/Chef+Solo), against which we run some post-convergence smoke tests using [minitest-chef-handler](https://github.com/calavera/minitest-chef-handler/) and some [Cuken](https://github.com/hedgehog/cuken)-based cucumber feature tests.
+For integration-testing we set up a VM environment using [Vagrant](http://vagrantup.com), [Librarian](https://github.com/applicationsonline/librarian) and [Chef Solo](http://wiki.opscode.com/display/chef/Chef+Solo), against which we run some post-convergence smoke tests using [minitest-chef-handler](https://github.com/calavera/minitest-chef-handler/) and some cucumber/features tests using [cucumber-nagios](https://github.com/auxesis/cucumber-nagios).
 
 ## Create the Cookbook
 
@@ -455,3 +455,29 @@ Yay! Smoke tests are passing :-)
  * there is also this [fully documented example](https://github.com/calavera/minitest-chef-handler/blob/master/examples/spec_examples/files/default/tests/minitest/example_test.rb) for spec-based minitests 
  * apart from [Librarian](https://github.com/applicationsonline/librarian) there is also [Berkshelf](https://github.com/RiotGames/berkshelf), which looks very promising, but does not run on Windows yet.
  * both Librarian and Berkshelf also support resolving dependencies from git or the local filesystem in addition to the Opscode Community site, check [the](http://berkshelf.com/) [docs](https://github.com/applicationsonline/librarian) for this. 
+
+
+## Add a Cucumber Feature Test
+
+Now that we have a fully converged node passing the smoke tests we may want to do something more acceptance-testy. For this purpose we will now create a cucumber feature based on [cucumber-nagios](https://github.com/auxesis/cucumber-nagios). For this we create the `foo/features/foo.feature` file and write down what we expect:
+
+	Feature: the world-changing foo file
+	  
+	  Background:
+	    Given the default Vagrant VM is up and running
+
+	  Scenario: check if the 
+	    When I ssh to  
+	    Then the request should succeed
+	      And I should see "JIRA Setup"
+	      And I should see "Step 1 of 4: Basic Settings" 
+
+
+
+
+
+### More Information
+
+ * the available steps in cucumber-nagios are best discovered by browing [the steps source code](https://github.com/auxesis/cucumber-nagios/tree/v0.9.2/lib/cucumber/nagios/steps)
+ * Dan North has some nice introductions to [BDD](http://dannorth.net/introducing-bdd/) and [Cucumber](http://dannorth.net/whats-in-a-story/) 
+ * the syntax of a .feature file is named Gherkin. It's structure is [best described here](http://docs.behat.org/guides/1.gherkin.html)
