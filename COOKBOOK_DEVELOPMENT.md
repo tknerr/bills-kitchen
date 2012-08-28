@@ -1,5 +1,9 @@
 
-# (Test-Driven) Cookbook Development
+# Cookbook Development
+
+This guide describes a test-driven appraoch to Chef cookbook development using [Knife](http://wiki.opscode.com/display/chef/Knife), [foodcritic](https://github.com/acrmp/foodcritic), [Chefspec](https://github.com/acrmp/chefspec) and [Fauxhai](https://github.com/customink/fauxhai/) for basic syntax checking, liniting and unit-level spec testing.
+
+For integration-testing we set up a VM environment using [Vagrant](http://vagrantup.com), [Librarian](https://github.com/applicationsonline/librarian) and [Chef Solo](http://wiki.opscode.com/display/chef/Chef+Solo), against which we run some [Cuken](https://github.com/hedgehog/cuken)-based cucumber features and finally add a post-converge smoke test using [minitest-chef-handler](https://github.com/calavera/minitest-chef-handler/). 
 
 ## Create the Cookbook
 
@@ -199,13 +203,13 @@ Even though you are running the specs from a Windows machine, the actual Ohai da
  * Chefspec becomes really powerful and is an efficient tool for testing various combinations of [node data, ohai data, search- and databag queries](https://github.com/acrmp/chefspec#examples-should-do-more-than-restate-static-resources)
 
 
-## Integration Testing on the Node
+## Converge the Node on a VM
 
- So far we only did unit-level spec testing. The next step is to integration-test our cookbook on a node. For this purpose we first create a `Vagrantfile` within our cookbook directory:
+So far we only did unit-level spec testing. The next step is to integration-test our cookbook using [Vagrant](http://vagrantup.com) and [Chef Solo](http://wiki.opscode.com/display/chef/Chef+Solo) on a VM. For this purpose we first create a `Vagrantfile` within our cookbook directory:
 
  	vagrant init 
 
- You should edit the `Vagrantfile` so that the foo cookbook can be found in the cookbook path:
+You should edit the `Vagrantfile` so that the foo cookbook can be found in the cookbook path:
 
 	Vagrant::Config.run do |config|
 
@@ -259,6 +263,195 @@ The output of `vagrant up` should look similar to this:
 	[Mon, 27 Aug 2012 18:59:35 +0000] INFO: Running report handlers
 	[Mon, 27 Aug 2012 18:59:35 +0000] INFO: Report handlers complete
 
-As you can see from the Chef log output the Chef run completed successfully.
+As you can see from the Chef log output the Chef run completed successfully. 
+
+## Add a Smoke Test
+
+Now that the node converged successfully, we can think of adding a smoke test using [minitest-chef-handler](https://github.com/calavera/minitest-chef-handler/). I'll call it smoke test because it runs on the node and at the end of *every* chef run (as part of the report handlers). For example you can check whether specific services are started, or certain files created, etc. after the chef run completed.
+
+Due to the fact that the minitest-chef-handler test are executed on the node, they must be part of the cookbook files. So let's create a smoke test for our default recipe in `foo/files/default/tests/minitest/default_test.rb`:
+
+	require 'minitest/spec'
+
+	describe 'foo::default' do
+
+	  include MiniTest::Chef::Assertions
+	  include MiniTest::Chef::Context
+	  include MiniTest::Chef::Resources
+
+	  it 'should create the file "/tmp/foo"' do
+	    file("/tmp/foo").must_exist
+	  end
+
+	  it 'should populate "/tmp/foo" file with the node platform' do
+	    file("/tmp/foo").must_match /running on #{node['platform']}/
+	  end
+	end
+
+Note that in these kinds of tests we can use `node['platform']` (or any other node/ohai attributes) without mocking them as it will be run on the converged node itself!
+
+In order to have this test running at the end of the chef run we need to install the minitest-chef-handler as a [Report Handler](http://wiki.opscode.com/display/chef/Exception+and+Report+Handlers). Thankfully there is the [minitest-handler-cookbook](https://github.com/btm/minitest-handler-cookbook) which will do this for us. The only thing we have to do is to include the `minitest-handler` as the first recipe in our run list:
+
+	Vagrant::Config.run do |config|
+
+	  config.vm.box = "ubuntu-12.04-server-amd64-vagrant"
+	  config.vm.box_url = "http://dl.dropbox.com/u/13494216/ubuntu-12.04-server-amd64-vagrant.box"
+	  
+	  config.vm.network :hostonly, "192.168.44.10"
+	  config.vm.host_name = "foo-vm"
+	  
+	  config.vm.provision :chef_solo do |chef|
+	    chef.cookbooks_path = [ ".." ]
+	    chef.add_recipe "minitest-handler"
+	    chef.add_recipe "foo::default"
+	  end
+	end
+
+After editing the `Vagrantfile` as above you have to run `vagrant up` again: 
+
+	W:\repo\my-cookbooks\foo>vagrant up --no-provision
+	[default] VM already created. Booting if it's not already running...
+
+Oh see, the Vagrant VM was already running. When it is up and running alreay you have to trigger the provisioning explicitly using `vagrant provision`:  
+
+	W:\repo\my-cookbooks\foo>vagrant provision
+	[default] Running provisioner: Vagrant::Provisioners::ChefSolo...
+	[default] Generating chef JSON and uploading...
+	[default] Running chef-solo...
+	stdin: is not a tty
+	[Tue, 28 Aug 2012 08:37:55 +0000] INFO: *** Chef 0.10.10 ***
+	[Tue, 28 Aug 2012 08:37:56 +0000] INFO: Setting the run_list to ["recipe[minitest-handler]", "recipe[foo::default]"] from JSON
+	[Tue, 28 Aug 2012 08:37:56 +0000] INFO: Run List is [recipe[minitest-handler], recipe[foo::default]]
+	[Tue, 28 Aug 2012 08:37:56 +0000] INFO: Run List expands to [minitest-handler, foo::default]
+	[Tue, 28 Aug 2012 08:37:56 +0000] INFO: Starting Chef Run for foo-vm
+	[Tue, 28 Aug 2012 08:37:56 +0000] INFO: Running start handlers
+	[Tue, 28 Aug 2012 08:37:56 +0000] INFO: Start handlers complete.
+	[Tue, 28 Aug 2012 08:37:56 +0000] ERROR: Running exception handlers
+	[Tue, 28 Aug 2012 08:37:56 +0000] ERROR: Exception handlers complete
+	[Tue, 28 Aug 2012 08:37:56 +0000] FATAL: Stacktrace dumped to /tmp/vagrant-chef-1/chef-stacktrace.out
+	[Tue, 28 Aug 2012 08:37:56 +0000] FATAL: Chef::Exceptions::CookbookNotFound: Cookbook minitest-handler not found. If you're loading minitest-handler from another cookbook, make sure you configure the dependency in your metadata
+	Chef never successfully completed! Any errors should be visible in the
+	output above. Please fix your recipes so that they properly complete.
+
+Ooops. 
+
+What went wrong here? Oh, see, we added the `minitest-handler` recipe to our `Vagrantfile` but this recipe was not found in the local `cookbooks_path` where Vagrant is looking for it. So we would need to "download" this cookbook first?
+
+Well, this is actually a quite common situation. Imagine our foo cookbook was not so super simple and would depend on other cookbooks, e.g. apache and mysql. The situation would be exactly the same. We need to resolve cookbook dependencies!
+
+### Enter Cookbook Dependency Management  
+
+No, we don't have to download each cookbook we depend on by hand. Thankfully there are tools like [Librarian](https://github.com/applicationsonline/librarian) which handle cookbook dependency management for us. If you know [bundler](http://gembundler.com), then you can think of Librarian as bundler for Chef cookbooks.
+
+For librarian we have to create a `Cheffile` which defines the cookbook dependencies:
+
+	site 'http://community.opscode.com/api/v1'
+
+	cookbook 'minitest-handler', '0.1.0'
+
+This is now a very simple `Cheffile`. It will try to download the `minitest-handler` cookbook in version `0.1.0` from the [Opscode Community](http://community.opscode.com/) site as soon as you run `librarian-chef install`:
+
+	W:\repo\my-cookbooks\foo>librarian-chef install
+
+	W:\repo\my-cookbooks\foo>ls -la cookbooks
+	total 12
+	drwxr-xr-x  4 tkn Administrators    0 Aug 28 11:21 .
+	drwxr-xr-x 13 tkn Administrators 4096 Aug 28 11:21 ..
+	drwxr-xr-x  7 tkn Administrators 4096 Aug 28 11:21 chef_handler
+	drwxr-xr-x  4 tkn Administrators 4096 Aug 28 11:21 minitest-handler
+
+You can see that `librarian-chef install` keeps quiet if everything goes well. You should now see the `foo/cookbooks` directory with the dependencies being resolved. Note that transitive dependencies (the `minitest-handler` cookbook depends on the `chef_handler` cookbook) are resolved as well. Finally, only the `Cheffile` should be under version control, the volatile `cookbooks` and `tmp` directories that Librarian creates should be added to your `.gitignore` file. 
+
+### Back to the Smoke Test 
+
+Now that we have the cookbook dependencies resolved, we need to add the `foo/cookbooks` directory to the `cookbooks_path` in the `Vagrantfile`. Note that we put it as the first entry in order to make sure that the Librarian-managed cookbooks are always preferred over cookbooks with the same name one dir up. 
+
+	Vagrant::Config.run do |config|
+
+	  config.vm.box = "ubuntu-12.04-server-amd64-vagrant"
+	  config.vm.box_url = "http://dl.dropbox.com/u/13494216/ubuntu-12.04-server-amd64-vagrant.box"
+	  
+	  config.vm.network :hostonly, "192.168.44.10"
+	  config.vm.host_name = "foo-vm"
+	  
+	  config.vm.provision :chef_solo do |chef|
+	    chef.cookbooks_path = [ "cookbooks", ".." ]
+	    chef.add_recipe "minitest-handler"
+	    chef.add_recipe "foo::default"
+	  end
+	end  
+
+Upon the next `vagrant up` / `vagrant provision` cycle (actually we have to do a `vagrant reload` after changing the cookbooks_path), the node should now successfully converge again and the smoke tests passing at the end of the Chef run:
+
+	W:\repo\my-cookbooks\foo>vagrant up
+	[default] VM already created. Booting if it's not already running...
+
+	W:\repo\my-cookbooks\foo>vagrant provision
+	[default] Running provisioner: Vagrant::Provisioners::ChefSolo...
+	Shared folders that Chef requires are missing on the virtual machine.
+	This is usually due to configuration changing after already booting the
+	machine. The fix is to run a `vagrant reload` so that the proper shared
+	folders will prepared and mounted on the VM.
+
+	W:\repo\my-cookbooks\foo>vagrant reload
+	[default] Running provisioner: Vagrant::Provisioners::ChefSolo...
+	[default] Generating chef JSON and uploading...
+	[default] Running chef-solo...
+	stdin: is not a tty
+	[Tue, 28 Aug 2012 10:03:25 +0000] INFO: *** Chef 0.10.10 ***
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Setting the run_list to ["recipe[minitest-handler]", "recipe[foo::default]"] from JSON
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Run List is [recipe[minitest-handler], recipe[foo::default]]
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Run List expands to [minitest-handler, foo::default]
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Starting Chef Run for foo-vm
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Running start handlers
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Start handlers complete.
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Processing chef_gem[minitest] action nothing (minitest-handler::default line 2)
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Processing chef_gem[minitest] action install (minitest-handler::default line 2)
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Processing chef_gem[minitest-chef-handler] action nothing (minitest-handler::default line 7)
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Processing chef_gem[minitest-chef-handler] action install (minitest-handler::default line 7)
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Enabling minitest-chef-handler as a report handler
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Processing chef_gem[minitest] action nothing (minitest-handler::default line 2)
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Processing chef_gem[minitest-chef-handler] action nothing (minitest-handler::default line 7)
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Processing directory[minitest test location] action create (minitest-handler::default line 22)
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Processing ruby_block[delete tests from old cookbooks] action create (minitest-handler::default line 30)
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Cookbook foo no longer in run list, remove minitest tests
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: ruby_block[delete tests from old cookbooks] called
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Processing directory[/var/chef/minitest/minitest-handler] action create (minitest-handler::default line 50)
+	[Tue, 28 Aug 2012 10:03:26 +0000] INFO: Processing cookbook_file[tests-minitest-handler-default] action create (minitest-handler::default line 53)
+	[Tue, 28 Aug 2012 10:03:27 +0000] ERROR: cookbook_file[tests-minitest-handler-default] (minitest-handler::default line 53) had an error: Cookbook 'minitest-handler' (0.1.0) does not contain a file at any of these locations:
+	  files/ubuntu-12.04/tests/minitest/default_test.rb
+	  files/ubuntu/tests/minitest/default_test.rb
+	  files/default/tests/minitest/default_test.rb
+	[Tue, 28 Aug 2012 10:03:27 +0000] INFO: Processing directory[/var/chef/minitest/foo] action create (minitest-handler::default line 50)
+	[Tue, 28 Aug 2012 10:03:27 +0000] INFO: directory[/var/chef/minitest/foo] created directory /var/chef/minitest/foo
+	[Tue, 28 Aug 2012 10:03:27 +0000] INFO: Processing cookbook_file[tests-foo-default] action create (minitest-handler::default line 53)
+	[Tue, 28 Aug 2012 10:03:27 +0000] INFO: cookbook_file[tests-foo-default] created file /var/chef/minitest/foo/default_test.rb
+	[Tue, 28 Aug 2012 10:03:27 +0000] INFO: Processing file[/tmp/foo] action create (foo::default line 10)
+	[Tue, 28 Aug 2012 10:03:27 +0000] INFO: Chef Run complete in 0.444127684 seconds
+	[Tue, 28 Aug 2012 10:03:27 +0000] INFO: Running report handlers
+	Run options: -v --seed 34593
+
+	# Running tests:
+
+	foo::default#test_0002_should_populate_tmp_foo_file_with_the_node_platform =
+	0.00 s =
+	.
+
+	foo::default#test_0001_should_create_the_root_owned_tmp_foo_file =
+	0.00 s =
+	.
+
+	Finished tests in 0.008033s, 248.9827 tests/s, 248.9827 assertions/s.
+
+	2 tests, 2 assertions, 0 failures, 0 errors, 0 skips
+	[Tue, 28 Aug 2012 10:03:27 +0000] INFO: Report handlers complete
+
+Yay! Some tests are passing :-)
 
 
+### More Information
+
+ * take a look at the minitest-chef-handler tests for the [apache2](https://github.com/opscode-cookbooks/apache2/tree/master/files/default/tests/minitest) and [mysql](https://github.com/opscode-cookbooks/mysql/tree/master/files/default/tests/minitest) cookbooks for inspiration
+ * there is also this [fully documented example](https://github.com/calavera/minitest-chef-handler/blob/master/examples/spec_examples/files/default/tests/minitest/example_test.rb) which is very informative 
+ * apart from [Librarian](https://github.com/applicationsonline/librarian) there is also [Berkshelf](https://github.com/RiotGames/berkshelf), which looks very promising, but does not run on Windows yet.
+ * both Librarian and Berkshelf also support resolving dependencies from git or the local filesystem in addition to the Opscode Community site, check [the](http://berkshelf.com/) [docs](https://github.com/applicationsonline/librarian) for this. 
