@@ -5,6 +5,8 @@ This guide describes a test-driven appraoch to Chef cookbook development using [
 
 For integration-testing we set up a VM environment using [Vagrant](http://vagrantup.com), [Librarian](https://github.com/applicationsonline/librarian) and [Chef Solo](http://wiki.opscode.com/display/chef/Chef+Solo), against which we run some post-convergence smoke tests using [minitest-chef-handler](https://github.com/calavera/minitest-chef-handler/) and some cucumber/features tests using [cucumber-nagios](https://github.com/auxesis/cucumber-nagios).
 
+*Note:* a running example where we have done exactly the steps below can also be found in `W:\repo\my-cookbooks\tdd-example` (or the [latest version online](https://github.com/tknerr/cookbooks-tdd-example)). Each step in the guide below is a single commit, so by browsing the commit history you can still see the evolution of the cookbook. 
+
 ## Create the Cookbook
 
 First, choose a directory where you keep your cookbook sources and `cd` into it:

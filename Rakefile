@@ -116,6 +116,7 @@ def clone_repositories
 		%w{ tknerr/bills-kitchen-repo.git 			repo/my-chef-repo },
 		%w{ tknerr/cookbooks-vagrant-ohai.git 		repo/my-cookbooks/vagrant-ohai },
 		%w{ tknerr/cookbooks-motd.git 				repo/my-cookbooks/motd },
+		%w{ tknerr/cookbooks-tdd-example.git 		repo/my-cookbooks/tdd-example },
 		%w{ tknerr/vagrant-baseboxes.git 			repo/my-baseboxes }
 	]
 	.each do |repo, dest|
