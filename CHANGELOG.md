@@ -1,4 +1,8 @@
 
+# [0.7-SNAPSHOT]
+ 
+ * ...
+
 # [0.6] from 29/08/2012
  
  * added COOKBOOK_DEVELOPMENT guide for test-driven cookbook development with foodritic, chefspec, fauxhai, vagrant, librarian, minitest-chef-handler and cucumber-nagios
