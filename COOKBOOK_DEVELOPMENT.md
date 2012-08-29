@@ -63,33 +63,24 @@ Now edit the `foo/spec/default_spec.rb` and replace the pending example with the
 
 If you run the specs again using `rspec` it should fail now:
 
-	W:\repo\my-cookbooks\foo>rspec --color --format documentation
+	W:\repo\my-cookbooks\foo>rspec
 
 	foo::default
 	  should create "/tmp/foo" (FAILED - 1)
-	  should create file with content "/tmp/foo" and "bar!" (FAILED - 2)
 
 	Failures:
 
 	  1) foo::default should create "/tmp/foo"
 	     Failure/Error: chef_run.should create_file '/tmp/foo'
 	       No file resource named '/tmp/foo' with action :create found.
-	     # ./spec/default_spec.rb:6:in `block (2 levels) in <top (required)>'
+	     # ./spec/default_spec.rb:7:in `block (2 levels) in <top (required)>'
 
-	  2) foo::default
-	     Failure/Error: it { chef_run.should create_file_with_content '/tmp/foo', 'bar!' }
-	       File content:
-	        does not match expected:
-	       bar!
-	     # ./spec/default_spec.rb:8:in `block (2 levels) in <top (required)>'
-
-	Finished in 0.049 seconds
-	2 examples, 2 failures
+	Finished in 0.019 seconds
+	1 example, 1 failure
 
 	Failed examples:
 
-	rspec ./spec/default_spec.rb:5 # foo::default should create "/tmp/foo"
-	rspec ./spec/default_spec.rb:8 # foo::default
+	rspec ./spec/default_spec.rb:6 # foo::default should create "/tmp/foo"
 
 This is good! Now that we have a failing spec we can add the implementation in the next step.
 
@@ -135,7 +126,7 @@ See, we already spotted some issues in our very simple cookbook. Now it's time t
 
 Now that we have implemented the recipe, if you run the spec tests again they should be green now. Yay! :-) 
 
-	W:\repo\my-cookbooks\foo>rspec --color --format documentation
+	W:\repo\my-cookbooks\foo>rspec
 	
 	foo::default
 	  should create "/tmp/foo"
@@ -184,7 +175,7 @@ Now this is where [Fauxhai](https://github.com/customink/fauxhai/) comes in and 
 
 Even though you are running the specs from a Windows machine, the actual Ohai data is coming from fauxhai's pre-defined data sets for Ubuntu and CentOS. They should all pass:
 
-	W:\repo\my-cookbooks\foo>rspec --color --format documentation
+	W:\repo\my-cookbooks\foo>rspec
 
 	foo::default
 	  on Ubuntu
