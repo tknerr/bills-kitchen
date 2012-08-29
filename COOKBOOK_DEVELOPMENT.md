@@ -104,14 +104,12 @@ Now let's implement a default recipe that makes the specs pass, e.g. edit your `
 	  content "hey, I'm running on #{node[:platform]}!"
 	end
 
-Now is a good point to do some basic syntax checking and linting to make sure our recipe is actually valid Ruby code and conforms to good cookbook style. Running `knife cookbook test foo` makes sure you have written valid Ruby syntax:
+Now is a good point to do some basic syntax checking and linting to make sure our recipe is actually valid Ruby code and conforms to good cookbook style. Running `knife cookbook test foo -o ..` makes sure you have written valid Ruby syntax (we need to go one dir up so that knife finds the cookbook, thus the `-o ..`, ugh):
 
-	W:\repo\my-cookbooks\foo>knife cookbook test foo
+	W:\repo\my-cookbooks\foo>knife cookbook test foo -o ..
 	WARNING: No knife configuration file found
 	checking foo
 	Running syntax check on foo
-	Validating ruby files
-	Validating templates
 	Validating ruby files
 	Validating templates
 
