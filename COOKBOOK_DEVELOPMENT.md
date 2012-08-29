@@ -457,48 +457,42 @@ Yay! Smoke tests are passing :-)
  * both Librarian and Berkshelf also support resolving dependencies from git or the local filesystem in addition to the Opscode Community site, check [the](http://berkshelf.com/) [docs](https://github.com/applicationsonline/librarian) for this. 
 
 
-## Add a Cucumber Feature Test
+## Add a Cucumber Feature
 
 Now that we have a fully converged node passing the smoke tests we may want to do something more acceptance-testy. For this purpose we will now create a cucumber feature based on [cucumber-nagios](https://github.com/auxesis/cucumber-nagios). For this we create the `foo/features/foo.feature` file and write down what we expect:
 
-Let's start by creating the `foo/features/foo.feature` file and write down what we expect:
+Let's start by creating the `foo/features/foo.feature` file and write down what we expect. You should not think of any available cucumber steps that you could reuse here, just write down what you'd expect from a user's point of view:
 
-	Feature: the world-changing foo file
+	Feature: the world-changing foo file 
 
 	  Background:
-	    Given a Vagrant VM is up and running
-	      And the foo recipe is deployed
+	    Given a Vagrant VM with foo deployed is up and running
 
-	  Scenario: check the foo file
-	    When I ssh into the Vagrant VM
-	     And I run 'cat /tmp/foo'
-	    Then the output should contain "hey, I'm running on ubuntu!"
+	  Scenario: check the foo file 
+	    When I ssh into the Vagrant VM 
+	     And look at the foo file
+	    Then it should say "hey, I'm running on ubuntu!" 
 
-Now we run `cucumber` so that it generates the test steps that we need to implement:
+Now run `cucumber` so that it generates the test steps that we need to implement:
 
 	W:\repo\my-cookbooks\foo>cucumber
 	Feature: the world-changing foo file
 
-	  Background:                            # features\foo.feature:3
-	    Given a Vagrant VM is up and running # features\foo.feature:4
-	    And the foo recipe is deployed       # features\foo.feature:5
+	  Background:                                              # features\foo.feature:3
+	    Given a Vagrant VM with foo deployed is up and running # features\foo.feature:4
 
-	  Scenario: check the foo file                                   # features\foo.feature:7
-	    When I ssh into the Vagrant VM                               # features\foo.feature:8
-	    And I run 'cat /tmp/foo'                                     # features\foo.feature:9
-	    Then the output should contain "hey, I'm running on ubuntu!" # features\foo.feature:10
+	  Scenario: check the foo file                             # features\foo.feature:6
+	    When I ssh into the Vagrant VM                         # features\foo.feature:7
+	    And look at the foo file                               # features\foo.feature:8
+	    Then it should say "hey, I'm running on ubuntu!"       # features\foo.feature:9
 
 	1 scenario (1 undefined)
-	5 steps (5 undefined)
-	0m0.011s
+	4 steps (4 undefined)
+	0m1.119s
 
 	You can implement step definitions for undefined steps with these snippets:
 
-	Given /^a Vagrant VM is up and running$/ do
-	  pending # express the regexp above with the code you wish you had
-	end
-
-	Given /^the foo recipe is deployed$/ do
+	Given /^a Vagrant VM with foo deployed is up and running$/ do
 	  pending # express the regexp above with the code you wish you had
 	end
 
@@ -506,25 +500,95 @@ Now we run `cucumber` so that it generates the test steps that we need to implem
 	  pending # express the regexp above with the code you wish you had
 	end
 
-	When /^I run 'cat \/tmp\/foo'$/ do
+	When /^look at the foo file$/ do
 	  pending # express the regexp above with the code you wish you had
 	end
 
-	Then /^the output should contain "([^"]*)"$/ do |arg1|
+	Then /^it should say "([^"]*)"$/ do |arg1|
 	  pending # express the regexp above with the code you wish you had
 	end
 
-	If you want snippets in a different programming language,
-	just make sure a file with the appropriate file extension
-	exists where cucumber looks for step definitions.
+	Then we can copy/paste the steps definitions into `foo/features/steps/foo_steps.rb` and gradually fill them with life until there are no pending steps anymore and all scenarios pass. 
 
-Then we can copy/paste the steps definitions into `foo/features/steps/foo_steps.rb` and gradually fill them with life until there are no pending steps anymore and all scenarios pass. 
+We can now copy/paste the skeleton step definitions from above into `foo/features/steps/foo_steps.rb` and gradually implement them until all scenarios pass. Your implementation of the step definitions in `foo_steps` could then look like this:
 
+	PROJECT_ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
+	Given /^a Vagrant VM with foo deployed is up and running$/ do
+	  `cd #{PROJECT_ROOT} && vagrant up --no-provision && vagrant provision`
+	  raise "failed to start Vagrant VM" unless $?.exitstatus == 0
+	end
 
+	When /^I ssh into the Vagrant VM$/ do
+	  ip = get_ip_from_vagrantfile
+	  steps %{
+	    When I ssh to "#{ip}" with the following credentials:
+	         | username | password |
+	         | vagrant  | vagrant  |
+	  }
+	end
+
+	When /^look at the foo file$/ do
+	  steps %{
+	    When I run "cat /tmp/foo"
+	  }
+	end
+
+	Then /^it should say "([^"]*)"$/ do |text|
+	  steps %{
+	    Then I should see "#{text}" in the output
+	  }
+	end
+	 
+	def get_ip_from_vagrantfile
+	  require 'vagrant'
+	  env = ::Vagrant::Environment.new(:cwd => PROJECT_ROOT)
+	  env.primary_vm.config.vm.networks[0][1][0]
+	end
+
+Note the that the implementation of the `Given /^a Vagrant VM...$/` steps and `get_ip_from_vagrantfile` helper method is really a hack. Cuken provides some reusable [vagrant steps](https://github.com/hedgehog/cuken/blob/v0.1.22/lib/cuken/cucumber/vagrant/common.rb), but as of today they [don't support Vagrant 1.0.x](https://github.com/hedgehog/cuken/issues/10) yet, so we stay with that hack for now.
+
+For the implementation of the other steps we could actually reuse the [ssh steps](https://github.com/auxesis/cucumber-nagios/blob/v0.9.2/lib/cucumber/nagios/steps/ssh_steps.rb#L58-82) from cucumber-nagios. In order to be able to reuse [all the cucumber-nagios steps](https://github.com/auxesis/cucumber-nagios/tree/v0.9.2/lib/cucumber/nagios/steps) we need to require them in `foo/features/support/env.rb` (note: the Webrat stuff is required for the http steps):
+
+	# require nagios steps (see https://github.com/auxesis/cucumber-nagios/tree/v0.9.2/lib/cucumber/nagios/steps) 
+	require 'cucumber/nagios/steps'
+
+	# Suppress logs being written to ./webrat.log
+	module Webrat
+	  module Logging
+	    def logger
+	      nil
+	    end
+	  end
+	end
+
+	World do
+	  Webrat::Session.new(Webrat::MechanizeAdapter.new)
+	end
+
+If you have all that in place and now run `cucumber` again, you should see the scenario pass:
+
+	W:\repo\my-cookbooks\foo>cucumber
+	Feature: the world-changing foo file
+
+	  Background:                                              # features\foo.feature:3
+	D:/Repos/_github/bills-kitchen/target/build/tools/vagrant/vagrant/vagrant/embedded/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require': iconv will be deprecated in the future, use String#encode instead.
+	    Given a Vagrant VM with foo deployed is up and running # features/steps/foo_steps.rb:5
+
+	  Scenario: check the foo file                             # features\foo.feature:6
+	    When I ssh into the Vagrant VM                         # features/steps/foo_steps.rb:10
+	    And look at the foo file                               # features/steps/foo_steps.rb:19
+	    Then it should say "hey, I'm running on ubuntu!"       # features/steps/foo_steps.rb:25
+
+	1 scenario (1 passed)
+	4 steps (4 passed)
+	0m36.983s
+
+Yeah! That's it. This should be enough fodder to get you started. Make sure to dive into the provided links for more information on the specific topics, or let me know if you are missing something. Happy Cooking! 
 
 ### More Information
 
- * the available steps in Cuken are best discovered by example [in the docs](https://www.relishapp.com/hedgehog/cuken/docs)
+ * the available steps in cucumber-nagios are best discovered by [browsing the source](https://github.com/auxesis/cucumber-nagios/tree/v0.9.2/lib/cucumber/nagios/steps)
  * Dan North has some nice introductions to [BDD](http://dannorth.net/introducing-bdd/) and [Cucumber](http://dannorth.net/whats-in-a-story/) 
+ * [You're Cuking it Wrong](http://www.elabs.se//blog/15-you-re-cuking-it-wrong) tells you how to write good features and gives examples of really bad ones
  * the syntax of a .feature file is named Gherkin. It's structure is [best described here](http://docs.behat.org/guides/1.gherkin.html)
