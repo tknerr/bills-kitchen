@@ -1,7 +1,7 @@
 
 # [0.6-SNAPSHOT]
  
- * added `COOKBOOK_DEVELOPMENT` guide
+ * added COOKBOOK_DEVELOPMENT guide for test-driven cookbook development with foodritic, chefspec, fauxhai, vagrant, librarian, minitest-chef-handler and cucumber-nagios
  * added recent version of cygwin rsync.exe and ssh.exe
  * gem updates:
  	* added testing gems:
@@ -13,10 +13,9 @@
  	* updated vagrant to 1.0.3.1
  	* updated sahara to 0.0.13 (patches now merged in upstream version)
  	* updated knife-solo to latest version (now much faster using rsync.exe) 0.0.13.1
- 	* added [faster_require](https://github.com/rdp/faster_require) gem for reducing startup times 
- 
+ 	* added faster_require gem for reducing startup times 
  * bugfixes:
-   * GH-7: TERM=msys breaks `vagrant ssh` terminal
+   * GH-7: TERM=msys breaks vagrant ssh terminal
    * GH-6: "This build of Sublime Text 2 has expired..."
    * GH-5: rake install fails due to missing gems 
 
