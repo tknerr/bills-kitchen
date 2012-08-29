@@ -144,7 +144,7 @@ Finally note that Chefspec does not modify your system, i.e. it won't create `/t
 
 Oh wait, our specs are not complete yet. What about the contents of our `/tmp/foo` file?
 
-Now this is where [Fauxhai](https://github.com/customink/fauxhai/) comes in and Chefspec really starts getting useful. With Fauxhai you can mock the data that is usually collected on the node by [Ohai](http://wiki.opscode.com/display/chef/Ohai). For example, we could simulate the chef run on an ubuntu node:
+Now this is where [Fauxhai](https://github.com/customink/fauxhai/) comes in and Chefspec really starts getting useful. With Fauxhai you can mock the data that is usually collected on the node by [Ohai](http://wiki.opscode.com/display/chef/Ohai). For example, we could simulate the chef run on an ubuntu node by modifying the `foo/spec/default_spec.rb` like this:
 
 	require 'faster_require'
 	require 'chefspec'
@@ -196,7 +196,11 @@ Even though you are running the specs from a Windows machine, the actual Ohai da
 
 So far we only did unit-level spec testing. The next step is to integration-test our cookbook using [Vagrant](http://vagrantup.com) and [Chef Solo](http://wiki.opscode.com/display/chef/Chef+Solo) on a VM. For this purpose we first create a `Vagrantfile` within our cookbook directory:
 
- 	vagrant init 
+	W:\repo\my-cookbooks\foo>vagrant init
+	A `Vagrantfile` has been placed in this directory. You are now
+	ready to `vagrant up` your first virtual environment! Please read
+	the comments in the Vagrantfile as well as documentation on
+	`vagrantup.com` for more information on using Vagrant.
 
 You should edit the `Vagrantfile` so that the foo cookbook can be found in the cookbook path:
 
@@ -370,10 +374,7 @@ Now that we have the cookbook dependencies resolved, we need to add the `foo/coo
 	  end
 	end  
 
-Upon the next `vagrant up` / `vagrant provision` cycle (actually we have to do a `vagrant reload` after changing the cookbooks_path), the node should now successfully converge again and the smoke tests passing at the end of the Chef run:
-
-	W:\repo\my-cookbooks\foo>vagrant up
-	[default] VM already created. Booting if it's not already running...
+Upon the next `vagrant provision` (actually we have to do a `vagrant reload` after changing the cookbooks_path), the node should now successfully converge again and the smoke tests passing at the end of the Chef run:
 
 	W:\repo\my-cookbooks\foo>vagrant provision
 	[default] Running provisioner: Vagrant::Provisioners::ChefSolo...
