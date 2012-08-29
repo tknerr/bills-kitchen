@@ -38,7 +38,7 @@
  * removed notepad++ as we don't need two editors 
  * replaced p4merge with more lightweight kdiff3
  * added support for colored shell output in Console2 via `ansicon`
- * devpack is now built from source: https://github.com/tknerr/chef-devpack
+ * devpack is now built from source: https://github.com/tknerr/bills-kitchen
 
 # [0.3] from 18/05/2012
 
