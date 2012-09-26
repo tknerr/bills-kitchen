@@ -90,6 +90,7 @@ This is good! Now that we have a failing spec we can add the implementation in t
 
  * the [chefspec README](https://github.com/acrmp/chefspec/blob/master/README.md) has more examples on how to use the `file`, `directory`, `user`, `package` and `service` matchers
  * in doubt, consult the source and look how the [chefspec matchers](https://github.com/acrmp/chefspec/tree/master/lib/chefspec/matchers) are implemented
+ * for sure, you can use the [built-in rspec matchers](https://www.relishapp.com/rspec/rspec-expectations/v/2-11/docs/built-in-matchers) as well
  * the [rspec documentation](https://www.relishapp.com/rspec/rspec-core/v/2-11/docs/) explains the `describe`, `context`, `before`, `let` and `it` syntax
  * how to use [implicit subjects](http://blog.davidchelimsky.net/2012/05/13/spec-smell-explicit-use-of-subject/) for cleaner rspec tests (since rspec 2.11)
  * note that the `require 'faster_require'` is optional. It comes with the [faster_require](https://github.com/rdp/faster_require) gem and drastically reduces rspec startup time. 
