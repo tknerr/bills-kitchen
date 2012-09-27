@@ -12,8 +12,10 @@ gem 'chef', '10.12.0'
 
 # gems for cookbook dependency management
 gem 'librarian', '0.0.20.1' #, :git => 'https://github.com/tknerr/librarian.git', :branch => 'bills-kitchen'
-gem 'berkshelf', '0.6.0.beta1'
-gem 'builder', '3.0.3' # if not specified explicitly `bundle update` will run in an infinite loop when resolving berkshel??!
+
+# wait until #138, #139 and #140 are fixed
+#gem 'berkshelf', '0.6.0.beta1'
+#gem 'builder', '3.0.3' # if not specified explicitly `bundle update` will run in an infinite loop when resolving berkshel??!
 
 # extra gems required by chef on windows (see GH-5)
 gem 'ruby-wmi', '0.4.0'
