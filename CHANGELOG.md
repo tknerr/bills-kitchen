@@ -6,13 +6,13 @@
  * use latest bundler version 1.2.1
  * gem updates:
   * added knife-server 0.3.0 for bootstrap/backup/restore of chef server
+  * added vagrant-vbguest 0.3.4 to keep the guestadditions in sync with your virtualbox installation
   * updated vagrant to 1.0.5.1
   * updated chef to 10.14.4
   * updated chefspec to 0.8.0
   * updated fauxhai to 0.0.3
   * updated test-kitchen to 0.5.4
   * updated veewee to 0.3.0.beta2
-
 
 
 # [0.6] from 29/08/2012
