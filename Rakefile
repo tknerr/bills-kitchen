@@ -70,7 +70,6 @@ def download_boxes
 	%w{ 
 		ubuntu-12.04-server-amd64-bare-os.box 
 		ubuntu-12.04-server-amd64-vagrant.box
-		chef-server-on-ubuntu-12.04-server-amd64-vagrant
 	}
 	.each do |file|
 		download "http://dl.dropbox.com/u/13494216/#{file}.box", "#{BUILD_DIR}/boxes/#{file}.box"		
