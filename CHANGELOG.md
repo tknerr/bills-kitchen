@@ -1,7 +1,19 @@
 
 # [0.7-SNAPSHOT]
  
- * ...
+ * GH-1: set up chef server from scratch (using knife-server) rather than having it in a pre-baked basebox, updated GETTING_STARTED guide 
+ * update to latest Chef release 10.14.4
+ * use latest bundler version 1.2.1
+ * gem updates:
+  * added knife-server 0.3.0 for bootstrap/backup/restore of chef server
+  * updated vagrant to 1.0.5.1
+  * updated chef to 10.14.4
+  * updated chefspec to 0.8.0
+  * updated fauxhai to 0.0.3
+  * updated test-kitchen to 0.5.4
+  * updated veewee to 0.3.0.beta2
+
+
 
 # [0.6] from 29/08/2012
  
