@@ -21,7 +21,9 @@ All you need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a p
  		* [veewee](https://github.com/jedi4ever/veewee) (for building vagrant baseboxes)
  		* [sahara](https://github.com/tknerr/sahara) (lets you take and restore virtualbox snapshots)
  		* [knife-solo](https://github.com/matschaffer/knife-solo) (if you prefer to work in chef-solo mode)
- 		* [mccloud](https://github.com/jedi4ever/mccloud) (like vagrant but for the cloud not local vms)
+    * [mccloud](https://github.com/jedi4ever/mccloud) (like vagrant but for the cloud not local vms)
+    * [knife-server](https://github.com/fnichol/knife-server) (for bootstrap/backup/restore of chef servers)
+    * [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) (keeps your vbox guestadditions in sync)
  * supporting tools such as:
  	* Console2 (with ansicon)
  	* SublimeText2 (with additional packages for Chef and Cucumber)
