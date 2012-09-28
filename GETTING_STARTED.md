@@ -16,24 +16,24 @@ We assume you mounted Bill's Kitchen to the `W:\` drive by double-clicking the `
 
 We are going to set up a Chef server locally on our laptop, and then set up a web server node from scratch using `knife bootstrap`. Thus the next steps are:
 
-1. Start the Chef Server VM
-2. Setup a Web Server using Chef
+1. Setup a Chef Server
+2. Verify the Chef Server works
+3. Setup a Web Server using Chef
 
- 
-### Start the Chef Server VM
+### Setup a Chef Server
 
-Within our chef repository located at `W:\repo\my-chef-repo` there is a `Vagrantfile` for setting up a Chef Server VM. Go to that directory and fire up our chef server using `vagrant up chef_server`:
+Within our chef repository located at `W:\repo\my-chef-repo` there is a `Vagrantfile` which we will use for setting up a Chef Server VM using [knife-server](https://github.com/fnichol/knife-server). Go to that directory and run `vagrant up chef_server`. This will fire up a Vagrant VM with a bare os Ubuntu basebox:
 
 ```
-W:\repo\my-chef-repo>vagrant up chef_server
-[chef_server] Importing base box 'pre-baked-chef-server'...
-[chef_server] Matching MAC address for NAT networking...
+W:\repo\my-chef-repo>vagrant up
+[chef_server] VM already created. Booting if it's not already running...
 [chef_server] Clearing any previously set forwarded ports...
 [chef_server] Forwarding ports...
-[chef_server] -- 22 => 22310 (adapter 1)
+[chef_server] -- 22 => 22311 (adapter 1)
 [chef_server] Creating shared folders metadata...
 [chef_server] Clearing any previously set network interfaces...
 [chef_server] Preparing network interfaces based on configuration...
+[chef_server] Running any VM customizations...
 [chef_server] Booting VM...
 [chef_server] Waiting for VM to boot. This can take a few minutes.
 [chef_server] VM booted and ready for use!
@@ -41,9 +41,15 @@ W:\repo\my-chef-repo>vagrant up chef_server
 [chef_server] Setting host name...
 [chef_server] Mounting shared folders...
 [chef_server] -- v-root: /vagrant
+The following SSH command responded with a non-zero exit status.
+Vagrant assumes that this means the command failed!
+
+mount -t vboxsf -o uid=`id -u vagrant`,gid=`id -g vagrant` v-root /vagrant
 ```
 
-Verify that the Chef Server VM is running using `vagrant status chef_server`:
+You can ignore the error message at the bottom. This just means that it couldn't mount the 
+
+You can verify that the Chef Server VM is running using `vagrant status chef_server`:
 
 ```
 W:\repo\my-chef-repo>vagrant status chef_server
@@ -57,28 +63,70 @@ suspend the virtual machine. In either case, to restart it again,
 simply run `vagrant up`.
 ```
 
+Now use `knife-server` to bootstrap a new Chef Server installation on that empty Vagrant VM. When you look at the `Vagrantfile` you will notice the IP address of the `chef_server` VM we just started is `33.33.3.10`, so that is what we will use for bootstrapping the Chef Server installation:
+
+```
+W:\repo\my-chef-repo>knife server bootstrap standalone --ssh-user vagrant --ssh-password vagrant --node-name chef-server --host 33.33.3.10 --bootstrap-version 10.14.4
+Bootstrapping Chef on 33.33.3.10
+33.33.3.10 + setup
+33.33.3.10 + apt-get update
+0% [Working]
+Ign http://security.ubuntu.com precise-security InRelease
+10% [Connecting to us.archive.ubuntu.com (91.189.91.30)]
+Get:1 http://security.ubuntu.com precise-security Release.gpg [198 B]
+...
+```
+
+This might take a while... and finally end up like this: 
+
+```
+...
+33.33.3.10 [Fri, 28 Sep 2012 18:05:22 +0000] INFO: Processing service[apache2] action restart (apache2::default line 219)
+33.33.3.10 [Fri, 28 Sep 2012 18:05:25 +0000] INFO: service[apache2] restarted
+33.33.3.10 [Fri, 28 Sep 2012 18:05:25 +0000] INFO: Chef Run complete in 26.269591 seconds
+33.33.3.10 [Fri, 28 Sep 2012 18:05:25 +0000] INFO: Running report handlers
+33.33.3.10 [Fri, 28 Sep 2012 18:05:25 +0000] INFO: Report handlers complete
+33.33.3.10 + rm -rf /tmp/chef-solo
+33.33.3.10 + printf -- '-----> Bootstraping Chef Server on chef-server is complete.\n'
+33.33.3.10 -----> Bootstraping Chef Server on chef-server is complete.
+WARNING: No knife configuration file found
+Creating initial API user...
+Created client[root]
+Configuration file written to /root/.chef/knife.rb
+```
+
+What happened so far?
+1. knife-server installed chef-server with all it's prerequisites (ruby, rubygems, etc...)
+2. it created the admin key `cheffe.pem` and validation key `validation.pem` and copied it to `W:\repo\my-chef-repo\.chef` 
+3. it set up apache with ssl so that you can access the REST API via `https://33.33.3.10`
+
+For more details check out the [knife-server README](https://github.com/fnichol/knife-server/blob/master/README.md)
+
+
+### Verify that the Chef Server works
+
 Ok, server is running. Now let's see if we can talk to it using `knife` (yes, this is the commandline tool of the chefs). Note that the URL of the chef server (along with your client and validation certificate) are already pre-configured in `.chef\knife.rb`. For example, let's query for the clients the chef server knows about: 
 
 ```
 W:\repo\my-chef-repo>knife client list
-  admin
   chef-validator
   chef-webui
   cheffe
+  root
 
 W:\repo\my-chef-repo>knife client show cheffe
-_rev:        1-479aeb04e51bb4111239e93c5752c457
+_rev:        1-d5e582804a1ca7a7cc91c9ef6c0932ed
 admin:       true
 chef_type:   client
 json_class:  Chef::ApiClient
 name:        cheffe
 public_key:  -----BEGIN RSA PUBLIC KEY-----
-             MIIBCgKCAQEAq4EnCkRw3MZRVUhiyd/IqrtcXOoavLFBZ682QGGJc3gHE8XhPyqD
-             Cy2r92DCV+lzx4tFAzcK+CF0e8ovQGQR505PjAUWdcODbrx+WgNI8H3k+366eG9s
-             U1i0gPdiw31d/mcaiNBe7CltzyK6Eot/BHtgjCEVv9zSRwMPvKCOAZN8PjVKQQAT
-             usvVEJWrbBg00x9uYUMFWHYUbVEMPxNCq0xA1e8x0EFry0FhtIBD69lfM+xw04s5
-             SQoEE565Qv+eCxfgaP4bXiZ+rkoBtHI9NrL4QONCwdQzqbHsL/xyVK4tuQ4Sq8Za
-             XmG/8IuhB8DrbY/9GFlvDe8x9D57aATYywIDAQAB
+             MIIBCgKCAQEA15UARmdpIp0YTqekrhtVjcsNtNcj1B4ERemPiiNSCO7bapGmK0hA
+             PQ24pHwyGB7S+xTWr+DED258lwVwKLJ5kmZPl3gVsSaycCrJbg2Md6osuWwuSLuS
+             RH7Rt49iMvUZI9I+6DiNRUupc7ppdx9v5LTp0tp75ec0/SRmBHiaXK/h5D/J+m43
+             e8+P90oK2Mg8/yaBtfuayIpdQ2AksCjjmFNoggBhSIKb0WAwPXNGcwk+B5Ip4PHz
+             81CVT6wDNDF9K9GploV0QimWehQJJlmehGruZTMaZOZGZHpguxaaRUNFAgJrCLqM
+             Ff/zXWAj+9pD6s09TIwY+W63sPgiD87ZWwIDAQAB
              -----END RSA PUBLIC KEY-----
 ```  
 
@@ -130,7 +178,7 @@ upload complete
 
 Great! Our chef server now knows all our cookbooks, roles, environments etc.
 
-You can also use the chef server webui to explore any data on the chef server. Just point your browser to http://33.33.3.10:4040/cookbooks (log in with admin/p@ssw0rd1) and explore the cookbooks we have just uploaded:
+You can also use the chef server webui to explore any data on the chef server. Just point your browser to http://33.33.3.10:4040/cookbooks (log in with admin/chefchef) and explore the cookbooks we have just uploaded:
 
 ![Chef Server - Explore Cookbooks](https://raw.github.com/tknerr/bills-kitchen/master/doc/chef-server_cookbooks.png) 
 
