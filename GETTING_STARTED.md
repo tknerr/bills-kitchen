@@ -47,7 +47,7 @@ Vagrant assumes that this means the command failed!
 mount -t vboxsf -o uid=`id -u vagrant`,gid=`id -g vagrant` v-root /vagrant
 ```
 
-You can ignore the error message at the bottom. This just means that it couldn't mount the 
+You can ignore the error message at the bottom. This just means that it couldn't mount any shared folders due to the Virtualbox Guetadditions not being installed.
 
 You can verify that the Chef Server VM is running using `vagrant status chef_server`:
 
@@ -96,6 +96,7 @@ Configuration file written to /root/.chef/knife.rb
 ```
 
 What happened so far?
+
 1. knife-server installed chef-server with all it's prerequisites (ruby, rubygems, etc...)
 2. it created the admin key `cheffe.pem` and validation key `validation.pem` and copied it to `W:\repo\my-chef-repo\.chef` 
 3. it set up apache with ssl so that you can access the REST API via `https://33.33.3.10`
