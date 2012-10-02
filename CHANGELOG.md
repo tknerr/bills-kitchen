@@ -11,7 +11,7 @@
   * updated chef to 10.14.4
   * updated chefspec to 0.8.0
   * updated fauxhai to 0.0.3
-  * updated test-kitchen to 0.5.4
+  * updated test-kitchen to 0.6.0
   * updated veewee to 0.3.0.beta2
 
 

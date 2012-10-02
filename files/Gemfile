@@ -22,7 +22,7 @@ gem 'ruby-wmi', '0.4.0'
 gem 'win32-service', '0.7.2'
 
 # the holistic cookbook testing framework from Opscode
-gem 'test-kitchen', '0.5.4'
+gem 'test-kitchen', '0.6.0'
 gem 'foodcritic', '1.6.1'
 
 # chefspec and friends
