@@ -1,4 +1,9 @@
 
+# [0.8-SNAPSHOT]
+
+ * ...
+
+
 # [0.7] from 08/10/2012
  
  * GH-1: set up chef server from scratch (using knife-server) rather than having it in a pre-baked basebox, updated GETTING_STARTED guide 
