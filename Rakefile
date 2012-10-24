@@ -146,7 +146,7 @@ def prepend(text, file)
 	end
 end
 
-def download_and_unpack(url, target_dir, outfile, includes = [])	
+def download_and_unpack(url, target_dir, includes = [])	
 	Dir.mktmpdir do |tmp_dir| 
 		outfile = "#{tmp_dir}/#{File.basename(url)}"
 		download(url, outfile)
