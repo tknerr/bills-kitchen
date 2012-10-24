@@ -29,12 +29,6 @@ task :build do
 	assemble_kitchen
 end
 
-task :download do
-	recreate_dirs
-	download_tools
-end
-
-
 def recreate_dirs
 	FileUtils.rm_rf BUILD_DIR
 	%w{ boxes docs home install repo tools }.each do |dir|
