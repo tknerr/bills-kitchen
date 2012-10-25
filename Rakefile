@@ -51,15 +51,14 @@ end
 
 def download_tools
 	[
-		%w{ cloud.github.com/downloads/adoxa/ansicon/ansi153.zip 										ansicon },
-		%w{ dfn.dl.sourceforge.net/project/console/console-devel/2.00/Console-2.00b148-Beta_32bit.zip 	console2 },
-		%w{ www.holistech.co.uk/sw/hostsedit/hostsedit.zip 												hostedit },
-		%w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.zip 								sublimetext2 },
-		%w{ msysgit.googlecode.com/files/PortableGit-1.7.10-preview20120409.7z							portablegit },
-		%w{ files.vagrantup.com/packages/eb590aa3d936ac71cbf9c64cf207f148ddfc000a/vagrant_1.0.3.msi 	vagrant },
-		%w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe 				kdiff3 
-			kdiff3.exe },
-		%w{ the.earth.li/~sgtatham/putty/0.62/x86/putty.zip 											putty }
+		%w{ cloud.github.com/downloads/adoxa/ansicon/ansi153.zip ansicon},
+		%w{ sourceforge.net/projects/console/files/console-devel/2.00/Console-2.00b148-Beta_32bit.zip console2},
+		%w{ www.holistech.co.uk/sw/hostsedit/hostsedit.zip hostedit},
+		%w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.zip sublimetext2},
+		%w{ msysgit.googlecode.com/files/PortableGit-1.7.10-preview20120409.7z portablegit},
+		%w{ files.vagrantup.com/packages/eb590aa3d936ac71cbf9c64cf207f148ddfc000a/vagrant_1.0.3.msi vagrant },
+		%w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe kdiff3 kdiff3.exe },
+		%w{ the.earth.li/~sgtatham/putty/0.62/x86/putty.zip zip putty }
 	]
 	.each do |host_and_path, target_dir, includes = ''|
 		download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')		
@@ -163,14 +162,22 @@ def download(url, outfile)
 	end
 end
 
-def download_no_cache(url, outfile)
+def download_no_cache(url, outfile, limit=5)
+
+	raise ArgumentError, 'HTTP redirect too deep' if limit == 0
+
 	puts "download '#{url}'"
 	uri = URI(url)
 	Net::HTTP.start(uri.host, uri.port) do |http|
-		File.open(outfile, 'wb') do |f|
-			http.request_get(uri.path + (uri.query ? "?#{uri.query}" : '')) do |resp|
-				resp.read_body do |segment|
-					f.write(segment)
+		http.request_get(uri.path + (uri.query ? "?#{uri.query}" : '')) do |response|
+			# handle 301/302 redirects
+	    if(response['location'])
+	      download_no_cache(response['location'], outfile, limit - 1)
+	    else
+				File.open(outfile, 'wb') do |f|
+					response.read_body do |segment|
+						f.write(segment)
+					end
 				end
 			end
 		end
