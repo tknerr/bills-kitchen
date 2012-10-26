@@ -1,7 +1,8 @@
 
 # [0.8-SNAPSHOT]
 
- * ...
+ * update veewee gem to 0.3.1 (thanks @ilude)
+ * add http redirect handling for downloads (thanks @ilude)
 
 
 # [0.7] from 08/10/2012
