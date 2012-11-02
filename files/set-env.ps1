@@ -13,9 +13,12 @@ $env:PUTTYDIR = Join-Path $pwd tools\putty
 ## set devkit vars
 invoke-expression (Join-Path $env:RUBYDIR devkitvars.bat)
 
-## use portable git, looks for %HOME%\.gitconfig 
-$env:GITDIR = Join-Path $pwd tools\portablegit
 $env:HOME = Join-Path $pwd home
+
+if($env:GITDIR -eq $NULL) {
+	$env:GITDIR = Join-Path $pwd tools\portablegit
+	$env:Path = "$env:Path;$(Join-Path $env:GITDIR "cmd")"
+}
 
 ## set git executable path
 $script:git = Join-Path (Join-Path $env:GITDIR "cmd") "git"
@@ -76,4 +79,4 @@ Write-Host "GITDIR=$env:GITDIR"
 Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 Write-Host "USE_FASTER_REQUIRE_GLOBALLY=$env:USE_FASTER_REQUIRE_GLOBALLY"
 
-$env:Path = "$env:VAGRANTDI\bin;$env:RUBYDIR\bin;$env:GITDIR\cmd;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:CONSOLE2DIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
+$env:Path = "$env:VAGRANTDI\bin;$env:RUBYDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:CONSOLE2DIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
