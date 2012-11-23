@@ -1,6 +1,8 @@
 
 # [0.8-SNAPSHOT]
 
+ * add berkshelf for cookbook dependency management
+ * update chef gem to 10.16.2
  * update veewee gem to 0.3.1 (thanks @ilude)
  * add http redirect handling for downloads (thanks @ilude)
 
