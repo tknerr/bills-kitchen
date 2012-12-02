@@ -40,6 +40,9 @@ gem 'knife-server', '0.3.0'
 # for bootstrapping via chef-solo
 gem 'knife-solo', '0.0.13.1' #,	:git => 'https://github.com/tknerr/knife-solo.git', :branch => 'bills-kitchen'
 
+# knife plugin for easier databag management with chef solo
+gem 'knife-solo_data_bag', '0.3.0'
+
 # for bootstrapping in da cloud
 gem 'mccloud', '0.0.13.2' #, :git => 'https://github.com/tknerr/mccloud.git', :branch => 'bills-kitchen'
 

@@ -1,6 +1,7 @@
 
 # [0.8-SNAPSHOT]
 
+ * add knife-solo_data_bag knife plugin for managing data bags with chef_solo
  * add berkshelf for cookbook dependency management
  * update chef gem to 10.16.2
  * update veewee gem to 0.3.1 (thanks @ilude)
