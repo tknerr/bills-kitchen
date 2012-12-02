@@ -1,6 +1,7 @@
 
 # [0.8-SNAPSHOT]
 
+ * re-enable vagrant-vbguest plugin with guest addition updates disabled by default
  * add powershell set-env.ps1 variant of set-env.bat (thanks @ilude) 
  * add http redirect handling for downloads (thanks @ilude)
  * gem updates:
@@ -11,7 +12,8 @@
   * updated veewee gem to 0.3.1 (thanks @ilude)
   * updated chefspec to 0.9.0
   * updated fauxhai to 0.0.4
-  * updated test-kitchen to 0.7.0.rc.1
+  * updated test-kitchen to 0.7.0.beta.1
+  * updated vagrant-vbguest to 0.5.1
 
 
 # [0.7] from 08/10/2012
