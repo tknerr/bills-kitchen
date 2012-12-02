@@ -9,7 +9,8 @@ All you need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a p
  	* basic gems:
  		* [vagrant](http://vagrantup.com/) (patched to make `vagrant ssh` work on windows)
  		* [chef](http://www.opscode.com/chef/) (yeah you know what Chef is...)
- 		* [librarian](https://github.com/applicationsonline/librarian) (dependency management for cookbooks)
+    * [librarian](https://github.com/applicationsonline/librarian) (dependency management for cookbooks)
+    * [berkshelf](https://github.com/RiotGames/berkshelf) (alternative for dependency management for cookbooks)
  	* testing-related:
  		* [foodcritic](https://github.com/acrmp/foodcritic) (linting for your cookbooks)
  		* [chefspec](https://github.com/acrmp/chefspec) (rspec examples for chef_run/cookbooks)
@@ -20,7 +21,8 @@ All you need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a p
  	* other:
  		* [veewee](https://github.com/jedi4ever/veewee) (for building vagrant baseboxes)
  		* [sahara](https://github.com/tknerr/sahara) (lets you take and restore virtualbox snapshots)
- 		* [knife-solo](https://github.com/matschaffer/knife-solo) (if you prefer to work in chef-solo mode)
+    * [knife-solo](https://github.com/matschaffer/knife-solo) (if you prefer to work in chef-solo mode)
+    * [knife-solo_data_bag](https://github.com/thbishop/knife-solo_data_bag) (knife data bag commands for chef-solo)
     * [mccloud](https://github.com/jedi4ever/mccloud) (like vagrant but for the cloud not local vms)
     * [knife-server](https://github.com/fnichol/knife-server) (for bootstrap/backup/restore of chef servers)
     * [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) (keeps your vbox guestadditions in sync)
