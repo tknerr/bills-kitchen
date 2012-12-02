@@ -235,16 +235,16 @@ above with their current state. For more information about a specific
 VM, run `vagrant status NAME`.
 ```
 
-Ok, looks good. Now lets go ahead and bootstrap that VM using chef. That process might take a while - it will ssh into that VM and install the chef-client, then register the client at the server and finally converge the node to the desired state (i.e. "apply" webserver role as passed to the node's initial run_list). We bootstrap the new node with `role[webserver]` and `recipe[vagrant-ohai]` (the latter one fixes ohai's IP address detection when running inside Vagrant) and use the omnibus "chef-full" [bootstrap template](https://github.com/opscode/chef/tree/10.16.2/chef/lib/chef/knife/bootstrap):
+Ok, looks good. Now lets go ahead and bootstrap that VM using chef. That process might take a while - it will ssh into that VM and install the chef-client, then register the client at the server and finally converge the node to the desired state (i.e. "apply" webserver role as passed to the node's initial run_list). We bootstrap the new node with `role[webserver]` and `recipe[vagrant-ohai]` (the latter one fixes ohai's IP address detection when running inside Vagrant) and use the "[chef-full](https://github.com/opscode/chef/blob/10.16.2/chef/lib/chef/knife/bootstrap/chef-full.erb)" a.k.a "omnibus" bootstrap template:
 
 ```
 W:\repo\my-chef-repo>knife bootstrap 33.33.3.11 -x vagrant -P vagrant --sudo -N my-node -r 'role[webserver],recipe[vagrant-ohai] -d chef-full'
 Bootstrapping Chef on 33.33.3.11
 ...
-33.33.3.11 Successfully installed chef-0.10.10
+33.33.3.11 Successfully installed chef-10.16.2
 33.33.3.11 16 gems installed
 33.33.3.11
-33.33.3.11 [Fri, 18 May 2012 06:57:37 +0000] INFO: *** Chef 0.10.10 ***
+33.33.3.11 [Fri, 18 May 2012 06:57:37 +0000] INFO: *** Chef 10.16.2 ***
 33.33.3.11 [Fri, 18 May 2012 06:57:37 +0000] INFO: Client key /etc/chef/client.pem is not present - registering
 33.33.3.11 [Fri, 18 May 2012 06:57:38 +0000] INFO: HTTP Request Returned 404 Not Found: Cannot load node my-node
 33.33.3.11 [Fri, 18 May 2012 06:57:38 +0000] INFO: Setting the run_list to ["role[webserver]", "recipe[vagrant-ohai]"] from JSON
