@@ -66,7 +66,7 @@ simply run `vagrant up`.
 Now use `knife-server` to bootstrap a new Chef Server installation on that empty Vagrant VM. When you look at the `Vagrantfile` you will notice the IP address of the `chef_server` VM we just started is `33.33.3.10`, so that is what we will use for bootstrapping the Chef Server installation:
 
 ```
-W:\repo\my-chef-repo>knife server bootstrap standalone --ssh-user vagrant --ssh-password vagrant --node-name chef-server --host 33.33.3.10 --bootstrap-version 10.14.4
+W:\repo\my-chef-repo>knife server bootstrap standalone --ssh-user vagrant --ssh-password vagrant --node-name chef-server --host 33.33.3.10 --bootstrap-version 10.16.2
 Bootstrapping Chef on 33.33.3.10
 33.33.3.10 + setup
 33.33.3.10 + apt-get update
@@ -235,10 +235,10 @@ above with their current state. For more information about a specific
 VM, run `vagrant status NAME`.
 ```
 
-Ok, looks good. Now lets go ahead and bootstrap that VM using chef. That process might take a while - it will ssh into that VM and install the chef-client, then register the client at the server and finally converge the node to the desired state (i.e. "apply" webserver role as passed to the node's initial run_list). We bootstrap the new node with `role[webserver]` and `recipe[vagrant-ohai]` (the latter one fixes ohai's IP address detection when running inside Vagrant) and the [bootstrap template](https://github.com/opscode/chef/tree/0.10.10/chef/lib/chef/knife/bootstrap) for Ubuntu 12.04:
+Ok, looks good. Now lets go ahead and bootstrap that VM using chef. That process might take a while - it will ssh into that VM and install the chef-client, then register the client at the server and finally converge the node to the desired state (i.e. "apply" webserver role as passed to the node's initial run_list). We bootstrap the new node with `role[webserver]` and `recipe[vagrant-ohai]` (the latter one fixes ohai's IP address detection when running inside Vagrant) and use the omnibus "chef-full" [bootstrap template](https://github.com/opscode/chef/tree/10.16.2/chef/lib/chef/knife/bootstrap):
 
 ```
-W:\repo\my-chef-repo>knife bootstrap 33.33.3.11 -x vagrant -P vagrant --sudo -N my-node -r 'role[webserver],recipe[vagrant-ohai] -d ubuntu12.04-gems'
+W:\repo\my-chef-repo>knife bootstrap 33.33.3.11 -x vagrant -P vagrant --sudo -N my-node -r 'role[webserver],recipe[vagrant-ohai] -d chef-full'
 Bootstrapping Chef on 33.33.3.11
 ...
 33.33.3.11 Successfully installed chef-0.10.10
