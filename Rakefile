@@ -172,8 +172,10 @@ def download_no_cache(url, outfile, limit=5)
   Net::HTTP.start(uri.host, uri.port) do |http|
     http.request_get(uri.path + (uri.query ? "?#{uri.query}" : '')) do |response|
       # handle 301/302 redirects
-      if(response['location'])
-        download_no_cache(response['location'], outfile, limit - 1)
+      redirect_url = response['location']
+      if(redirect_url)
+        puts "redirecting to #{redirect_url}"
+        download_no_cache(redirect_url, outfile, limit - 1)
       else
         File.open(outfile, 'wb') do |f|
           response.read_body do |segment|
