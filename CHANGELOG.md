@@ -1,12 +1,17 @@
 
 # [0.8-SNAPSHOT]
 
- * add knife-solo_data_bag knife plugin for managing data bags with chef_solo
- * add berkshelf for cookbook dependency management
- * update chef gem to 10.16.2
  * add powershell set-env.ps1 variant of set-env.bat (thanks @ilude) 
- * update veewee gem to 0.3.1 (thanks @ilude)
  * add http redirect handling for downloads (thanks @ilude)
+ * gem updates:
+  * added knife-solo_data_bag 0.3.0 (knife plugin for managing data bags with chef_solo)
+  * added berkshelf 1.0.4 (cookbook dependency management alternative to librarian)
+  * updated librarian to upstream version 0.0.25 (with http proxy support)
+  * updated chef gem to 10.16.2
+  * updated veewee gem to 0.3.1 (thanks @ilude)
+  * updated chefspec to 0.9.0
+  * updated fauxhai to 0.0.4
+  * updated test-kitchen to 0.7.0.rc.1
 
 
 # [0.7] from 08/10/2012
