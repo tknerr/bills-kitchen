@@ -1,0 +1,6 @@
+
+# disable automatic vbguest addition upgrades by default,
+# must be enabled in the project's Vagrantfile explicitly:
+# `config.vbguest.auto_update = true` 
+require 'vagrant-vbguest' unless defined? VagrantVbguest::Config
+VagrantVbguest::Config.auto_update = false
