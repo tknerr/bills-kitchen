@@ -1,5 +1,5 @@
 
-# [0.8-SNAPSHOT]
+# [0.8] from 02/12/2012
 
  * re-enable vagrant-vbguest plugin with guest addition updates disabled by default
  * add powershell set-env.ps1 variant of set-env.bat (thanks @ilude) 
