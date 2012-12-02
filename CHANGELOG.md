@@ -1,6 +1,7 @@
 
 # [0.8] from 02/12/2012
 
+ * prompt for .gitconfig username and email the first time `set-env` is called
  * re-enable vagrant-vbguest plugin with guest addition updates disabled by default
  * add powershell set-env.ps1 variant of set-env.bat (thanks @ilude) 
  * add http redirect handling for downloads (thanks @ilude)

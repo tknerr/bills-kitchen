@@ -22,14 +22,25 @@ call %RUBYDIR%\devkitvars.bat
 :: use portable git, looks for %HOME%\.gitconfig 
 set GITDIR=%SCRIPT_DIR%tools\portablegit
 set HOME=%SCRIPT_DIR%home
-:: set username/email
-cmd /C %GITDIR%\cmd\git config --global --replace user.name %USERNAME%
-cmd /C %GITDIR%\cmd\git config --global --replace user.email %USERNAME%@zuehlke.com
+
+:: prompt for .gitconfig username/email
+FOR /F %%a IN ('cmd /C %GITDIR%\cmd\git config --get user.name') DO SET GIT_CONF_USERNAME=%%a
+if "%GIT_CONF_USERNAME%"=="" (
+  set /p GIT_CONF_USERNAME="Your Name (will be written to %HOME%\.gitconfig):"
+)
+FOR /F %%a IN ('cmd /C %GITDIR%\cmd\git config --get user.email') DO SET GIT_CONF_EMAIL=%%a
+if "%GIT_CONF_EMAIL%"=="" (
+  set /p GIT_CONF_EMAIL="Your Email (will be written to %HOME%\.gitconfig):"
+)
+:: write to .gitconfig
+cmd /C %GITDIR%\cmd\git config --global --replace user.name %GIT_CONF_USERNAME%
+cmd /C %GITDIR%\cmd\git config --global --replace user.email %GIT_CONF_EMAIL%
+
 :: toggle proxy based on env var
 if "%HTTP_PROXY%"=="" (
-	cmd /C %GITDIR%\cmd\git config --global --unset http.proxy
+  cmd /C %GITDIR%\cmd\git config --global --unset http.proxy
 ) else (
-	cmd /C %GITDIR%\cmd\git config --global --replace http.proxy %HTTP_PROXY%
+  cmd /C %GITDIR%\cmd\git config --global --replace http.proxy %HTTP_PROXY%
 )
 
 :: don't let VirtualBox use %HOME% instead of %USERPROFILE%, 
@@ -57,6 +68,8 @@ echo CONSOLE2DIR=%CONSOLE2DIR%
 echo SUBLIMEDIR=%SUBLIMEDIR%
 echo PUTTYDIR=%PUTTYDIR%
 echo GITDIR=%GITDIR%
+echo GIT_CONF_USERNAME=%GIT_CONF_USERNAME%
+echo GIT_CONF_EMAIL=%GIT_CONF_EMAIL%
 echo HTTP_PROXY=%HTTP_PROXY%
 echo USE_FASTER_REQUIRE_GLOBALLY=%USE_FASTER_REQUIRE_GLOBALLY%
 
