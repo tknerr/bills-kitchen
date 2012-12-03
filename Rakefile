@@ -88,6 +88,8 @@ end
 def install_gems
   Bundler.with_clean_env do
     system("#{BUILD_DIR}/set-env.bat \
+      && git config --global --unset user.name \
+      && git config --global --unset user.email \
       && gem uninstall vagrant -a -x -I \
       && gem install bundler -v 1.2.1 --no-ri --no-rdoc \
       && bundle install --gemfile=#{BUILD_DIR}/Gemfile --verbose")

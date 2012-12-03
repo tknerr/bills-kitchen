@@ -26,3 +26,6 @@
 [http]
 	sslVerify = false
 	# proxy = http://your.proxy.org:8080
+[user]
+	name = dummy
+	email = dummy
