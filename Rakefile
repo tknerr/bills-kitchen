@@ -19,6 +19,7 @@ desc 'downloads required resources and builds the devpack binary'
 task :build do
   recreate_dirs
   download_tools
+  patch_ruby
   # download_boxes
   download_installables
   copy_files
@@ -63,6 +64,14 @@ def download_tools
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')    
   end
+end
+
+def patch_ruby
+  ruby_dir = "#{BUILD_DIR}/tools/vagrant/vagrant/vagrant/embedded"
+  %w{ bin include lib }.each do |dir|
+    FileUtils.rm_rf "#{ruby_dir}/#{dir}"
+  end
+  download_and_unpack "http://cloud.github.com/downloads/thecodeshop/ruby/tcs-ruby193_require_fenix_gc_hash_20120527.7z", ruby_dir
 end
 
 def download_boxes
