@@ -52,7 +52,6 @@ You should get something similar to this (if you prefer to always have colored o
 
 Now edit the `foo/spec/default_spec.rb` and replace the pending example with the real, failing one, e.g. like so:
 
-	require 'faster_require'
 	require 'chefspec'
 
 	describe 'foo::default' do
@@ -93,7 +92,6 @@ This is good! Now that we have a failing spec we can add the implementation in t
  * for sure, you can use the [built-in rspec matchers](https://www.relishapp.com/rspec/rspec-expectations/v/2-11/docs/built-in-matchers) as well
  * the [rspec documentation](https://www.relishapp.com/rspec/rspec-core/v/2-11/docs/) explains the `describe`, `context`, `before`, `let` and `it` syntax
  * how to use [implicit subjects](http://blog.davidchelimsky.net/2012/05/13/spec-smell-explicit-use-of-subject/) for cleaner rspec tests (since rspec 2.11)
- * note that the `require 'faster_require'` is optional. It comes with the [faster_require](https://github.com/rdp/faster_require) gem and drastically reduces rspec startup time. 
 
 ## Implement the Recipe
 
@@ -149,7 +147,6 @@ Oh wait, our specs are not complete yet. What about the contents of our `/tmp/fo
 
 Now this is where [Fauxhai](https://github.com/customink/fauxhai/) comes in and Chefspec really starts getting useful. With Fauxhai you can mock the data that is usually collected on the node by [Ohai](http://wiki.opscode.com/display/chef/Ohai). For example, we could simulate the chef run on an ubuntu node by modifying the `foo/spec/default_spec.rb` like this:
 
-	require 'faster_require'
 	require 'chefspec'
 	require 'fauxhai'
 
