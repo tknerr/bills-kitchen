@@ -2,7 +2,8 @@
 # [0.9-SNAPSHOT]
 
  * use patched Ruby 1.9.3 with >50% load time improvements from [thecodeshop](https://github.com/thecodeshop/ruby/wiki/Downloads)
-
+ * gem updates:
+  * updatet test-kitchen to 0.7.0 release version 
 
 # [0.8] from 02/12/2012
 
