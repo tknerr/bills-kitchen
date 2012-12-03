@@ -1,4 +1,9 @@
 
+# [0.9-SNAPSHOT]
+
+ * ...
+
+
 # [0.8] from 02/12/2012
 
  * prompt for .gitconfig username and email the first time `set-env` is called
