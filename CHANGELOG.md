@@ -1,5 +1,5 @@
 
-# [0.9-SNAPSHOT]
+# [0.8.1] from 04/12/2012
 
  * use patched Ruby 1.9.3 with >50% load time improvements from [thecodeshop](https://github.com/thecodeshop/ruby/wiki/Downloads)
  * gem updates:
