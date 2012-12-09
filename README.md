@@ -2,7 +2,7 @@
 Bill's Kitchen
 ==============
 
-All you need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a portable package:
+All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a portable package:
 
  * pre-configured Chef Repo with Vagrantfile to bring up a ready-to-use Chef Server 
  * devkit enhanced Ruby 1.9.3 ([TCS-Ruby](https://github.com/thecodeshop/ruby/wiki/Downloads), load time improvements >50%!) with lots of useful gems pre-installed:
