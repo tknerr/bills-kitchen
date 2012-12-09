@@ -44,9 +44,9 @@ Screenshot
 Installation
 ============
 
-As a prerequisite for building bill's kitchen you need 7zip installed in `C:\Program Files\7-Zip\7z.exe`. 
+As a prerequisite for building bill's kitchen you need 7zip installed in `C:\Program Files\7-Zip\7z.exe`.
 
-Build the kitchen:
+Build the kitchen (make sure you don't have spaces in the path):
 
 ```
 gem install bundler
@@ -56,7 +56,7 @@ rake build
 
 This might take a while (you can go fetch a coffee). It will download the external dependencies and assemble the kitchen in the `target/build` directory, which is then packaged as `target/bills-kitchen-<version>.7z`
 
-								
+
 Usage
 =====
 
