@@ -1,4 +1,3 @@
-
 # Getting Started
 
 Getting started with Chef and Vagrant.
@@ -238,7 +237,7 @@ VM, run `vagrant status NAME`.
 Ok, looks good. Now lets go ahead and bootstrap that VM using chef. That process might take a while - it will ssh into that VM and install the chef-client, then register the client at the server and finally converge the node to the desired state (i.e. "apply" webserver role as passed to the node's initial run_list). We bootstrap the new node with `role[webserver]` and `recipe[vagrant-ohai]` (the latter one fixes ohai's IP address detection when running inside Vagrant) and use the "[chef-full](https://github.com/opscode/chef/blob/10.16.2/chef/lib/chef/knife/bootstrap/chef-full.erb)" a.k.a "omnibus" bootstrap template:
 
 ```
-W:\repo\my-chef-repo>knife bootstrap 33.33.3.11 -x vagrant -P vagrant --sudo -N my-node -r 'role[webserver],recipe[vagrant-ohai] -d chef-full'
+W:\repo\my-chef-repo>knife bootstrap 33.33.3.11 -x vagrant -P vagrant --sudo -N my-node -r 'role[webserver],recipe[vagrant-ohai]' -d chef-full
 Bootstrapping Chef on 33.33.3.11
 ...
 33.33.3.11 Successfully installed chef-10.16.2
