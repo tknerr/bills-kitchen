@@ -13,6 +13,10 @@ $env:PUTTYDIR = Join-Path $pwd tools\putty
 ## set devkit vars
 invoke-expression (Join-Path $env:RUBYDIR devkitvars.bat)
 
+# set Ansicon configuration for nvidia graphics card
+$env:ANSICON_EXC=nvd3d9wrap.dll
+
+
 $env:HOME = Join-Path $pwd home
 
 if($env:GITDIR -eq $NULL) {

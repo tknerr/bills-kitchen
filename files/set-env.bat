@@ -19,6 +19,9 @@ set PUTTYDIR=%SCRIPT_DIR%tools\putty
 :: set devkit vars
 call %RUBYDIR%\devkitvars.bat
 
+:: set Ansicon configuration for nvidia graphics card
+set ANSICON_EXC=nvd3d9wrap.dll
+
 :: use portable git, looks for %HOME%\.gitconfig 
 set GITDIR=%SCRIPT_DIR%tools\portablegit
 set HOME=%SCRIPT_DIR%home
