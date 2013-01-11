@@ -4,13 +4,14 @@ source 'https://gems.gemfury.com/hUe8s8nSyzxs7JMMSZV8/' # vagrant-1.0.5.1
 source 'https://gems.gemfury.com/q2HF2xTDVWamcKx4XCvL/' # knife-solo-0.0.13.1
 source 'https://gems.gemfury.com/pznBhaujTsCpFJyTetrF/' # mccloud-0.0.13.2
 source 'https://gems.gemfury.com/wHWKHjfyrs7pp9vzNosC/' # cucumber-nagios-0.9.2.2
+source 'https://gems.gemfury.com/qAfxKWVssTYix2Z9B6WD/' # librarian-0.0.26.1
 
 # core gems we need for cookin'
 gem 'vagrant', '1.0.5.1' #, :git => 'https://github.com/tknerr/vagrant.git', :branch => 'bills-kitchen'
 gem 'chef', '10.16.2'
 
 # gems for cookbook dependency management
-gem 'librarian', '0.0.25' #, :git => 'https://github.com/tknerr/librarian.git', :branch => 'bills-kitchen'
+gem 'librarian', '0.0.26.1' #, :git => 'https://github.com/tknerr/librarian.git', :branch => 'fix_recursive_copy'
 gem 'berkshelf', '1.0.4'
 gem 'builder', '3.0.3' # if not specified explicitly `bundle update` will run in an infinite loop, whaaa
 
