@@ -1,4 +1,4 @@
-%w{ bundler/setup rubygems fileutils uri net/http tmpdir digest/md5 ./doc/markit }.each do |file|
+%w{ bundler/setup rubygems fileutils uri net/https tmpdir digest/md5 ./doc/markit }.each do |file|
   require file
 end
 
@@ -156,9 +156,16 @@ def download_no_cache(url, outfile, limit=5)
   raise ArgumentError, 'HTTP redirect too deep' if limit == 0
 
   puts "download '#{url}'"
-  uri = URI(url)
-  Net::HTTP.start(uri.host, uri.port) do |http|
-    http.request_get(uri.path + (uri.query ? "?#{uri.query}" : '')) do |response|
+  uri = URI.parse url
+  http = Net::HTTP.new uri.host, uri.port
+
+  if uri.port == 443
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    http.use_ssl = true
+  end 
+
+  http.start do |agent|
+    agent.request_get(uri.path + (uri.query ? "?#{uri.query}" : '')) do |response|
       # handle 301/302 redirects
       redirect_url = response['location']
       if(redirect_url)
