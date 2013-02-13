@@ -72,5 +72,6 @@ echo HTTP_PROXY=%HTTP_PROXY%
 
 :: command aliases
 @doskey vi=sublime_text $*
+@doskey be=bundle exec $*
 
 set PATH=%VAGRANTDIR%\bin;%RUBYDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%CONSOLE2DIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_INSTALL_PATH%;%PATH%
