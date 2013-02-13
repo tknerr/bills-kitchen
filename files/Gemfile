@@ -10,6 +10,10 @@ source 'https://gems.gemfury.com/qAfxKWVssTYix2Z9B6WD/' # librarian-0.0.26.1
 gem 'vagrant', '1.0.5.1' #, :git => 'https://github.com/tknerr/vagrant.git', :branch => 'bills-kitchen'
 gem 'chef', '10.16.2'
 
+# workflow and common tasks
+gem 'chef-workflow-tasklib', '0.2.0'
+gem 'chef-workflow-testlib', '0.2.0'
+
 # gems for cookbook dependency management
 gem 'librarian', '0.0.26.1' #, :git => 'https://github.com/tknerr/librarian.git', :branch => 'fix_recursive_copy'
 gem 'berkshelf', '1.0.4'
@@ -35,7 +39,7 @@ gem 'veewee', '0.3.1'
 gem 'sahara', '0.0.13'
 
 # for creating, backup & restoring chef servers
-gem 'knife-server', '0.3.0'
+gem 'knife-server', '0.3.3'
 
 # for bootstrapping via chef-solo
 gem 'knife-solo', '0.0.13.1' #, :git => 'https://github.com/tknerr/knife-solo.git', :branch => 'bills-kitchen'
