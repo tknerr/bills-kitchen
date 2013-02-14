@@ -55,8 +55,8 @@ def download_tools
     %w{ www.holistech.co.uk/sw/hostsedit/hostsedit.zip                                            hostedit },
     %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.zip                              sublimetext2 },
     %w{ msysgit.googlecode.com/files/PortableGit-1.7.10-preview20120409.7z                        portablegit },
-    %w{ rubyforge.org/frs/download.php/76752/rubyinstaller-1.9.3-p385.exe ruby },
-    %w{ github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe devkit },
+    %w{ rubyforge.org/frs/download.php/76753/ruby-1.9.3-p385-i386-mingw32.7z                      ruby },
+    %w{ github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe     devkit },
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe             kdiff3 
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.62/x86/putty.zip                                           putty }
@@ -148,7 +148,6 @@ def download_no_cache(url, outfile, limit=5)
 
   puts "download '#{url}'"
   uri = URI.parse url
-
   if ENV['HTTP_PROXY']
     proxy_host, proxy_port = ENV['HTTP_PROXY'].sub(/https?:\/\//, '').split ':'
     puts "using proxy #{proxy_host}:#{proxy_port}"
@@ -183,10 +182,8 @@ end
 def unpack(archive, target_dir, includes = [])
   puts "extracting '#{archive}' to '#{target_dir}'" 
   case File.extname(archive)
-  when '.zip', '.7z'
-    system("\"#{ZIP_EXE}\" x -o\"#{target_dir}\" -y \"#{archive}\" 1> NUL")
-  when '.exe'
-    system("\"#{ZIP_EXE}\" e -o\"#{target_dir}\" -y \"#{archive}\" -r #{includes.join(' ')} 1> NUL")
+  when '.zip', '.7z', '.exe'
+    system("\"#{ZIP_EXE}\" x -o\"#{target_dir}\" -y \"#{archive}\" -r #{includes.join(' ')} 1> NUL")
   when '.msi'
     system("start /wait msiexec /a \"#{archive.gsub('/', '\\')}\" /qb TARGETDIR=\"#{target_dir.gsub('/', '\\')}\"")
   else 
