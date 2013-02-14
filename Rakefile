@@ -148,7 +148,14 @@ def download_no_cache(url, outfile, limit=5)
 
   puts "download '#{url}'"
   uri = URI.parse url
-  http = Net::HTTP.new uri.host, uri.port
+
+  if ENV['HTTP_PROXY']
+    proxy_host, proxy_port = ENV['HTTP_PROXY'].sub(/https?:\/\//, '').split ':'
+    puts "using proxy #{proxy_host}:#{proxy_port}"
+    http = Net::HTTP::Proxy(proxy_host, proxy_port.to_i).new uri.host, uri.port
+  else
+    http = Net::HTTP.new uri.host, uri.port
+  end
 
   if uri.port == 443
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
