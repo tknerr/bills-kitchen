@@ -6,16 +6,12 @@ $env:DEVKITDIR = Join-Path $pwd tools\devkit
 $env:KDIFF3DIR = Join-Path $pwd tools\kdiff3
 $env:CYGWINSSHDIR = Join-Path $pwd tools\cygwin-ssh
 $env:CYGWINRSYNCDIR = Join-Path $pwd tools\cygwin-rsync
-$env:CONSOLE2DIR = Join-Path $pwd tools\console2\Console2
+$env:CONEMUDIR = Join-Path $pwd tools\conemu
 $env:SUBLIMEDIR = Join-Path $pwd tools\sublimetext2
 $env:PUTTYDIR = Join-Path $pwd tools\putty
 
 ## set %RI_DEVKIT$ env var and add DEVKIT to the PATH
 invoke-expression (Join-Path $env:DEVKITDIR devkitvars.bat)
-
-# set Ansicon configuration for nvidia graphics card
-$env:ANSICON_EXC=nvd3d9wrap.dll
-
 
 $env:HOME = Join-Path $pwd home
 
@@ -76,10 +72,10 @@ Write-Host "VBOX_INSTALL_PATH=$env:VBOX_INSTALL_PATH"
 Write-Host "KDIFF3DIR=$env:KDIFF3DIR"
 Write-Host "CYGWINSSHDIR=$env:CYGWINSSHDIR"
 Write-Host "CYGWINRSYNCDIR=$env:CYGWINRSYNCDIR"
-Write-Host "CONSOLE2DIR=$env:CONSOLE2DIR"
+Write-Host "CONEMUDIR=$env:CONEMUDIR"
 Write-Host "SUBLIMEDIR=$env:SUBLIMEDIR"
 Write-Host "PUTTYDIR=$env:PUTTYDIR"
 Write-Host "GITDIR=$env:GITDIR"
 Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 
-$env:Path = "$env:RUBYDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:CONSOLE2DIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
+$env:Path = "$env:RUBYDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"

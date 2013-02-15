@@ -1,6 +1,7 @@
 
 # [0.9-SNAPSHOT]
 
+ * GH-21: replaced Console2 + ansicon with [ConEmu](http://code.google.com/p/conemu-maximus5/)
  * GH-20: replaced Vagrant embedded Ruby (with [TCS patch](https://github.com/thecodeshop/ruby/wiki/Downloads)) with latest MRI Ruby (1.9.3.p385) + DevKit (4.5.2)
  * added command alias `be` for `bundle exec`
  * gem updates:

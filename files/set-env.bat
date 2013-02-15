@@ -12,15 +12,12 @@ set DEVKITDIR=%SCRIPT_DIR%tools\devkit
 set KDIFF3DIR=%SCRIPT_DIR%tools\kdiff3
 set CYGWINSSHDIR=%SCRIPT_DIR%tools\cygwin-ssh
 set CYGWINRSYNCDIR=%SCRIPT_DIR%tools\cygwin-rsync
-set CONSOLE2DIR=%SCRIPT_DIR%tools\console2\Console2
+set CONEMUDIR=%SCRIPT_DIR%tools\conemu
 set SUBLIMEDIR=%SCRIPT_DIR%tools\sublimetext2
 set PUTTYDIR=%SCRIPT_DIR%tools\putty
 
 :: set %RI_DEVKIT$ env var and add DEVKIT to the PATH
 call %DEVKITDIR%\devkitvars.bat
-
-:: set Ansicon configuration for nvidia graphics card
-set ANSICON_EXC=nvd3d9wrap.dll
 
 :: use portable git, looks for %HOME%\.gitconfig 
 set GITDIR=%SCRIPT_DIR%tools\portablegit
@@ -62,7 +59,7 @@ echo VBOX_INSTALL_PATH=%VBOX_INSTALL_PATH%
 echo KDIFF3DIR=%KDIFF3DIR%
 echo CYGWINSSHDIR=%CYGWINSSHDIR%
 echo CYGWINRSYNCDIR=%CYGWINRSYNCDIR%
-echo CONSOLE2DIR=%CONSOLE2DIR%
+echo CONEMUDIR=%CONEMUDIR%
 echo SUBLIMEDIR=%SUBLIMEDIR%
 echo PUTTYDIR=%PUTTYDIR%
 echo GITDIR=%GITDIR%
@@ -74,4 +71,4 @@ echo HTTP_PROXY=%HTTP_PROXY%
 @doskey vi=sublime_text $*
 @doskey be=bundle exec $*
 
-set PATH=%RUBYDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%CONSOLE2DIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_INSTALL_PATH%;%PATH%
+set PATH=%RUBYDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_INSTALL_PATH%;%PATH%
