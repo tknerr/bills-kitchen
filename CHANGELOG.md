@@ -1,6 +1,7 @@
 
 # [0.9-SNAPSHOT]
 
+ * GH-21: replaced Console2 + ansicon with [ConEmu](http://code.google.com/p/conemu-maximus5/)
  * added command alias `be` for `bundle exec`
  * gem updates:
   * added [chef-workflow](https://github.com/chef-workflow/chef-workflow) tasklib and testlib 0.2.0

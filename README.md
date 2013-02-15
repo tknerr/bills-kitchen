@@ -27,7 +27,7 @@ All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows,
     * [knife-server](https://github.com/fnichol/knife-server) (for bootstrap/backup/restore of chef servers)
     * [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) (keeps your vbox guestadditions in sync)
  * supporting tools such as:
- 	* Console2 (with ansicon)
+ 	* ConEmu
  	* SublimeText2 (with additional packages for Chef and Cucumber)
  	* PortableGit (preconfigured with kdiff3 as diff/merge tool)
  	* putty
@@ -64,7 +64,7 @@ Make sure you have  [VirtualBox](https://www.virtualbox.org/wiki/Downloads) inst
 
 1. unzip the `target/bills-kitchen-<version>.7z` somewhere
 2. mount the kitchen to the `W:\` drive by double-clicking the `mount-w-drive.bat` file
-3. click `W:\Launch Console.lnk` to open a command prompt
+3. click `W:\Launch ConEmu.lnk` to open a command prompt
 4. in the command prompt run `W:\set-env.bat` to set up the PATH etc 
 5. walk through the [GETTING_STARTED](file://W:/_GETTING_STARTED.html) tutorial to get familiar with Vagrant, Chef & Co
 6. continue with the [COOKBOOK_DEVELOPMENT](file://W:/_COOKBOOK_DEVELOPMENT.html) guide and start cooking your own recipes!
