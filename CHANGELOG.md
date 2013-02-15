@@ -1,6 +1,7 @@
 
 # [0.9-SNAPSHOT]
 
+ * GH-20: replaced Vagrant embedded Ruby (with [TCS patch](https://github.com/thecodeshop/ruby/wiki/Downloads)) with latest MRI Ruby (1.9.3.p385) + DevKit (4.5.2)
  * added command alias `be` for `bundle exec`
  * gem updates:
   * added [chef-workflow](https://github.com/chef-workflow/chef-workflow) tasklib and testlib 0.2.0
