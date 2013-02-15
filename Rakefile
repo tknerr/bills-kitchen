@@ -19,7 +19,6 @@ desc 'downloads required resources and builds the devpack binary'
 task :build do
   recreate_dirs
   download_tools
-  patch_ruby
   # download_boxes
   download_installables
   copy_files
@@ -56,7 +55,8 @@ def download_tools
     %w{ www.holistech.co.uk/sw/hostsedit/hostsedit.zip                                            hostedit },
     %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.zip                              sublimetext2 },
     %w{ msysgit.googlecode.com/files/PortableGit-1.7.10-preview20120409.7z                        portablegit },
-    %w{ files.vagrantup.com/packages/eb590aa3d936ac71cbf9c64cf207f148ddfc000a/vagrant_1.0.3.msi   vagrant },
+    %w{ rubyforge.org/frs/download.php/76753/ruby-1.9.3-p385-i386-mingw32.7z                      ruby },
+    %w{ github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe     devkit },
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe             kdiff3 
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.62/x86/putty.zip                                           putty }
@@ -64,14 +64,6 @@ def download_tools
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')    
   end
-end
-
-def patch_ruby
-  ruby_dir = "#{BUILD_DIR}/tools/vagrant/vagrant/vagrant/embedded"
-  %w{ bin include lib }.each do |dir|
-    FileUtils.rm_rf "#{ruby_dir}/#{dir}"
-  end
-  download_and_unpack "http://cloud.github.com/downloads/thecodeshop/ruby/tcs-ruby193_require_fenix_gc_hash_20120527.7z", ruby_dir
 end
 
 def download_boxes
@@ -101,7 +93,6 @@ def install_gems
     system("#{BUILD_DIR}/set-env.bat \
       && git config --global --unset user.name \
       && git config --global --unset user.email \
-      && gem uninstall vagrant -a -x -I \
       && gem install bundler -v 1.2.1 --no-ri --no-rdoc \
       && bundle install --gemfile=#{BUILD_DIR}/Gemfile --verbose")
   end
@@ -118,7 +109,7 @@ def clone_repositories
     %w{ tknerr/vagrant-baseboxes.git      repo/my-baseboxes }
   ]
   .each do |repo, dest|
-    system("git clone git://github.com/#{repo} #{BUILD_DIR}/#{dest}")
+    system("git clone https://github.com/#{repo} #{BUILD_DIR}/#{dest}")
     # for release check out branches as per https://gist.github.com/2928593
     if release? && repo.start_with?('tknerr/')
       system("cd #{BUILD_DIR}/#{dest} && git checkout -t origin/bills-kitchen-#{major_version}_branch")
@@ -160,7 +151,13 @@ def download_no_cache(url, outfile, limit=5)
 
   puts "download '#{url}'"
   uri = URI.parse url
-  http = Net::HTTP.new uri.host, uri.port
+  if ENV['HTTP_PROXY']
+    proxy_host, proxy_port = ENV['HTTP_PROXY'].sub(/https?:\/\//, '').split ':'
+    puts "using proxy #{proxy_host}:#{proxy_port}"
+    http = Net::HTTP::Proxy(proxy_host, proxy_port.to_i).new uri.host, uri.port
+  else
+    http = Net::HTTP.new uri.host, uri.port
+  end
 
   if uri.port == 443
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -188,10 +185,8 @@ end
 def unpack(archive, target_dir, includes = [])
   puts "extracting '#{archive}' to '#{target_dir}'" 
   case File.extname(archive)
-  when '.zip', '.7z'
-    system("\"#{ZIP_EXE}\" x -o\"#{target_dir}\" -y \"#{archive}\" 1> NUL")
-  when '.exe'
-    system("\"#{ZIP_EXE}\" e -o\"#{target_dir}\" -y \"#{archive}\" -r #{includes.join(' ')} 1> NUL")
+  when '.zip', '.7z', '.exe'
+    system("\"#{ZIP_EXE}\" x -o\"#{target_dir}\" -y \"#{archive}\" -r #{includes.join(' ')} 1> NUL")
   when '.msi'
     system("start /wait msiexec /a \"#{archive.gsub('/', '\\')}\" /qb TARGETDIR=\"#{target_dir.gsub('/', '\\')}\"")
   else 
