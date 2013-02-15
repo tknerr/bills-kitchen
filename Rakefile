@@ -106,7 +106,7 @@ def clone_repositories
     %w{ tknerr/vagrant-baseboxes.git      repo/my-baseboxes }
   ]
   .each do |repo, dest|
-    system("git clone git://github.com/#{repo} #{BUILD_DIR}/#{dest}")
+    system("git clone https://github.com/#{repo} #{BUILD_DIR}/#{dest}")
     # for release check out branches as per https://gist.github.com/2928593
     if release? && repo.start_with?('tknerr/')
       system("cd #{BUILD_DIR}/#{dest} && git checkout -t origin/bills-kitchen-#{major_version}_branch")
