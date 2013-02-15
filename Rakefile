@@ -85,10 +85,10 @@ def download_installables
 end
 
 def install_gems
-  # XXX: DOH! - with_clean_env does not clear GEM_HOME if the rake task is invoked using `bundle exec`, 
-  # which results in gems being installed to your current Ruby's GEM_HOME rather than Bills Kitchen's GEM_HOME!!! 
-  fail "must run `rake build` instead of `bundle exec rake build`" if ENV['GEM_HOME']
   Bundler.with_clean_env do
+    # XXX: DOH! - with_clean_env does not clear GEM_HOME if the rake task is invoked using `bundle exec`, 
+    # which results in gems being installed to your current Ruby's GEM_HOME rather than Bills Kitchen's GEM_HOME!!! 
+    fail "must run `rake build` instead of `bundle exec rake build`" if ENV['GEM_HOME']
     system("#{BUILD_DIR}/set-env.bat \
       && git config --global --unset user.name \
       && git config --global --unset user.email \
