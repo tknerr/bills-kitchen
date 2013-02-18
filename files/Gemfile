@@ -13,6 +13,9 @@ gem 'chef', '10.16.2'
 gem 'chef-workflow-tasklib', '0.2.0'
 gem 'chef-workflow-testlib', '0.2.0'
 
+# useful helpers
+gem 'knife-audit', '0.2.0'
+
 # gems for cookbook dependency management
 gem 'librarian', '0.0.26.1' #, :git => 'https://github.com/tknerr/librarian.git', :branch => 'fix_recursive_copy'
 gem 'berkshelf', '1.0.4'

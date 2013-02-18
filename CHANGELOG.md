@@ -5,6 +5,7 @@
  * GH-20: replaced Vagrant embedded Ruby (with [TCS patch](https://github.com/thecodeshop/ruby/wiki/Downloads)) with latest MRI Ruby (1.9.3.p385) + DevKit (4.5.2)
  * added command alias `be` for `bundle exec`
  * gem updates:
+  * added [knife-audit](https://github.com/jbz/knife-audit) 0.2.0 for introspecting the complete run_list
   * added [chef-workflow](https://github.com/chef-workflow/chef-workflow) tasklib and testlib 0.2.0
   * updated knife-server to 0.3.3
   * updated knife-solo to 0.2.0 (patches now merged in upstream version)

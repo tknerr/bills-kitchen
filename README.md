@@ -19,10 +19,11 @@ All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows,
  		* [cucumber-nagios](https://github.com/auxesis/cucumber-nagios) (cucumber steps for systems testing)
  		* [test-kitchen](https://github.com/opscode/test-kitchen) (the "holistic test runner" from Opscode)
  	* other:
- 		* [veewee](https://github.com/jedi4ever/veewee) (for building vagrant baseboxes)
+    * [veewee](https://github.com/jedi4ever/veewee) (for building vagrant baseboxes)
  		* [sahara](https://github.com/tknerr/sahara) (lets you take and restore virtualbox snapshots)
     * [knife-solo](https://github.com/matschaffer/knife-solo) (if you prefer to work in chef-solo mode)
     * [knife-solo_data_bag](https://github.com/thbishop/knife-solo_data_bag) (knife data bag commands for chef-solo)
+    * [knife-audit](https://github.com/jbz/knife-audit) (for introspecting the complete run_list)
     * [mccloud](https://github.com/jedi4ever/mccloud) (like vagrant but for the cloud not local vms)
     * [knife-server](https://github.com/fnichol/knife-server) (for bootstrap/backup/restore of chef servers)
     * [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) (keeps your vbox guestadditions in sync)
