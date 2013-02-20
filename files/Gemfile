@@ -44,7 +44,7 @@ gem 'sahara', '0.0.13'
 gem 'knife-server', '0.3.3'
 
 # for bootstrapping via chef-solo
-gem 'knife-solo', '0.2.0'
+gem 'knife-solo', '0.3.0.pre2'
 
 # knife plugin for easier databag management with chef solo
 gem 'knife-solo_data_bag', '0.3.0'

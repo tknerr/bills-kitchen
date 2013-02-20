@@ -8,7 +8,7 @@
   * added [knife-audit](https://github.com/jbz/knife-audit) 0.2.0 for introspecting the complete run_list
   * added [chef-workflow](https://github.com/chef-workflow/chef-workflow) tasklib and testlib 0.2.0
   * updated knife-server to 0.3.3
-  * updated knife-solo to 0.2.0 (patches now merged in upstream version)
+  * updated knife-solo to 0.3.0.pre2 (patches now merged in upstream version)
 
 
 # [0.8.1] from 04/12/2012
