@@ -9,6 +9,7 @@
   * added [chef-workflow](https://github.com/chef-workflow/chef-workflow) tasklib and testlib 0.2.0
   * updated knife-server to 0.3.3
   * updated knife-solo to 0.3.0.pre2 (patches now merged in upstream version)
+  * updated mccloud to 0.0.16 (patches now merged in upstream version)
 
 
 # [0.8.1] from 04/12/2012
