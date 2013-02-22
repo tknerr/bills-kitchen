@@ -24,23 +24,21 @@ if($env:GITDIR -eq $NULL) {
 $script:git = Join-Path (Join-Path $env:GITDIR "cmd") "git"
 
 ## set git username
-$username = invoke-expression "$git config --get user.name"
-if($username -eq "") {
-  $username = "Not Set"
-}
-$username = Read-Host "Enter Fullname($username)"
-if($username) {
-  invoke-expression "$git config --global user.name '$username'"
+$env:GIT_CONF_USERNAME = invoke-expression "$git config --get user.name"
+if(!$env:GIT_CONF_USERNAME) {
+  $env:GIT_CONF_USERNAME = Read-Host "Your Name (will be written to $env:HOME\.gitconfig)"
+  if($env:GIT_CONF_USERNAME) {
+    invoke-expression "$git config --global user.name '$env:GIT_CONF_USERNAME'"
+  }
 }
 
 ## set git email
-$email = invoke-expression "$git config --get user.email"
-if($email -eq "") {
-  $email = "Not Set"
-}
-$email = Read-Host "Enter Email($email)"
-if($email) {
-  invoke-expression "$git config --global user.email '$email'"
+$env:GIT_CONF_EMAIL = invoke-expression "$git config --get user.email"
+if(!$env:GIT_CONF_EMAIL) {
+  $env:GIT_CONF_EMAIL = Read-Host "Your Email (will be written to $env:HOME\.gitconfig)"
+  if($env:GIT_CONF_EMAIL) {
+    invoke-expression "$git config --global user.email '$env:GIT_CONF_EMAIL'"
+  }
 }
 
 ## toggle proxy based on env var
@@ -59,11 +57,6 @@ $env:VBOX_USER_HOME = $env:USERPROFILE
 ## but use TERM=rxvt instead of TERM=msys to not break `vagrant ssh` terminal
 $env:TERM = "rxvt"
 
-## make requires faster on Windows. If '$TRUE' the globally installed faster_require
-## in rubygems.rb (see https://github.com/rdp/faster_require/blob/master/README) 
-## is enabled, otherwise it will remain disabled 
-$env:USE_FASTER_REQUIRE_GLOBALLY = $FALSE
-
 # show the environment
 Write-Host "RUBYDIR=$env:RUBYDIR"
 Write-Host "DEVKITDIR=$env:DEVKITDIR"
@@ -76,6 +69,11 @@ Write-Host "CONEMUDIR=$env:CONEMUDIR"
 Write-Host "SUBLIMEDIR=$env:SUBLIMEDIR"
 Write-Host "PUTTYDIR=$env:PUTTYDIR"
 Write-Host "GITDIR=$env:GITDIR"
+Write-Host "GIT_CONF_USERNAME=$env:GIT_CONF_USERNAME"
+Write-Host "GIT_CONF_EMAIL=$env:GIT_CONF_EMAIL"
 Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
+
+set-alias vi "sublime_text";
+set-alias be "bundle exec"; 
 
 $env:Path = "$env:RUBYDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
