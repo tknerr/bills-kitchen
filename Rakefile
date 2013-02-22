@@ -53,7 +53,7 @@ def download_tools
     %w{ conemu-maximus5.googlecode.com/files/ConEmuPack.130212.7z                                 conemu },
     %w{ www.holistech.co.uk/sw/hostsedit/hostsedit.zip                                            hostedit },
     %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.zip                              sublimetext2 },
-    %w{ msysgit.googlecode.com/files/PortableGit-1.7.10-preview20120409.7z                        portablegit },
+    %w{ msysgit.googlecode.com/files/PortableGit-1.8.1.2-preview20130201.7z                       portablegit },
     %w{ rubyforge.org/frs/download.php/76753/ruby-1.9.3-p385-i386-mingw32.7z                      ruby },
     %w{ github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe     devkit },
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe             kdiff3 
