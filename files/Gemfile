@@ -17,7 +17,8 @@ gem 'knife-audit', '0.2.0'
 
 # gems for cookbook dependency management
 gem 'librarian', '0.0.26.2' #, :git => 'https://github.com/tknerr/librarian.git', :branch => 'bills-kitchen'
-gem 'berkshelf', '1.0.4'
+gem 'moneta', '0.6.0'
+gem 'berkshelf', '1.1.4'
 gem 'builder', '3.0.3' # if not specified explicitly `bundle update` will run in an infinite loop, whaaa
 
 # extra gems required by chef on windows (see GH-5)
