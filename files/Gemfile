@@ -36,7 +36,7 @@ gem 'eventmachine', '1.0.0.rc4' # enforce v1.0.0.x - previous versions would not
 
 
 # optional but useful (for dessert)
-gem 'veewee', '0.3.1'
+gem 'veewee', '0.3.7'
 gem 'sahara', '0.0.13'
 
 # for creating, backup & restoring chef servers
