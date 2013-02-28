@@ -29,7 +29,22 @@ task :build do
 end
 
 def recreate_dirs
-  FileUtils.rm_rf BUILD_DIR
+  # create sequential backup of build directory if it exists
+  if Dir.exists? BUILD_DIR
+    if Dir.exists? "W:/"
+      # unmount the W drive so we can take a backup
+      `#{BASE_DIR}/files/unmount-w-drive.cmd`
+    end
+    index = 0
+    backup_dir = "#{BUILD_DIR}.bak.#{index}"
+    while Dir.exists? backup_dir
+      backup_dir = "#{BUILD_DIR}.bak.#{index}"
+      index = index + 1
+    end
+
+    FileUtils.mv BUILD_DIR, backup_dir
+  end
+
   %w{ boxes docs home install repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
   end
