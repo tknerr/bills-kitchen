@@ -29,11 +29,49 @@ task :build do
 end
 
 def recreate_dirs
-  FileUtils.rm_rf BUILD_DIR
+  backup_target_build_dir
+
   %w{ boxes docs home install repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
   end
   FileUtils.mkdir_p CACHE_DIR
+end
+
+def backup_target_build_dir
+  # create sequential backup of build directory if it exists
+  return unless Dir.exists? BUILD_DIR
+
+  # unmount the W drive so we can take a backup
+  w_mounted = Dir.exists? "W:/"
+  if w_mounted
+    puts "Unmounting W: so that a backup of your existing build directory can be created!"
+    `#{BASE_DIR}/files/unmount-w-drive.cmd` 
+  end
+  
+  index = 0
+  backup_dir = "#{BUILD_DIR}.bak.#{index}"
+  while Dir.exists? backup_dir
+    index = index + 1
+    backup_dir = "#{BUILD_DIR}.bak.#{index}"
+  end
+
+  FileUtils.mv BUILD_DIR, backup_dir
+  puts "A backup of your existing build directory can be found at #{File.expand_path(backup_dir)}"
+rescue => ex
+  `#{BASE_DIR}/files/mount-w-drive.cmd` if w_mounted
+
+  $stderr.puts
+  $stderr.puts "\t===================================================================================="
+  $stderr.puts "\tError creating backup of #{File.expand_path(BUILD_DIR)} was encountered." 
+  $stderr.puts "\tPlease check that all of your vagrant boxes are shutdown "
+  $stderr.puts "\tand that no open programs are using files on the W: drive or the path above."
+  $stderr.puts
+  $stderr.puts "\tIf the problem continues please download Unlocker from the link below"
+  $stderr.puts "\thttp://usfiles.brothersoft.com/utilities/system_utilities/unlocker1.9.0-portable.zip"
+  $stderr.puts "\tthis program will help you determine and fix what program still has flies open"
+  $stderr.puts "\t===================================================================================="
+  $stderr.puts
+  raise ex  
 end
 
 def copy_files
