@@ -6,7 +6,7 @@ source 'https://gems.gemfury.com/psBbdHx94zqZrvxpiVmm/' # librarian-0.0.26.2
 
 # core gems we need for cookin'
 gem 'vagrant', '1.0.5.1' #, :git => 'https://github.com/tknerr/vagrant.git', :branch => 'bills-kitchen'
-gem 'chef', '10.24.0'
+gem 'chef', '10.18.2'
 
 # workflow and common tasks
 gem 'chef-workflow-tasklib', '0.2.2'
