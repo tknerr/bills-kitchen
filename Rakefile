@@ -28,9 +28,12 @@ task :build do
   assemble_kitchen
 end
 
-def recreate_dirs
+desc 'creates a backup of the target/build directory'
+task :backup do
   backup_target_build_dir
+end
 
+def recreate_dirs
   %w{ boxes docs home install repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
   end
@@ -39,7 +42,10 @@ end
 
 def backup_target_build_dir
   # create sequential backup of build directory if it exists
-  return unless Dir.exists? BUILD_DIR
+  unless Dir.exists? BUILD_DIR
+    puts "nothing to back up"
+    return
+  end
 
   # unmount the W drive so we can take a backup
   w_mounted = Dir.exists? "W:/"
