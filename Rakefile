@@ -33,6 +33,12 @@ task :backup do
   backup_target_build_dir
 end
 
+desc 'run tests on travis'
+task :test do
+  puts `gem list`
+  
+end
+
 def recreate_dirs
   %w{ boxes docs home install repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
