@@ -36,7 +36,7 @@ end
 desc 'run integration tests (on travis)'
 task :integratio_test do
   Bundler.with_clean_env do
-    unless system("bundle install --gemfile=files/Gemfile --verbose") do
+    unless system("bundle install --gemfile=files/Gemfile --verbose")
       fail "Could not install Bill's Kitchen gems specified in files/Gemfile"
     end
   end
