@@ -33,16 +33,13 @@ task :backup do
   backup_target_build_dir
 end
 
-desc 'run tests on travis'
-task :test do
-  puts "before: #{`gem list`}"
-  recreate_dirs
-  copy_files
+desc 'run integration tests (on travis)'
+task :integratio_test do
   Bundler.with_clean_env do
-    system "bundle install --gemfile=#{BUILD_DIR}/Gemfile --verbose"
-    puts "after (inside): #{`gem list`}"
+    unless system("bundle install --gemfile=files/Gemfile --verbose") do
+      fail "Could not install Bill's Kitchen gems specified in files/Gemfile"
+    end
   end
-  puts "after (outside): #{`gem list`}"
 end
 
 def recreate_dirs
