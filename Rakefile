@@ -35,8 +35,11 @@ end
 
 desc 'run tests on travis'
 task :test do
-  puts `gem list`
-  
+  puts "before: #{`gem list`}"
+  recreate_dirs
+  copy_files
+  `bundle install --gemfile=#{BUILD_DIR}/Gemfile --verbose`
+  puts "after: #{`gem list`}"
 end
 
 def recreate_dirs
