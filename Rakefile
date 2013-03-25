@@ -38,8 +38,11 @@ task :test do
   puts "before: #{`gem list`}"
   recreate_dirs
   copy_files
-  `bundle install --gemfile=#{BUILD_DIR}/Gemfile --verbose`
-  puts "after: #{`gem list`}"
+  Bundler.with_clean_env do
+    `bundle install --gemfile=#{BUILD_DIR}/Gemfile --verbose`
+    puts "after (inside): #{`gem list`}"
+  end
+  puts "after (outside): #{`gem list`}"
 end
 
 def recreate_dirs
