@@ -1,15 +1,20 @@
 
 # [0.9-SNAPSHOT]
 
+ * added `rake backup` task for creating a backup of the target/build dir (thanks @ilude)
  * GH-21: replaced Console2 + ansicon with [ConEmu](http://code.google.com/p/conemu-maximus5/)
- * GH-20: replaced Vagrant embedded Ruby (with [TCS patch](https://github.com/thecodeshop/ruby/wiki/Downloads)) with latest MRI Ruby (1.9.3.p385) + DevKit (4.5.2)
+ * GH-20: replaced Vagrant embedded Ruby + [TCS patch](https://github.com/thecodeshop/ruby/wiki/Downloads) with latest MRI Ruby (1.9.3.p392) + DevKit (4.7.2)
  * added command alias `be` for `bundle exec`
  * gem updates:
   * added [knife-audit](https://github.com/jbz/knife-audit) 0.2.0 for introspecting the complete run_list
   * added [chef-workflow](https://github.com/chef-workflow/chef-workflow) tasklib and testlib 0.2.0
   * updated knife-server to 0.3.3
   * updated knife-solo to 0.3.0.pre2 (patches now merged in upstream version)
-  * updated mccloud to 0.0.17 (patches now merged in upstream version)
+  * updated mccloud to 0.0.18 (patches now merged in upstream version)
+  * updated foodcritic to 0.7.0
+  * updated berkshelf to 1.3.1
+  * updated chef-workflow-tasklib to 0.2.2
+  * updated chef to 10.18.2 (last 10.x version which is compatible with vagrant 1.0.x, i.e. no net-ssh conflict)
 
 
 # [0.8.1] from 04/12/2012
