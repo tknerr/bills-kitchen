@@ -1,5 +1,5 @@
 
-# [0.9-SNAPSHOT]
+# [0.9] from 26/03/2013
 
  * added minimal integration test on travis-ci checking for conflicts in Bill's Kitchen Gemfile
  * added `rake backup` task for creating a backup of the target/build dir (thanks @ilude)
