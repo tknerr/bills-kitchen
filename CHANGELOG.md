@@ -4,7 +4,7 @@
  * added minimal integration test on travis-ci checking for conflicts in Bill's Kitchen Gemfile
  * added `rake backup` task for creating a backup of the target/build dir (thanks @ilude)
  * GH-21: replaced Console2 + ansicon with [ConEmu](http://code.google.com/p/conemu-maximus5/)
- * GH-20: replaced Vagrant embedded Ruby + [TCS patch](https://github.com/thecodeshop/ruby/wiki/Downloads) with latest MRI Ruby (1.9.3.p392) + DevKit (4.7.2)
+ * GH-20: replaced Vagrant embedded Ruby + [TCS patch](https://github.com/thecodeshop/ruby/wiki/Downloads) with latest MRI Ruby (1.9.3.p392) + DevKit (4.5.2)
  * added command alias `be` for `bundle exec`
  * gem updates:
   * added [knife-audit](https://github.com/jbz/knife-audit) 0.2.0 for introspecting the complete run_list
