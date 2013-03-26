@@ -2,7 +2,11 @@
 # disable automatic vbguest addition upgrades by default,
 # must be enabled in the project's Vagrantfile explicitly:
 # `config.vbguest.auto_update = true` 
-require 'vagrant-vbguest' unless defined? VagrantVbguest::Config
-VagrantVbguest::Config.no_install = true
-VagrantVbguest::Config.auto_update = false
-VagrantVbguest::Config.auto_reboot = false
+begin
+  require 'vagrant-vbguest' unless defined? VagrantVbguest::Config
+  VagrantVbguest::Config.no_install = true
+  VagrantVbguest::Config.auto_update = false
+  VagrantVbguest::Config.auto_reboot = false
+rescue LoadError
+  # vagrant-vbguest not installed
+end
