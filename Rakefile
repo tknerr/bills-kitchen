@@ -109,7 +109,7 @@ def download_tools
     %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.zip                              sublimetext2 },
     %w{ msysgit.googlecode.com/files/PortableGit-1.8.1.2-preview20130201.7z                       portablegit },
     %w{ rubyforge.org/frs/download.php/76799/ruby-1.9.3-p392-i386-mingw32.7z                      ruby },
-    %w{ rubyforge.org/frs/download.php/76805/DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe        devkit },
+    %w{ rubyforge.org/frs/download.php/76805/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe        devkit },
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe             kdiff3 
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.62/x86/putty.zip                                           putty }
