@@ -11,7 +11,7 @@ All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows,
  	* basic gems:
  		* [vagrant](http://vagrantup.com/) (patched to make `vagrant ssh` work on windows)
  		* [chef](http://www.opscode.com/chef/) (yeah you know what Chef is...)
-    * [librarian](https://github.com/applicationsonline/librarian) (dependency management for cookbooks)
+    * [librarian-chef](https://github.com/applicationsonline/librarian-chef) (dependency management for cookbooks)
     * [berkshelf](https://github.com/RiotGames/berkshelf) (alternative for dependency management for cookbooks)
  	* testing-related:
  		* [foodcritic](https://github.com/acrmp/foodcritic) (linting for your cookbooks)

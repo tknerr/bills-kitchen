@@ -4,6 +4,9 @@
  * updated to latest 1.9 Ruby version 1.9.3-p429
  * updated ConEmu to v130526 which fixes swallowing keystrokes (issue [#1004](https://code.google.com/p/conemu-maximus5/issues/detail?id=1004))
  * gem updates:
+  * removed test-kitchen 0.7.0 for now while it conflicts with librarian-chef
+  * updated to renamed librarian-chef 0.0.1
+  * updated knife-solo to 0.3.0.pre4
   * updated mccloud to 0.0.19
 
 # [0.9] from 26/03/2013

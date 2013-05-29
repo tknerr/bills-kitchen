@@ -28,6 +28,10 @@ task :build do
   assemble_kitchen
 end
 
+task :xxx do
+  install_gems
+end
+
 desc 'creates a backup of the target/build directory'
 task :backup do
   backup_target_build_dir
