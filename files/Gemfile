@@ -53,7 +53,7 @@ gem 'knife-solo', '0.3.0.pre2'
 gem 'knife-solo_data_bag', '0.3.1'
 
 # for bootstrapping in da cloud
-gem 'mccloud', '0.0.18'
+gem 'mccloud', '0.0.19'
 
 # keeps your guest additions in sync with your vagrant version,
 # must be enabled explicitly in the project's Vagrantfile

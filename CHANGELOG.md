@@ -1,7 +1,8 @@
 
 # [0.10-SNAPSHOT]
 
- * ...
+ * gem updates:
+  * updated mccloud to 0.0.19
 
 # [0.9] from 26/03/2013
 
