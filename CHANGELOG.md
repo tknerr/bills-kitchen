@@ -1,6 +1,7 @@
 
 # [0.10-SNAPSHOT]
 
+ * updated to latest 1.9 Ruby version 1.9.3-p429
  * updated ConEmu to v130526 which fixes swallowing keystrokes (issue [#1004](https://code.google.com/p/conemu-maximus5/issues/detail?id=1004))
  * gem updates:
   * updated mccloud to 0.0.19
