@@ -1,4 +1,8 @@
 
+# [0.11-SNAPSHOT] 
+ 
+ * ...
+
 # [0.10] from 05/30/2013
 
  * clean up `Gemfile` and start using [chef-tlc-workflow](https://github.com/tknerr/chef-tlc-workflow) which transitively brings in the chef-related dependencies
