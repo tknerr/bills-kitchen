@@ -1,5 +1,5 @@
 
-# [0.10-SNAPSHOT]
+# [0.10] from 05/30/2013
 
  * clean up `Gemfile` and start using [chef-tlc-workflow](https://github.com/tknerr/chef-tlc-workflow) which transitively brings in the chef-related dependencies
  * updated to latest 1.9 Ruby version 1.9.3-p429
