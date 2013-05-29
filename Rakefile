@@ -104,7 +104,7 @@ end
 
 def download_tools
   [
-    %w{ conemu-maximus5.googlecode.com/files/ConEmuPack.130220.7z                                 conemu },
+    %w{ conemu-maximus5.googlecode.com/files/ConEmuPack.130526.7z                                 conemu },
     %w{ www.holistech.co.uk/sw/hostsedit/hostsedit.zip                                            hostedit },
     %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.zip                              sublimetext2 },
     %w{ msysgit.googlecode.com/files/PortableGit-1.8.1.2-preview20130201.7z                       portablegit },
