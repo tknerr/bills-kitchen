@@ -1,8 +1,10 @@
 
 # [0.10-SNAPSHOT]
 
+ * clean up `Gemfile` and start using [chef-tlc-workflow](https://github.com/tknerr/chef-tlc-workflow) which transitively brings in the chef-related dependencies
  * updated to latest 1.9 Ruby version 1.9.3-p429
  * updated ConEmu to v130526 which fixes swallowing keystrokes (issue [#1004](https://code.google.com/p/conemu-maximus5/issues/detail?id=1004))
+ * handle case when vagrant-vbguest is not in the load path (e.g. when using `bundle exec`) more gracefully
  * gem updates:
   * removed test-kitchen 0.7.0 for now while it conflicts with librarian-chef
   * updated to renamed librarian-chef 0.0.1
