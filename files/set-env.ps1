@@ -9,6 +9,7 @@ $env:CYGWINRSYNCDIR = Join-Path $pwd tools\cygwin-rsync
 $env:CONEMUDIR = Join-Path $pwd tools\conemu
 $env:SUBLIMEDIR = Join-Path $pwd tools\sublimetext2
 $env:PUTTYDIR = Join-Path $pwd tools\putty
+$env:VAGRANTDIR = Join-Path $pwd tools\vagrant\HashiCorp\Vagrant
 
 ## set %RI_DEVKIT$ env var and add DEVKIT to the PATH
 invoke-expression (Join-Path $env:DEVKITDIR devkitvars.bat)
@@ -68,6 +69,7 @@ Write-Host "CYGWINRSYNCDIR=$env:CYGWINRSYNCDIR"
 Write-Host "CONEMUDIR=$env:CONEMUDIR"
 Write-Host "SUBLIMEDIR=$env:SUBLIMEDIR"
 Write-Host "PUTTYDIR=$env:PUTTYDIR"
+Write-Host "VAGRANTDIR=$env:VAGRANTDIR"
 Write-Host "GITDIR=$env:GITDIR"
 Write-Host "GIT_CONF_USERNAME=$env:GIT_CONF_USERNAME"
 Write-Host "GIT_CONF_EMAIL=$env:GIT_CONF_EMAIL"
@@ -76,4 +78,4 @@ Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 set-alias vi "sublime_text";
 set-alias be "bundle exec"; 
 
-$env:Path = "$env:RUBYDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
+$env:Path = "$env:VAGRANTDIR\bin;$env:RUBYDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
