@@ -54,6 +54,9 @@ else {
 ## otherwise it would become confused when W:\ is unmounted 
 $env:VBOX_USER_HOME = $env:USERPROFILE
 
+## set VAGRANT_HOME explicitly, defaults to %USERPROFILE%
+$env:VAGRANT_HOME = $env:HOME
+
 ## fix for http://code.google.com/p/msysgit/issues/detail?id=184,
 ## but use TERM=rxvt instead of TERM=msys to not break `vagrant ssh` terminal
 $env:TERM = "rxvt"
@@ -70,6 +73,7 @@ Write-Host "CONEMUDIR=$env:CONEMUDIR"
 Write-Host "SUBLIMEDIR=$env:SUBLIMEDIR"
 Write-Host "PUTTYDIR=$env:PUTTYDIR"
 Write-Host "VAGRANTDIR=$env:VAGRANTDIR"
+Write-Host "VAGRANT_HOME=$env:VAGRANT_HOME"
 Write-Host "GITDIR=$env:GITDIR"
 Write-Host "GIT_CONF_USERNAME=$env:GIT_CONF_USERNAME"
 Write-Host "GIT_CONF_EMAIL=$env:GIT_CONF_EMAIL"

@@ -48,6 +48,9 @@ if "%HTTP_PROXY%"=="" (
 :: otherwise it would become confused when W:\ is unmounted 
 set VBOX_USER_HOME=%USERPROFILE%
 
+:: set VAGRANT_HOME explicitly, defaults to %USERPROFILE%
+set VAGRANT_HOME=%HOME%
+
 :: fix for http://code.google.com/p/msysgit/issues/detail?id=184,
 :: but use TERM=rxvt instead of TERM=msys to not break `vagrant ssh` terminal
 set TERM=rxvt
@@ -64,6 +67,7 @@ echo CONEMUDIR=%CONEMUDIR%
 echo SUBLIMEDIR=%SUBLIMEDIR%
 echo PUTTYDIR=%PUTTYDIR%
 echo VAGRANTDIR=%VAGRANTDIR%
+echo VAGRANT_HOME=%VAGRANT_HOME%
 echo GITDIR=%GITDIR%
 echo GIT_CONF_USERNAME=%GIT_CONF_USERNAME%
 echo GIT_CONF_EMAIL=%GIT_CONF_EMAIL%
