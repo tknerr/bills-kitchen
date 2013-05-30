@@ -49,7 +49,7 @@ if "%HTTP_PROXY%"=="" (
 set VBOX_USER_HOME=%USERPROFILE%
 
 :: set VAGRANT_HOME explicitly, defaults to %USERPROFILE%
-set VAGRANT_HOME=%HOME%
+set VAGRANT_HOME=%HOME%\.vagrant.d
 
 :: fix for http://code.google.com/p/msysgit/issues/detail?id=184,
 :: but use TERM=rxvt instead of TERM=msys to not break `vagrant ssh` terminal

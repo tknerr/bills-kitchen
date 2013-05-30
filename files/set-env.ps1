@@ -55,7 +55,7 @@ else {
 $env:VBOX_USER_HOME = $env:USERPROFILE
 
 ## set VAGRANT_HOME explicitly, defaults to %USERPROFILE%
-$env:VAGRANT_HOME = $env:HOME
+$env:VAGRANT_HOME = Join-Path $env:HOME ".vagrant.d"
 
 ## fix for http://code.google.com/p/msysgit/issues/detail?id=184,
 ## but use TERM=rxvt instead of TERM=msys to not break `vagrant ssh` terminal
