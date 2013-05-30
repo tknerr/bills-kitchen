@@ -15,7 +15,3 @@ gem 'eventmachine', '1.0.0.rc4' # enforce v1.0.0.x - previous versions would not
 
 # for creating, backup & restoring chef servers
 gem 'knife-server', '0.3.3'
-
-# keeps your guest additions in sync with your vagrant version,
-# must be enabled explicitly in the project's Vagrantfile
-#gem 'vagrant-vbguest', '0.6.4'

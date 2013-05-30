@@ -23,6 +23,7 @@ task :build do
   download_installables
   copy_files
   generate_docs
+  install_vagrant_plugins
   install_gems
   clone_repositories
   assemble_kitchen
@@ -136,6 +137,16 @@ def download_installables
   }
   .each do |host_and_path|
     download "http://#{host_and_path}", "#{BUILD_DIR}/install/#{File.basename(host_and_path)}"
+  end
+end
+
+def install_vagrant_plugins
+  Bundler.with_clean_env do
+    command = "#{BUILD_DIR}/set-env.bat \
+      && vagrant plugin install vagrant-omnibus --plugin-version 1.0.2 \
+      && vagrant plugin install vagrant-aws --plugin-version 0.2.2 \
+      && vagrant plugin install vagrant-vbguest --plugin-version 0.8.0"
+    fail "vagrant plugin installation failed" unless system(command)
   end
 end
 
