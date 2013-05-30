@@ -7,8 +7,8 @@ This is the place where I keep my Vagrant baseboxes as .box files. You can downl
 
 Once you downloaded the baseboxes you can import them using:
 """
-vagrant box add ubuntu-12.04-server-amd64-bare-os ./ubuntu-12.04-server-amd64-bare-os.box
-vagrant box add ubuntu-12.04-server-amd64-vagrant ./ubuntu-12.04-server-amd64-vagrant.box
-vagrant box add chef-server-on-ubuntu-12.04-server-amd64-vagrant ./chef-server-on-ubuntu-12.04-server-amd64-vagrant.box
+vagrant box add ubuntu-12.04-server-amd64-bare-os file:///W:/boxes/ubuntu-12.04-server-amd64-bare-os.box
+vagrant box add ubuntu-12.04-server-amd64-vagrant file:///W:/boxes/ubuntu-12.04-server-amd64-vagrant.box
+vagrant box add chef-server-on-ubuntu-12.04-server-amd64-vagrant file:///W:/boxes/chef-server-on-ubuntu-12.04-server-amd64-vagrant.box
 """
 
