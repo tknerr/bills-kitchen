@@ -43,6 +43,11 @@ task :integration_test do
   end
 end
 
+# runs the install step with the given name (internal task for debugging)
+task :run, [:method_name] do |t, args|
+  self.send(args[:method_name].to_sym)
+end
+
 def recreate_dirs
   FileUtils.rm_rf BUILD_DIR
   %w{ boxes docs home install repo tools }.each do |dir|
