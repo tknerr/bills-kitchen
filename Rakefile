@@ -19,6 +19,7 @@ desc 'downloads required resources and builds the devpack binary'
 task :build do
   recreate_dirs
   download_tools
+  move_ruby
   # download_boxes
   download_installables
   copy_files
@@ -124,6 +125,12 @@ def download_tools
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')    
   end
+end
+
+# move ruby to a shorter path to reduce the likeliness that a gem fails to install due to max path length
+def move_ruby
+  FileUtils.mv "#{BUILD_DIR}/tools/ruby/ruby-1.9.3-p429-i386-mingw32", "#{BUILD_DIR}/tools/ruby-1.9.3"
+  FileUtils.rm_rf "#{BUILD_DIR}/tools/ruby"
 end
 
 def download_boxes
