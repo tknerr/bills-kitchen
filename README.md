@@ -1,4 +1,3 @@
-
 Bill's Kitchen
 ==============
 
@@ -69,5 +68,5 @@ Make sure you have  [VirtualBox](https://www.virtualbox.org/wiki/Downloads) inst
 2. mount the kitchen to the `W:\` drive by double-clicking the `mount-w-drive.bat` file
 3. click `W:\Launch ConEmu.lnk` to open a command prompt
 4. in the command prompt run `W:\set-env.bat` to set up the PATH etc 
-5. walk through the [GETTING_STARTED](file://W:/_GETTING_STARTED.html) tutorial to get familiar with Vagrant, Chef & Co
-6. continue with the [COOKBOOK_DEVELOPMENT](file://W:/_COOKBOOK_DEVELOPMENT.html) guide and start cooking your own recipes!
+5. walk through the [GETTING_STARTED](GETTING_STARTED.md) tutorial to get familiar with Vagrant, Chef & Co
+6. continue with the [COOKBOOK_DEVELOPMENT](COOKBOOK_DEVELOPMENT.md) guide and start cooking your own recipes!
