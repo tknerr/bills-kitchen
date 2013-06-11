@@ -20,7 +20,6 @@ task :build do
   recreate_dirs
   download_tools
   move_ruby
-  # download_boxes
   download_installables
   copy_files
   generate_docs
@@ -131,16 +130,6 @@ end
 def move_ruby
   FileUtils.mv "#{BUILD_DIR}/tools/ruby/ruby-1.9.3-p429-i386-mingw32", "#{BUILD_DIR}/tools/ruby-1.9.3"
   FileUtils.rm_rf "#{BUILD_DIR}/tools/ruby"
-end
-
-def download_boxes
-  %w{ 
-    ubuntu-12.04-server-amd64-bare-os.box 
-    ubuntu-12.04-server-amd64-vagrant.box
-  }
-  .each do |file|
-    download "http://dl.dropbox.com/u/13494216/#{file}.box", "#{BUILD_DIR}/boxes/#{file}.box"   
-  end
 end
 
 def download_installables
