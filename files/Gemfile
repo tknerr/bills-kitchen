@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 #source 'https://gems.gemfury.com/wHWKHjfyrs7pp9vzNosC/' # cucumber-nagios-0.9.2.2
 
 # core chef gems we need for cookin'
-gem 'chef-tlc-workflow', '0.2.0.dev',
-  :git => 'https://github.com/tknerr/chef-tlc-workflow.git', :branch => 'vagrant-1.2'
+gem 'chef-tlc-workflow', '0.2.0'
 
 # useful helpers
 gem 'knife-audit', '0.2.0'
