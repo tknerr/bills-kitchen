@@ -149,6 +149,7 @@ def install_vagrant_plugins
       && vagrant plugin install vagrant-awsinfo --plugin-version 0.0.8 \
       && vagrant plugin install vagrant-managed-servers --plugin-version 0.1.0 \
       && vagrant plugin install vagrant-cachier --plugin-version 0.1.0 \
+      && vagrant plugin install vagrant-plugin-bundler --plugin-version 0.1.0 \
       && vagrant plugin install vagrant-vbguest --plugin-version 0.8.0"
     fail "vagrant plugin installation failed" unless system(command)
   end
