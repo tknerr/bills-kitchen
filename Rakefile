@@ -164,7 +164,7 @@ def install_gems
     command = "#{BUILD_DIR}/set-env.bat \
       && git config --global --unset user.name \
       && git config --global --unset user.email \
-      && gem install bundler -v 1.2.1 --no-ri --no-rdoc \
+      && gem install bundler -v 1.3.5 --no-ri --no-rdoc \
       && bundle install --gemfile=#{BUILD_DIR}/Gemfile --verbose"
     fail "gem installation failed" unless system(command)
   end
