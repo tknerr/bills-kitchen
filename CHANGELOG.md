@@ -1,7 +1,25 @@
 
 # [0.11-SNAPSHOT] 
  
- * ...
+ * updated to **Vagrant 1.2**, **Chef 11** and **Berkshelf** (see below for details)
+ * updated to Vagrant 1.2.2 with the following plugins pre-installed:
+  * [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) 0.1.0
+  * [vagrant-omnibus](https://github.com/schisamo/vagrant-omnibus) 1.0.2
+  * [vagrant-aws](https://github.com/tknerr/vagrant-aws/tree/fix-rsync-on-windows) 0.2.2.rsyncfix (with fix for rsync on windows)
+  * [vagrant-managed-servers](https://github.com/tknerr/vagrant-managed-servers) 0.1.0
+  * [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) 0.8.0
+  * [vagrant-plugin-bundler](https://github.com/tknerr/vagrant-plugin-bundler) 0.1.1
+  * [vagrant-berkshelf](https://github.com/riotgames/vagrant-berkshelf) 1.2.0
+ * updated [chef-tlc-workflow](https://github.com/tknerr/chef-tlc-workflow) to v0.3.0: 
+  * supports Vagrant 1.2
+  * supports Chef 11
+  * replaces librarian-chef with [Berkshelf](http://berkshelf.com) (v2.0.4)
+  * replaces mccloud and knife-solo with [vagrant-aws](https://github.com/mitchellh/vagrant-aws) and [vagrant-managed-servers](https://github.com/tknerr/vagrant-managed-servers)
+ * other Gem updates:
+  * updated bundler to v1.3.5
+  * removed cucumber-nagios due to gem conflict
+ * moved Ruby installation to `W:\tools\ruby-1.9.3`
+ * added `chef-tlc-insecure-key` keypair akin to Vagrant's `insecure_private_key`
 
 # [0.10] from 05/30/2013
 
