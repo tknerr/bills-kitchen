@@ -1,6 +1,7 @@
 
-# [0.11-SNAPSHOT] 
+# [1.0-SNAPSHOT] 
  
+ * switch to SemVer versioning scheme for bills-kitchen, target 1.0 release soon
  * updated to **Vagrant 1.2**, **Chef 11** and **Berkshelf** (see below for details)
  * updated to Vagrant 1.2.2 with the following plugins pre-installed:
   * [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) 0.1.0
@@ -18,6 +19,7 @@
  * other Gem updates:
   * updated bundler to v1.3.5
   * removed cucumber-nagios due to gem conflict
+  * added [test-kitchen](https://github.com/opscode/test-kitchen) v1.0.0.alpha.7
  * moved Ruby installation to `W:\tools\ruby-1.9.3`
  * added `chef-tlc-insecure-key` keypair akin to Vagrant's `insecure_private_key`
 
