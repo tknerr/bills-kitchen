@@ -16,4 +16,4 @@ gem 'knife-audit', '0.2.0'
 gem 'test-kitchen', '1.0.0.alpha.7'
 
 # for creating, backup & restoring chef servers
-gem 'knife-server', '0.3.3'
+gem 'knife-server', '1.0.1'
