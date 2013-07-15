@@ -110,16 +110,16 @@ end
 
 def download_tools
   [
-    %w{ conemu-maximus5.googlecode.com/files/ConEmuPack.130526.7z                                 conemu },
+    %w{ conemu-maximus5.googlecode.com/files/ConEmuPack.130708.7z                                 conemu },
     %w{ www.holistech.co.uk/sw/hostsedit/hostsedit.zip                                            hostedit },
-    %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.zip                              sublimetext2 },
-    %w{ msysgit.googlecode.com/files/PortableGit-1.8.1.2-preview20130201.7z                       portablegit },
+    %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2%20x64.zip                              sublimetext2 },
+    %w{ msysgit.googlecode.com/files/PortableGit-1.8.3-preview20130601.7z                         portablegit },
     %w{ rubyforge.org/frs/download.php/76953/ruby-1.9.3-p429-i386-mingw32.7z                      ruby },
     %w{ github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe     devkit },
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe             kdiff3 
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.62/x86/putty.zip                                           putty },
-    %w{ files.vagrantup.com/packages/7e400d00a3c5a0fdf2809c8b5001a035415a607b/Vagrant_1.2.2.msi   vagrant }
+    %w{ files.vagrantup.com/packages/95d308caaecd139b8f62e41e7add0ec3f8ae3bd1/Vagrant_1.2.3.msi   vagrant }
   ]
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')    
