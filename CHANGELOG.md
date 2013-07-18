@@ -1,7 +1,8 @@
 
 # [1.0-SNAPSHOT]
 
- * ...
+ * tool updates:
+  * updated Vagrant to 1.2.4
 
 # [1.0.0.alpha2] from 07/15/2013
 
