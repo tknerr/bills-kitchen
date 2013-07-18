@@ -15,7 +15,7 @@
   * updated vagrant-cachier to 0.2.0
   * updated vagrant-berkshelf to 1.3.3 
 
-# [1.0.0.alpha1] (unpublished)
+# [1.0.0.alpha1 (unpublished)]
  
  * switch to SemVer versioning scheme for bills-kitchen, target 1.0 release soon
  * updated to **Vagrant 1.2**, **Chef 11** and **Berkshelf** (see below for details)
