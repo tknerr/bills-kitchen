@@ -1,0 +1,15 @@
+source 'https://rubygems.org'
+
+# install chef and some knife plugins we need for cookin' 
+gem 'chef', '11.6.0'
+# need these on windows!
+if RUBY_PLATFORM =~ /mswin|mingw/
+  gem 'ruby-wmi', '0.4.0'
+  gem 'win32-service', '0.7.2'
+end
+
+# determine which cookbooks are in use on which nodes 
+gem 'knife-audit', '0.2.0'
+# for creating, backup & restoring chef servers
+gem 'knife-server', '1.1.0'
+
