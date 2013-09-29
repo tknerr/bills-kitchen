@@ -1,8 +1,10 @@
 
 # [1.0-SNAPSHOT]
 
+ * enable caching of omnibus packages [via custom install.sh](https://github.com/fgrehm/vagrant-cachier/issues/13#issuecomment-25320554)
  * tool updates:
   * updated Vagrant to 1.3.3
+
 
 # [1.0.0.alpha2] from 07/15/2013
 
