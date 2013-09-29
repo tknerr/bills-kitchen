@@ -145,14 +145,8 @@ end
 def install_vagrant_plugins
   Bundler.with_clean_env do
     command = "#{BUILD_DIR}/set-env.bat \
-      && vagrant plugin install vagrant-omnibus --plugin-version 1.1.0 \
-      && vagrant plugin install #{BUILD_DIR}/install/vagrant-aws-0.2.2.rsyncfix.gem \
-      && vagrant plugin install vagrant-awsinfo --plugin-version 0.0.8 \
-      && vagrant plugin install vagrant-managed-servers --plugin-version 0.1.0 \
-      && vagrant plugin install vagrant-cachier --plugin-version 0.2.0 \
-      && vagrant plugin install vagrant-plugin-bundler --plugin-version 0.1.1 \
-      && vagrant plugin install vagrant-berkshelf --plugin-version 1.3.3 \
-      && vagrant plugin install vagrant-vbguest --plugin-version 0.8.0"
+    && vagrant plugin install bindler --plugin-version 0.1.3 \
+    && vagrant bindler setup"
     fail "vagrant plugin installation failed" unless system(command)
   end
 end
