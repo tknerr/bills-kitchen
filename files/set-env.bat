@@ -55,6 +55,10 @@ set VAGRANT_HOME=%HOME%\.vagrant.d
 :: but use TERM=rxvt instead of TERM=msys to not break `vagrant ssh` terminal
 set TERM=rxvt
 
+:: trick vagrant to detect colored output for windows, see here:
+:: https://github.com/mitchellh/vagrant/blob/7ef6c5d9d7d4753a219d3ab35afae0d475430cae/lib/vagrant/util/platform.rb#L89
+set ANSICON=true
+
 :: show the environment
 echo RUBYDIR=%RUBYDIR%
 echo DEVKITDIR=%DEVKITDIR%

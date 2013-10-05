@@ -1,4 +1,8 @@
 
+# [1.0-SNAPSHOT] - unreleased
+
+ * set `ANSICON` env var so that Vagrant uses colored output on Windows
+
 # [1.0.0.alpha3] from 10/05/2013
 
  * enable caching of omnibus packages [via custom install.sh](https://github.com/fgrehm/vagrant-cachier/issues/13#issuecomment-25320554)
