@@ -1,5 +1,5 @@
 
-# [1.0-SNAPSHOT]
+# [1.0.0.alpha3] from 10/05/2013
 
  * enable caching of omnibus packages [via custom install.sh](https://github.com/fgrehm/vagrant-cachier/issues/13#issuecomment-25320554)
  * remove all pre-installed vagrant-plugins in favor of [bindler](https://github.com/fgrehm/bindler)
