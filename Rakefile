@@ -120,7 +120,7 @@ def download_tools
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe             kdiff3 
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.62/x86/putty.zip                                           putty },
-    %w{ files.vagrantup.com/packages/db8e7a9c79b23264da129f55cf8569167fc22415/Vagrant_1.3.3.msi   vagrant }
+    %w{ files.vagrantup.com/packages/0ac2a87388419b989c3c0d0318cc97df3b0ed27d/Vagrant_1.3.4.msi   vagrant }
   ]
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')    
@@ -164,6 +164,15 @@ def install_gems
     fail "gem installation failed" unless system(command)
   end
 end
+
+=begin
+def setup_samples
+  * clone sample app
+  * run vagrant plugin bundle
+  * run bundle install
+  * run rake test 
+end
+=end
 
 def clone_repositories
   [ 

@@ -5,7 +5,7 @@
  * remove all pre-installed vagrant-plugins in favor of [bindler](https://github.com/fgrehm/bindler)
  * remove all pre-installed gems (except chef and some knife plugins) and `W:\Gemfile` in favor of project-specific Gemfiles
  * tool updates:
-  * updated Vagrant to 1.3.3
+  * updated Vagrant to 1.3.4
 
 
 # [1.0.0.alpha2] from 07/15/2013
