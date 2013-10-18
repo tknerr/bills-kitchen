@@ -3,6 +3,7 @@
 
  * set `ANSICON` env var so that Vagrant uses colored output on Windows
  * update to Chef 11.6.2
+ * update to Vagrant 1.3.5
 
 # [1.0.0.alpha3] from 10/05/2013
 
