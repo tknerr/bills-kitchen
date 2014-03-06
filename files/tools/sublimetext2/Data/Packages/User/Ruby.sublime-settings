@@ -3,7 +3,8 @@
   [
     "Vagrantfile",
     "Mccloudfile",
-    "Cheffile"
+    "Cheffile",
+    "Rakefile"
   ],
 
   // The number of spaces a tab is considered equal to
