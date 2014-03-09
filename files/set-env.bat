@@ -7,7 +7,7 @@
 set SCRIPT_DIR=%~dp0
 
 :: for these we need the bin dirs in PATH
-set RUBYDIR=%SCRIPT_DIR%tools\ruby-1.9.3
+set RUBYDIR=%SCRIPT_DIR%tools\ruby-2.0.0
 set DEVKITDIR=%SCRIPT_DIR%tools\devkit
 set KDIFF3DIR=%SCRIPT_DIR%tools\kdiff3
 set CYGWINSSHDIR=%SCRIPT_DIR%tools\cygwin-ssh
@@ -16,6 +16,7 @@ set CONEMUDIR=%SCRIPT_DIR%tools\conemu
 set SUBLIMEDIR=%SCRIPT_DIR%tools\sublimetext2
 set PUTTYDIR=%SCRIPT_DIR%tools\putty
 set VAGRANTDIR=%SCRIPT_DIR%tools\vagrant\HashiCorp\Vagrant
+set CHEFDIR=%SCRIPT_DIR%tools\chef\opscode\chef
 
 :: set %RI_DEVKIT$ env var and add DEVKIT to the PATH
 call %DEVKITDIR%\devkitvars.bat
@@ -72,6 +73,7 @@ echo SUBLIMEDIR=%SUBLIMEDIR%
 echo PUTTYDIR=%PUTTYDIR%
 echo VAGRANTDIR=%VAGRANTDIR%
 echo VAGRANT_HOME=%VAGRANT_HOME%
+echo CHEFDIR=%CHEFDIR%
 echo GITDIR=%GITDIR%
 echo GIT_CONF_USERNAME=%GIT_CONF_USERNAME%
 echo GIT_CONF_EMAIL=%GIT_CONF_EMAIL%
@@ -81,4 +83,4 @@ echo HTTP_PROXY=%HTTP_PROXY%
 @doskey vi=sublime_text $*
 @doskey be=bundle exec $*
 
-set PATH=%VAGRANTDIR%\bin;%RUBYDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_INSTALL_PATH%;%PATH%
+set PATH=%CHEFDIR%\bin;%VAGRANTDIR%\bin;%RUBYDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_INSTALL_PATH%;%PATH%
