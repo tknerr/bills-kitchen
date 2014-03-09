@@ -24,6 +24,7 @@ task :build do
   download_installables
   copy_files
   generate_docs
+  install_knife_plugins
   install_vagrant_plugins
   install_gems
   clone_repositories
@@ -37,11 +38,7 @@ end
 
 desc 'run integration tests (on travis)'
 task :integration_test do
-  Bundler.with_clean_env do
-    unless system("bundle install --no-deployment --gemfile=BillsKitchenGemfile --verbose")
-      fail "Could not install Bill's Kitchen gems specified in BillsKitchenGemfile"
-    end
-  end
+  # TODO: what is a sensible integration test that can run on travis-ci?!
 end
 
 # runs the install step with the given name (internal task for debugging)
@@ -111,16 +108,17 @@ end
 
 def download_tools
   [
-    %w{ conemu-maximus5.googlecode.com/files/ConEmuPack.130708.7z                                 conemu },
-    %w{ www.holistech.co.uk/sw/hostsedit/hostsedit.zip                                            hostedit },
-    %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2%20x64.zip                              sublimetext2 },
-    %w{ msysgit.googlecode.com/files/PortableGit-1.8.3-preview20130601.7z                         portablegit },
-    %w{ rubyforge.org/frs/download.php/76953/ruby-1.9.3-p429-i386-mingw32.7z                      ruby },
-    %w{ github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe     devkit },
-    %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe             kdiff3 
+    %w{ skylink.dl.sourceforge.net/project/conemu/Alpha/ConEmuPack.140304.7z                                conemu },
+    %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2%20x64.zip                                        sublimetext2 },
+    %w{ msysgit.googlecode.com/files/PortableGit-1.9.0-preview20140217.7z                                   portablegit },
+    %w{ dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p451-x64-mingw32.7z                                ruby },
+    %w{ cdn.rubyinstaller.org/archives/devkits/DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe                devkit },
+    %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.97/KDiff3-64bit-Setup_0.9.97.exe                kdiff3
         kdiff3.exe },
-    %w{ the.earth.li/~sgtatham/putty/0.62/x86/putty.zip                                           putty },
-    %w{ files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/Vagrant_1.3.5.msi   vagrant }
+    %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
+#    %w{ dl.bintray.com/mitchellh/vagrant/Vagrant_1.4.3.msi                                                  vagrant },
+    %w{ files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/Vagrant_1.3.5.msi             vagrant },
+    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chef-client-11.10.4-1.windows.msi   chef}
   ]
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')    
@@ -129,7 +127,7 @@ end
 
 # move ruby to a shorter path to reduce the likeliness that a gem fails to install due to max path length
 def move_ruby
-  FileUtils.mv "#{BUILD_DIR}/tools/ruby/ruby-1.9.3-p429-i386-mingw32", "#{BUILD_DIR}/tools/ruby-1.9.3"
+  FileUtils.mv "#{BUILD_DIR}/tools/ruby/ruby-2.0.0-p451-x64-mingw32", "#{BUILD_DIR}/tools/ruby-2.0.0"
   FileUtils.rm_rf "#{BUILD_DIR}/tools/ruby"
 end
 
@@ -139,6 +137,16 @@ def download_installables
   }
   .each do |host_and_path|
     download "http://#{host_and_path}", "#{BUILD_DIR}/install/#{File.basename(host_and_path)}"
+  end
+end
+
+def install_knife_plugins
+  Bundler.with_clean_env do
+    omnibus_embedded_gem = "#{BUILD_DIR}/tools/chef/opscode/chef/embedded/bin/gem"
+    command = "#{BUILD_DIR}/set-env.bat \
+    && #{omnibus_embedded_gem} install knife-audit -v 0.2.0 \
+    && #{omnibus_embedded_gem} install knife-server -v 1.1.0"
+    fail "knife plugin installation failed" unless system(command)
   end
 end
 
@@ -159,8 +167,7 @@ def install_gems
     command = "#{BUILD_DIR}/set-env.bat \
       && git config --global --unset user.name \
       && git config --global --unset user.email \
-      && gem install bundler -v 1.3.5 --no-ri --no-rdoc \
-      && bundle install --gemfile=#{BASE_DIR}/BillsKitchenGemfile --verbose"
+      && gem install bundler -v 1.5.3 --no-ri --no-rdoc"
     fail "gem installation failed" unless system(command)
   end
 end
@@ -177,7 +184,7 @@ end
 def clone_repositories
   [ 
     %w{ npverni/cucumber-sublime2-bundle.git  tools/sublimetext2/Data/Packages/Cucumber },
-    %w{ cabeca/SublimeChef.git          tools/sublimetext2/Data/Packages/Chef }
+    %w{ cabeca/SublimeChef.git                tools/sublimetext2/Data/Packages/Chef }
 #    %w{ tknerr/bills-kitchen-repo.git       repo/my-chef-repo },
 #    %w{ tknerr/cookbooks-vagrant-ohai.git     repo/my-cookbooks/vagrant-ohai },
 #    %w{ tknerr/cookbooks-motd.git         repo/my-cookbooks/motd },

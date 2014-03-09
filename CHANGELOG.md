@@ -2,8 +2,21 @@
 # [1.0-SNAPSHOT] - unreleased
 
  * set `ANSICON` env var so that Vagrant uses colored output on Windows
- * update to Chef 11.6.2
- * update to Vagrant 1.3.5
+ * tool updates:
+  * update to Vagrant 1.3.5
+  * update to Ruby (x64) 2.0.0-p451
+  * update to Omnibus Chef 11.10.4 (in favor of gem install)
+  * update to DevKit (x64) 4.7.2
+  * update to ConEmu 140304
+  * update to PortableGit 1.9.0-preview
+  * update to KDiff3 (x64) 0.9.97
+  * update to putty 0.63
+  * remove hostsedit (unused leftover)
+ * gem updates:
+  * update to bundler 1.5.3
+  * remove pre-installed chef gem in favor of Omnibus Chef
+  * install knife-audit and knife-server to Omnibus embedded Ruby
+
 
 # [1.0.0.alpha3] from 10/05/2013
 
