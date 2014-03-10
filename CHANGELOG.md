@@ -11,7 +11,6 @@
   * update to DevKit (x64) 4.7.2
   * update to ConEmu 140304
   * update to PortableGit 1.9.0-preview
-  * update to KDiff3 (x64) 0.9.97
   * update to putty 0.63
   * remove hostsedit (unused leftover)
  * gem updates ([#43](https://github.com/tknerr/bills-kitchen/pull/43)):

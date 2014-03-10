@@ -27,6 +27,15 @@ describe "bills kitchen" do
     it "installs Git 1.9" do
       run_cmd("git --version").should match('git version 1.9.0')
     end
+    it "installs kdiff3" do
+      marker_file = "#{BUILD_DIR}/merged.md"
+      begin
+        run_cmd("kdiff3 README.md README.md --auto -o #{marker_file}")
+        File.exist?(marker_file).should be_true
+      ensure
+        File.delete(marker_file) if File.exist?(marker_file)
+      end
+    end
   end
 
   describe "environment" do
