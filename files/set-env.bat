@@ -60,6 +60,10 @@ set TERM=rxvt
 :: https://github.com/mitchellh/vagrant/blob/7ef6c5d9d7d4753a219d3ab35afae0d475430cae/lib/vagrant/util/platform.rb#L89
 set ANSICON=true
 
+:: add recent root certificates to prevent SSL errors on Windos, see:
+:: https://gist.github.com/fnichol/867550
+set SSL_CERT_FILE=%HOME%\cacert.pem
+
 :: show the environment
 echo RUBYDIR=%RUBYDIR%
 echo DEVKITDIR=%DEVKITDIR%

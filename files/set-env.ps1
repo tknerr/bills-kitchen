@@ -66,6 +66,10 @@ $env:TERM = "rxvt"
 ## https://github.com/mitchellh/vagrant/blob/7ef6c5d9d7d4753a219d3ab35afae0d475430cae/lib/vagrant/util/platform.rb#L89
 $env:ANSICON = "true"
 
+## add recent root certificates to prevent SSL errors on Windos, see:
+## https://gist.github.com/fnichol/867550
+$env:SSL_CERT_FILE = Join-Path $env:HOME "cacert.pem"
+
 # show the environment
 Write-Host "RUBYDIR=$env:RUBYDIR"
 Write-Host "DEVKITDIR=$env:DEVKITDIR"
