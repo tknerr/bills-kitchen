@@ -88,4 +88,4 @@ Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 set-alias vi "sublime_text";
 set-alias be "bundle exec"; 
 
-$env:Path = "$env:CHEFDIR\bin;$env:VAGRANTDIR\bin;$env:RUBYDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
+$env:Path = "$env:CHEFDIR\bin;$env:VAGRANTDIR\bin;$env:RUBYDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
