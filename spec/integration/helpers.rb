@@ -18,7 +18,7 @@ module Helpers
     run_cmd("set").should match(/^#{convert_slashes(line)}$/)
   end
   # checks if the given gem is installed at version
-  def gem_installed(name, version, gem_cmd = "gem")
+  def gem_installed(name, version, gem_cmd = "#{SYSTEM_RUBY}/bin/gem")
     run_cmd("#{gem_cmd} list").should match("#{name} \\(#{version}\\)")
   end  
   # checks if the given gem is installed at version

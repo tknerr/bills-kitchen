@@ -71,10 +71,13 @@ describe "bills kitchen" do
   describe "ruby installations" do
 
     describe "system ruby" do
-      it "is the default ruby" do
+      it "provides the default `ruby` command" do
         run_cmd("which ruby").should match(convert_slashes("#{SYSTEM_RUBY}/bin/ruby.EXE"))
       end
-      it "uses system ruby gemdir" do
+      it "provides the default `gem` command" do
+        run_cmd("which gem").should match(convert_slashes("#{SYSTEM_RUBY}/bin/gem"))
+      end
+      it "uses the system ruby gemdir" do
         run_cmd("#{SYSTEM_RUBY}/bin/gem environment gemdir").should match("#{SYSTEM_RUBY}/lib/ruby/gems/2.0.0")
       end
       it "has 'bundler (1.5.3)' gem installed" do
@@ -83,7 +86,7 @@ describe "bills kitchen" do
     end
 
     describe "omnibus ruby" do
-      it "uses omnibus embedded gemdir" do
+      it "uses the omnibus embedded gemdir" do
         run_cmd("#{OMNIBUS_RUBY}/bin/gem environment gemdir").should match("#{OMNIBUS_RUBY}/lib/ruby/gems/1.9.1")  
       end
       it "has 'knife-audit (0.2.0)' plugin installed" do
@@ -95,7 +98,7 @@ describe "bills kitchen" do
     end
 
     describe "vagrant ruby" do
-      it "uses vagrant embedded gemdir" do
+      it "uses the vagrant embedded gemdir" do
         run_cmd("#{VAGRANT_RUBY}/bin/gem environment gemdir").should match("#{VAGRANT_RUBY}/lib/ruby/gems/1.9.1")  
       end
       it "has 'bindler (0.1.3)' plugin installed" do
