@@ -2,7 +2,9 @@
 # [1.0-SNAPSHOT] - unreleased
 
  * set `ANSICON` env var so that Vagrant uses colored output on Windows
- * tool updates:
+ * add up-to-date CA certs and set `SSL_CERT_FILE` ([#45](https://github.com/tknerr/bills-kitchen/issues/45))
+ * add Vagrant's embedded dir to the `PATH` ([#46](https://github.com/tknerr/bills-kitchen/pull/46))
+ * tool updates ([#43](https://github.com/tknerr/bills-kitchen/pull/43)):
   * update to Vagrant 1.3.5
   * update to Ruby (x64) 2.0.0-p451
   * update to Omnibus Chef 11.10.4 (in favor of gem install)
@@ -12,7 +14,7 @@
   * update to KDiff3 (x64) 0.9.97
   * update to putty 0.63
   * remove hostsedit (unused leftover)
- * gem updates:
+ * gem updates ([#43](https://github.com/tknerr/bills-kitchen/pull/43)):
   * update to bundler 1.5.3
   * remove pre-installed chef gem in favor of Omnibus Chef
   * install knife-audit and knife-server to Omnibus embedded Ruby
