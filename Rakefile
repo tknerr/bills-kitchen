@@ -28,6 +28,7 @@ task :build do
   install_vagrant_plugins
   install_gems
   clone_repositories
+  integration_test
   assemble_kitchen
 end
 
@@ -36,9 +37,11 @@ task :backup do
   backup_target_build_dir
 end
 
-desc 'run integration tests (on travis)'
+desc 'run integration tests'
 task :integration_test do
-  # TODO: what is a sensible integration test that can run on travis-ci?!
+  Bundler.with_clean_env do
+    sh "rspec spec/integration -fd -c"
+  end
 end
 
 # runs the install step with the given name (internal task for debugging)
