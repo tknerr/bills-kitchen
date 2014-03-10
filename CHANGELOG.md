@@ -17,6 +17,7 @@
   * update to bundler 1.5.3
   * remove pre-installed chef gem in favor of Omnibus Chef
   * install knife-audit and knife-server to Omnibus embedded Ruby
+ * add integration tests for bills-kitchen ([#47](https://github.com/tknerr/bills-kitchen/pull/47))
 
 
 # [1.0.0.alpha3] from 10/05/2013
