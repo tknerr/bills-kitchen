@@ -2,8 +2,6 @@
 Bill's Kitchen
 ==============
 
-[![Build Status](https://travis-ci.org/tknerr/bills-kitchen.png?branch=master)](https://travis-ci.org/tknerr/bills-kitchen)
-
 All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a portable package:
 
  * pre-configured Chef Repo with Vagrantfile to bring up a ready-to-use Chef Server 

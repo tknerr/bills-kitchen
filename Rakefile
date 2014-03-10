@@ -28,6 +28,7 @@ task :build do
   install_vagrant_plugins
   install_gems
   clone_repositories
+  integration_test
   assemble_kitchen
 end
 
@@ -36,9 +37,11 @@ task :backup do
   backup_target_build_dir
 end
 
-desc 'run integration tests (on travis)'
+desc 'run integration tests'
 task :integration_test do
-  # TODO: what is a sensible integration test that can run on travis-ci?!
+  Bundler.with_clean_env do
+    sh "rspec spec/integration -fd -c"
+  end
 end
 
 # runs the install step with the given name (internal task for debugging)
@@ -113,7 +116,7 @@ def download_tools
     %w{ msysgit.googlecode.com/files/PortableGit-1.9.0-preview20140217.7z                                   portablegit },
     %w{ dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p451-x64-mingw32.7z                                ruby },
     %w{ cdn.rubyinstaller.org/archives/devkits/DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe                devkit },
-    %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.97/KDiff3-64bit-Setup_0.9.97.exe                kdiff3
+    %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe                       kdiff3
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
 #    %w{ dl.bintray.com/mitchellh/vagrant/Vagrant_1.4.3.msi                                                  vagrant },
