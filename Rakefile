@@ -147,8 +147,8 @@ def install_knife_plugins
   Bundler.with_clean_env do
     omnibus_embedded_gem = "#{BUILD_DIR}/tools/chef/opscode/chef/embedded/bin/gem"
     command = "#{BUILD_DIR}/set-env.bat \
-    && #{omnibus_embedded_gem} install knife-audit -v 0.2.0 \
-    && #{omnibus_embedded_gem} install knife-server -v 1.1.0"
+    && #{omnibus_embedded_gem} install knife-audit -v 0.2.0 --no-ri --no-rdoc \
+    && #{omnibus_embedded_gem} install knife-server -v 1.1.0 --no-ri --no-rdoc"
     fail "knife plugin installation failed" unless system(command)
   end
 end
