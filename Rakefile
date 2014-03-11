@@ -38,15 +38,19 @@ task :backup do
 end
 
 desc 'run integration tests'
-task :integration_test do
-  Bundler.with_clean_env do
-    sh "rspec spec/integration -fd -c"
-  end
+task :test do
+  integration_test
 end
 
 # runs the install step with the given name (internal task for debugging)
 task :run, [:method_name] do |t, args|
   self.send(args[:method_name].to_sym)
+end
+
+def integration_test
+  Bundler.with_clean_env do
+    sh "rspec spec/integration -fd -c"
+  end
 end
 
 def recreate_dirs
