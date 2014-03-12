@@ -9,6 +9,10 @@ module Helpers
   def run_cmd(cmd)
     `"#{BUILD_DIR}/set-env.bat" >NUL && #{cmd} 2>&1`
   end
+  # similar to #run_cmd, but uses system and returns the exit code
+  def system_cmd(cmd)
+    system "#{BUILD_DIR}/set-env.bat >NUL && #{cmd}"
+  end
   # converts the path to using backslashes
   def convert_slashes(path)
     path.gsub('/', '\\').gsub('\\', '\\\\\\\\') #eek
