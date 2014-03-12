@@ -1,5 +1,5 @@
 
-require_relative 'helpers'
+require_relative '../helpers'
 
 describe "bills kitchen" do
 

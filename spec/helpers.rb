@@ -13,7 +13,7 @@ module Helpers
   # similar to #run_cmd, but uses system and returns the exit code.
   # stdout is redirected to acceptance.log, stderr remains visible
   def system_cmd(cmd)
-    system "#{BUILD_DIR}/set-env.bat >NUL && #{cmd} 2>>acceptance.log"
+    system "#{BUILD_DIR}/set-env.bat >NUL && #{cmd} 2>>#{BUILD_DIR}/acceptance.log"
   end
   # converts the path to using backslashes
   def convert_slashes(path)
@@ -30,7 +30,7 @@ module Helpers
   # checks if the given gem is installed at version
   def gem_installed(name, version, gem_cmd = "#{SYSTEM_RUBY}/bin/gem")
     run_cmd("#{gem_cmd} list").should match("#{name} \\(#{version}\\)")
-  end  
+  end
   # checks if the given gem is installed at version
   def knife_plugin_installed(name, version)
     gem_installed name, version, "#{OMNIBUS_RUBY}/bin/gem"
@@ -38,5 +38,13 @@ module Helpers
   # checks if the given gem is installed at version
   def vagrant_plugin_installed(name, version)
     run_cmd("vagrant plugin list").should match("#{name} \\(#{version}\\)")
+  end
+  # returns true if the box with the given name exists
+  def local_box_available?(box)
+    File.exist? "#{BUILD_DIR}/boxes/#{box}.box"
+  end
+  # returns true if the box is already imported into vagrant
+  def box_imported?(box)
+    run_cmd("vagrant box list").include?(box)
   end
 end

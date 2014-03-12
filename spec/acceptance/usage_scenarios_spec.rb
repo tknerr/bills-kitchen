@@ -1,5 +1,5 @@
 
-require_relative '../integration/helpers'
+require_relative '../helpers'
 
 describe "usage scenarios" do
 
@@ -10,23 +10,7 @@ describe "usage scenarios" do
   INFRA_REPO_DIR = "#{REPO_DIR}/sample-infrastructure-repo"
   BASEBOX = "opscode_ubuntu-13.04_provisionerless"
 
-
-  def local_box_available?(box)
-    File.exist? "#{BUILD_DIR}/boxes/#{box}.box"
-  end
-
-  def box_imported?(box)
-    run_cmd("vagrant box list").include?(box)
-  end
-
-
-
   before(:all) do
-    # import basebox if exists to prevent download
-    if local_box_available?(BASEBOX) && !box_imported?(BASEBOX)
-      cmd_succeeds("vagrant box add #{BASEBOX} file://#{BUILD_DIR}/boxes/#{BASEBOX}.box")
-    end
-    # remove repos
     require 'fileutils'
     FileUtils.rm_rf APP_COOKBOOK_DIR
     FileUtils.rm_rf INFRA_REPO_DIR
@@ -34,7 +18,10 @@ describe "usage scenarios" do
 
   describe "managing base boxes" do
     it "imports a local basebox (if exists)" do
-      # TODO: keep this?
+      # import basebox if exists to prevent download
+      if local_box_available?(BASEBOX) && !box_imported?(BASEBOX)
+        cmd_succeeds("vagrant box add #{BASEBOX} file://#{BUILD_DIR}/boxes/#{BASEBOX}.box")
+      end
     end
   end
 
