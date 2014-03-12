@@ -65,7 +65,7 @@ describe "usage scenarios" do
       system_cmd("cd #{INFRA_REPO_DIR} && vagrant up app_v2")
     end
     it "can talk to that VM via `vagrant ssh`" do
-      run_cmd("cd #{INFRA_REPO_DIR} && vagrant ssh app_v2 -c 'pwd'").should eq("/home/vagrant")
+      run_cmd("cd #{INFRA_REPO_DIR} && vagrant ssh app_v2 -c 'pwd'").should match("/home/vagrant")
     end
     it "can provision a VM via `vagrant provision`" do
       system_cmd("cd #{INFRA_REPO_DIR} && vagrant provision app_v2")

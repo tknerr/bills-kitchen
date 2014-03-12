@@ -1,6 +1,6 @@
 
 BUILD_DIR=File.expand_path('./target/build')
-SYSTEM_RUBY = "#{BUILD_DIR}/tools/ruby-2.0.0"
+SYSTEM_RUBY = "#{BUILD_DIR}/tools/ruby-1.9.3"
 OMNIBUS_RUBY = "#{BUILD_DIR}/tools/chef/opscode/chef/embedded"
 VAGRANT_RUBY = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded"
 
