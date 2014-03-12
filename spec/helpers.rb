@@ -10,10 +10,10 @@ module Helpers
   def run_cmd(cmd)
     `"#{BUILD_DIR}/set-env.bat" >NUL && #{cmd} 2>&1`
   end
-  # similar to #run_cmd, but uses system and returns the exit code.
-  # stdout is redirected to acceptance.log, stderr remains visible
+  # similar to #run_cmd, but uses system and returns the exit code
+  # (both stdout and stderr are redirected to acceptance.log)
   def system_cmd(cmd)
-    system "#{BUILD_DIR}/set-env.bat >NUL && #{cmd} 2>>#{BUILD_DIR}/acceptance.log"
+    system "#{BUILD_DIR}/set-env.bat >NUL && #{cmd} >>#{BUILD_DIR}/acceptance.log 2>&1"
   end
   # converts the path to using backslashes
   def convert_slashes(path)
