@@ -29,6 +29,7 @@ task :build do
   install_gems
   clone_repositories
   run_tests "integration"
+  reset_git_user
   assemble_kitchen
 end
 
@@ -177,21 +178,19 @@ def install_gems
     # which results in gems being installed to your current Ruby's GEM_HOME rather than Bills Kitchen's GEM_HOME!!! 
     fail "must run `rake build` instead of `bundle exec rake build`" if ENV['GEM_HOME']
     command = "#{BUILD_DIR}/set-env.bat \
-      && git config --global --unset user.name \
-      && git config --global --unset user.email \
       && gem install bundler -v 1.5.3 --no-ri --no-rdoc"
     fail "gem installation failed" unless system(command)
   end
 end
 
-=begin
-def setup_samples
-  * clone sample app
-  * run vagrant plugin bundle
-  * run bundle install
-  * run rake test 
+def reset_git_user
+  Bundler.with_clean_env do
+    command = "#{BUILD_DIR}/set-env.bat \
+      && git config --global --unset user.name \
+      && git config --global --unset user.email"
+    fail "resetting dummy git user failed" unless system(command)
+  end
 end
-=end
 
 def clone_repositories
   [ 
