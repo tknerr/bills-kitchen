@@ -28,7 +28,7 @@ task :build do
   install_vagrant_plugins
   install_gems
   clone_repositories
-  integration_test
+  run_tests "integration"
   assemble_kitchen
 end
 
@@ -39,7 +39,12 @@ end
 
 desc 'run integration tests'
 task :test do
-  integration_test
+  run_tests "integration"
+end
+
+desc 'run acceptance tests (WARNING: will download stuff, install gems, etc..)'
+task :acceptance do
+  run_tests "acceptance"
 end
 
 # runs the install step with the given name (internal task for debugging)
@@ -47,9 +52,9 @@ task :run, [:method_name] do |t, args|
   self.send(args[:method_name].to_sym)
 end
 
-def integration_test
+def run_tests(level)
   Bundler.with_clean_env do
-    sh "rspec spec/integration -fd -c"
+    sh "rspec spec/#{level} -fd -c"
   end
 end
 
