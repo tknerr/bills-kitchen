@@ -6,16 +6,22 @@ VAGRANT_RUBY = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded"
 
 module Helpers
   # sets the environment via set-env.bat before running the command
+  # and returns whatever the cmd writes (captures both stdout and stderr)
   def run_cmd(cmd)
     `"#{BUILD_DIR}/set-env.bat" >NUL && #{cmd} 2>&1`
   end
-  # similar to #run_cmd, but uses system and returns the exit code
+  # similar to #run_cmd, but uses system and returns the exit code.
+  # stdout is redirected to acceptance.log, stderr remains visible
   def system_cmd(cmd)
-    system "#{BUILD_DIR}/set-env.bat >NUL && #{cmd}"
+    system "#{BUILD_DIR}/set-env.bat >NUL && #{cmd} 2>>acceptance.log"
   end
   # converts the path to using backslashes
   def convert_slashes(path)
     path.gsub('/', '\\').gsub('\\', '\\\\\\\\') #eek
+  end
+  # runs #system_cmd and checks for success (i.e. exit status 0)
+  def cmd_succeeds(cmd)
+    system_cmd(cmd).should be_true
   end
   # checks if the given line is contained in the environment
   def env_match(line)
