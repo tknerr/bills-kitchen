@@ -12,6 +12,7 @@ describe "usage scenarios" do
 
   before(:all) do
     require 'fileutils'
+    FileUtils.rm_rf LOGFILE
     FileUtils.rm_rf APP_COOKBOOK_DIR
     FileUtils.rm_rf INFRA_REPO_DIR
   end

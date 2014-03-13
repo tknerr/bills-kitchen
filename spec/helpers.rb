@@ -1,5 +1,6 @@
 
 BUILD_DIR=File.expand_path('./target/build')
+LOGFILE = "#{BUILD_DIR}/acceptance.log"
 SYSTEM_RUBY = "#{BUILD_DIR}/tools/ruby-1.9.3"
 OMNIBUS_RUBY = "#{BUILD_DIR}/tools/chef/opscode/chef/embedded"
 VAGRANT_RUBY = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded"
@@ -13,7 +14,11 @@ module Helpers
   # similar to #run_cmd, but uses system and returns the exit code
   # (both stdout and stderr are redirected to acceptance.log)
   def system_cmd(cmd)
-    system "#{BUILD_DIR}/set-env.bat >NUL && #{cmd} >>#{BUILD_DIR}/acceptance.log 2>&1"
+    system "echo \"--> Running command: '#{cmd}':\" >>#{LOGFILE}"
+    unless (status = system "#{BUILD_DIR}/set-env.bat >NUL && #{cmd} >>#{LOGFILE} 2>&1")
+      puts "Command failed: '#{cmd}'\n  --> see #{LOGFILE} for details"
+    end
+    status
   end
   # converts the path to using backslashes
   def convert_slashes(path)
