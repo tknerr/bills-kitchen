@@ -29,7 +29,6 @@ task :build do
   install_gems
   clone_repositories
   run_tests "integration"
-  reset_git_user
   assemble_kitchen
 end
 
@@ -212,6 +211,7 @@ end
 
 def assemble_kitchen
   if release?
+    reset_git_user
     pack BUILD_DIR, "#{TARGET_DIR}/bills-kitchen-#{VERSION}.7z"
   end
 end
