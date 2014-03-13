@@ -53,10 +53,10 @@ describe "usage scenarios" do
     it "can talk to that VM via `vagrant ssh`" do
       run_cmd("cd #{INFRA_REPO_DIR} && vagrant ssh app_v2 -c 'pwd'").should match("/home/vagrant")
     end
-    it "can provision a VM via `vagrant provision`" do
+    it "can provision that VM via `vagrant provision`" do
       cmd_succeeds("cd #{INFRA_REPO_DIR} && vagrant provision app_v2")
     end
-    it "can destroy a VM via `vagrant destroy`" do
+    it "can destroy that VM via `vagrant destroy`" do
       cmd_succeeds("cd #{INFRA_REPO_DIR} && vagrant destroy -f app_v2")
     end
   end
