@@ -6,9 +6,7 @@
  * add Vagrant's embedded dir to the `PATH` ([#46](https://github.com/tknerr/bills-kitchen/pull/46))
  * tool updates ([#43](https://github.com/tknerr/bills-kitchen/pull/43)):
   * update to Vagrant 1.3.5
-  * update to Ruby (x64) 2.0.0-p451
   * update to Omnibus Chef 11.10.4 (in favor of gem install)
-  * update to DevKit (x64) 4.7.2
   * update to ConEmu 140304
   * update to PortableGit 1.9.0-preview
   * update to putty 0.63

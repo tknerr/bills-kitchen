@@ -1,3 +1,9 @@
 
 # ignore target dir
 target/
+
+# ignore pre-loaded box files
+files/boxes/*.box
+
+# ignore .log files
+*.log

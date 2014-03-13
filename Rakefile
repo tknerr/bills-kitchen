@@ -28,7 +28,7 @@ task :build do
   install_vagrant_plugins
   install_gems
   clone_repositories
-  integration_test
+  run_tests "integration"
   assemble_kitchen
 end
 
@@ -39,7 +39,12 @@ end
 
 desc 'run integration tests'
 task :test do
-  integration_test
+  run_tests "integration"
+end
+
+desc 'run acceptance tests (WARNING: will download stuff, install gems, etc..)'
+task :acceptance do
+  run_tests "acceptance"
 end
 
 # runs the install step with the given name (internal task for debugging)
@@ -47,9 +52,9 @@ task :run, [:method_name] do |t, args|
   self.send(args[:method_name].to_sym)
 end
 
-def integration_test
+def run_tests(level)
   Bundler.with_clean_env do
-    sh "rspec spec/integration -fd -c"
+    sh "rspec spec/#{level} -fd -c"
   end
 end
 
@@ -118,8 +123,8 @@ def download_tools
     %w{ skylink.dl.sourceforge.net/project/conemu/Alpha/ConEmuPack.140304.7z                                conemu },
     %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2%20x64.zip                                        sublimetext2 },
     %w{ msysgit.googlecode.com/files/PortableGit-1.9.0-preview20140217.7z                                   portablegit },
-    %w{ dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p451-x64-mingw32.7z                                ruby },
-    %w{ cdn.rubyinstaller.org/archives/devkits/DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe                devkit },
+    %w{ rubyforge.org/frs/download.php/76953/ruby-1.9.3-p429-i386-mingw32.7z                                ruby },
+    %w{ github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe               devkit },
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe                       kdiff3
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
@@ -134,7 +139,7 @@ end
 
 # move ruby to a shorter path to reduce the likeliness that a gem fails to install due to max path length
 def move_ruby
-  FileUtils.mv "#{BUILD_DIR}/tools/ruby/ruby-2.0.0-p451-x64-mingw32", "#{BUILD_DIR}/tools/ruby-2.0.0"
+  FileUtils.mv "#{BUILD_DIR}/tools/ruby/ruby-1.9.3-p429-i386-mingw32", "#{BUILD_DIR}/tools/ruby-1.9.3"
   FileUtils.rm_rf "#{BUILD_DIR}/tools/ruby"
 end
 
@@ -172,21 +177,19 @@ def install_gems
     # which results in gems being installed to your current Ruby's GEM_HOME rather than Bills Kitchen's GEM_HOME!!! 
     fail "must run `rake build` instead of `bundle exec rake build`" if ENV['GEM_HOME']
     command = "#{BUILD_DIR}/set-env.bat \
-      && git config --global --unset user.name \
-      && git config --global --unset user.email \
       && gem install bundler -v 1.5.3 --no-ri --no-rdoc"
     fail "gem installation failed" unless system(command)
   end
 end
 
-=begin
-def setup_samples
-  * clone sample app
-  * run vagrant plugin bundle
-  * run bundle install
-  * run rake test 
+def reset_git_user
+  Bundler.with_clean_env do
+    command = "#{BUILD_DIR}/set-env.bat \
+      && git config --global --unset user.name \
+      && git config --global --unset user.email"
+    fail "resetting dummy git user failed" unless system(command)
+  end
 end
-=end
 
 def clone_repositories
   [ 
@@ -208,6 +211,7 @@ end
 
 def assemble_kitchen
   if release?
+    reset_git_user
     pack BUILD_DIR, "#{TARGET_DIR}/bills-kitchen-#{VERSION}.7z"
   end
 end
