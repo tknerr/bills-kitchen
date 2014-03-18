@@ -47,15 +47,32 @@ Installation
 
 As a prerequisite for building bill's kitchen you need 7zip installed in `C:\Program Files\7-Zip\7z.exe`.
 
-Build the kitchen (make sure you don't have spaces in the path):
-
+To build the kitchen (make sure you don't have spaces in the path):
 ```
 gem install bundler
 bundle install
 rake build
 ```
 
-This might take a while (you can go fetch a coffee). It will download the external dependencies and assemble the kitchen in the `target/build` directory, which is then packaged as `target/bills-kitchen-<version>.7z`
+This might take a while (you can go fetch a coffee). It will download the external dependencies, install the tools and prepare everything else we need in the kitchen into the `target/build` directory. Finally it runs the `spec/integration` examples to ensure everything is properly installed.
+
+To run the more comprehensive `spec/acceptance` tests:
+```
+rake acceptance
+```
+
+This will use various of the tools in the kitchen in combination, e.g.:
+
+* cloning a sample application cookbook and sample infrastructure repository
+* running various commands like `bundle install`, `vagrant plugin install`, `vagrant up`
+* running different kinds of cookbook tests via `knife cookbook test`, `foodcritic`, `chefspec` and `test-kitchen`
+
+Finally, if all the tests pass you can create a portable zip package:
+```
+rake package
+```
+
+This will and finally package everything in the `target/build` directory into `target/bills-kitchen-<version>.7z`.
 
 
 Usage
