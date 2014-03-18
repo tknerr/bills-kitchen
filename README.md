@@ -3,9 +3,9 @@
 
 All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a portable package.
 
-## What's inside?
-
 ![Bill's Kitchen Screenshot](https://raw.github.com/tknerr/bills-kitchen/master/doc/bills_kitchen_screenshot.png) 
+
+## What's inside?
 
 ### Main Tools
 
@@ -23,10 +23,10 @@ The main tools for cooking with Chef / Vagrant:
 Useful additions for a better cooking experience:
 
 * [ConEmu](https://code.google.com/p/conemu-maximus5/) - a better windows console with colours, tabs, etc...
-* [SublimeText2](http://www.sublimetext.com/) - a better editor (trial version, please buy!) with additional packages for [Chef](https://github.com/cabeca/SublimeChef) and [Cucumber](https://github.com/npverni/cucumber-sublime2-bundle) installed
+* [SublimeText2](http://www.sublimetext.com/) - a better editor (trial version) with additional packages for [Chef](https://github.com/cabeca/SublimeChef) and [Cucumber](https://github.com/npverni/cucumber-sublime2-bundle) installed
 * [PortableGit](https://code.google.com/p/msysgit/) - git client for windows (preconfigured with [kdiff3](http://kdiff3.sourceforge.net/) as diff/merge tool)
 * [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) - the SSH client for windows
-* [Cygwin](http://www.cygwin.com/)-based `ssh.exe` and `rsync.exe` to make rsync-based synced folders with Vagrant work on Windows
+* [Cygwin](http://www.cygwin.com/)-based `ssh.exe` and `rsync.exe` to make rsync-based Vagrant synced folders work on Windows
 
 ### Environmental Changes
 
@@ -35,7 +35,7 @@ The following changes are applied to your environment by running `W:\set-env.bat
 * Constraining as much as possible to the `W:\` drive:
  * `%HOME%` points to `W:\home`
  * `%VAGRANT_HOME%` points to `W:\home\.vagrant.d`
- * exception: `%VBOX_USER_HOME%` points to `%USERPROFILE%` (i.e. VirtualBox VMs are still stored under `%USERPROFILE%`!)
+ * *exception*: `%VBOX_USER_HOME%` points to `%USERPROFILE%`, i.e. VirtualBox VMs are still stored under `%USERPROFILE%`!
 * Fixing annoyances:
  * `set TERM=rxvt` to fix vagrant ssh issues
  * `set ANSICON=true` to get coloured output with Vagrant on Windows
@@ -60,11 +60,11 @@ These repositories are used during the [acceptance tests](https://github.com/tkn
 The only requirement for using the devpack is a recent version of [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (couldn't make that one portable).
 
 
-# Installation
+## Installation
 
 As a prerequisite for building bill's kitchen you need 7zip installed in `C:\Program Files\7-Zip\7z.exe`.
 
-## Building Bill's Kitchen
+### Building Bill's Kitchen
 
 To build the kitchen (make sure you don't have spaces in the path):
 ```
@@ -75,7 +75,7 @@ rake build
 
 This might take a while (you can go fetch a coffee). It will download the external dependencies, install the tools and prepare everything else we need in the kitchen into the `target/build` directory. Finally it runs the `spec/integration` examples to ensure everything is properly installed.
 
-## Running the Acceptance Tests
+### Running the Acceptance Tests
 
 To run the more comprehensive `spec/acceptance` tests:
 ```
@@ -88,7 +88,7 @@ This will use various of the tools in combination by running the main usage scen
 * running various commands like `bundle install`, `vagrant plugin install`, `vagrant up`
 * running different kinds of cookbook tests via `knife cookbook test`, `foodcritic`, `chefspec` and `test-kitchen`
 
-## Packaging
+### Packaging
 
 Finally, if all the tests pass you can create a portable zip package:
 ```
@@ -98,7 +98,7 @@ rake package
 This will and finally package everything in the `target/build` directory into `target/bills-kitchen-<version>.7z`.
 
 
-# Usage
+## Usage
 
 Make sure you have [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed, then:
 
