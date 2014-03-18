@@ -4,37 +4,37 @@ Bill's Kitchen
 
 All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a portable package:
 
- * pre-configured Chef Repo with Vagrantfile to bring up a ready-to-use Chef Server 
- * DevKit 4.5.2 + Ruby 1.9.3.p392 (load time improvements >50%!) with lots of useful gems pre-installed:
- 	* basic gems:
- 		* [vagrant](http://vagrantup.com/) (patched to make `vagrant ssh` work on windows)
- 		* [chef](http://www.opscode.com/chef/) (yeah you know what Chef is...)
-    * [librarian-chef](https://github.com/applicationsonline/librarian-chef) (dependency management for cookbooks)
-    * [berkshelf](https://github.com/RiotGames/berkshelf) (alternative for dependency management for cookbooks)
- 	* testing-related:
- 		* [foodcritic](https://github.com/acrmp/foodcritic) (linting for your cookbooks)
- 		* [chefspec](https://github.com/acrmp/chefspec) (rspec examples for chef_run/cookbooks)
- 		* [fauxhai](https://github.com/customink/fauxhai) (for mocking ohai attributes)
- 		* [minitest-chef-handler](https://github.com/calavera/minitest-chef-handler/) (run smoke tests on the converged node)
- 		* [cucumber-nagios](https://github.com/auxesis/cucumber-nagios) (cucumber steps for systems testing)
- 		* [test-kitchen](https://github.com/opscode/test-kitchen) (the "holistic test runner" from Opscode)
- 	* other:
-    * [veewee](https://github.com/jedi4ever/veewee) (for building vagrant baseboxes)
- 		* [sahara](https://github.com/tknerr/sahara) (lets you take and restore virtualbox snapshots)
-    * [knife-solo](https://github.com/matschaffer/knife-solo) (if you prefer to work in chef-solo mode)
-    * [knife-solo_data_bag](https://github.com/thbishop/knife-solo_data_bag) (knife data bag commands for chef-solo)
-    * [knife-audit](https://github.com/jbz/knife-audit) (for introspecting the complete run_list)
-    * [mccloud](https://github.com/jedi4ever/mccloud) (like vagrant but for the cloud not local vms)
-    * [knife-server](https://github.com/fnichol/knife-server) (for bootstrap/backup/restore of chef servers)
-    * [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) (keeps your vbox guestadditions in sync)
- * supporting tools such as:
- 	* ConEmu
- 	* SublimeText2 (with additional packages for Chef and Cucumber)
- 	* PortableGit (preconfigured with kdiff3 as diff/merge tool)
- 	* putty
- * walkthrough tutorial and example cookbooks
+ * Main Tools
+	* [Ruby](http://rubyinstaller.org/downloads/) 1.9.3 + [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.5.2
+		* [bundler](http://bundler.io/) is the only pre-installed gem, everything else is expected to be managed via project-specific `Gemfile`
+ 	* [Vagrant](http://vagrantup.com/) 1.3.6
+ 		* [bindler](https://github.com/fgrehm/bindler) is the only pre-installed vagrant plugin, everything else is expected to be managed via project-specific `plugins.json`
+ 	* [Omnibus Chef](http://www.getchef.com/chef/install/) 11.10.4
+ 		* [knife-audit](https://github.com/jbz/knife-audit) and [knife-server](https://github.com/fnichol/knife-server) are exemplary pre-installed knife plugins. Install more via `W:/tools/chef/opscode/chef/embedded/bin/gem install <plugin>`
+ * Supporting Tools
+ 	* [ConEmu](https://code.google.com/p/conemu-maximus5/) - a better windows console with colours, tabs, etc...
+ 	* [SublimeText2](http://www.sublimetext.com/) - a better editor (trial version, please buy!) with additional packages for [Chef](https://github.com/cabeca/SublimeChef) and [Cucumber](https://github.com/npverni/cucumber-sublime2-bundle) installed
+ 	* [PortableGit](https://code.google.com/p/msysgit/) - git client for windows (preconfigured with [kdiff3](http://kdiff3.sourceforge.net/) as diff/merge tool)
+ 	* [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) - the SSH client for windows
+ 	* [Cygwin](http://www.cygwin.com/)-based `ssh.exe` and `rsync.exe` to make rsync-based synced folders with Vagrant work on Windows
+ * Environmental Changes (all via `W:\set-env.bat`)
+ 	* Constraining as much as possible to the `W:\` drive:
+ 		* `%HOME%` points to `W:\home`
+ 		* `%VAGRANT_HOME%` points to `W:\home\.vagrant.d`
+ 		* exception: `%VBOX_USER_HOME%` points to `%USERPROFILE%` (i.e. VirtualBox VMs are still stored under `%USERPROFILE%`!)
+ 	* Fixing annoyances:
+ 		* `set TERM=rxvt` to fix vagrant ssh issues
+ 		* `set ANSICON=true` to get coloured output with Vagrant on Windows
+ 		* `set SSL_CERT_FILE=W:\home\cacert.pem` pointing to recent CA certs avoiding Ruby SSL errors
+ * Aliases
+ 	* run `be <command>` for `bundle exec <command>`
+ 	* run `vi <file_or_dir>` for `sublime_text <file_or_dir>` 
+ * Example Repositories
+ 	* A [sample-application-cookbook](https://github.com/tknerr/sample-application-cookbook) with all kinds cookbook tests: syntax check, style checks, linting, unit and integration tests (see [README](https://github.com/tknerr/sample-application-cookbook/blob/master/README.md))
+ 	* A [sample-infrastructure-repo](https://github.com/tknerr/sample-infrastructure-repo) which defines a sample server infrastructure with environments and databages via Vagrant / Chef Solo
 
 The only requirement for using the devpack is a recent version of [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (couldn't make that one portable).
+
 
 Screenshot
 ==========
@@ -79,7 +79,7 @@ Usage
 =====
 
 Make sure you have  [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed, then:
-
+S
 1. unzip the `target/bills-kitchen-<version>.7z` somewhere
 2. mount the kitchen to the `W:\` drive by double-clicking the `mount-w-drive.bat` file
 3. click `W:\Launch ConEmu.lnk` to open a command prompt
