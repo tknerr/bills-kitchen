@@ -79,7 +79,7 @@ Usage
 =====
 
 Make sure you have  [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed, then:
-S
+
 1. unzip the `target/bills-kitchen-<version>.7z` somewhere
 2. mount the kitchen to the `W:\` drive by double-clicking the `mount-w-drive.bat` file
 3. click `W:\Launch ConEmu.lnk` to open a command prompt
