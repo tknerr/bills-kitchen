@@ -40,7 +40,7 @@ The following changes are applied to your environment by running `W:\set-env.bat
 * Constraining as much as possible to the `W:\` drive:
  * `%HOME%` points to `W:\home`
  * `%VAGRANT_HOME%` points to `W:\home\.vagrant.d`
- * *exception*: `%VBOX_USER_HOME%` points to `%USERPROFILE%`, i.e. VirtualBox VMs are still stored under `%USERPROFILE%`!
+ * **exception**: `%VBOX_USER_HOME%` points to `%USERPROFILE%`, i.e. VirtualBox VMs are still stored under `%USERPROFILE%`
 * Fixing annoyances:
  * `set TERM=rxvt` to fix vagrant ssh issues
  * `set ANSICON=true` to get coloured output with Vagrant on Windows
@@ -57,7 +57,7 @@ Registered doskey aliases:
 
 These repositories are used for acceptance-testing the [common usage scenarios](https://github.com/tknerr/bills-kitchen/blob/master/spec/acceptance/usage_scenarios_spec.rb):
 
-* A [sample-application-cookbook](https://github.com/tknerr/sample-application-cookbook) with all kinds cookbook tests: syntax check, style checks, linting, unit and integration tests (see [README](https://github.com/tknerr/sample-application-cookbook/blob/master/README.md))
+* A [sample-application-cookbook](https://github.com/tknerr/sample-application-cookbook) with all kinds cookbook tests: syntax check, style checks, linting, unit and integration tests
 * A [sample-infrastructure-repo](https://github.com/tknerr/sample-infrastructure-repo) which defines a sample server infrastructure with environments and databages via Vagrant / Chef Solo
 
 ## Prerequisites
