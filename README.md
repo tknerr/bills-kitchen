@@ -21,8 +21,7 @@ These plugins are pre-installed:
 
  * [bundler](http://bundler.io/) is the only pre-installed gem, use project-specific `Gemfile` for everything else
  * [bindler](https://github.com/fgrehm/bindler) is the only pre-installed vagrant plugin, use project-specific `plugins.json` for everyting else
- * [knife-audit](https://github.com/jbz/knife-audit) and [knife-server](https://github.com/fnichol/knife-server) are exemplary pre-installed knife plugins.
-  * use `W:/tools/chef/opscode/chef/embedded/bin/gem install <plugin>` to install more
+ * [knife-audit](https://github.com/jbz/knife-audit) and [knife-server](https://github.com/fnichol/knife-server) are exemplary pre-installed knife plugins. Use `W:/tools/chef/opscode/chef/embedded/bin/gem install <plugin>` to install more
 
 ### Supporting Tools
 
