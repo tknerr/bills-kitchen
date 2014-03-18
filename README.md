@@ -53,9 +53,9 @@ Registered doskey aliases:
 * run `be <command>` for `bundle exec <command>`
 * run `vi <file_or_dir>` for `sublime_text <file_or_dir>` 
 
-### Example Repositories
+### Examples
 
-These repositories are used during the [acceptance tests](https://github.com/tknerr/bills-kitchen/blob/master/spec/acceptance/usage_scenarios_spec.rb) for running the common usage scenarios:
+These repositories are used for acceptance-testing the [common usage scenarios](https://github.com/tknerr/bills-kitchen/blob/master/spec/acceptance/usage_scenarios_spec.rb):
 
 * A [sample-application-cookbook](https://github.com/tknerr/sample-application-cookbook) with all kinds cookbook tests: syntax check, style checks, linting, unit and integration tests (see [README](https://github.com/tknerr/sample-application-cookbook/blob/master/README.md))
 * A [sample-infrastructure-repo](https://github.com/tknerr/sample-infrastructure-repo) which defines a sample server infrastructure with environments and databages via Vagrant / Chef Solo
@@ -73,9 +73,9 @@ As a prerequisite for building bill's kitchen you need 7zip installed in `C:\Pro
 
 To build the kitchen (make sure you don't have spaces in the path):
 ```
-gem install bundler
-bundle install
-rake build
+$ gem install bundler
+$ bundle install
+$ rake build
 ```
 
 This might take a while (you can go fetch a coffee). It will download the external dependencies, install the tools and prepare everything else we need in the kitchen into the `target/build` directory. Finally it runs the `spec/integration` examples to ensure everything is properly installed.
@@ -84,7 +84,7 @@ This might take a while (you can go fetch a coffee). It will download the extern
 
 To run the more comprehensive `spec/acceptance` tests:
 ```
-rake acceptance
+$ rake acceptance
 ```
 
 This will use various of the tools in combination by running the main usage scenarios, e.g.:
@@ -97,7 +97,7 @@ This will use various of the tools in combination by running the main usage scen
 
 Finally, if all the tests pass you can create a portable zip package:
 ```
-rake package
+$ rake package
 ```
 
 This will and finally package everything in the `target/build` directory into `target/bills-kitchen-<version>.7z`.
