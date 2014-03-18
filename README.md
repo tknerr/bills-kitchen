@@ -1,23 +1,28 @@
 
-Bill's Kitchen
-==============
+# Bill's Kitchen
 
-All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a portable package:
+All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a portable package.
 
- * Main Tools
+
+## Main Tools
+
 	* [Ruby](http://rubyinstaller.org/downloads/) 1.9.3 + [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.5.2
 		* [bundler](http://bundler.io/) is the only pre-installed gem, everything else is expected to be managed via project-specific `Gemfile`
  	* [Vagrant](http://vagrantup.com/) 1.3.6
  		* [bindler](https://github.com/fgrehm/bindler) is the only pre-installed vagrant plugin, everything else is expected to be managed via project-specific `plugins.json`
  	* [Omnibus Chef](http://www.getchef.com/chef/install/) 11.10.4
  		* [knife-audit](https://github.com/jbz/knife-audit) and [knife-server](https://github.com/fnichol/knife-server) are exemplary pre-installed knife plugins. Install more via `W:/tools/chef/opscode/chef/embedded/bin/gem install <plugin>`
- * Supporting Tools
+
+## Supporting Tools
+
  	* [ConEmu](https://code.google.com/p/conemu-maximus5/) - a better windows console with colours, tabs, etc...
  	* [SublimeText2](http://www.sublimetext.com/) - a better editor (trial version, please buy!) with additional packages for [Chef](https://github.com/cabeca/SublimeChef) and [Cucumber](https://github.com/npverni/cucumber-sublime2-bundle) installed
  	* [PortableGit](https://code.google.com/p/msysgit/) - git client for windows (preconfigured with [kdiff3](http://kdiff3.sourceforge.net/) as diff/merge tool)
  	* [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) - the SSH client for windows
  	* [Cygwin](http://www.cygwin.com/)-based `ssh.exe` and `rsync.exe` to make rsync-based synced folders with Vagrant work on Windows
- * Environmental Changes (all via `W:\set-env.bat`)
+
+## Environmental Changes (all via `W:\set-env.bat`)
+
  	* Constraining as much as possible to the `W:\` drive:
  		* `%HOME%` points to `W:\home`
  		* `%VAGRANT_HOME%` points to `W:\home\.vagrant.d`
@@ -26,24 +31,26 @@ All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows,
  		* `set TERM=rxvt` to fix vagrant ssh issues
  		* `set ANSICON=true` to get coloured output with Vagrant on Windows
  		* `set SSL_CERT_FILE=W:\home\cacert.pem` pointing to recent CA certs avoiding Ruby SSL errors
- * Aliases
+
+## Aliases
+
  	* run `be <command>` for `bundle exec <command>`
  	* run `vi <file_or_dir>` for `sublime_text <file_or_dir>` 
- * Example Repositories
+
+## Example Repositories
+
  	* A [sample-application-cookbook](https://github.com/tknerr/sample-application-cookbook) with all kinds cookbook tests: syntax check, style checks, linting, unit and integration tests (see [README](https://github.com/tknerr/sample-application-cookbook/blob/master/README.md))
  	* A [sample-infrastructure-repo](https://github.com/tknerr/sample-infrastructure-repo) which defines a sample server infrastructure with environments and databages via Vagrant / Chef Solo
 
 The only requirement for using the devpack is a recent version of [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (couldn't make that one portable).
 
 
-Screenshot
-==========
+# Screenshot
 
 ![Bill's Kitchen Screenshot](https://raw.github.com/tknerr/bills-kitchen/master/doc/bills_kitchen_screenshot.png) 
 
 
-Installation
-============
+# Installation
 
 As a prerequisite for building bill's kitchen you need 7zip installed in `C:\Program Files\7-Zip\7z.exe`.
 
@@ -75,8 +82,7 @@ rake package
 This will and finally package everything in the `target/build` directory into `target/bills-kitchen-<version>.7z`.
 
 
-Usage
-=====
+# Usage
 
 Make sure you have  [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed, then:
 
