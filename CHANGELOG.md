@@ -5,6 +5,7 @@
  * add up-to-date CA certs and set `SSL_CERT_FILE` ([#45](https://github.com/tknerr/bills-kitchen/issues/45))
  * add Vagrant's embedded dir to the `PATH` ([#46](https://github.com/tknerr/bills-kitchen/pull/46))
  * tool updates ([#43](https://github.com/tknerr/bills-kitchen/pull/43)):
+  * update to Ruby 1.9.3p545
   * update to Vagrant 1.3.5
   * update to Omnibus Chef 11.10.4 (in favor of gem install)
   * update to ConEmu 140304
