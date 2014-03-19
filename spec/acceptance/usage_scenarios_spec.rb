@@ -30,6 +30,12 @@ describe "usage scenarios" do
     it "clones an application cookbook via `git clone`" do
       cmd_succeeds("cd #{REPO_DIR} && git clone https://github.com/tknerr/sample-application-cookbook.git")
     end
+    # for release check out branches as per https://gist.github.com/2928593
+    if is_release_build?
+      it "checks out the `bills-kitchen-#{release_version}_branch` via `git checkout`" do
+        cmd_succeeds("cd #{APP_COOKBOOK_DIR} && git checkout -t origin/bills-kitchen-#{release_version}_branch")
+      end
+    end
     it "installs gem dependencies via `bundle exec`" do
       cmd_succeeds("cd #{APP_COOKBOOK_DIR} && bundle install")
     end
@@ -44,6 +50,12 @@ describe "usage scenarios" do
   describe "managing infrastructure" do
     it "clones an infrastructure repo via `git clone`" do
       cmd_succeeds("cd #{REPO_DIR} && git clone https://github.com/tknerr/sample-infrastructure-repo.git")
+    end
+    # for release check out branches as per https://gist.github.com/2928593
+    if is_release_build?
+      it "checks out the `bills-kitchen-#{release_version}_branch` via `git checkout`" do
+        cmd_succeeds("cd #{INRA_REPO_DIR} && git checkout -t origin/bills-kitchen-#{release_version}_branch")
+      end
     end
     it "installs vagrant plugin dependencies via `vagrant plugin bundle`" do
       cmd_succeeds("cd #{INFRA_REPO_DIR} && vagrant plugin bundle")

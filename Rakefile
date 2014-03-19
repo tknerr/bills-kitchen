@@ -58,6 +58,9 @@ end
 
 def run_tests(level)
   Bundler.with_clean_env do
+    if release?
+      ENV['BK_RELEASE_VERSION'] = major_version
+    end
     sh "rspec spec/#{level} -fd -c"
   end
 end
