@@ -41,6 +41,7 @@ The following changes are applied to your environment by running `W:\set-env.bat
  * `%HOME%` points to `W:\home`
  * `%VAGRANT_HOME%` points to `W:\home\.vagrant.d`
  * **exception**: `%VBOX_USER_HOME%` points to `%USERPROFILE%`, i.e. VirtualBox VMs are still stored under `%USERPROFILE%`
+ * `%PATH%` is preprended with the bin dirs of the tools in `W:\tools\`
 * Fixing annoyances:
  * `set TERM=rxvt` to fix vagrant ssh issues
  * `set ANSICON=true` to get coloured output with Vagrant on Windows
@@ -110,6 +111,5 @@ Make sure you have [VirtualBox](https://www.virtualbox.org/wiki/Downloads) insta
 1. unzip the `target/bills-kitchen-<version>.7z` somewhere
 2. mount the kitchen to the `W:\` drive by double-clicking the `mount-w-drive.bat` file
 3. click `W:\Launch ConEmu.lnk` to open a command prompt
-4. in the command prompt run `W:\set-env.bat` to set up the PATH etc 
-5. walk through the [GETTING_STARTED](file://W:/_GETTING_STARTED.html) tutorial to get familiar with Vagrant, Chef & Co
-6. continue with the [COOKBOOK_DEVELOPMENT](file://W:/_COOKBOOK_DEVELOPMENT.html) guide and start cooking your own recipes!
+4. in the command prompt run `W:\set-env.bat` to set up the environment
+5. start hacking!
