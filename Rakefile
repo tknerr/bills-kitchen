@@ -29,7 +29,6 @@ task :build do
   install_gems
   clone_repositories
   run_tests "integration"
-  assemble_kitchen
 end
 
 desc 'creates a backup of the target/build directory'
@@ -47,6 +46,11 @@ task :acceptance do
   run_tests "acceptance"
 end
 
+desc 'assemble `target/build` into a .7z package'
+task :package do
+  assemble_kitchen
+end
+
 # runs the install step with the given name (internal task for debugging)
 task :run, [:method_name] do |t, args|
   self.send(args[:method_name].to_sym)
@@ -60,7 +64,7 @@ end
 
 def recreate_dirs
   FileUtils.rm_rf BUILD_DIR
-  %w{ boxes docs home install repo tools }.each do |dir|
+  %w{ boxes home install repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
   end
   FileUtils.mkdir_p CACHE_DIR
@@ -210,10 +214,8 @@ def clone_repositories
 end
 
 def assemble_kitchen
-  if release?
-    reset_git_user
-    pack BUILD_DIR, "#{TARGET_DIR}/bills-kitchen-#{VERSION}.7z"
-  end
+  reset_git_user
+  pack BUILD_DIR, "#{TARGET_DIR}/bills-kitchen-#{VERSION}.7z"
 end
 
 def download_and_unpack(url, target_dir, includes = []) 

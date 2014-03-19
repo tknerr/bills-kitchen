@@ -15,7 +15,14 @@
   * update to bundler 1.5.3
   * remove pre-installed chef gem in favor of Omnibus Chef
   * install knife-audit and knife-server to Omnibus embedded Ruby
- * add integration tests for bills-kitchen ([#47](https://github.com/tknerr/bills-kitchen/pull/47))
+ * add automated testing ([#4](https://github.com/tknerr/bills-kitchen/issues/4))
+  * add integration tests that run during `rake build` ([#47](https://github.com/tknerr/bills-kitchen/pull/47))
+  * add acceptance tests (run `rake acceptance`) ([#49](https://github.com/tknerr/bills-kitchen/pull/49))
+  * disable travis-ci since there's nothing useful we could test there (we need windows) :-(
+ * documentation updates:
+  * bring README up-to-date ([#44](https://github.com/tknerr/bills-kitchen/issues/44))
+  * remove outdated GETTING_STARTED and COOKBOOK_DEVELOPMENT guides ([#40](https://github.com/tknerr/bills-kitchen/issues/40))
+  * remove `W:\docs` with outdated doc materials and shortcuts
 
 
 # [1.0.0.alpha3] from 10/05/2013
