@@ -54,7 +54,7 @@ describe "usage scenarios" do
     # for release check out branches as per https://gist.github.com/2928593
     if release_build?
       it "checks out the `bills-kitchen-#{release_version}_branch` via `git checkout`" do
-        cmd_succeeds("cd #{INRA_REPO_DIR} && git checkout -t origin/bills-kitchen-#{release_version}_branch")
+        cmd_succeeds("cd #{INFRA_REPO_DIR} && git checkout -t origin/bills-kitchen-#{release_version}_branch")
       end
     end
     it "installs vagrant plugin dependencies via `vagrant plugin bundle`" do
