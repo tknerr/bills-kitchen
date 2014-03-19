@@ -7,10 +7,10 @@ describe "bills kitchen" do
 
   describe "tools" do
     it "installs Ruby 2.0.0p451" do
-      run_cmd("ruby -v").should match('1.9.3p429')
+      run_cmd("ruby -v").should match('1.9.3p545')
     end
     it "installs RubyGems 2.0.14" do
-      run_cmd("gem -v").should match("1.8.24")
+      run_cmd("gem -v").should match("1.8.28")
     end
     it "installs Chef 11.10.4" do
       run_cmd("knife -v").should match('Chef: 11.10.4')

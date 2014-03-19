@@ -1,9 +1,9 @@
 
 require_relative '../helpers'
 
-describe "usage scenarios" do
+include Helpers
 
-  include Helpers
+describe "usage scenarios" do
 
   REPO_DIR = "#{BUILD_DIR}/repo"
   APP_COOKBOOK_DIR = "#{REPO_DIR}/sample-application-cookbook"
@@ -31,7 +31,7 @@ describe "usage scenarios" do
       cmd_succeeds("cd #{REPO_DIR} && git clone https://github.com/tknerr/sample-application-cookbook.git")
     end
     # for release check out branches as per https://gist.github.com/2928593
-    if is_release_build?
+    if release_build?
       it "checks out the `bills-kitchen-#{release_version}_branch` via `git checkout`" do
         cmd_succeeds("cd #{APP_COOKBOOK_DIR} && git checkout -t origin/bills-kitchen-#{release_version}_branch")
       end
@@ -52,7 +52,7 @@ describe "usage scenarios" do
       cmd_succeeds("cd #{REPO_DIR} && git clone https://github.com/tknerr/sample-infrastructure-repo.git")
     end
     # for release check out branches as per https://gist.github.com/2928593
-    if is_release_build?
+    if release_build?
       it "checks out the `bills-kitchen-#{release_version}_branch` via `git checkout`" do
         cmd_succeeds("cd #{INRA_REPO_DIR} && git checkout -t origin/bills-kitchen-#{release_version}_branch")
       end
