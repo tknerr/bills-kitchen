@@ -10,10 +10,3 @@ begin
 rescue LoadError
   # vagrant-vbguest not installed
 end
-
-# use a slightly modified omnibus install.sh downloads to `/tmp/vagrant-cache/chef` and thus works with cachier
-# see https://github.com/fgrehm/vagrant-cachier/issues/13
-if (defined? VagrantPlugins::Cachier && defined? VagrantPlugins::Omnibus)
-  ENV['OMNIBUS_INSTALL_URL']="https://gist.github.com/tknerr/6760407/raw/4879d46917b57e002b9dd6a3bdb096e8631db1a6/install.sh"
-  #puts "setting custom OMNIBUS_INSTALL_URL for vagrant-cachier: #{ENV['OMNIBUS_INSTALL_URL']}"
-end

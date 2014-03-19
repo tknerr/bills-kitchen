@@ -4,6 +4,7 @@
  * set `ANSICON` env var so that Vagrant uses colored output on Windows
  * add up-to-date CA certs and set `SSL_CERT_FILE` ([#45](https://github.com/tknerr/bills-kitchen/issues/45))
  * add Vagrant's embedded dir to the `PATH` ([#46](https://github.com/tknerr/bills-kitchen/pull/46))
+ * remove custom `OMNIBUS_INSTALL_URL` now that the official one supports caching (see opscode/opscode-omnitruck#33)
  * tool updates ([#43](https://github.com/tknerr/bills-kitchen/pull/43)):
   * update to Ruby 1.9.3p545
   * update to Vagrant 1.3.5
