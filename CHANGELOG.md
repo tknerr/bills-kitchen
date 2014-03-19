@@ -1,4 +1,8 @@
 
+# [2.0-SNAPSHOT] - unreleased
+
+ * ...
+
 # [1.0] from 19/03/2014
 
  * set `ANSICON` env var so that Vagrant uses colored output on Windows
