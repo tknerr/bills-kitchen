@@ -52,4 +52,12 @@ module Helpers
   def box_imported?(box)
     run_cmd("vagrant box list").include?(box)
   end
+  # returns true if the specs are run as part of a bills kitchen release build
+  def is_release_build?
+    release_version != nil
+  end
+  # returns the release major version env var `BK_RELEASE_VERSION`
+  def release_version
+    ENV['BK_RELEASE_VERSION']
+  end
 end
