@@ -22,6 +22,7 @@
  * documentation updates:
   * bring README up-to-date ([#44](https://github.com/tknerr/bills-kitchen/issues/44))
   * remove outdated GETTING_STARTED and COOKBOOK_DEVELOPMENT guides ([#40](https://github.com/tknerr/bills-kitchen/issues/40))
+  * remove `W:\docs` with outdated doc materials and shortcuts
 
 
 # [1.0.0.alpha3] from 10/05/2013
