@@ -103,13 +103,19 @@ $ rake package
 
 This will and finally package everything in the `target/build` directory into `target/bills-kitchen-<version>.7z`.
 
+### Changing the Mount Drive Letter
+
+By default the Ruby DevPack will be mounted to the `W:\` drive. If you need to change it you only have to update the references in these two files:
+
+* `mount-drive.cmd`
+* `unmount-drive.cmd`
 
 ## Usage
 
 Make sure you have [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed, then:
 
 1. unzip the `target/bills-kitchen-<version>.7z` somewhere
-2. mount the kitchen to the `W:\` drive by double-clicking the `mount-w-drive.bat` file
+2. mount the kitchen to the `W:\` drive by double-clicking the `mount-drive.bat` file
 3. click `W:\Launch ConEmu.lnk` to open a command prompt
 4. in the command prompt run `W:\set-env.bat` to set up the environment
 5. start hacking!
