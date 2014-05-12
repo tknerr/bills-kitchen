@@ -26,17 +26,17 @@ set GITDIR=%SCRIPT_DIR%tools\portablegit
 set HOME=%SCRIPT_DIR%home
 
 :: prompt for .gitconfig username/email
-FOR /F %%a IN ('cmd /C %GITDIR%\cmd\git config --get user.name') DO SET GIT_CONF_USERNAME=%%a
+FOR /F "usebackq tokens=*" %%a IN (`cmd /C %GITDIR%\cmd\git config --get user.name`) DO SET GIT_CONF_USERNAME=%%a
 if "%GIT_CONF_USERNAME%"=="" (
   set /p GIT_CONF_USERNAME="Your Name (will be written to %HOME%\.gitconfig):"
 )
-FOR /F %%a IN ('cmd /C %GITDIR%\cmd\git config --get user.email') DO SET GIT_CONF_EMAIL=%%a
+FOR /F "usebackq tokens=*" %%a IN (`cmd /C %GITDIR%\cmd\git config --get user.email`) DO SET GIT_CONF_EMAIL=%%a
 if "%GIT_CONF_EMAIL%"=="" (
   set /p GIT_CONF_EMAIL="Your Email (will be written to %HOME%\.gitconfig):"
 )
 :: write to .gitconfig
-cmd /C %GITDIR%\cmd\git config --global --replace user.name %GIT_CONF_USERNAME%
-cmd /C %GITDIR%\cmd\git config --global --replace user.email %GIT_CONF_EMAIL%
+cmd /C %GITDIR%\cmd\git config --global --replace user.name "%GIT_CONF_USERNAME%"
+cmd /C %GITDIR%\cmd\git config --global --replace user.email "%GIT_CONF_EMAIL%"
 
 :: toggle proxy based on env var
 if "%HTTP_PROXY%"=="" (

@@ -1,7 +1,7 @@
 
 # [2.0-SNAPSHOT] - unreleased
-
- * ...
+ 
+ * fix setting git username ([#56](https://github.com/tknerr/bills-kitchen/issues/56))
 
 # [1.0] from 19/03/2014
 
