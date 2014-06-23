@@ -15,8 +15,12 @@ set CYGWINRSYNCDIR=%SCRIPT_DIR%tools\cygwin-rsync
 set CONEMUDIR=%SCRIPT_DIR%tools\conemu
 set SUBLIMEDIR=%SCRIPT_DIR%tools\sublimetext2
 set PUTTYDIR=%SCRIPT_DIR%tools\putty
+set CLINKDIR=%SCRIPT_DIR%tools\clink
 set VAGRANTDIR=%SCRIPT_DIR%tools\vagrant\HashiCorp\Vagrant
 set CHEFDIR=%SCRIPT_DIR%tools\chef\opscode\chef
+
+:: inject clink into current cmd.exe
+call %CLINKDIR%\clink.bat inject
 
 :: set %RI_DEVKIT$ env var and add DEVKIT to the PATH
 call %DEVKITDIR%\devkitvars.bat
@@ -75,6 +79,7 @@ echo CYGWINRSYNCDIR=%CYGWINRSYNCDIR%
 echo CONEMUDIR=%CONEMUDIR%
 echo SUBLIMEDIR=%SUBLIMEDIR%
 echo PUTTYDIR=%PUTTYDIR%
+echo CLINKDIR=%CLINKDIR%
 echo VAGRANTDIR=%VAGRANTDIR%
 echo VAGRANT_HOME=%VAGRANT_HOME%
 echo CHEFDIR=%CHEFDIR%

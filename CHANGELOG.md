@@ -3,6 +3,7 @@
  
  * fix setting git username ([#56](https://github.com/tknerr/bills-kitchen/issues/56))
  * made it easier to change the mount drive letter ([#57](https://github.com/tknerr/bills-kitchen/issues/57))
+ * add clink for command autocompletion ([#55](https://github.com/tknerr/bills-kitchen/issues/55))
 
 # [1.0] from 19/03/2014
 

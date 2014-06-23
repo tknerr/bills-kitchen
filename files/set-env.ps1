@@ -9,8 +9,12 @@ $env:CYGWINRSYNCDIR = Join-Path $pwd tools\cygwin-rsync
 $env:CONEMUDIR = Join-Path $pwd tools\conemu
 $env:SUBLIMEDIR = Join-Path $pwd tools\sublimetext2
 $env:PUTTYDIR = Join-Path $pwd tools\putty
+$env:CLINKDIR = Join-Path $pwd tools\clink
 $env:VAGRANTDIR = Join-Path $pwd tools\vagrant\HashiCorp\Vagrant
 $env:CHEFDIR = Join-Path $pwd tools\chef\opscode\chef
+
+## inject clink into current cmd.exe
+invoke-expression ((Join-Path $env:CLINKDIR clink.bat) inject)
 
 ## set %RI_DEVKIT$ env var and add DEVKIT to the PATH
 invoke-expression (Join-Path $env:DEVKITDIR devkitvars.bat)
@@ -81,6 +85,7 @@ Write-Host "CYGWINRSYNCDIR=$env:CYGWINRSYNCDIR"
 Write-Host "CONEMUDIR=$env:CONEMUDIR"
 Write-Host "SUBLIMEDIR=$env:SUBLIMEDIR"
 Write-Host "PUTTYDIR=$env:PUTTYDIR"
+Write-Host "CLINKDIR=$env:CLINKDIR"
 Write-Host "VAGRANTDIR=$env:VAGRANTDIR"
 Write-Host "VAGRANT_HOME=$env:VAGRANT_HOME"
 Write-Host "CHEFDIR=$env:CHEFDIR"
