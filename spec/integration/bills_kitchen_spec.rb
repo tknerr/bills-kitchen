@@ -83,8 +83,8 @@ describe "bills kitchen" do
       it "uses the system ruby gemdir" do
         run_cmd("#{SYSTEM_RUBY}/bin/gem environment gemdir").should match("#{SYSTEM_RUBY}/lib/ruby/gems/2.0.0")
       end
-      it "has 'bundler (1.5.3)' gem installed" do
-        gem_installed "bundler", "1.5.3"
+      it "has 'bundler (1.6.2)' gem installed" do
+        gem_installed "bundler", "1.6.2"
       end
     end
 

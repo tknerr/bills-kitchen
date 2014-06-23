@@ -184,7 +184,7 @@ def install_gems
     # which results in gems being installed to your current Ruby's GEM_HOME rather than Bills Kitchen's GEM_HOME!!! 
     fail "must run `rake build` instead of `bundle exec rake build`" if ENV['GEM_HOME']
     command = "#{BUILD_DIR}/set-env.bat \
-      && gem install bundler -v 1.5.3 --no-ri --no-rdoc"
+      && gem install bundler -v 1.6.2 --no-ri --no-rdoc"
     fail "gem installation failed" unless system(command)
   end
 end
