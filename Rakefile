@@ -138,7 +138,8 @@ def download_tools
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
 #    %w{ dl.bintray.com/mitchellh/vagrant/Vagrant_1.4.3.msi                                                  vagrant },
     %w{ files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/Vagrant_1.3.5.msi             vagrant },
-    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chef-windows-11.12.8-2.windows.msi  chef}
+    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chef-windows-11.12.8-2.windows.msi  chef},
+    %w{ chefdk-trial-packages.s3.amazonaws.com/chefdk-0.1.1-20140610201455.msi                              chef-dk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')    
@@ -155,6 +156,12 @@ def fix_stuff
   # ensure omnibus chef uses the embedded ruby, see opscode/chef#1512
   Dir.glob("#{BUILD_DIR}/tools/chef/opscode/chef/bin/*.bat").each do |file|
    File.write(file, File.read(file).gsub('@"ruby.exe" "%~dpn0"', '@"%~dp0\..\embedded\bin\ruby.exe" "%~dpn0"'))
+  end
+  # fix paths if chefdk is intalled anywhere other than c:\opscode, see opscode/chef-dk#68
+  Dir.glob("#{BUILD_DIR}/tools/chef-dk/opscode/chefdk/bin/*").each do |file|
+   File.write(file, File.read(file).gsub('@"ruby.exe" "%~dpn0"', '@"%~dp0\..\embedded\bin\ruby.exe" "%~dpn0"'))
+   File.write(file, File.read(file).gsub(/Kernel.load '(.*)'/, "Kernel.load \"\\1\""))
+   File.write(file, File.read(file).gsub('c:/opscode/chefdk', '#{File.expand_path(File.dirname(__FILE__))}/..'))
   end
 end
 
