@@ -1,7 +1,7 @@
 
 $script:pwd = Split-Path $MyInvocation.MyCommand.Path
 
-$env:RUBYDIR = Join-Path $pwd tools\ruby-1.9.3
+$env:RUBYDIR = Join-Path $pwd tools\ruby-2.0.0
 $env:DEVKITDIR = Join-Path $pwd tools\devkit
 $env:KDIFF3DIR = Join-Path $pwd tools\kdiff3
 $env:CYGWINSSHDIR = Join-Path $pwd tools\cygwin-ssh

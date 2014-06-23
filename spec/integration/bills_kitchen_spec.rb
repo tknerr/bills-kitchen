@@ -6,11 +6,11 @@ describe "bills kitchen" do
   include Helpers
 
   describe "tools" do
-    it "installs Ruby 2.0.0p451" do
-      run_cmd("ruby -v").should match('1.9.3p545')
+    it "installs Ruby 2.0.0p481" do
+      run_cmd("ruby -v").should match('2.0.0p481')
     end
     it "installs RubyGems 2.0.14" do
-      run_cmd("gem -v").should match("1.8.28")
+      run_cmd("gem -v").should match("2.0.14")
     end
     it "installs Chef 11.10.4" do
       run_cmd("knife -v").should match('Chef: 11.10.4')
@@ -81,7 +81,7 @@ describe "bills kitchen" do
         run_cmd("which gem").should match(convert_slashes("#{SYSTEM_RUBY}/bin/gem"))
       end
       it "uses the system ruby gemdir" do
-        run_cmd("#{SYSTEM_RUBY}/bin/gem environment gemdir").should match("#{SYSTEM_RUBY}/lib/ruby/gems/1.9.1")
+        run_cmd("#{SYSTEM_RUBY}/bin/gem environment gemdir").should match("#{SYSTEM_RUBY}/lib/ruby/gems/2.0.0")
       end
       it "has 'bundler (1.5.3)' gem installed" do
         gem_installed "bundler", "1.5.3"

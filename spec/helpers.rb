@@ -1,7 +1,7 @@
 
 BUILD_DIR=File.expand_path('./target/build')
 LOGFILE = "#{BUILD_DIR}/acceptance.log"
-SYSTEM_RUBY = "#{BUILD_DIR}/tools/ruby-1.9.3"
+SYSTEM_RUBY = "#{BUILD_DIR}/tools/ruby-2.0.0"
 OMNIBUS_RUBY = "#{BUILD_DIR}/tools/chef/opscode/chef/embedded"
 VAGRANT_RUBY = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded"
 

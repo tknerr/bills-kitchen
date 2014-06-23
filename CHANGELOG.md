@@ -3,7 +3,10 @@
  
  * fix setting git username ([#56](https://github.com/tknerr/bills-kitchen/issues/56))
  * made it easier to change the mount drive letter ([#57](https://github.com/tknerr/bills-kitchen/issues/57))
- * add clink for command autocompletion ([#55](https://github.com/tknerr/bills-kitchen/issues/55))
+ * tool updates
+  * add clink for command autocompletion ([#55](https://github.com/tknerr/bills-kitchen/issues/55))
+  * update to Ruby (x64) 2.0.0-p481
+  * update to DevKit (x64) 4.7.2
 
 # [1.0] from 19/03/2014
 
