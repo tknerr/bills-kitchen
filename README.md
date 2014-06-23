@@ -13,7 +13,7 @@ The main tools for cooking with Chef / Vagrant:
 
 * [Ruby](http://rubyinstaller.org/downloads/) 2.0.0 + [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
 * [Vagrant](http://vagrantup.com/) 1.3.5
-* [Omnibus Chef](http://www.getchef.com/chef/install/) 11.10.4
+* [Omnibus Chef](http://www.getchef.com/chef/install/) 11.12.8
 
 ### Plugins
 

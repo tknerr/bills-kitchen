@@ -12,8 +12,8 @@ describe "bills kitchen" do
     it "installs RubyGems 2.0.14" do
       run_cmd("gem -v").should match("2.0.14")
     end
-    it "installs Chef 11.10.4" do
-      run_cmd("knife -v").should match('Chef: 11.10.4')
+    it "installs Chef 11.12.8" do
+      run_cmd("knife -v").should match('Chef: 11.12.8')
     end
     it "installs Vagrant 1.3.5" do
       run_cmd("vagrant -v").should match('1.3.5')

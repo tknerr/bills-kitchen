@@ -20,6 +20,7 @@ task :build do
   recreate_dirs
   download_tools
   move_ruby
+  fix_stuff
   download_installables
   copy_files
   generate_docs
@@ -137,7 +138,7 @@ def download_tools
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
 #    %w{ dl.bintray.com/mitchellh/vagrant/Vagrant_1.4.3.msi                                                  vagrant },
     %w{ files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/Vagrant_1.3.5.msi             vagrant },
-    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chef-client-11.10.4-1.windows.msi   chef}
+    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chef-windows-11.12.8-2.windows.msi  chef}
   ]
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')    
@@ -148,6 +149,13 @@ end
 def move_ruby
   FileUtils.mv "#{BUILD_DIR}/tools/ruby/ruby-2.0.0-p481-x64-mingw32", "#{BUILD_DIR}/tools/ruby-2.0.0"
   FileUtils.rm_rf "#{BUILD_DIR}/tools/ruby"
+end
+
+def fix_stuff
+  # ensure omnibus chef uses the embedded ruby, see opscode/chef#1512
+  Dir.glob("#{BUILD_DIR}/tools/chef/opscode/chef/bin/*.bat").each do |file|
+   File.write(file, File.read(file).gsub('@"ruby.exe" "%~dpn0"', '@"%~dp0\..\embedded\bin\ruby.exe" "%~dpn0"'))
+  end
 end
 
 def download_installables

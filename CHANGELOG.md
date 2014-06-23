@@ -8,6 +8,7 @@
   * update to Ruby (x64) 2.0.0-p481
   * update to DevKit (x64) 4.7.2
   * update to bundler 1.6.2
+  * update to Omnibus Chef 11.12.8 (still Ruby 1.9.x)
 
 # [1.0] from 19/03/2014
 
