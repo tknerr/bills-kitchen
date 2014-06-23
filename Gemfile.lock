@@ -17,6 +17,7 @@ GEM
     rspec-mocks (2.14.6)
 
 PLATFORMS
+  x64-mingw32
   x86-mingw32
 
 DEPENDENCIES

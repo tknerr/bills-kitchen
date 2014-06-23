@@ -36,6 +36,12 @@ describe "usage scenarios" do
         cmd_succeeds("cd #{APP_COOKBOOK_DIR} && git checkout -t origin/bills-kitchen-#{release_version}_branch")
       end
     end
+
+    # XXX: temporarily work on branch
+    it "checks out the `chefdk-update` branch" do
+      cmd_succeeds("cd #{APP_COOKBOOK_DIR} && git checkout -t origin/chefdk-update")
+    end
+
     it "installs gem dependencies via `bundle exec`" do
       cmd_succeeds("cd #{APP_COOKBOOK_DIR} && bundle install")
     end
@@ -57,6 +63,12 @@ describe "usage scenarios" do
         cmd_succeeds("cd #{INFRA_REPO_DIR} && git checkout -t origin/bills-kitchen-#{release_version}_branch")
       end
     end
+
+    # XXX: temporarily work on branch
+    it "checks out the `chefdk-update` branch" do
+      cmd_succeeds("cd #{INFRA_REPO_DIR} && git checkout -t origin/chefdk-update")
+    end
+
     it "installs vagrant plugin dependencies via `vagrant plugin bundle`" do
       cmd_succeeds("cd #{INFRA_REPO_DIR} && vagrant plugin bundle")
     end
