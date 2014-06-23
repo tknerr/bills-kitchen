@@ -31,7 +31,7 @@ describe "bills kitchen" do
       marker_file = "#{BUILD_DIR}/merged.md"
       begin
         run_cmd("kdiff3 README.md README.md --auto -cs LineEndStyle=0 -o #{marker_file}")
-        File.exist?(marker_file).should be_true
+        File.exist?(marker_file).should be true
       ensure
         File.delete(marker_file) if File.exist?(marker_file)
       end

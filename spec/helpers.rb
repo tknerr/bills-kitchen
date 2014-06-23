@@ -5,6 +5,13 @@ SYSTEM_RUBY = "#{BUILD_DIR}/tools/ruby-2.0.0"
 OMNIBUS_RUBY = "#{BUILD_DIR}/tools/chef/opscode/chef/embedded"
 VAGRANT_RUBY = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded"
 
+# enable :should syntax for rspec 3
+RSpec.configure do |config|
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
+end
+
 module Helpers
   # sets the environment via set-env.bat before running the command
   # and returns whatever the cmd writes (captures both stdout and stderr)
@@ -26,7 +33,7 @@ module Helpers
   end
   # runs #system_cmd and checks for success (i.e. exit status 0)
   def cmd_succeeds(cmd)
-    system_cmd(cmd).should be_true
+    system_cmd(cmd).should be true
   end
   # checks if the given line is contained in the environment
   def env_match(line)
