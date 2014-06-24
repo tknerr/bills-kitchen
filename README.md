@@ -19,8 +19,16 @@ The main tools for cooking with Chef / Vagrant:
 
 These plugins are pre-installed:
 
- * [bindler](https://github.com/fgrehm/bindler) is the only pre-installed vagrant plugin, use project-specific `plugins.json` for everyting else
- * [knife-audit](https://github.com/jbz/knife-audit) and [knife-server](https://github.com/fnichol/knife-server) are exemplary pre-installed knife plugins. Use `W:/tools/chef/opscode/chef/embedded/bin/gem install <plugin>` to install more
+ * vagrant plugins:
+   * [vagrant-omnibus](https://github.com/schisamo/vagrant-omnibus) - installs omnibus chef in a vagrant VM
+   * [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) - caches all kinds of packages you intsall in the vagrant VMs
+   * [vagrant-berkshelf](https://github.com/berkshelf/vagrant-berkshelf) - berkshelf integration for vagrant
+   * [vagrant-application-cookbooks](https://github.com/tknerr/vagrant-application-cookbooks) - support for one top-level cookbook per vagrant VM
+   * ...use `vagrant install <plugin>` to install more
+ * knife plugins (just as an example):
+   * [knife-audit](https://github.com/jbz/knife-audit) - keeps track of which cookbooks are used by which node
+   * [knife-server](https://github.com/fnichol/knife-server) - sets up and backs uo a chef server
+   * ...use `chef gem install <plugin>` to install more
 
 ### Supporting Tools
 

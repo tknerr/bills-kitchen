@@ -69,9 +69,6 @@ describe "usage scenarios" do
       cmd_succeeds("cd #{INFRA_REPO_DIR} && git checkout -t origin/chefdk-update")
     end
 
-    it "installs vagrant plugin dependencies via `vagrant plugin bundle`" do
-      cmd_succeeds("cd #{INFRA_REPO_DIR} && vagrant plugin bundle")
-    end
     it "brings up a VM via `vagrant up`" do
       cmd_succeeds("cd #{INFRA_REPO_DIR} && vagrant up app_v2")
     end

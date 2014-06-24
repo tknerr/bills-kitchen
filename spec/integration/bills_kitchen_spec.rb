@@ -9,8 +9,8 @@ describe "bills kitchen" do
     it "installs Chef-DK 0.1.1" do
       run_cmd("chef -v").should match('Chef Development Kit Version: 0.1.1')
     end
-    it "installs Vagrant 1.3.5" do
-      run_cmd("vagrant -v").should match('1.3.5')
+    it "installs Vagrant 1.6.3" do
+      run_cmd("vagrant -v").should match('1.6.3')
     end
     it "installs ssh.exe" do
       run_cmd("ssh -V").should match('OpenSSH_6.0p1, OpenSSL 1.0.1c 10 May 2012')
@@ -96,10 +96,19 @@ describe "bills kitchen" do
 
     describe "vagrant ruby" do
       it "uses the vagrant embedded gemdir" do
-        run_cmd("#{VAGRANT_RUBY}/bin/gem environment gemdir").should match("#{VAGRANT_RUBY}/lib/ruby/gems/1.9.1")
+        run_cmd("#{VAGRANT_RUBY}/bin/gem environment gemdir").should match("#{VAGRANT_RUBY}/lib/ruby/gems/2.0.0")
       end
-      it "has 'bindler (0.1.3)' plugin installed" do
-        vagrant_plugin_installed "bindler", "0.1.3"
+      it "has 'vagrant-application-cookbooks (0.1.4)' plugin installed" do
+        vagrant_plugin_installed "vagrant-application-cookbooks", "0.1.4"
+      end
+      it "has 'vagrant-omnibus (1.4.1)' plugin installed" do
+        vagrant_plugin_installed "vagrant-omnibus", "1.4.1"
+      end
+      it "has 'vagrant-cachier (0.7.2)' plugin installed" do
+        vagrant_plugin_installed "vagrant-cachier", "0.7.2"
+      end
+      it "has 'vagrant-berkshelf (2.0.1)' plugin installed" do
+        vagrant_plugin_installed "vagrant-berkshelf", "2.0.1"
       end
     end
   end

@@ -134,7 +134,7 @@ def download_tools
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe                       kdiff3
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
-    %w{ files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/Vagrant_1.3.5.msi             vagrant },
+    %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3.msi                                                  vagrant },
     %w{ chefdk-trial-packages.s3.amazonaws.com/chefdk-0.1.1-20140610201455.msi                              chef-dk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
@@ -179,8 +179,10 @@ end
 def install_vagrant_plugins
   Bundler.with_clean_env do
     command = "#{BUILD_DIR}/set-env.bat \
-    && vagrant plugin install bindler --plugin-version 0.1.3 \
-    && vagrant bindler setup"
+    && vagrant plugin install vagrant-application-cookbooks --plugin-version 0.1.4 \
+    && vagrant plugin install vagrant-omnibus --plugin-version 1.4.1 \
+    && vagrant plugin install vagrant-cachier --plugin-version 0.7.2 \
+    && vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1"
     fail "vagrant plugin installation failed" unless system(command)
   end
 end
