@@ -11,15 +11,14 @@ All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows,
 
 The main tools for cooking with Chef / Vagrant:
 
-* [Ruby](http://rubyinstaller.org/downloads/) 2.0.0 + [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
+* [Chef-DK](http://www.getchef.com/downloads/chef-dk/windows/) 0.1.1, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.0.0
+* [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
 * [Vagrant](http://vagrantup.com/) 1.3.5
-* [Omnibus Chef](http://www.getchef.com/chef/install/) 11.12.8
 
 ### Plugins
 
 These plugins are pre-installed:
 
- * [bundler](http://bundler.io/) is the only pre-installed gem, use project-specific `Gemfile` for everything else
  * [bindler](https://github.com/fgrehm/bindler) is the only pre-installed vagrant plugin, use project-specific `plugins.json` for everyting else
  * [knife-audit](https://github.com/jbz/knife-audit) and [knife-server](https://github.com/fnichol/knife-server) are exemplary pre-installed knife plugins. Use `W:/tools/chef/opscode/chef/embedded/bin/gem install <plugin>` to install more
 

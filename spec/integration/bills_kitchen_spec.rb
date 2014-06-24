@@ -6,14 +6,8 @@ describe "bills kitchen" do
   include Helpers
 
   describe "tools" do
-    it "installs Ruby 2.0.0p481" do
-      run_cmd("ruby -v").should match('2.0.0p481')
-    end
-    it "installs RubyGems 2.0.14" do
-      run_cmd("gem -v").should match("2.0.14")
-    end
-    it "installs Chef 11.12.8" do
-      run_cmd("knife -v").should match('Chef: 11.12.8')
+    it "installs Chef-DK 0.1.1" do
+      run_cmd("chef -v").should match('Chef Development Kit Version: 0.1.1')
     end
     it "installs Vagrant 1.3.5" do
       run_cmd("vagrant -v").should match('1.3.5')
@@ -73,24 +67,24 @@ describe "bills kitchen" do
 
   describe "ruby installations" do
 
-    describe "system ruby" do
+    describe "chefdk as the primary ruby" do
       it "provides the default `ruby` command" do
-        run_cmd("which ruby").should match(convert_slashes("#{SYSTEM_RUBY}/bin/ruby.EXE"))
+        run_cmd("which ruby").should match(convert_slashes("#{CHEFDK_RUBY}/bin/ruby.EXE"))
       end
       it "provides the default `gem` command" do
-        run_cmd("which gem").should match(convert_slashes("#{SYSTEM_RUBY}/bin/gem"))
-      end
-      it "uses the system ruby gemdir" do
-        run_cmd("#{SYSTEM_RUBY}/bin/gem environment gemdir").should match("#{SYSTEM_RUBY}/lib/ruby/gems/2.0.0")
-      end
-      it "has 'bundler (1.6.2)' gem installed" do
-        gem_installed "bundler", "1.6.2"
+        run_cmd("which gem").should match(convert_slashes("#{CHEFDK_RUBY}/bin/gem"))
       end
     end
 
-    describe "omnibus ruby" do
-      it "uses the omnibus embedded gemdir" do
-        run_cmd("#{OMNIBUS_RUBY}/bin/gem environment gemdir").should match("#{OMNIBUS_RUBY}/lib/ruby/gems/1.9.1")  
+    describe "chefdk ruby" do
+      it "installs Chef 11.14.0.alpha.5" do
+        run_cmd("knife -v").should match('Chef: 11.14.0.alpha.5')
+      end
+      it "uses the chef-dk embedded gemdir" do
+        run_cmd("#{CHEFDK_RUBY}/bin/gem environment gemdir").should match("#{CHEFDK_RUBY}/lib/ruby/gems/2.0.0")
+      end
+      it "has 'bundler (1.5.2)' gem installed" do
+        gem_installed "bundler", "1.5.2"
       end
       it "has 'knife-audit (0.2.0)' plugin installed" do
         knife_plugin_installed "knife-audit", "0.2.0"
@@ -102,7 +96,7 @@ describe "bills kitchen" do
 
     describe "vagrant ruby" do
       it "uses the vagrant embedded gemdir" do
-        run_cmd("#{VAGRANT_RUBY}/bin/gem environment gemdir").should match("#{VAGRANT_RUBY}/lib/ruby/gems/1.9.1")  
+        run_cmd("#{VAGRANT_RUBY}/bin/gem environment gemdir").should match("#{VAGRANT_RUBY}/lib/ruby/gems/1.9.1")
       end
       it "has 'bindler (0.1.3)' plugin installed" do
         vagrant_plugin_installed "bindler", "0.1.3"

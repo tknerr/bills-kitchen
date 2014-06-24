@@ -1,8 +1,7 @@
 
 BUILD_DIR=File.expand_path('./target/build')
 LOGFILE = "#{BUILD_DIR}/acceptance.log"
-SYSTEM_RUBY = "#{BUILD_DIR}/tools/ruby-2.0.0"
-OMNIBUS_RUBY = "#{BUILD_DIR}/tools/chef/opscode/chef/embedded"
+CHEFDK_RUBY = "#{BUILD_DIR}/tools/chef-dk/opscode/chefdk/embedded"
 VAGRANT_RUBY = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded"
 
 # enable :should syntax for rspec 3
@@ -39,13 +38,13 @@ module Helpers
   def env_match(line)
     run_cmd("set").should match(/^#{convert_slashes(line)}$/)
   end
-  # checks if the given gem is installed at version
-  def gem_installed(name, version, gem_cmd = "#{SYSTEM_RUBY}/bin/gem")
-    run_cmd("#{gem_cmd} list").should match("#{name} \\(#{version}\\)")
+  # checks if the given gem is installed at version in the CHEFDK_RUBY
+  def gem_installed(name, version)
+    run_cmd("#{CHEFDK_RUBY}/bin/gem list").should match("#{name} \\(#{version}\\)")
   end
   # checks if the given gem is installed at version
   def knife_plugin_installed(name, version)
-    gem_installed name, version, "#{OMNIBUS_RUBY}/bin/gem"
+    gem_installed name, version
   end
   # checks if the given gem is installed at version
   def vagrant_plugin_installed(name, version)

@@ -7,7 +7,6 @@
 set SCRIPT_DIR=%~dp0
 
 :: for these we need the bin dirs in PATH
-set RUBYDIR=%SCRIPT_DIR%tools\ruby-2.0.0
 set DEVKITDIR=%SCRIPT_DIR%tools\devkit
 set KDIFF3DIR=%SCRIPT_DIR%tools\kdiff3
 set CYGWINSSHDIR=%SCRIPT_DIR%tools\cygwin-ssh
@@ -17,7 +16,7 @@ set SUBLIMEDIR=%SCRIPT_DIR%tools\sublimetext2
 set PUTTYDIR=%SCRIPT_DIR%tools\putty
 set CLINKDIR=%SCRIPT_DIR%tools\clink
 set VAGRANTDIR=%SCRIPT_DIR%tools\vagrant\HashiCorp\Vagrant
-set CHEFDIR=%SCRIPT_DIR%tools\chef\opscode\chef
+set CHEFDKDIR=%SCRIPT_DIR%tools\chef-dk\opscode\chefdk
 
 :: inject clink into current cmd.exe
 call %CLINKDIR%\clink.bat inject
@@ -28,6 +27,11 @@ call %DEVKITDIR%\devkitvars.bat
 :: use portable git, looks for %HOME%\.gitconfig 
 set GITDIR=%SCRIPT_DIR%tools\portablegit
 set HOME=%SCRIPT_DIR%home
+
+:: Chef-DK embedded Ruby is now the primary one!
+:: see http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
+set RUBYDIR=%CHEFDKDIR%\embedded
+set GEMDIR=%HOME%\.chefdk\gem\ruby\2.0.0
 
 :: prompt for .gitconfig username/email
 FOR /F "usebackq tokens=*" %%a IN (`cmd /C %GITDIR%\cmd\git config --get user.name`) DO SET GIT_CONF_USERNAME=%%a
@@ -69,7 +73,9 @@ set ANSICON=true
 set SSL_CERT_FILE=%HOME%\cacert.pem
 
 :: show the environment
+echo CHEFDKDIR=%CHEFDKDIR%
 echo RUBYDIR=%RUBYDIR%
+echo GEMDIR=%GEMDIR%
 echo DEVKITDIR=%DEVKITDIR%
 echo VBOX_USER_HOME=%VBOX_USER_HOME%
 echo VBOX_INSTALL_PATH=%VBOX_INSTALL_PATH%
@@ -82,7 +88,6 @@ echo PUTTYDIR=%PUTTYDIR%
 echo CLINKDIR=%CLINKDIR%
 echo VAGRANTDIR=%VAGRANTDIR%
 echo VAGRANT_HOME=%VAGRANT_HOME%
-echo CHEFDIR=%CHEFDIR%
 echo GITDIR=%GITDIR%
 echo GIT_CONF_USERNAME=%GIT_CONF_USERNAME%
 echo GIT_CONF_EMAIL=%GIT_CONF_EMAIL%
@@ -92,4 +97,4 @@ echo HTTP_PROXY=%HTTP_PROXY%
 @doskey vi=sublime_text $*
 @doskey be=bundle exec $*
 
-set PATH=%CHEFDIR%\bin;%VAGRANTDIR%\bin;%RUBYDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_INSTALL_PATH%;%PATH%
+set PATH=%CHEFDKDIR%\bin;%RUBYDIR%\bin;%GEMDIR%\bin;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_INSTALL_PATH%;%PATH%

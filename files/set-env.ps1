@@ -1,7 +1,6 @@
 
 $script:pwd = Split-Path $MyInvocation.MyCommand.Path
 
-$env:RUBYDIR = Join-Path $pwd tools\ruby-2.0.0
 $env:DEVKITDIR = Join-Path $pwd tools\devkit
 $env:KDIFF3DIR = Join-Path $pwd tools\kdiff3
 $env:CYGWINSSHDIR = Join-Path $pwd tools\cygwin-ssh
@@ -11,7 +10,7 @@ $env:SUBLIMEDIR = Join-Path $pwd tools\sublimetext2
 $env:PUTTYDIR = Join-Path $pwd tools\putty
 $env:CLINKDIR = Join-Path $pwd tools\clink
 $env:VAGRANTDIR = Join-Path $pwd tools\vagrant\HashiCorp\Vagrant
-$env:CHEFDIR = Join-Path $pwd tools\chef\opscode\chef
+$env:CHEFDKDIR = Join-Path $pwd tools\chef-dk\opscode\chefdk
 
 ## inject clink into current cmd.exe
 invoke-expression ((Join-Path $env:CLINKDIR clink.bat) inject)
@@ -20,6 +19,11 @@ invoke-expression ((Join-Path $env:CLINKDIR clink.bat) inject)
 invoke-expression (Join-Path $env:DEVKITDIR devkitvars.bat)
 
 $env:HOME = Join-Path $pwd home
+
+## Chef-DK embedded Ruby is now the primary one!
+## see http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
+$env:RUBYDIR = Join-Path $env:CHEFDKDIR embedded
+$env:GEMDIR = Join-Path $env:HOME .chefdk\gem\ruby\2.0.0
 
 if($env:GITDIR -eq $NULL) {
 	$env:GITDIR = Join-Path $pwd tools\portablegit
@@ -75,7 +79,9 @@ $env:ANSICON = "true"
 $env:SSL_CERT_FILE = Join-Path $env:HOME "cacert.pem"
 
 # show the environment
+Write-Host "CHEFDKDIR=$env:CHEFDKDIR"
 Write-Host "RUBYDIR=$env:RUBYDIR"
+Write-Host "GEMDIR=$env:GEMDIR"
 Write-Host "DEVKITDIR=$env:DEVKITDIR"
 Write-Host "VBOX_USER_HOME=$env:VBOX_USER_HOME"
 Write-Host "VBOX_INSTALL_PATH=$env:VBOX_INSTALL_PATH"
@@ -88,7 +94,6 @@ Write-Host "PUTTYDIR=$env:PUTTYDIR"
 Write-Host "CLINKDIR=$env:CLINKDIR"
 Write-Host "VAGRANTDIR=$env:VAGRANTDIR"
 Write-Host "VAGRANT_HOME=$env:VAGRANT_HOME"
-Write-Host "CHEFDIR=$env:CHEFDIR"
 Write-Host "GITDIR=$env:GITDIR"
 Write-Host "GIT_CONF_USERNAME=$env:GIT_CONF_USERNAME"
 Write-Host "GIT_CONF_EMAIL=$env:GIT_CONF_EMAIL"
@@ -97,4 +102,4 @@ Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 set-alias vi "sublime_text";
 set-alias be "bundle exec"; 
 
-$env:Path = "$env:CHEFDIR\bin;$env:VAGRANTDIR\bin;$env:RUBYDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
+$env:Path = "$env:CHEFDKDIR\bin;$env:RUBYDIR\bin;$env:GEMDIR\bin;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"

@@ -5,10 +5,9 @@
  * made it easier to change the mount drive letter ([#57](https://github.com/tknerr/bills-kitchen/issues/57))
  * tool updates
   * add clink for command autocompletion ([#55](https://github.com/tknerr/bills-kitchen/issues/55))
-  * update to Ruby (x64) 2.0.0-p481
-  * update to DevKit (x64) 4.7.2
-  * update to bundler 1.6.2
-  * update to Omnibus Chef 11.12.8 (still Ruby 1.9.x)
+  * remove separate Ruby and Omnibus Chef installations in favor of [Chef-DK](http://www.getchef.com/downloads/chef-dk/windows/)
+  * Chef-DK embedded Ruby 2.0.0p451 (x86) [is now the primary Ruby](http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/)
+  * update to DevKit 4.7.2 (x86), compatible with Chef-DK Ruby 2.x
 
 # [1.0] from 19/03/2014
 
