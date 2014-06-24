@@ -19,6 +19,7 @@ desc 'downloads required resources and builds the devpack binary'
 task :build do
   recreate_dirs
   download_tools
+  move_chefdk
   fix_chefdk
   download_installables
   copy_files
@@ -141,8 +142,14 @@ def download_tools
   end
 end
 
+# move chef-dk to a shorter path to reduce the likeliness that a gem fails to install due to max path length
+def move_chefdk
+  FileUtils.mv "#{BUILD_DIR}/tools/chef-dk/opscode/chefdk", "#{BUILD_DIR}/tools/chefdk"
+  FileUtils.rm_rf "#{BUILD_DIR}/tools/chef-dk"
+end
+
 def fix_chefdk
-  Dir.glob("#{BUILD_DIR}/tools/chef-dk/opscode/chefdk/bin/*").each do |file|
+  Dir.glob("#{BUILD_DIR}/tools/chefdk/bin/*").each do |file|
     # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
     File.write(file, File.read(file).gsub('@"ruby.exe" "%~dpn0"', '@"%~dp0\..\embedded\bin\ruby.exe" "%~dpn0"'))
     # fix paths if chefdk is intalled anywhere other than c:\opscode, see opscode/chef-dk#68

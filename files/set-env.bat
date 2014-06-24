@@ -16,7 +16,7 @@ set SUBLIMEDIR=%SCRIPT_DIR%tools\sublimetext2
 set PUTTYDIR=%SCRIPT_DIR%tools\putty
 set CLINKDIR=%SCRIPT_DIR%tools\clink
 set VAGRANTDIR=%SCRIPT_DIR%tools\vagrant\HashiCorp\Vagrant
-set CHEFDKDIR=%SCRIPT_DIR%tools\chef-dk\opscode\chefdk
+set CHEFDKDIR=%SCRIPT_DIR%tools\chefdk
 
 :: inject clink into current cmd.exe
 call %CLINKDIR%\clink.bat inject

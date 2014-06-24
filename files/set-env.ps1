@@ -10,7 +10,7 @@ $env:SUBLIMEDIR = Join-Path $pwd tools\sublimetext2
 $env:PUTTYDIR = Join-Path $pwd tools\putty
 $env:CLINKDIR = Join-Path $pwd tools\clink
 $env:VAGRANTDIR = Join-Path $pwd tools\vagrant\HashiCorp\Vagrant
-$env:CHEFDKDIR = Join-Path $pwd tools\chef-dk\opscode\chefdk
+$env:CHEFDKDIR = Join-Path $pwd tools\chefdk
 
 ## inject clink into current cmd.exe
 invoke-expression ((Join-Path $env:CLINKDIR clink.bat) inject)
