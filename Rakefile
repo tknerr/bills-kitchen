@@ -149,12 +149,13 @@ def move_chefdk
 end
 
 def fix_chefdk
-  Dir.glob("#{BUILD_DIR}/tools/chefdk/bin/*").each do |file|
+  Dir.glob("#{BUILD_DIR}/tools/chefdk/bin/*.bat").each do |file|
     # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
     File.write(file, File.read(file).gsub('@"ruby.exe" "%~dpn0"', '@"%~dp0\..\embedded\bin\ruby.exe" "%~dpn0"'))
     # fix paths if chefdk is intalled anywhere other than c:\opscode, see opscode/chef-dk#68
-    File.write(file, File.read(file).gsub(/Kernel.load '(.*)'/, "Kernel.load \"\\1\""))
-    File.write(file, File.read(file).gsub('c:/opscode/chefdk', '#{File.expand_path(File.dirname(__FILE__))}/..'))
+    file2 = file.sub(/\.bat$/, '')
+    File.write(file2, File.read(file2).gsub(/Kernel.load '(.*)'/, "Kernel.load \"\\1\""))
+    File.write(file2, File.read(file2).gsub('c:/opscode/chefdk', '#{File.expand_path(File.dirname(__FILE__))}/..'))
   end
 end
 
@@ -179,7 +180,6 @@ end
 def install_vagrant_plugins
   Bundler.with_clean_env do
     command = "#{BUILD_DIR}/set-env.bat \
-    && vagrant plugin install vagrant-application-cookbooks --plugin-version 0.1.4 \
     && vagrant plugin install vagrant-omnibus --plugin-version 1.4.1 \
     && vagrant plugin install vagrant-cachier --plugin-version 0.7.2 \
     && vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1"
