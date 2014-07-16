@@ -23,7 +23,7 @@ These plugins are pre-installed:
    * [vagrant-omnibus](https://github.com/schisamo/vagrant-omnibus) - installs omnibus chef in a vagrant VM
    * [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) - caches all kinds of packages you intsall in the vagrant VMs
    * [vagrant-berkshelf](https://github.com/berkshelf/vagrant-berkshelf) - berkshelf integration for vagrant
-   * [vagrant-application-cookbooks](https://github.com/tknerr/vagrant-application-cookbooks) - support for one top-level cookbook per vagrant VM
+   * [vagrant-toplevel-cookbooks](https://github.com/tknerr/vagrant-toplevel-cookbooks) - support for one top-level cookbook per vagrant VM
    * ...use `vagrant install <plugin>` to install more
  * knife plugins (just as an example):
    * [knife-audit](https://github.com/jbz/knife-audit) - keeps track of which cookbooks are used by which node
@@ -66,7 +66,7 @@ Registered doskey aliases:
 
 These repositories are used for acceptance-testing the [common usage scenarios](https://github.com/tknerr/bills-kitchen/blob/master/spec/acceptance/usage_scenarios_spec.rb):
 
-* A [sample-application-cookbook](https://github.com/tknerr/sample-application-cookbook) with all kinds cookbook tests: syntax check, style checks, linting, unit and integration tests
+* A [sample-toplevel-cookbook](https://github.com/tknerr/sample-toplevel-cookbook) with all kinds cookbook tests: syntax check, style checks, linting, unit and integration tests
 * A [sample-infrastructure-repo](https://github.com/tknerr/sample-infrastructure-repo) which defines a sample server infrastructure with environments and databages via Vagrant / Chef Solo
 
 ## Prerequisites
@@ -98,7 +98,7 @@ $ rake acceptance
 
 This will use various of the tools in combination by running the main usage scenarios, e.g.:
 
-* cloning a sample application cookbook and sample infrastructure repository
+* cloning a sample top-level cookbook and sample infrastructure repository
 * running various commands like `bundle install`, `vagrant plugin install`, `vagrant up`
 * running different kinds of cookbook tests via `knife cookbook test`, `foodcritic`, `chefspec` and `test-kitchen`
 
