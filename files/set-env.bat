@@ -19,7 +19,7 @@ set VAGRANTDIR=%SCRIPT_DIR%tools\vagrant\HashiCorp\Vagrant
 set CHEFDKDIR=%SCRIPT_DIR%tools\chefdk
 
 :: inject clink into current cmd.exe
-call %CLINKDIR%\clink.bat inject
+:: call %CLINKDIR%\clink.bat inject
 
 :: set %RI_DEVKIT$ env var and add DEVKIT to the PATH
 call %DEVKITDIR%\devkitvars.bat

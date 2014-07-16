@@ -4,7 +4,7 @@
  * fix setting git username ([#56](https://github.com/tknerr/bills-kitchen/issues/56))
  * made it easier to change the mount drive letter ([#57](https://github.com/tknerr/bills-kitchen/issues/57))
  * tool updates
-  * add clink for command autocompletion ([#55](https://github.com/tknerr/bills-kitchen/issues/55))
+  * add clink for command autocompletion ([#55](https://github.com/tknerr/bills-kitchen/issues/55)) (disabled)
   * remove separate Ruby and Omnibus Chef installations in favor of [Chef-DK](http://www.getchef.com/downloads/chef-dk/windows/)
   * Chef-DK embedded Ruby 2.0.0p451 (x86) [is now the primary Ruby](http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/)
   * update to DevKit 4.7.2 (x86), compatible with Chef-DK Ruby 2.x
