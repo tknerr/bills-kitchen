@@ -96,8 +96,7 @@
 			<value name="Multi.SplitWidth" type="hex" data="04"/>
 			<value name="Multi.SplitHeight" type="hex" data="04"/>
 			<value name="KeyboardHooks" type="hex" data="01"/>
-			<value name="FontName" type="string" data="Monaco"/>
-			<value name="FontName2" type="string" data="Lucida Console"/>
+			<value name="FontName" type="string" data="Consolas"/>
 			<value name="FontAutoSize" type="hex" data="00"/>
 			<value name="FontSize" type="dword" data="00000014"/>
 			<value name="FontSizeX" type="dword" data="00000000"/>
@@ -139,7 +138,7 @@
 			<value name="HideCaptionAlwaysDelay" type="dword" data="000007d0"/>
 			<value name="HideCaptionAlwaysDisappear" type="dword" data="000007d0"/>
 			<value name="DownShowHiddenMessage" type="hex" data="00"/>
-			<value name="ConsoleFontName" type="string" data="Lucida Console"/>
+			<value name="ConsoleFontName" type="string" data="Consolas"/>
 			<value name="ConsoleFontWidth" type="dword" data="00000003"/>
 			<value name="ConsoleFontHeight" type="dword" data="00000005"/>
 			<value name="DefaultBufferHeight" type="dword" data="0000270f"/>
