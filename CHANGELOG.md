@@ -1,9 +1,7 @@
 
 # [2.0-SNAPSHOT] - unreleased
  
- * fix setting git username ([#56](https://github.com/tknerr/bills-kitchen/issues/56))
- * made it easier to change the mount drive letter ([#57](https://github.com/tknerr/bills-kitchen/issues/57))
- * tool updates
+ * tool updates:
   * add clink for command autocompletion ([#55](https://github.com/tknerr/bills-kitchen/issues/55)) (disabled)
   * remove separate Ruby and Omnibus Chef installations in favor of [Chef-DK](http://www.getchef.com/downloads/chef-dk/windows/)
   * Chef-DK embedded Ruby 2.0.0p451 (x86) [is now the primary Ruby](http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/)
@@ -13,7 +11,13 @@
   * install [vagrant-omnibus](https://github.com/schisamo/vagrant-omnibus) globally (v1.4.1)
   * install [vagrant-berkshelf](https://github.com/berkshelf/vagrant-berkshelf) globally (v2.0.1)
   * install [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) globally (v0.7.2)
- * enable vagrant-cachier globally via `~/.vagrant.d/Vagrantfile`
+ * bugfixes:
+  * fix setting git username ([#56](https://github.com/tknerr/bills-kitchen/issues/56))
+  * start ConEmu at the root of the mounted drive now (`W:\` instead of `W:\tools\conemu\`)
+  * use Consolas as the default font for ConEmu rather than Monaco (not included in Win7)
+ * improvements:
+  * made it easier to change the mount drive letter ([#57](https://github.com/tknerr/bills-kitchen/issues/57))
+  * enable vagrant-cachier globally via `~/.vagrant.d/Vagrantfile`
 
 # [1.0] from 19/03/2014
 
