@@ -19,13 +19,13 @@ desc 'downloads required resources and builds the devpack binary'
 task :build do
   recreate_dirs
   download_tools
-  move_ruby
+  move_chefdk
+  fix_chefdk
   download_installables
   copy_files
   generate_docs
   install_knife_plugins
   install_vagrant_plugins
-  install_gems
   clone_repositories
   run_tests "integration"
 end
@@ -130,24 +130,33 @@ def download_tools
     %w{ github.com/mridgers/clink/releases/download/0.4.2/clink_0.4.2_setup.exe                             clink },
     %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2%20x64.zip                                        sublimetext2 },
     %w{ msysgit.googlecode.com/files/PortableGit-1.9.0-preview20140217.7z                                   portablegit },
-    %w{ dl.bintray.com/oneclick/rubyinstaller/ruby-1.9.3-p545-i386-mingw32.7z                               ruby },
-    %w{ github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe               devkit },
+    %w{ cdn.rubyinstaller.org/archives/devkits/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe                devkit },
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe                       kdiff3
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
-#    %w{ dl.bintray.com/mitchellh/vagrant/Vagrant_1.4.3.msi                                                  vagrant },
-    %w{ files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/Vagrant_1.3.5.msi             vagrant },
-    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chef-client-11.10.4-1.windows.msi   chef}
+    %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3.msi                                                  vagrant },
+    %w{ chefdk-trial-packages.s3.amazonaws.com/chefdk-0.1.1-20140610201455.msi                              chef-dk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')    
   end
 end
 
-# move ruby to a shorter path to reduce the likeliness that a gem fails to install due to max path length
-def move_ruby
-  FileUtils.mv "#{BUILD_DIR}/tools/ruby/ruby-1.9.3-p545-i386-mingw32", "#{BUILD_DIR}/tools/ruby-1.9.3"
-  FileUtils.rm_rf "#{BUILD_DIR}/tools/ruby"
+# move chef-dk to a shorter path to reduce the likeliness that a gem fails to install due to max path length
+def move_chefdk
+  FileUtils.mv "#{BUILD_DIR}/tools/chef-dk/opscode/chefdk", "#{BUILD_DIR}/tools/chefdk"
+  FileUtils.rm_rf "#{BUILD_DIR}/tools/chef-dk"
+end
+
+def fix_chefdk
+  Dir.glob("#{BUILD_DIR}/tools/chefdk/bin/*.bat").each do |file|
+    # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
+    File.write(file, File.read(file).gsub('@"ruby.exe" "%~dpn0"', '@"%~dp0\..\embedded\bin\ruby.exe" "%~dpn0"'))
+    # fix paths if chefdk is intalled anywhere other than c:\opscode, see opscode/chef-dk#68
+    file2 = file.sub(/\.bat$/, '')
+    File.write(file2, File.read(file2).gsub(/Kernel.load '(.*)'/, "Kernel.load \"\\1\""))
+    File.write(file2, File.read(file2).gsub('c:/opscode/chefdk', '#{File.expand_path(File.dirname(__FILE__))}/..'))
+  end
 end
 
 def download_installables
@@ -161,10 +170,9 @@ end
 
 def install_knife_plugins
   Bundler.with_clean_env do
-    omnibus_embedded_gem = "#{BUILD_DIR}/tools/chef/opscode/chef/embedded/bin/gem"
     command = "#{BUILD_DIR}/set-env.bat \
-    && #{omnibus_embedded_gem} install knife-audit -v 0.2.0 --no-ri --no-rdoc \
-    && #{omnibus_embedded_gem} install knife-server -v 1.1.0 --no-ri --no-rdoc"
+    && chef gem install knife-audit -v 0.2.0 --no-ri --no-rdoc \
+    && chef gem install knife-server -v 1.1.0 --no-ri --no-rdoc"
     fail "knife plugin installation failed" unless system(command)
   end
 end
@@ -172,20 +180,11 @@ end
 def install_vagrant_plugins
   Bundler.with_clean_env do
     command = "#{BUILD_DIR}/set-env.bat \
-    && vagrant plugin install bindler --plugin-version 0.1.3 \
-    && vagrant bindler setup"
+    && vagrant plugin install vagrant-toplevel-cookbooks --plugin-version 0.2.1 \
+    && vagrant plugin install vagrant-omnibus --plugin-version 1.4.1 \
+    && vagrant plugin install vagrant-cachier --plugin-version 0.7.2 \
+    && vagrant plugin install vagrant-berkshelf --plugin-version 2.0.1"
     fail "vagrant plugin installation failed" unless system(command)
-  end
-end
-
-def install_gems
-  Bundler.with_clean_env do
-    # XXX: DOH! - with_clean_env does not clear GEM_HOME if the rake task is invoked using `bundle exec`, 
-    # which results in gems being installed to your current Ruby's GEM_HOME rather than Bills Kitchen's GEM_HOME!!! 
-    fail "must run `rake build` instead of `bundle exec rake build`" if ENV['GEM_HOME']
-    command = "#{BUILD_DIR}/set-env.bat \
-      && gem install bundler -v 1.5.3 --no-ri --no-rdoc"
-    fail "gem installation failed" unless system(command)
   end
 end
 

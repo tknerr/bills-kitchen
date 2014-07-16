@@ -11,17 +11,24 @@ All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows,
 
 The main tools for cooking with Chef / Vagrant:
 
-* [Ruby](http://rubyinstaller.org/downloads/) 1.9.3 + [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.5.2
+* [Chef-DK](http://www.getchef.com/downloads/chef-dk/windows/) 0.1.1, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.0.0
+* [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
 * [Vagrant](http://vagrantup.com/) 1.3.5
-* [Omnibus Chef](http://www.getchef.com/chef/install/) 11.10.4
 
 ### Plugins
 
 These plugins are pre-installed:
 
- * [bundler](http://bundler.io/) is the only pre-installed gem, use project-specific `Gemfile` for everything else
- * [bindler](https://github.com/fgrehm/bindler) is the only pre-installed vagrant plugin, use project-specific `plugins.json` for everyting else
- * [knife-audit](https://github.com/jbz/knife-audit) and [knife-server](https://github.com/fnichol/knife-server) are exemplary pre-installed knife plugins. Use `W:/tools/chef/opscode/chef/embedded/bin/gem install <plugin>` to install more
+ * vagrant plugins:
+   * [vagrant-omnibus](https://github.com/schisamo/vagrant-omnibus) - installs omnibus chef in a vagrant VM
+   * [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) - caches all kinds of packages you intsall in the vagrant VMs
+   * [vagrant-berkshelf](https://github.com/berkshelf/vagrant-berkshelf) - berkshelf integration for vagrant
+   * [vagrant-application-cookbooks](https://github.com/tknerr/vagrant-application-cookbooks) - support for one top-level cookbook per vagrant VM
+   * ...use `vagrant install <plugin>` to install more
+ * knife plugins (just as an example):
+   * [knife-audit](https://github.com/jbz/knife-audit) - keeps track of which cookbooks are used by which node
+   * [knife-server](https://github.com/fnichol/knife-server) - sets up and backs uo a chef server
+   * ...use `chef gem install <plugin>` to install more
 
 ### Supporting Tools
 
