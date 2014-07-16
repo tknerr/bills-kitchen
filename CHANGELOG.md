@@ -1,5 +1,5 @@
 
-# [2.0-SNAPSHOT] - unreleased
+# 2.0.rc1 (July 17, 2014) 
  
  * tool updates:
   * add clink for command autocompletion ([#55](https://github.com/tknerr/bills-kitchen/issues/55)) (disabled)
@@ -19,7 +19,7 @@
   * made it easier to change the mount drive letter ([#57](https://github.com/tknerr/bills-kitchen/issues/57))
   * enable vagrant-cachier globally via `~/.vagrant.d/Vagrantfile`
 
-# [1.0] from 19/03/2014
+# 1.0 (March 19, 2014)
 
  * set `ANSICON` env var so that Vagrant uses colored output on Windows
  * add up-to-date CA certs and set `SSL_CERT_FILE` ([#45](https://github.com/tknerr/bills-kitchen/issues/45))
@@ -47,7 +47,7 @@
   * remove `W:\docs` with outdated doc materials and shortcuts
 
 
-# [1.0.0.alpha3] from 10/05/2013
+# 1.0.0.alpha3 (Oct 05, 2013)
 
  * enable caching of omnibus packages [via custom install.sh](https://github.com/fgrehm/vagrant-cachier/issues/13#issuecomment-25320554)
  * remove all pre-installed vagrant-plugins in favor of [bindler](https://github.com/fgrehm/bindler)
@@ -56,7 +56,7 @@
   * updated Vagrant to 1.3.4
 
 
-# [1.0.0.alpha2] from 07/15/2013
+# 1.0.0.alpha2 (July 15, 2013)
 
  * added ~/.ssh/chef-tlc-insecure.pub key (this is just a common and insecure public/private key pair for testing)
  * tool updates:
@@ -67,7 +67,7 @@
   * updated vagrant-cachier to 0.2.0
   * updated vagrant-berkshelf to 1.3.3 
 
-# [1.0.0.alpha1 (unpublished)]
+# 1.0.0.alpha1 (unpublished)
  
  * switch to SemVer versioning scheme for bills-kitchen, target 1.0 release soon
  * updated to **Vagrant 1.2**, **Chef 11** and **Berkshelf** (see below for details)
@@ -91,7 +91,7 @@
  * moved Ruby installation to `W:\tools\ruby-1.9.3`
  * added `chef-tlc-insecure-key` keypair akin to Vagrant's `insecure_private_key`
 
-# [0.10] from 05/30/2013
+# 0.10 (May 30, 2013)
 
  * clean up `Gemfile` and start using [chef-tlc-workflow](https://github.com/tknerr/chef-tlc-workflow) which transitively brings in the chef-related dependencies
  * updated to latest 1.9 Ruby version 1.9.3-p429
@@ -103,7 +103,7 @@
   * updated knife-solo to 0.3.0.pre4
   * updated mccloud to 0.0.19
 
-# [0.9] from 26/03/2013
+# 0.9 (March 26, 2013)
 
  * added minimal integration test on travis-ci checking for conflicts in Bill's Kitchen Gemfile
  * added `rake backup` task for creating a backup of the target/build dir (thanks @ilude)
@@ -122,13 +122,13 @@
   * updated chef to 10.18.2 (last 10.x version which is compatible with vagrant 1.0.x, i.e. no net-ssh conflict)
 
 
-# [0.8.1] from 04/12/2012
+# 0.8.1 (Dec 04, 2012)
 
  * use patched Ruby 1.9.3 with >50% load time improvements from [thecodeshop](https://github.com/thecodeshop/ruby/wiki/Downloads)
  * gem updates:
   * updatet test-kitchen to 0.7.0 release version 
 
-# [0.8] from 02/12/2012
+# 0.8 (Dec 02, 2012)
 
  * prompt for .gitconfig username and email the first time `set-env` is called
  * re-enable vagrant-vbguest plugin with guest addition updates disabled by default
@@ -146,7 +146,7 @@
   * updated vagrant-vbguest to 0.5.1
 
 
-# [0.7] from 08/10/2012
+# 0.7 (Oct 08, 2012)
  
  * GH-1: set up chef server from scratch (using knife-server) rather than having it in a pre-baked basebox, updated GETTING_STARTED guide 
  * update to latest Chef release 10.14.4
@@ -162,7 +162,7 @@
   * updated veewee to 0.3.0.beta2
 
 
-# [0.6] from 29/08/2012
+# 0.6 (Aug 29, 2012)
  
  * added COOKBOOK_DEVELOPMENT guide for test-driven cookbook development with foodritic, chefspec, fauxhai, vagrant, librarian, minitest-chef-handler and cucumber-nagios
  * added recent version of cygwin rsync.exe and ssh.exe
@@ -182,19 +182,19 @@
    * GH-6: "This build of Sublime Text 2 has expired..."
    * GH-5: rake install fails due to missing gems 
 
-# [0.5.1] from 16/07/2012
+# 0.5.1 (July 16, 2012)
   
  * added putty to tools
  * added knife-solo gem (patched for windows)
  * better http proxy support: updated librarian gem (proxy patch), setting proxy in .gitconfig
  
-# [0.5] from 27/06/2012
+# 0.5 (June 27, 2012)
 
  * check out 'bills-kitchen-0.5_branch' after clone for dependent repositories
  * fixed devkitvars not being set causing problems with compiling native gems
  * renamed chef-devpack to bill's kitchen
 
-# [0.4] from 08/06/2012 
+# 0.4 (June 08, 2012) 
  
  * switched to 7z packaging greatly reducing filesize
  * updated Vagrantfiles to use public basebox URLs
@@ -203,7 +203,7 @@
  * added support for colored shell output in Console2 via `ansicon`
  * devpack is now built from source: https://github.com/tknerr/bills-kitchen
 
-# [0.3] from 18/05/2012
+# 0.3 (May 18, 2012)
 
  * added `my-baseboxes` project which builds our baseboxes using veewee 
  * updated baseboxes and docs for Ubuntu 12.04 and Chef 0.10.10
@@ -211,7 +211,7 @@
  * added git submodules for `my-chef-repo`, cookbooks in `my-cookbooks` 
  * added sublime text editor with chef code completion
 
-# [0.2] from 11/05/2012
+# 0.2 (May 11, 2012)
 
  * devpack is now version controlled using git and pushed to github
  * devpack zip file is now created via Rake task
@@ -222,6 +222,6 @@
  * installed librarian gem to manage cookbook dependencies with `librarian-chef`
  * added `role[webserver]` to chef repository
  
-# [0.1] from 20/04/2012
+# 0.1 (April 20, 2012)
 
 initial version, distributed as a manually packaged zip file
