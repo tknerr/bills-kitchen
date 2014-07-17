@@ -2,7 +2,7 @@
   require file
 end
 
-VERSION = '2.0-SNAPSHOT'
+VERSION = '2.0'
 BASE_DIR = File.expand_path('.', File.dirname(__FILE__)) 
 TARGET_DIR  = "#{BASE_DIR}/target" 
 BUILD_DIR   = "#{BASE_DIR}/target/build"
@@ -69,7 +69,7 @@ end
 
 def recreate_dirs
   FileUtils.rm_rf BUILD_DIR
-  %w{ boxes home install repo tools }.each do |dir|
+  %w{ boxes home repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
   end
   FileUtils.mkdir_p CACHE_DIR
@@ -152,9 +152,11 @@ def reset_git_user
 end
 
 def install_sublime_packagecontrol
+  target_dir = "#{BUILD_DIR}/tools/sublimetext2/Data/Installed Packages"
+  FileUtils.mkdir_p target_dir
   # see also: files/tools/sublimetext2/Data/Packages/User/Package Control.sublime-settings
-  download "https://sublime.wbond.net/Package%20Control.sublime-package",
-    "#{BUILD_DIR}/tools/sublimetext2/Data/Installed Packages/Package Control.sublime-package"
+  download "https://sublime.wbond.net/Package%20Control.sublime-package", 
+    "#{target_dir}/Package Control.sublime-package"
 end
 
 def assemble_kitchen
