@@ -1,7 +1,8 @@
 
 # 2.0 (unreleased)
 
- * ...
+ * bugfixes:
+  * re-enable vagrant-cachier in global Vagrantfile again, working around [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
 
 # 2.0.rc1 (July 17, 2014) 
  
@@ -21,7 +22,7 @@
   * use Consolas as the default font for ConEmu rather than Monaco (not included in Win7)
  * improvements:
   * made it easier to change the mount drive letter ([#57](https://github.com/tknerr/bills-kitchen/issues/57))
-  * enable vagrant-cachier globally via `~/.vagrant.d/Vagrantfile`
+  * enable vagrant-cachier globally via `~/.vagrant.d/Vagrantfile` (disabled due to [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
 
 # 1.0 (March 19, 2014)
 

@@ -1,10 +1,22 @@
 
+# global Vagrant configuration
 Vagrant.configure("2") do |config|
 
   # enable cachier globally
   if Vagrant.has_plugin?("vagrant-cachier")
-    # disable until this is fixed:
+    # monkey-patch / disable the :apt_lists bucket until this is fixed:
     # https://github.com/fgrehm/vagrant-cachier/issues/113
-    #config.cache.scope = :box
+    module VagrantPlugins
+      module Cachier
+        class Bucket
+          class AptLists < Bucket
+            def self.capability
+              :none
+            end
+          end
+        end
+      end
+    end
+    config.cache.scope = :box
   end
 end
