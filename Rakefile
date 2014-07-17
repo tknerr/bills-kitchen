@@ -27,17 +27,17 @@ task :build do
   install_knife_plugins
   install_vagrant_plugins
   clone_repositories
-  run_tests "integration"
+  run_integration_tests
 end
 
 desc 'run integration tests'
 task :test do
-  run_tests "integration"
+  run_integration_tests
 end
 
 desc 'run acceptance tests (WARNING: will download stuff, install gems, etc..)'
 task :acceptance do
-  run_tests "acceptance"
+  run_acceptance_tests
 end
 
 desc 'assemble `target/build` into a .7z package'
@@ -50,12 +50,21 @@ task :run, [:method_name] do |t, args|
   self.send(args[:method_name].to_sym)
 end
 
-def run_tests(level)
+def run_integration_tests
   Bundler.with_clean_env do
-    if release?
-      ENV['BK_RELEASE_VERSION'] = major_version
-    end
-    sh "rspec spec/#{level} -fd -c"
+    sh "rspec spec/integration -fd -c"
+  end
+end
+
+def run_acceptance_tests
+  Bundler.with_clean_env do
+    FileUtils.rm_rf "#{BUILD_DIR}/repo/vagrant-workflow-tests"
+    command = "#{BUILD_DIR}/set-env.bat \
+        && cd #{BUILD_DIR}/repo \
+        && git clone https://github.com/tknerr/vagrant-workflow-tests \
+        && cd vagrant-workflow-tests \
+        && rspec"
+    fail "running acceptance tests failed" unless system(command)
   end
 end
 
