@@ -1,5 +1,5 @@
 
-# 2.0 (unreleased)
+# 2.0.rc2 (July 17, 2014)
 
  * extracted the [workflow acceptance tests](https://github.com/tknerr/vagrant-workflow-tests) into a separate project
  * use 32-bit binaries (SublimeText, ConEmu) so it can be used on 32-bit Windows as well
