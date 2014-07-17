@@ -11,9 +11,9 @@ All you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows,
 
 The main tools for cooking with Chef / Vagrant:
 
-* [Chef-DK](http://www.getchef.com/downloads/chef-dk/windows/) 0.1.1, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.0.0
+* [Chef-DK](http://www.getchef.com/downloads/chef-dk/windows/) 0.2.0, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.0.0
 * [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
-* [Vagrant](http://vagrantup.com/) 1.3.5
+* [Vagrant](http://vagrantup.com/) 1.6.3
 
 ### Plugins
 

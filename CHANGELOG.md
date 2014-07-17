@@ -3,6 +3,7 @@
 
  * tool updates:
   * update to ConEmu 140707
+  * update to ChefDK 0.2.0
 
 # 2.0.rc2 (July 17, 2014)
 
