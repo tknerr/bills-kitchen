@@ -90,7 +90,7 @@ end
 
 def download_tools
   [
-    %w{ skylink.dl.sourceforge.net/project/conemu/Alpha/ConEmuPack.140304.7z                                conemu },
+    %w{ switch.dl.sourceforge.net/project/conemu/Preview/ConEmuPack.140707.7z                               conemu },
     %w{ github.com/mridgers/clink/releases/download/0.4.2/clink_0.4.2_setup.exe                             clink },
     %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2.zip                                              sublimetext2 },
     %w{ msysgit.googlecode.com/files/PortableGit-1.9.0-preview20140217.7z                                   portablegit },

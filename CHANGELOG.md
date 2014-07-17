@@ -1,7 +1,8 @@
 
 # 2.0 (unreleased)
 
- * ...
+ * tool updates:
+  * update to ConEmu 140707
 
 # 2.0.rc2 (July 17, 2014)
 
