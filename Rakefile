@@ -26,7 +26,7 @@ task :build do
   generate_docs
   install_knife_plugins
   install_vagrant_plugins
-  clone_repositories
+  install_sublime_packagecontrol
   run_integration_tests
 end
 
@@ -161,17 +161,8 @@ def reset_git_user
   end
 end
 
-def clone_repositories
-  [ 
-    %w{ npverni/cucumber-sublime2-bundle.git  tools/sublimetext2/Data/Packages/Cucumber },
-    %w{ cabeca/SublimeChef.git                tools/sublimetext2/Data/Packages/Chef }
-  ]
-  .each do |repo, dest|
-    system("git clone https://github.com/#{repo} #{BUILD_DIR}/#{dest}")
-  end
-end
-
-def install_sublime_packages
+def install_sublime_packagecontrol
+  # see also: files/tools/sublimetext2/Data/Packages/User/Package Control.sublime-settings
   download "https://sublime.wbond.net/Package%20Control.sublime-package",
     "#{BUILD_DIR}/tools/sublimetext2/Data/Installed Packages/Package Control.sublime-package"
 end
