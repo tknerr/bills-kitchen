@@ -1,6 +1,7 @@
 
 # 2.0 (unreleased)
 
+ * use 32-bit binaries (SublimeText, ConEmu) so it can be used on 32-bit Windows as well
  * bugfixes:
   * re-enable vagrant-cachier in global Vagrantfile again, working around [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
 
