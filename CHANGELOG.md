@@ -3,7 +3,7 @@
 
  * use [Package Control](https://sublime.wbond.net/) for Sublime Text
   * [Chef](https://sublime.wbond.net/packages/Chef) and [Cucumber](https://sublime.wbond.net/packages/Cucumber) syntax packages preinstalled
-  * [Terminal](https://sublime.wbond.net/packages/Terminal), [GitGutter](https://sublime.wbond.net/packages/GitGutter), Shell [Turtlestein](https://sublime.wbond.net/packages/Shell%20Turtlestein) and [Ruby Debugger](https://sublime.wbond.net/packages/Ruby%20Debugger) packages preinstalled
+  * [Terminal](https://sublime.wbond.net/packages/Terminal), [GitGutter](https://sublime.wbond.net/packages/GitGutter), [Shell Turtlestein](https://sublime.wbond.net/packages/Shell%20Turtlestein) and [Ruby Debugger](https://sublime.wbond.net/packages/Ruby%20Debugger) packages preinstalled
  * tool updates:
   * update to ConEmu 140707
   * update to ChefDK 0.2.0
