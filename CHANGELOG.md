@@ -7,7 +7,7 @@
  * tool updates:
   * update to ConEmu 140707
   * update to ChefDK 0.2.0
-* Improve Sublime Text experience ([#59](https://github.com/tknerr/bills-kitchen/issues/59))
+ * Improve Sublime Text experience ([#59](https://github.com/tknerr/bills-kitchen/issues/59))
   * use [Package Control](https://sublime.wbond.net/) package manager
   * syntax highlighting for [Chef](https://sublime.wbond.net/packages/Chef) and [Cucumber](https://sublime.wbond.net/packages/Cucumber) preinstalled
   * [Terminal](https://sublime.wbond.net/packages/Terminal), [GitGutter](https://sublime.wbond.net/packages/GitGutter), [Shell Turtlestein](https://sublime.wbond.net/packages/Shell%20Turtlestein) and [Ruby Debugger](https://sublime.wbond.net/packages/Ruby%20Debugger) packages preinstalled
