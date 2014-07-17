@@ -61,7 +61,7 @@ describe "bills kitchen" do
       run_cmd("doskey /macros").should match('be=bundle exec $*')
     end
     it "aliases `sublime_text` to `vi`" do
-      run_cmd("doskey /macros").should match('vi=sublime_text $*')
+      run_cmd("doskey /macros").should match('vi=START \"Sublime Text 2\" sublime_text $*')
     end
   end
 
