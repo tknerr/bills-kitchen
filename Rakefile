@@ -21,7 +21,6 @@ task :build do
   download_tools
   move_chefdk
   fix_chefdk
-  download_installables
   copy_files
   generate_docs
   install_knife_plugins
@@ -120,15 +119,6 @@ def fix_chefdk
     file2 = file.sub(/\.bat$/, '')
     File.write(file2, File.read(file2).gsub(/Kernel.load '(.*)'/, "Kernel.load \"\\1\""))
     File.write(file2, File.read(file2).gsub('c:/opscode/chefdk', '#{File.expand_path(File.dirname(__FILE__))}/..'))
-  end
-end
-
-def download_installables
-  %w{ 
-    www.gringod.com/wp-upload/MONACO.TTF
-  }
-  .each do |host_and_path|
-    download "http://#{host_and_path}", "#{BUILD_DIR}/install/#{File.basename(host_and_path)}"
   end
 end
 
