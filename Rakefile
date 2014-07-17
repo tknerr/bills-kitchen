@@ -171,6 +171,11 @@ def clone_repositories
   end
 end
 
+def install_sublime_packages
+  download "https://sublime.wbond.net/Package%20Control.sublime-package",
+    "#{BUILD_DIR}/tools/sublimetext2/Data/Installed Packages/Package Control.sublime-package"
+end
+
 def assemble_kitchen
   reset_git_user
   pack BUILD_DIR, "#{TARGET_DIR}/bills-kitchen-#{VERSION}.7z"
