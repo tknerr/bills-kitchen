@@ -94,7 +94,8 @@ echo GIT_CONF_EMAIL=%GIT_CONF_EMAIL%
 echo HTTP_PROXY=%HTTP_PROXY%
 
 :: command aliases
-@doskey vi=sublime_text $*
+:: see https://stackoverflow.com/questions/10438508/error6-while-trying-to-use-sublime-text-to-msbuild
+@doskey vi=START "Sublime Text 2" sublime_text $*
 @doskey be=bundle exec $*
 
 set PATH=%CHEFDKDIR%\bin;%RUBYDIR%\bin;%GEMDIR%\bin;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_INSTALL_PATH%;%PATH%

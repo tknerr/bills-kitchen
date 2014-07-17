@@ -1,0 +1,6 @@
+{
+    "terminal": "\\tools\\conemu\\ConEmu.exe",
+    "parameters": [
+        "/Title", "Bill's Kitchen", "/cmd", "cmd /K W:\\set-env.bat"
+    ]
+}
