@@ -1,7 +1,8 @@
 # 2.1 (unreleased)
 
- * bug fixes:
+ * improvements:
   * mute the cygwin warning that comes on `vagrant ssh` (via `set CYGWIN=nodosfilewarning`)
+  * removed the outdated chef-tlc-insecure keypair from `W:\home\.ssh`
 
 # 2.0 (July 17, 2014)
 
