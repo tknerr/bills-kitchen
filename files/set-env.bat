@@ -72,6 +72,9 @@ set ANSICON=true
 :: https://gist.github.com/fnichol/867550
 set SSL_CERT_FILE=%HOME%\cacert.pem
 
+:: mute the cygwin warning which otherwise comes on `vagrant ssh`
+set CYGWIN=nodosfilewarning
+
 :: show the environment
 echo CHEFDKDIR=%CHEFDKDIR%
 echo RUBYDIR=%RUBYDIR%

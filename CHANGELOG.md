@@ -1,6 +1,7 @@
 # 2.1 (unreleased)
 
- * ...
+ * bug fixes:
+  * mute the cygwin warning that comes on `vagrant ssh` (via `set CYGWIN=nodosfilewarning`)
 
 # 2.0 (July 17, 2014)
 
@@ -18,7 +19,7 @@
  * extracted the [workflow acceptance tests](https://github.com/tknerr/vagrant-workflow-tests) into a separate project
  * use 32-bit binaries (SublimeText, ConEmu) so it can be used on 32-bit Windows as well
  * bugfixes:
-  * re-enable vagrant-cachier in global Vagrantfile again, working around [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
+  * re-enable vagrant-cachier in global Vagrantfile again, working around [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113)
 
 # 2.0.rc1 (July 17, 2014) 
  
