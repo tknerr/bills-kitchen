@@ -104,8 +104,8 @@ describe "bills kitchen" do
       it "has 'vagrant-omnibus (1.4.1)' plugin installed" do
         vagrant_plugin_installed "vagrant-omnibus", "1.4.1"
       end
-      it "has 'vagrant-cachier (0.7.2)' plugin installed" do
-        vagrant_plugin_installed "vagrant-cachier", "0.7.2"
+      it "has 'vagrant-cachier (0.8.0)' plugin installed" do
+        vagrant_plugin_installed "vagrant-cachier", "0.8.0"
       end
       it "has 'vagrant-berkshelf (2.0.1)' plugin installed" do
         vagrant_plugin_installed "vagrant-berkshelf", "2.0.1"

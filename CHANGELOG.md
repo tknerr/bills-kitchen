@@ -3,6 +3,8 @@
  * improvements:
   * mute the cygwin warning that comes on `vagrant ssh` (via `set CYGWIN=nodosfilewarning`)
   * removed the outdated chef-tlc-insecure keypair from `W:\home\.ssh`
+ * tool updates:
+  * update to vagrant-cachier 0.8.0 (and remove earlier workaround for [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
 
 # 2.0 (July 17, 2014)
 
