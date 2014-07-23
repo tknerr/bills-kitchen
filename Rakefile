@@ -69,7 +69,7 @@ end
 
 def recreate_dirs
   FileUtils.rm_rf BUILD_DIR
-  %w{ boxes home repo tools }.each do |dir|
+  %w{ home repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
   end
   FileUtils.mkdir_p CACHE_DIR
