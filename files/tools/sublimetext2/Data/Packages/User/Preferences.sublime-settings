@@ -1,0 +1,11 @@
+{
+	"color_scheme": "Packages/User/BlackboardX.tmTheme",
+	"font_size": 10,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"soda_folder_icons": true,
+	"theme": "Soda Dark.sublime-theme"
+}
