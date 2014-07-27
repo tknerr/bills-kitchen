@@ -7,6 +7,7 @@
   * using [Soda Dark](https://sublime.wbond.net/packages/Theme%20-%20Soda) theme with modified "Blackboard" color scheme in Sublime Text
  * tool updates:
   * update to vagrant-cachier 0.8.0 (and remove earlier workaround for [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
+  * update to vagrant-berkshelf 3.0.0.rc2
 
 # 2.0 (July 17, 2014)
 

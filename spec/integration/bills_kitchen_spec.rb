@@ -107,8 +107,8 @@ describe "bills kitchen" do
       it "has 'vagrant-cachier (0.8.0)' plugin installed" do
         vagrant_plugin_installed "vagrant-cachier", "0.8.0"
       end
-      it "has 'vagrant-berkshelf (2.0.1)' plugin installed" do
-        vagrant_plugin_installed "vagrant-berkshelf", "2.0.1"
+      it "has 'vagrant-berkshelf (3.0.0.rc2)' plugin installed" do
+        vagrant_plugin_installed "vagrant-berkshelf", "3.0.0.rc2"
       end
     end
   end
