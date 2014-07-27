@@ -5,6 +5,7 @@
   * removed the outdated chef-tlc-insecure keypair from `W:\home\.ssh`
   * removed empty `W:\boxes` directory
   * using [Soda Dark](https://sublime.wbond.net/packages/Theme%20-%20Soda) theme with modified "Blackboard" color scheme in Sublime Text
+  * added license information and acknowledgements
  * tool updates:
   * update to vagrant-cachier 0.8.0 (and remove earlier workaround for [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
   * update to vagrant-berkshelf 3.0.0.rc2

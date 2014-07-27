@@ -127,3 +127,19 @@ Make sure you have [VirtualBox](https://www.virtualbox.org/wiki/Downloads) insta
 3. click `W:\Launch ConEmu.lnk` to open a command prompt
 4. in the command prompt run `W:\set-env.bat` to set up the environment
 5. start hacking!
+
+
+## Acknowledgements
+
+Bill's Kitchen bundles lots of awesome Open Source software:
+
+* Vagrant - Copyright (c) 2010-2014 Mitchell Hashimoto (MIT license)
+* ChefDK - Copyright (c) 2014 Chef Software (Apache 2.0 license)
+* ConEmu - Copyright (c) 2009-2014 ConEmu.Maximus5@gmail.com (BSD 3-Clause license)
+* clink - Copyright (c) 2012-2014 Martin Ridgers (MIT license)
+* PortableGit - by msysGit team (GPLv2 license)
+* DevKit - Copyright (c), 2007-2014 RubyInstaller Team (BSD 3-Clause license)
+* kdiff3 - by Joachim Eibl (GPLv2 license)
+* putty - Copyright (c) 1997-2014 Simon Tatham (MIT license)
+
+It also includes an evaluation copy of the [Sublime Text 2](http://www.sublimetext.com/) editor. Please use it for evaluation purposes only (no commercial usage) or [buy a license](http://www.sublimetext.com/buy) if you like it! 
