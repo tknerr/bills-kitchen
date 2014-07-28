@@ -128,10 +128,9 @@ Make sure you have [VirtualBox](https://www.virtualbox.org/wiki/Downloads) insta
 4. in the command prompt run `W:\set-env.bat` to set up the environment
 5. start hacking!
 
-
 ## Acknowledgements & Licensing
 
-Bill's Kitchen bundles lots of awesome Open Source software. The copyright owners of this software are mentioned here:
+Bill's Kitchen bundles lots of awesome Open Source software. The copyright owners of this software are mentioned here. For a full-text version of the licenses mentioned above please have a look in the `tools` directory where the respective software is installed.
 
 * Vagrant - Copyright (c) 2010-2014 Mitchell Hashimoto (MIT license)
 * ChefDK - Copyright (c) 2014 Chef Software (Apache 2.0 license)
@@ -142,8 +141,6 @@ Bill's Kitchen bundles lots of awesome Open Source software. The copyright owner
 * kdiff3 - Copyright (c) 2002-2012 Joachim Eibl (GPLv2 license)
 * putty - Copyright (c) 1997-2014 Simon Tatham (MIT license)
 
-For a full-text version of the licenses mentioned above please have a look in the `tools` directory where the respective software is installed.
-
 It also includes an evaluation copy of the awesome [Sublime Text 2](http://www.sublimetext.com/) editor. Please use it for evaluation purposes only (no commercial usage) or [buy a license](http://www.sublimetext.com/buy) if you like it! 
 
-Bill's Kitchen itself is published under the MIT license. It is not "derivative work" but rather ["mere aggregation"](https://www.gnu.org/licenses/gpl-faq.html#MereAggregation) of other software and thus does not need to be licensed under GPL as well.
+Bill's Kitchen itself is published under the MIT license. It is not "derivative work" but rather ["mere aggregation"](https://www.gnu.org/licenses/gpl-faq.html#MereAggregation) of other software and thus -- to my best knowledge -- does not need to be licensed under GPL as well.
