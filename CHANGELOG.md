@@ -6,6 +6,8 @@
   * removed empty `W:\boxes` directory
   * using [Soda Dark](https://sublime.wbond.net/packages/Theme%20-%20Soda) theme with modified "Blackboard" color scheme in Sublime Text
   * added putty compatible version of vagrant insecure key (`%HOME%\.vagrant.d\insecure_private_key.ppk`) for convenience
+ * bug fixes:
+  * make `vagrant ssh` terminal fully functional again (e.g. `vim` and `top` were broken) ([#64](https://github.com/tknerr/bills-kitchen/issues/64))
  * tool updates:
   * update to vagrant-cachier 0.8.0 (and remove earlier workaround for [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
   * update to vagrant-berkshelf 3.0.0.rc2
