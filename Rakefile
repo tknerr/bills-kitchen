@@ -137,7 +137,7 @@ def install_vagrant_plugins
     && vagrant plugin install vagrant-toplevel-cookbooks --plugin-version 0.2.1 \
     && vagrant plugin install vagrant-omnibus --plugin-version 1.4.1 \
     && vagrant plugin install vagrant-cachier --plugin-version 0.8.0 \
-    && vagrant plugin install vagrant-berkshelf --plugin-version 3.0.0.rc2"
+    && vagrant plugin install vagrant-berkshelf --plugin-version 3.0.0"
     fail "vagrant plugin installation failed" unless system(command)
   end
 end
