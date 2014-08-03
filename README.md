@@ -51,7 +51,8 @@ The following changes are applied to your environment by running `W:\set-env.bat
  * `%PATH%` is preprended with the bin dirs of the tools in `W:\tools\`
  * **exception**: `%VBOX_USER_HOME%` points to `%USERPROFILE%`, i.e. VirtualBox VMs are still stored under `%USERPROFILE%`
 * Fixing annoyances:
- * `set TERM=rxvt` to fix vagrant ssh issues
+ * `set TERM=cygwin` to fix vagrant ssh issues
+ * `set CYGWIN=nodosfilewarning` to mute vagrant ssh warnings
  * `set ANSICON=true` to get coloured output with Vagrant on Windows
  * `set SSL_CERT_FILE=W:\home\cacert.pem` pointing to recent CA certs avoiding Ruby SSL errors
 
