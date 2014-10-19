@@ -45,8 +45,8 @@ describe "bills kitchen" do
     it "sets VBOX_USER_HOME to %USERPROFILE%" do
       env_match "VBOX_USER_HOME=#{ENV['USERPROFILE']}"
     end
-    it "sets TERM=rxvt" do
-      env_match "TERM=rxvt"
+    it "sets TERM=cygwin" do
+      env_match "TERM=cygwin"
     end
     it "sets ANSICON=true" do
       env_match "ANSICON=true"
