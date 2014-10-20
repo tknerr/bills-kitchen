@@ -13,7 +13,7 @@ The main tools for cooking with Chef / Vagrant:
 
 * [Chef-DK](http://www.getchef.com/downloads/chef-dk/windows/) 0.2.0, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.0.0
 * [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
-* [Vagrant](http://vagrantup.com/) 1.6.3
+* [Vagrant](http://vagrantup.com/) 1.6.5
 
 ### Plugins
 

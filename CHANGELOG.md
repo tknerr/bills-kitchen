@@ -12,6 +12,7 @@
  * tool updates:
   * update to vagrant-cachier 0.8.0 (and remove earlier workaround for [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
   * update to vagrant-berkshelf 3.0.0
+  * update to vagrant 1.6.5
 
 # 2.0 (July 17, 2014)
 
