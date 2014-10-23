@@ -22,6 +22,7 @@ task :build do
   move_chefdk
   fix_chefdk
   copy_files
+  downgrade_bundler
   generate_docs
   install_knife_plugins
   install_vagrant_plugins
@@ -125,6 +126,16 @@ def fix_chefdk
   Dir.glob("#{BUILD_DIR}/tools/chefdk/embedded/lib/ruby/gems/2.0.0/bin/*.bat").each do |file|
     # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
     File.write(file, File.read(file).gsub('@"%~dp0ruby.exe" "%~dpn0" %*', '@"%~dp0\..\..\..\..\..\bin\ruby.exe" "%~dpn0" %*'))
+  end
+end
+
+# need to downgrade bundler to < 1.7.0 for compatibility with vagrant
+def downgrade_bundler
+  Bundler.with_clean_env do
+    command = "#{BUILD_DIR}/set-env.bat \
+    && gem uninstall bundler \
+    && gem install bundler -v 1.6.7 --no-ri --no-rdoc"
+    fail "failed downgrading to bundler < 1.7.0" unless system(command)
   end
 end
 
