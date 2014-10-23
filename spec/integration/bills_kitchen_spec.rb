@@ -6,8 +6,8 @@ describe "bills kitchen" do
   include Helpers
 
   describe "tools" do
-    it "installs Chef-DK 0.2.0" do
-      run_cmd("chef -v").should match('Chef Development Kit Version: 0.2.0')
+    it "installs Chef-DK 0.3.0" do
+      run_cmd("chef -v").should match('Chef Development Kit Version: 0.3.0')
     end
     it "installs Vagrant 1.6.5" do
       run_cmd("vagrant -v").should match('1.6.5')
@@ -77,14 +77,14 @@ describe "bills kitchen" do
     end
 
     describe "chefdk ruby" do
-      it "installs Chef 11.14.0.rc.2" do
-        run_cmd("knife -v").should match('Chef: 11.14.0.rc.2')
+      it "installs Chef 11.16.0" do
+        run_cmd("knife -v").should match('Chef: 11.16.0')
       end
       it "uses the chef-dk embedded gemdir" do
         run_cmd("#{CHEFDK_RUBY}/bin/gem environment gemdir").should match("#{CHEFDK_RUBY}/lib/ruby/gems/2.0.0")
       end
-      it "has 'bundler (1.5.2)' gem installed" do
-        gem_installed "bundler", "1.5.2"
+      it "has 'bundler (1.7.2)' gem installed" do
+        gem_installed "bundler", "1.7.2"
       end
       it "has 'knife-audit (0.2.0)' plugin installed" do
         knife_plugin_installed "knife-audit", "0.2.0"
