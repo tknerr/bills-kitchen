@@ -5,6 +5,7 @@
   * removed the outdated chef-tlc-insecure keypair from `%HOME%\.ssh`
   * removed empty `W:\boxes` directory
   * using [Soda Dark](https://sublime.wbond.net/packages/Theme%20-%20Soda) theme with modified "Blackboard" color scheme in Sublime Text
+  * added license information and acknowledgements
   * added putty compatible version of vagrant insecure key (`%HOME%\.vagrant.d\insecure_private_key.ppk`) for convenience
   * add `%VBOX_MSI_INSTALL_PATH%` to the PATH (in addition to `%VBOX_INSTALL_PATH%`) since the env var [has changed](https://github.com/mitchellh/vagrant/issues/3852) with VirtualBox 4.3.12
  * bug fixes:
