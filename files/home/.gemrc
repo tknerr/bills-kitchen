@@ -1,0 +1,3 @@
+# ensure that gems are NOT installed to ~/.chefdk/gem but rather 
+# to tools/chefdk/embedded/lib (does not work on windows otherwise)
+gem: --no-user-install
