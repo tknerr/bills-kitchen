@@ -133,7 +133,7 @@ end
 def downgrade_bundler
   Bundler.with_clean_env do
     command = "#{BUILD_DIR}/set-env.bat \
-    && gem uninstall bundler \
+    && gem uninstall bundler --executables \
     && gem install bundler -v 1.6.7 --no-ri --no-rdoc"
     fail "failed downgrading to bundler < 1.7.0" unless system(command)
   end

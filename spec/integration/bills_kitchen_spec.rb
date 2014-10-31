@@ -83,8 +83,8 @@ describe "bills kitchen" do
       it "uses the chef-dk embedded gemdir" do
         run_cmd("#{CHEFDK_RUBY}/bin/gem environment gemdir").should match("#{CHEFDK_RUBY}/lib/ruby/gems/2.0.0")
       end
-      it "has 'bundler (1.7.2)' gem installed" do
-        gem_installed "bundler", "1.7.2"
+      it "has 'bundler (1.6.7)' gem installed" do
+        gem_installed "bundler", "1.6.7"
       end
       it "has 'knife-audit (0.2.0)' plugin installed" do
         knife_plugin_installed "knife-audit", "0.2.0"
