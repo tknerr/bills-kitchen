@@ -2,13 +2,17 @@
 
  * improvements:
   * mute the cygwin warning that comes on `vagrant ssh` (via `set CYGWIN=nodosfilewarning`)
-  * removed the outdated chef-tlc-insecure keypair from `W:\home\.ssh`
+  * removed the outdated chef-tlc-insecure keypair from `%HOME%\.ssh`
   * removed empty `W:\boxes` directory
   * using [Soda Dark](https://sublime.wbond.net/packages/Theme%20-%20Soda) theme with modified "Blackboard" color scheme in Sublime Text
   * added license information and acknowledgements
+  * added putty compatible version of vagrant insecure key (`%HOME%\.vagrant.d\insecure_private_key.ppk`) for convenience
+  * add `%VBOX_MSI_INSTALL_PATH%` to the PATH (in addition to `%VBOX_INSTALL_PATH%`) since the env var [has changed](https://github.com/mitchellh/vagrant/issues/3852) with VirtualBox 4.3.12
+ * bug fixes:
+  * make `vagrant ssh` terminal fully functional again (e.g. `vim` and `top` were broken) ([#64](https://github.com/tknerr/bills-kitchen/issues/64))
  * tool updates:
   * update to vagrant-cachier 0.8.0 (and remove earlier workaround for [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
-  * update to vagrant-berkshelf 3.0.0.rc2
+  * update to vagrant-berkshelf 3.0.0
 
 # 2.0 (July 17, 2014)
 

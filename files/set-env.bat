@@ -60,9 +60,9 @@ set VBOX_USER_HOME=%USERPROFILE%
 :: set VAGRANT_HOME explicitly, defaults to %USERPROFILE%
 set VAGRANT_HOME=%HOME%\.vagrant.d
 
-:: fix for http://code.google.com/p/msysgit/issues/detail?id=184,
-:: but use TERM=rxvt instead of TERM=msys to not break `vagrant ssh` terminal
-set TERM=rxvt
+:: set proper TERM to not break `vagrant ssh` terminal, 
+:: see https://github.com/tknerr/bills-kitchen/issues/64
+set TERM=cygwin
 
 :: trick vagrant to detect colored output for windows, see here:
 :: https://github.com/mitchellh/vagrant/blob/7ef6c5d9d7d4753a219d3ab35afae0d475430cae/lib/vagrant/util/platform.rb#L89
@@ -82,6 +82,7 @@ echo GEMDIR=%GEMDIR%
 echo DEVKITDIR=%DEVKITDIR%
 echo VBOX_USER_HOME=%VBOX_USER_HOME%
 echo VBOX_INSTALL_PATH=%VBOX_INSTALL_PATH%
+echo VBOX_MSI_INSTALL_PATH=%VBOX_MSI_INSTALL_PATH%
 echo KDIFF3DIR=%KDIFF3DIR%
 echo CYGWINSSHDIR=%CYGWINSSHDIR%
 echo CYGWINRSYNCDIR=%CYGWINRSYNCDIR%
@@ -101,4 +102,4 @@ echo HTTP_PROXY=%HTTP_PROXY%
 @doskey vi=START "Sublime Text 2" sublime_text $*
 @doskey be=bundle exec $*
 
-set PATH=%CHEFDKDIR%\bin;%RUBYDIR%\bin;%GEMDIR%\bin;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_INSTALL_PATH%;%PATH%
+set PATH=%CHEFDKDIR%\bin;%RUBYDIR%\bin;%GEMDIR%\bin;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%

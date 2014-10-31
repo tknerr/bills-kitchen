@@ -45,8 +45,8 @@ describe "bills kitchen" do
     it "sets VBOX_USER_HOME to %USERPROFILE%" do
       env_match "VBOX_USER_HOME=#{ENV['USERPROFILE']}"
     end
-    it "sets TERM=rxvt" do
-      env_match "TERM=rxvt"
+    it "sets TERM=cygwin" do
+      env_match "TERM=cygwin"
     end
     it "sets ANSICON=true" do
       env_match "ANSICON=true"
@@ -107,8 +107,8 @@ describe "bills kitchen" do
       it "has 'vagrant-cachier (0.8.0)' plugin installed" do
         vagrant_plugin_installed "vagrant-cachier", "0.8.0"
       end
-      it "has 'vagrant-berkshelf (3.0.0.rc2)' plugin installed" do
-        vagrant_plugin_installed "vagrant-berkshelf", "3.0.0.rc2"
+      it "has 'vagrant-berkshelf (3.0.0)' plugin installed" do
+        vagrant_plugin_installed "vagrant-berkshelf", "3.0.0"
       end
     end
   end
