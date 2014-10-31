@@ -143,4 +143,4 @@ Bill's Kitchen bundles lots of awesome Open Source software. The copyright owner
 
 It also includes an evaluation copy of the awesome [Sublime Text 2](http://www.sublimetext.com/) editor. Please use it for evaluation purposes only (no commercial usage) or [buy a license](http://www.sublimetext.com/buy) if you like it! 
 
-Bill's Kitchen itself is published under the MIT license. It is not "derivative work" but rather ["mere aggregation"](https://www.gnu.org/licenses/gpl-faq.html#MereAggregation) of other software and thus -- to my best knowledge -- does not need to be licensed under GPL as well.
+Bill's Kitchen itself is published under the MIT license. It is not "derivative work" but rather ["mere aggregation"](https://www.gnu.org/licenses/gpl-faq.html#MereAggregation) of other software and thus does not need to be licensed under GPL itself.
