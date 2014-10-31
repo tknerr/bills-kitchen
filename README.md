@@ -140,6 +140,8 @@ Bill's Kitchen bundles lots of awesome Open Source software. The copyright owner
 * DevKit - Copyright (c), 2007-2014 RubyInstaller Team (BSD 3-Clause license)
 * kdiff3 - Copyright (c) 2002-2012 Joachim Eibl (GPLv2 license)
 * putty - Copyright (c) 1997-2014 Simon Tatham (MIT license)
+* rsync - Copyright (c) 1996-2011 by Andrew Tridgell, Wayne Davison, and others. (GPLv3)
+* OpenSSH - multiple licenses and copyright holders (OpenSSH License, BSD-compatible)
 
 It also includes an evaluation copy of the awesome [Sublime Text 2](http://www.sublimetext.com/) editor. Please use it for evaluation purposes only (no commercial usage) or [buy a license](http://www.sublimetext.com/buy) if you like it! 
 
