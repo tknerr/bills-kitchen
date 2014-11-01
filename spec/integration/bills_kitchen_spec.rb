@@ -83,6 +83,12 @@ describe "bills kitchen" do
       it "uses the chef-dk embedded gemdir" do
         run_cmd("#{CHEFDK_RUBY}/bin/gem environment gemdir").should match("#{CHEFDK_RUBY}/lib/ruby/gems/2.0.0")
       end
+      it "does NOT install gems into $HOME/.chefdk" do
+        gem_env = run_cmd("#{CHEFDK_RUBY}/bin/gem environment")
+        gem_env.should match('"update" => "--no-user-install"')
+        gem_env.should match('"install" => "--no-user-install"')
+        Dir["#{ENV['HOME']}/.chefdk/gem/ruby/2.0.0/"].should be_empty
+      end
       it "has 'bundler (1.6.7)' gem installed" do
         gem_installed "bundler", "1.6.7"
       end

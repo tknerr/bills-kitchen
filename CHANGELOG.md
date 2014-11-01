@@ -7,6 +7,7 @@
   * using [Soda Dark](https://sublime.wbond.net/packages/Theme%20-%20Soda) theme with modified "Blackboard" color scheme in Sublime Text
   * added putty compatible version of vagrant insecure key (`%HOME%\.vagrant.d\insecure_private_key.ppk`) for convenience
   * add `%VBOX_MSI_INSTALL_PATH%` to the PATH (in addition to `%VBOX_INSTALL_PATH%`) since the env var [has changed](https://github.com/mitchellh/vagrant/issues/3852) with VirtualBox 4.3.12
+  * ensure that gems are always installed in the ChefDK embedded Ruby, not in `$HOME/.chefdk`
  * bug fixes:
   * make `vagrant ssh` terminal fully functional again (e.g. `vim` and `top` were broken) ([#64](https://github.com/tknerr/bills-kitchen/issues/64))
  * tool updates:
