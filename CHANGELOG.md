@@ -18,6 +18,7 @@
   * update to vagrant-berkshelf 3.0.1
   * update to vagrant 1.6.5
   * update to ChefDK 0.3.2
+  * update to PortableGit 1.9.4-preview20140929
 
 # 2.0 (July 17, 2014)
 
