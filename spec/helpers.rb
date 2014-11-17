@@ -1,6 +1,7 @@
 
 BUILD_DIR=File.expand_path('./target/build')
 CHEFDK_RUBY = "#{BUILD_DIR}/tools/chefdk/embedded"
+CHEFDK_HOME = "#{BUILD_DIR}/home/.chefdk"
 VAGRANT_RUBY = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded"
 
 # enable :should syntax for rspec 3

@@ -17,7 +17,7 @@
   * update to vagrant-cachier 1.1.0 (and remove earlier workaround for [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
   * update to vagrant-berkshelf 3.0.1
   * update to vagrant 1.6.5
-  * update to ChefDK 0.3.2
+  * update to ChefDK 0.3.5
   * update to PortableGit 1.9.4-preview20140929
   * update to ConEmu 141110
 
