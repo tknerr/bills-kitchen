@@ -1,4 +1,4 @@
-# 2.1 (unreleased)
+# 2.1 (November 19, 2014)
 
  * improvements:
   * mute the cygwin warning that comes on `vagrant ssh` (via `set CYGWIN=nodosfilewarning`)
