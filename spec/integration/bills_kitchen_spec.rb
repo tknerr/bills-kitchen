@@ -6,7 +6,7 @@ describe "bills kitchen" do
   include Helpers
 
   describe "tools" do
-    it "installs Chef-DK 0.3.5" do
+    it "installs ChefDK 0.3.5" do
       run_cmd("chef -v").should match('Chef Development Kit Version: 0.3.5')
     end
     it "installs Vagrant 1.6.5" do
@@ -80,7 +80,7 @@ describe "bills kitchen" do
       it "installs Chef 11.18.0.rc.1" do
         run_cmd("knife -v").should match('Chef: 11.18.0.rc.1')
       end
-      it "uses the chef-dk embedded gemdir" do
+      it "uses the ChefDK embedded gemdir" do
         run_cmd("#{CHEFDK_RUBY}/bin/gem environment gemdir").should match("#{CHEFDK_RUBY}/lib/ruby/gems/2.0.0")
       end
       it "does NOT install gems into $HOME/.chefdk" do
@@ -88,6 +88,9 @@ describe "bills kitchen" do
         gem_env.should match('"update" => "--no-user-install"')
         gem_env.should match('"install" => "--no-user-install"')
         Dir["#{CHEFDK_HOME}/gem/ruby/2.0.0/"].should be_empty
+      end
+      it "has ChefDK verified to work via `chef verify`" do
+        cmd_succeeds "chef verify"
       end
       it "has 'bundler (1.6.7)' gem installed" do
         gem_installed "bundler", "1.6.7"
