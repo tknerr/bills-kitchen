@@ -1,6 +1,7 @@
 
 BUILD_DIR=File.expand_path('./target/build')
 CHEFDK_RUBY = "#{BUILD_DIR}/tools/chefdk/embedded"
+CHEFDK_HOME = "#{BUILD_DIR}/home/.chefdk"
 VAGRANT_RUBY = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded"
 
 # enable :should syntax for rspec 3
@@ -15,6 +16,14 @@ module Helpers
   # and returns whatever the cmd writes (captures both stdout and stderr)
   def run_cmd(cmd)
     `"#{BUILD_DIR}/set-env.bat" >NUL && #{cmd} 2>&1`
+  end
+  # similar to #run_cmd, but runs quietly and returns only the exit code
+  def system_cmd(cmd)
+    system "\"#{BUILD_DIR}/set-env.bat\" >NUL && #{cmd} >NUL"
+  end
+  # runs #system_cmd and checks for success (i.e. exit status 0)
+  def cmd_succeeds(cmd)
+    system_cmd(cmd).should be true
   end
   # converts the path to using backslashes
   def convert_slashes(path)

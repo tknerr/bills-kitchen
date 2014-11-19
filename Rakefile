@@ -22,6 +22,7 @@ task :build do
   move_chefdk
   fix_chefdk
   copy_files
+  downgrade_bundler
   generate_docs
   install_knife_plugins
   install_vagrant_plugins
@@ -89,16 +90,16 @@ end
 
 def download_tools
   [
-    %w{ switch.dl.sourceforge.net/project/conemu/Preview/ConEmuPack.140707.7z                               conemu },
+    %w{ switch.dl.sourceforge.net/project/conemu/Preview/ConEmuPack.141110.7z                               conemu },
     %w{ github.com/mridgers/clink/releases/download/0.4.2/clink_0.4.2_setup.exe                             clink },
     %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2.zip                                              sublimetext2 },
-    %w{ msysgit.googlecode.com/files/PortableGit-1.9.0-preview20140217.7z                                   portablegit },
+    %w{ github.com/msysgit/msysgit/releases/download/Git-1.9.4-preview20140929/PortableGit-1.9.4-preview20140929.7z   portablegit },
     %w{ cdn.rubyinstaller.org/archives/devkits/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe                devkit },
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe                       kdiff3
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
-    %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3.msi                                                  vagrant },
-    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-windows-0.2.0-2.windows.msi  chef-dk }
+    %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5.msi                                                  vagrant },
+    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.3.5-1.msi                  chef-dk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')    
@@ -118,7 +119,24 @@ def fix_chefdk
     # fix paths if chefdk is intalled anywhere other than c:\opscode, see opscode/chef-dk#68
     file2 = file.sub(/\.bat$/, '')
     File.write(file2, File.read(file2).gsub(/Kernel.load '(.*)'/, "Kernel.load \"\\1\""))
-    File.write(file2, File.read(file2).gsub('c:/opscode/chefdk', '#{File.expand_path(File.dirname(__FILE__))}/..'))
+    File.write(file2, File.read(file2).gsub('C:/opscode/chefdk', '#{File.expand_path(File.dirname(__FILE__))}/..'))
+  end
+
+  # XXX: why are these .bat files even in there? -- the gem .bats should be in embedded/bin
+  Dir.glob("#{BUILD_DIR}/tools/chefdk/embedded/lib/ruby/gems/2.0.0/bin/*.bat").each do |file|
+    # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
+    File.write(file, File.read(file).gsub('@"%~dp0ruby.exe" "%~dpn0" %*', '@"%~dp0\..\..\..\..\..\bin\ruby.exe" "%~dpn0" %*'))
+  end
+end
+
+# need to downgrade bundler to < 1.7.0 for compatibility with vagrant 1.6.5
+# TODO: should be removed with Vagrant 1.7
+def downgrade_bundler
+  Bundler.with_clean_env do
+    command = "#{BUILD_DIR}/set-env.bat \
+    && gem uninstall bundler --executables \
+    && gem install bundler -v 1.6.7 --no-ri --no-rdoc"
+    fail "failed downgrading to bundler < 1.7.0" unless system(command)
   end
 end
 
@@ -136,8 +154,8 @@ def install_vagrant_plugins
     command = "#{BUILD_DIR}/set-env.bat \
     && vagrant plugin install vagrant-toplevel-cookbooks --plugin-version 0.2.1 \
     && vagrant plugin install vagrant-omnibus --plugin-version 1.4.1 \
-    && vagrant plugin install vagrant-cachier --plugin-version 0.8.0 \
-    && vagrant plugin install vagrant-berkshelf --plugin-version 3.0.0"
+    && vagrant plugin install vagrant-cachier --plugin-version 1.1.0 \
+    && vagrant plugin install vagrant-berkshelf --plugin-version 3.0.1"
     fail "vagrant plugin installation failed" unless system(command)
   end
 end

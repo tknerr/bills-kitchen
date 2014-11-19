@@ -23,7 +23,6 @@ $env:HOME = Join-Path $pwd home
 ## Chef-DK embedded Ruby is now the primary one!
 ## see http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 $env:RUBYDIR = Join-Path $env:CHEFDKDIR embedded
-$env:GEMDIR = Join-Path $env:HOME .chefdk\gem\ruby\2.0.0
 
 if($env:GITDIR -eq $NULL) {
 	$env:GITDIR = Join-Path $pwd tools\portablegit
@@ -81,7 +80,6 @@ $env:SSL_CERT_FILE = Join-Path $env:HOME "cacert.pem"
 # show the environment
 Write-Host "CHEFDKDIR=$env:CHEFDKDIR"
 Write-Host "RUBYDIR=$env:RUBYDIR"
-Write-Host "GEMDIR=$env:GEMDIR"
 Write-Host "DEVKITDIR=$env:DEVKITDIR"
 Write-Host "VBOX_USER_HOME=$env:VBOX_USER_HOME"
 Write-Host "VBOX_INSTALL_PATH=$env:VBOX_INSTALL_PATH"
@@ -102,4 +100,4 @@ Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 set-alias vi "sublime_text";
 set-alias be "bundle exec"; 
 
-$env:Path = "$env:CHEFDKDIR\bin;$env:RUBYDIR\bin;$env:GEMDIR\bin;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
+$env:Path = "$env:CHEFDKDIR\bin;$env:RUBYDIR\bin;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"

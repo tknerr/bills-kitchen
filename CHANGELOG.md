@@ -8,11 +8,19 @@
   * added license information and acknowledgements
   * added putty compatible version of vagrant insecure key (`%HOME%\.vagrant.d\insecure_private_key.ppk`) for convenience
   * add `%VBOX_MSI_INSTALL_PATH%` to the PATH (in addition to `%VBOX_INSTALL_PATH%`) since the env var [has changed](https://github.com/mitchellh/vagrant/issues/3852) with VirtualBox 4.3.12
+  * ChefDK specific fixes and adaptations:
+    * fix path to ruby.exe in .bat files so ChefDK can live outside of `C:\opscode` (see [opscode/chef-dk#68](https://github.com/opscode/chef-dk/issues/68))
+    * ensure that gems are always installed in the ChefDK embedded Ruby, not in `$HOME/.chefdk`
+    * downgrade to bundler 1.6.7 for [compatibility with Vagrant 1.6.5](https://github.com/opscode/chef-dk/issues/218#issuecomment-63271238)
  * bug fixes:
   * make `vagrant ssh` terminal fully functional again (e.g. `vim` and `top` were broken) ([#64](https://github.com/tknerr/bills-kitchen/issues/64))
  * tool updates:
-  * update to vagrant-cachier 0.8.0 (and remove earlier workaround for [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
-  * update to vagrant-berkshelf 3.0.0
+  * update to vagrant-cachier 1.1.0 (and remove earlier workaround for [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113))
+  * update to vagrant-berkshelf 3.0.1
+  * update to vagrant 1.6.5
+  * update to ChefDK 0.3.5
+  * update to PortableGit 1.9.4-preview20140929
+  * update to ConEmu 141110
 
 # 2.0 (July 17, 2014)
 

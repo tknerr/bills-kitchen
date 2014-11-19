@@ -31,7 +31,6 @@ set HOME=%SCRIPT_DIR%home
 :: Chef-DK embedded Ruby is now the primary one!
 :: see http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 set RUBYDIR=%CHEFDKDIR%\embedded
-set GEMDIR=%HOME%\.chefdk\gem\ruby\2.0.0
 
 :: prompt for .gitconfig username/email
 FOR /F "usebackq tokens=*" %%a IN (`cmd /C %GITDIR%\cmd\git config --get user.name`) DO SET GIT_CONF_USERNAME=%%a
@@ -78,7 +77,6 @@ set CYGWIN=nodosfilewarning
 :: show the environment
 echo CHEFDKDIR=%CHEFDKDIR%
 echo RUBYDIR=%RUBYDIR%
-echo GEMDIR=%GEMDIR%
 echo DEVKITDIR=%DEVKITDIR%
 echo VBOX_USER_HOME=%VBOX_USER_HOME%
 echo VBOX_INSTALL_PATH=%VBOX_INSTALL_PATH%
@@ -102,4 +100,4 @@ echo HTTP_PROXY=%HTTP_PROXY%
 @doskey vi=START "Sublime Text 2" sublime_text $*
 @doskey be=bundle exec $*
 
-set PATH=%CHEFDKDIR%\bin;%RUBYDIR%\bin;%GEMDIR%\bin;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
+set PATH=%CHEFDKDIR%\bin;%RUBYDIR%\bin;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
