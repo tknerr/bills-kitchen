@@ -129,7 +129,8 @@ def fix_chefdk
   end
 end
 
-# need to downgrade bundler to < 1.7.0 for compatibility with vagrant
+# need to downgrade bundler to < 1.7.0 for compatibility with vagrant 1.6.5
+# TODO: should be removed with Vagrant 1.7
 def downgrade_bundler
   Bundler.with_clean_env do
     command = "#{BUILD_DIR}/set-env.bat \

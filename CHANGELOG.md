@@ -10,7 +10,7 @@
   * ChefDK specific fixes and adaptations:
     * fix path to ruby.exe in .bat files so ChefDK can live outside of `C:\opscode` (see [opscode/chef-dk#68](https://github.com/opscode/chef-dk/issues/68))
     * ensure that gems are always installed in the ChefDK embedded Ruby, not in `$HOME/.chefdk`
-    * downgrade to bundler 1.6.7 for compatibility with Vagrant
+    * downgrade to bundler 1.6.7 for [compatibility with Vagrant 1.6.5](https://github.com/opscode/chef-dk/issues/218#issuecomment-63271238)
  * bug fixes:
   * make `vagrant ssh` terminal fully functional again (e.g. `vim` and `top` were broken) ([#64](https://github.com/tknerr/bills-kitchen/issues/64))
  * tool updates:
