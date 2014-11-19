@@ -1,3 +1,7 @@
+# 2.2 (unreleased)
+
+ * ...
+
 # 2.1 (November 19, 2014)
 
  * improvements:
