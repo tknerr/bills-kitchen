@@ -10,6 +10,9 @@ $env:SUBLIMEDIR = Join-Path $pwd tools\sublimetext2
 $env:PUTTYDIR = Join-Path $pwd tools\putty
 $env:CLINKDIR = Join-Path $pwd tools\clink
 $env:VAGRANTDIR = Join-Path $pwd tools\vagrant\HashiCorp\Vagrant
+$env:TERRAFORMDIR = Join-Path $pwd tools\terraform
+$env:PACKERDIR = Join-Path $pwd tools\packer
+$env:CONSULDIR = Join-Path $pwd tools\consul
 $env:CHEFDKDIR = Join-Path $pwd tools\chefdk
 
 ## inject clink into current cmd.exe
@@ -92,6 +95,9 @@ Write-Host "PUTTYDIR=$env:PUTTYDIR"
 Write-Host "CLINKDIR=$env:CLINKDIR"
 Write-Host "VAGRANTDIR=$env:VAGRANTDIR"
 Write-Host "VAGRANT_HOME=$env:VAGRANT_HOME"
+Write-Host "TERRAFORMDIR=$env:TERRAFORMDIR"
+Write-Host "PACKERDIR=$env:PACKERDIR"
+Write-Host "CONSULDIR=$env:CONSULDIR"
 Write-Host "GITDIR=$env:GITDIR"
 Write-Host "GIT_CONF_USERNAME=$env:GIT_CONF_USERNAME"
 Write-Host "GIT_CONF_EMAIL=$env:GIT_CONF_EMAIL"
@@ -100,4 +106,4 @@ Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 set-alias vi "sublime_text";
 set-alias be "bundle exec"; 
 
-$env:Path = "$env:CHEFDKDIR\bin;$env:RUBYDIR\bin;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
+$env:Path = "$env:CHEFDKDIR\bin;$env:RUBYDIR\bin;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
