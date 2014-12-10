@@ -3,6 +3,7 @@
  * improvements:
   * added terraform 0.3.5
   * added packer 0.7.5
+  * added consul 0.4.1
  * tool updates:
   * update to vagrant 1.7.0
 

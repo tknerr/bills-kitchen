@@ -16,6 +16,7 @@ The main tools for cooking with Chef / Vagrant:
 * [Vagrant](http://vagrantup.com/) 1.7.0
 * [Terraform](http://terraform.io/) 0.3.5
 * [Packer](http://packer.io/) 0.7.5
+* [Consul](http://consul.io/) 0.4.1
 
 ### Plugins
 
