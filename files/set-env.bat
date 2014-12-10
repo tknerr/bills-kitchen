@@ -16,8 +16,8 @@ set SUBLIMEDIR=%SCRIPT_DIR%tools\sublimetext2
 set PUTTYDIR=%SCRIPT_DIR%tools\putty
 set CLINKDIR=%SCRIPT_DIR%tools\clink
 set VAGRANTDIR=%SCRIPT_DIR%tools\vagrant\HashiCorp\Vagrant
-set TERRAFORMDIR=%SCRIPT_DIR%tools\terraform\HashiCorp\Terraform
-set PACKERDIR=%SCRIPT_DIR%tools\packer\HashiCorp\Packer
+set TERRAFORMDIR=%SCRIPT_DIR%tools\terraform
+set PACKERDIR=%SCRIPT_DIR%tools\packer
 set CHEFDKDIR=%SCRIPT_DIR%tools\chefdk
 
 :: inject clink into current cmd.exe
@@ -104,4 +104,4 @@ echo HTTP_PROXY=%HTTP_PROXY%
 @doskey vi=START "Sublime Text 2" sublime_text $*
 @doskey be=bundle exec $*
 
-set PATH=%CHEFDKDIR%\bin;%RUBYDIR%\bin;%PACKERDIR%\bin;%TERRAFORMDIR%\bin;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
+set PATH=%CHEFDKDIR%\bin;%RUBYDIR%\bin;%PACKERDIR%;%TERRAFORMDIR%;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
