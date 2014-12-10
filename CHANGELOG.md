@@ -1,5 +1,7 @@
 # 2.2 (unreleased)
-
+ 
+ * improvements:
+  * added terraform 0.3.5
  * tool updates:
   * update to vagrant 1.7.0
 
