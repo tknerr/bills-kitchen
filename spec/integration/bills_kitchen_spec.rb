@@ -15,6 +15,9 @@ describe "bills kitchen" do
     it "installs Terraform 0.3.5" do
       run_cmd("terraform --version").should match('0.3.5')
     end
+    it "installs Packer 0.7.5" do
+      run_cmd("packer --version").should match('0.7.5')
+    end
     it "installs ssh.exe" do
       run_cmd("ssh -V").should match('OpenSSH_6.0p1, OpenSSL 1.0.1c 10 May 2012')
     end

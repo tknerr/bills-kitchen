@@ -100,6 +100,7 @@ def download_tools
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
     %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.7.0.msi                                                  vagrant },
     %w{ dl.bintray.com/mitchellh/terraform/terraform_0.3.5_windows_amd64.zip                                terraform },
+    %w{ dl.bintray.com/mitchellh/packer/packer_0.7.5_windows_amd64.zip                                      packer },
     %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.3.5-1.msi                  chef-dk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
