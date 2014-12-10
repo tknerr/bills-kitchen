@@ -9,8 +9,8 @@ describe "bills kitchen" do
     it "installs ChefDK 0.3.5" do
       run_cmd("chef -v").should match('Chef Development Kit Version: 0.3.5')
     end
-    it "installs Vagrant 1.6.5" do
-      run_cmd("vagrant -v").should match('1.6.5')
+    it "installs Vagrant 1.7.0" do
+      run_cmd("vagrant -v").should match('1.7.0')
     end
     it "installs ssh.exe" do
       run_cmd("ssh -V").should match('OpenSSH_6.0p1, OpenSSL 1.0.1c 10 May 2012')

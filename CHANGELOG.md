@@ -1,6 +1,7 @@
 # 2.2 (unreleased)
 
- * ...
+ * tool updates:
+  * update to vagrant 1.7.0
 
 # 2.1 (November 19, 2014)
 
