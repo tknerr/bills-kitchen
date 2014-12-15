@@ -2,6 +2,8 @@
  
  * improvements:
   * no longer downgrading the ChefDK bundler because vagrant 1.7 is now compatible with bundler 1.7.5 again
+ * bug fixes
+  * fix invalid syntax (trailing comma) in `Default (Windows).sublime-keymap` file
  * new tools:
   * added terraform 0.3.5
   * added packer 0.7.5

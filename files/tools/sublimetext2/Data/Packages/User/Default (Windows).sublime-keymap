@@ -8,5 +8,5 @@
 
 	// indentation
 	{ "keys": ["ctrl+right"], "command": "indent" },
-	{ "keys": ["ctrl+left"], "command": "unindent" },
+	{ "keys": ["ctrl+left"], "command": "unindent" }
 ]
