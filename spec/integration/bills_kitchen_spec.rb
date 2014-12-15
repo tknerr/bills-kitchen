@@ -116,8 +116,8 @@ describe "bills kitchen" do
       it "uses the vagrant embedded gemdir" do
         run_cmd("#{VAGRANT_RUBY}/bin/gem environment gemdir").should match("#{VAGRANT_RUBY}/lib/ruby/gems/2.0.0")
       end
-      it "has 'vagrant-toplevel-cookbooks (0.2.1)' plugin installed" do
-        vagrant_plugin_installed "vagrant-toplevel-cookbooks", "0.2.1"
+      it "has 'vagrant-toplevel-cookbooks (0.2.2)' plugin installed" do
+        vagrant_plugin_installed "vagrant-toplevel-cookbooks", "0.2.2"
       end
       it "has 'vagrant-omnibus (1.4.1)' plugin installed" do
         vagrant_plugin_installed "vagrant-omnibus", "1.4.1"
