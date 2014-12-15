@@ -98,7 +98,7 @@ def download_tools
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe                       kdiff3
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
-    %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.7.0.msi                                                  vagrant },
+    %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1.msi                                                  vagrant },
     %w{ dl.bintray.com/mitchellh/terraform/terraform_0.3.5_windows_amd64.zip                                terraform },
     %w{ dl.bintray.com/mitchellh/packer/packer_0.7.5_windows_amd64.zip                                      packer },
     %w{ dl.bintray.com/mitchellh/consul/0.4.1_windows_386.zip                                               consul },

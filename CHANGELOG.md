@@ -5,7 +5,7 @@
   * added packer 0.7.5
   * added consul 0.4.1
  * tool updates:
-  * update to vagrant 1.7.0
+  * update to vagrant 1.7.1
 
 # 2.1 (November 19, 2014)
 
