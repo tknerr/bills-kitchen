@@ -1,6 +1,8 @@
 # 2.2 (unreleased)
  
  * improvements:
+  * no longer downgrading the ChefDK bundler because vagrant 1.7 is now compatible with bundler 1.7.5 again
+ * new tools:
   * added terraform 0.3.5
   * added packer 0.7.5
   * added consul 0.4.1

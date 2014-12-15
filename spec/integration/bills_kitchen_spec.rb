@@ -101,8 +101,8 @@ describe "bills kitchen" do
       it "has ChefDK verified to work via `chef verify`" do
         cmd_succeeds "chef verify"
       end
-      it "has 'bundler (1.6.7)' gem installed" do
-        gem_installed "bundler", "1.6.7"
+      it "has 'bundler (1.7.5)' gem installed" do
+        gem_installed "bundler", "1.7.5"
       end
       it "has 'knife-audit (0.2.0)' plugin installed" do
         knife_plugin_installed "knife-audit", "0.2.0"
