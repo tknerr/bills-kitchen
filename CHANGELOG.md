@@ -10,7 +10,7 @@
   * added consul 0.4.1
  * tool updates:
   * update to vagrant 1.7.1
-  * update to vagrant-toplevel-cookbooks 0.2.2 (fixes a Vagrant 1.7 incompatibility)
+  * update to vagrant-toplevel-cookbooks 0.2.3 (fixes some Vagrant 1.7 incompatibilities)
 
 # 2.1 (November 19, 2014)
 
