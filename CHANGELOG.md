@@ -1,6 +1,7 @@
 # 2.2 (unreleased)
 
- * ...
+ * tool updates:
+   * update to PortableGit 1.9.5-preview20141217 (fixes [security vulnerability](https://github.com/blog/1938-vulnerability-announced-update-your-git-clients))
 
 # 2.1 (November 19, 2014)
 
