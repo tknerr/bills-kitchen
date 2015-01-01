@@ -28,7 +28,7 @@ describe "bills kitchen" do
       run_cmd("rsync --version").should match('rsync  version 3.0.9')
     end
     it "installs Git 1.9" do
-      run_cmd("git --version").should match('git version 1.9.4')
+      run_cmd("git --version").should match('git version 1.9.5')
     end
     it "installs kdiff3" do
       marker_file = "#{BUILD_DIR}/merged.md"
@@ -125,8 +125,8 @@ describe "bills kitchen" do
       it "has 'vagrant-cachier (1.1.0)' plugin installed" do
         vagrant_plugin_installed "vagrant-cachier", "1.1.0"
       end
-      it "has 'vagrant-berkshelf (3.0.1)' plugin installed" do
-        vagrant_plugin_installed "vagrant-berkshelf", "3.0.1"
+      it "has 'vagrant-berkshelf (4.0.2)' plugin installed" do
+        vagrant_plugin_installed "vagrant-berkshelf", "4.0.2"
       end
     end
   end
