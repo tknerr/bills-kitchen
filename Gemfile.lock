@@ -5,7 +5,7 @@ GEM
       posix-spawn (>= 0.3.6)
     diff-lcs (1.2.5)
     posix-spawn (0.3.8)
-    rake (10.3.2)
+    rake (10.4.2)
     redcarpet (2.1.1)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
