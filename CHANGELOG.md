@@ -1,7 +1,7 @@
 # 2.2 (unreleased)
 
  * tool updates:
-  * update to vagrant 1.7.1
+  * update to vagrant 1.7.2
   * update to PortableGit 1.9.5-preview20141217 (fixes [security vulnerability](https://github.com/blog/1938-vulnerability-announced-update-your-git-clients))
  * vagrant plugin updates:
   * update to vagrant-toplevel-cookbooks 0.2.3 (fixes some Vagrant 1.7 incompatibilities)
