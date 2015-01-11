@@ -5,5 +5,10 @@ Vagrant.configure("2") do |config|
   # enable cachier globally
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
+
+    # cache bussers for test-kitchen
+    config.cache.enable :generic, {
+      "busser" => { cache_dir: "/tmp/busser/gems" }
+    }
   end
 end

@@ -1,5 +1,7 @@
 # 2.2 (unreleased)
 
+ * improvements:
+   * cache busser gems via vagrant-cachier for faster test-kitchen runs
  * tool updates:
    * update to PortableGit 1.9.5-preview20141217 (fixes [security vulnerability](https://github.com/blog/1938-vulnerability-announced-update-your-git-clients))
  * vagrant plugin updates:
