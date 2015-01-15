@@ -6,6 +6,7 @@
    * update to PortableGit 1.9.5-preview20141217 (fixes [security vulnerability](https://github.com/blog/1938-vulnerability-announced-update-your-git-clients))
  * vagrant plugin updates:
    * update to vagrant-berkshelf 4.0.2
+   * update to vagrant-cachier 1.2.0
 
 # 2.1 (November 19, 2014)
 
