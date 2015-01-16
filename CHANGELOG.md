@@ -7,7 +7,7 @@
   * update to vagrant-toplevel-cookbooks 0.2.3 (fixes some Vagrant 1.7 incompatibilities)
   * update to vagrant-berkshelf 4.0.2
  * new tools:
-  * added terraform 0.3.5
+  * added terraform 0.3.6
   * added packer 0.7.5
   * added consul 0.4.1
  * improvements:
