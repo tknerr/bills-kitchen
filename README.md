@@ -13,7 +13,10 @@ The main tools for cooking with Chef / Vagrant:
 
 * [Chef-DK](http://www.getchef.com/downloads/chef-dk/windows/) 0.3.5, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.0.0
 * [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
-* [Vagrant](http://vagrantup.com/) 1.6.5
+* [Vagrant](http://vagrantup.com/) 1.7.2
+* [Terraform](http://terraform.io/) 0.3.5
+* [Packer](http://packer.io/) 0.7.5
+* [Consul](http://consul.io/) 0.4.1
 
 ### Plugins
 
@@ -134,6 +137,9 @@ Make sure you have [VirtualBox](https://www.virtualbox.org/wiki/Downloads) insta
 Bill's Kitchen bundles lots of awesome Open Source software. The copyright owners of this software are mentioned here. For a full-text version of the licenses mentioned above please have a look in the `tools` directory where the respective software is installed.
 
 * Vagrant - Copyright (c) 2010-2014 Mitchell Hashimoto (MIT license)
+* Packer - Copyright (c) 2013-2014 Mitchell Hashimoto (MPL-2.0)
+* Terraform - Copyright (c) 2014-2015 HashiCorp (MPL-2.0)
+* Consul - Copyright (c) 2014 HashiCorp (MPL-2.0)
 * ChefDK - Copyright (c) 2014 Chef Software (Apache 2.0 license)
 * ConEmu - Copyright (c) 2006-2008 Zoin <zoinen@gmail.com>, 2009-2013 Maximus5 <ConEmu.Maximus5@gmail.com> (BSD 3-Clause license)
 * clink - Copyright (c) 2012-2014 Martin Ridgers (MIT license), 1994–2012 Lua.org, PUC-Rio (GPLv3)

@@ -22,7 +22,6 @@ task :build do
   move_chefdk
   fix_chefdk
   copy_files
-  downgrade_bundler
   generate_docs
   install_knife_plugins
   install_vagrant_plugins
@@ -98,7 +97,10 @@ def download_tools
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe                       kdiff3
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
-    %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5.msi                                                  vagrant },
+    %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2.msi                                                  vagrant },
+    %w{ dl.bintray.com/mitchellh/terraform/terraform_0.3.6_windows_amd64.zip                                terraform },
+    %w{ dl.bintray.com/mitchellh/packer/packer_0.7.5_windows_amd64.zip                                      packer },
+    %w{ dl.bintray.com/mitchellh/consul/0.4.1_windows_386.zip                                               consul },
     %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.3.5-1.msi                  chef-dk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
@@ -129,17 +131,6 @@ def fix_chefdk
   end
 end
 
-# need to downgrade bundler to < 1.7.0 for compatibility with vagrant 1.6.5
-# TODO: should be removed with Vagrant 1.7
-def downgrade_bundler
-  Bundler.with_clean_env do
-    command = "#{BUILD_DIR}/set-env.bat \
-    && gem uninstall bundler --executables \
-    && gem install bundler -v 1.6.7 --no-ri --no-rdoc"
-    fail "failed downgrading to bundler < 1.7.0" unless system(command)
-  end
-end
-
 def install_knife_plugins
   Bundler.with_clean_env do
     command = "#{BUILD_DIR}/set-env.bat \
@@ -152,7 +143,7 @@ end
 def install_vagrant_plugins
   Bundler.with_clean_env do
     command = "#{BUILD_DIR}/set-env.bat \
-    && vagrant plugin install vagrant-toplevel-cookbooks --plugin-version 0.2.1 \
+    && vagrant plugin install vagrant-toplevel-cookbooks --plugin-version 0.2.3 \
     && vagrant plugin install vagrant-omnibus --plugin-version 1.4.1 \
     && vagrant plugin install vagrant-cachier --plugin-version 1.2.0 \
     && vagrant plugin install vagrant-berkshelf --plugin-version 4.0.2"

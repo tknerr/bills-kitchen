@@ -9,8 +9,17 @@ describe "bills kitchen" do
     it "installs ChefDK 0.3.5" do
       run_cmd("chef -v").should match('Chef Development Kit Version: 0.3.5')
     end
-    it "installs Vagrant 1.6.5" do
-      run_cmd("vagrant -v").should match('1.6.5')
+    it "installs Vagrant 1.7.2" do
+      run_cmd("vagrant -v").should match('1.7.2')
+    end
+    it "installs Terraform 0.3.6" do
+      run_cmd("terraform --version").should match('0.3.6')
+    end
+    it "installs Packer 0.7.5" do
+      run_cmd("packer version").should match('0.7.5')
+    end
+    it "installs Consul 0.4.1" do
+      run_cmd("consul --version").should match('0.4.1')
     end
     it "installs ssh.exe" do
       run_cmd("ssh -V").should match('OpenSSH_6.0p1, OpenSSL 1.0.1c 10 May 2012')
@@ -92,8 +101,8 @@ describe "bills kitchen" do
       it "has ChefDK verified to work via `chef verify`" do
         cmd_succeeds "chef verify"
       end
-      it "has 'bundler (1.6.7)' gem installed" do
-        gem_installed "bundler", "1.6.7"
+      it "has 'bundler (1.7.5)' gem installed" do
+        gem_installed "bundler", "1.7.5"
       end
       it "has 'knife-audit (0.2.0)' plugin installed" do
         knife_plugin_installed "knife-audit", "0.2.0"
@@ -107,8 +116,8 @@ describe "bills kitchen" do
       it "uses the vagrant embedded gemdir" do
         run_cmd("#{VAGRANT_RUBY}/bin/gem environment gemdir").should match("#{VAGRANT_RUBY}/lib/ruby/gems/2.0.0")
       end
-      it "has 'vagrant-toplevel-cookbooks (0.2.1)' plugin installed" do
-        vagrant_plugin_installed "vagrant-toplevel-cookbooks", "0.2.1"
+      it "has 'vagrant-toplevel-cookbooks (0.2.3)' plugin installed" do
+        vagrant_plugin_installed "vagrant-toplevel-cookbooks", "0.2.3"
       end
       it "has 'vagrant-omnibus (1.4.1)' plugin installed" do
         vagrant_plugin_installed "vagrant-omnibus", "1.4.1"
