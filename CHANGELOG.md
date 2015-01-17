@@ -3,6 +3,7 @@
  * improvements:
   * cache busser gems via vagrant-cachier for faster test-kitchen runs
   * no longer downgrading the ChefDK bundler because vagrant 1.7 is now compatible with bundler 1.7.5 again
+  * make `bundle install` faster and more reliable via `%BUNDLE_JOBS%` and `%BUNDLE_RETRY%`
  * bug fixes:
   * fix invalid syntax (trailing comma) in `Default (Windows).sublime-keymap` file
  * tool updates:
