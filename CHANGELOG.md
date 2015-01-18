@@ -1,4 +1,4 @@
-# 2.2 (unreleased)
+# 2.2 (January 18, 2015)
 
  * improvements:
   * cache busser gems via vagrant-cachier for faster test-kitchen runs
