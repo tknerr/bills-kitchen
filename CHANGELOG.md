@@ -1,7 +1,7 @@
 
 # 2.3 (unreleased)
 
- * ...
+ * update to ChefDK 0.3.6
 
 # 2.2 (January 18, 2015)
 
