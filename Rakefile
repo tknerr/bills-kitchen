@@ -115,15 +115,6 @@ def move_chefdk
 end
 
 def fix_chefdk
-  Dir.glob("#{BUILD_DIR}/tools/chefdk/bin/*.bat").each do |file|
-    # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
-    File.write(file, File.read(file).gsub('@"ruby.exe" "%~dpn0"', '@"%~dp0\..\embedded\bin\ruby.exe" "%~dpn0"'))
-    # fix paths if chefdk is intalled anywhere other than c:\opscode, see opscode/chef-dk#68
-    file2 = file.sub(/\.bat$/, '')
-    File.write(file2, File.read(file2).gsub(/Kernel.load '(.*)'/, "Kernel.load \"\\1\""))
-    File.write(file2, File.read(file2).gsub('C:/opscode/chefdk', '#{File.expand_path(File.dirname(__FILE__))}/..'))
-  end
-
   # XXX: why are these .bat files even in there? -- the gem .bats should be in embedded/bin
   Dir.glob("#{BUILD_DIR}/tools/chefdk/embedded/lib/ruby/gems/2.0.0/bin/*.bat").each do |file|
     # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
