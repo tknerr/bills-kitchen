@@ -14,6 +14,7 @@ $env:TERRAFORMDIR = Join-Path $pwd tools\terraform
 $env:PACKERDIR = Join-Path $pwd tools\packer
 $env:CONSULDIR = Join-Path $pwd tools\consul
 $env:CHEFDKDIR = Join-Path $pwd tools\chefdk
+$env:CHEFDKHOMEDIR = Join-Path $pwd home\.chefdk
 
 ## inject clink into current cmd.exe
 invoke-expression ((Join-Path $env:CLINKDIR clink.bat) inject)
@@ -24,8 +25,14 @@ invoke-expression (Join-Path $env:DEVKITDIR devkitvars.bat)
 $env:HOME = Join-Path $pwd home
 
 ## Chef-DK embedded Ruby is now the primary one!
-## see http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
-$env:RUBYDIR = Join-Path $env:CHEFDKDIR embedded
+## see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
+## see: `chef shell-init powershell`
+$env:GEM_ROOT = Join-Path $env:CHEFDKDIR embedded\lib\ruby\gems\2.0.0
+$env:GEM_HOME = Join-Path $env:CHEFDKHOMEDIR gem\ruby\2.0.0
+$env:GEM_PATH = "$env:GEM_HOME;$env:GEM_ROOT"
+## that's how the PATH entries are generated for chef shell-init
+$env:CHEFDK_PATH_ENTRIES = "$env:CHEFDKDIR\bin;$env:CHEFDKHOMEDIR\gem\ruby\2.0.0\bin;$env:CHEFDKDIR\embedded\bin"
+
 
 if($env:GITDIR -eq $NULL) {
 	$env:GITDIR = Join-Path $pwd tools\portablegit
@@ -83,6 +90,10 @@ $env:SSL_CERT_FILE = Join-Path $env:HOME "cacert.pem"
 # show the environment
 Write-Host "CHEFDKDIR=$env:CHEFDKDIR"
 Write-Host "RUBYDIR=$env:RUBYDIR"
+Write-Host "CHEFDKHOMEDIR=$env:CHEFDKHOMEDIR"
+Write-Host "GEM_ROOT=$env:GEM_ROOT"
+Write-Host "GEM_HOME=$env:GEM_HOME"
+Write-Host "GEM_PATH=$env:GEM_PATH"
 Write-Host "DEVKITDIR=$env:DEVKITDIR"
 Write-Host "VBOX_USER_HOME=$env:VBOX_USER_HOME"
 Write-Host "VBOX_INSTALL_PATH=$env:VBOX_INSTALL_PATH"
@@ -106,4 +117,4 @@ Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 set-alias vi "sublime_text";
 set-alias be "bundle exec"; 
 
-$env:Path = "$env:CHEFDKDIR\bin;$env:RUBYDIR\bin;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
+$env:Path = "$env:CHEFDK_PATH_ENTRIES;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
