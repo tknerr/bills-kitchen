@@ -155,6 +155,13 @@ def reset_git_user
   end
 end
 
+def pre_packaging_checks
+  chefdk_gem_dir = "#{BUILD_DIR}/home/.chefdk/gem/ruby/2.0.0"
+  if not Dir[chefdk_gem_dir].empty?
+    raise "beware: gem binaries in '#{chefdk_gem_dir}/bin' might use an absolute path to ruby.exe!"
+  end 
+end
+
 def install_sublime_packagecontrol
   target_dir = "#{BUILD_DIR}/tools/sublimetext2/Data/Installed Packages"
   FileUtils.mkdir_p target_dir
@@ -164,6 +171,7 @@ def install_sublime_packagecontrol
 end
 
 def assemble_kitchen
+  pre_packaging_checks
   reset_git_user
   pack BUILD_DIR, "#{TARGET_DIR}/bills-kitchen-#{VERSION}.7z"
 end

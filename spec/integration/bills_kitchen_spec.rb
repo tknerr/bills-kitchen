@@ -95,6 +95,10 @@ describe "bills kitchen" do
       it "has RubyGems > 2.4.1 installed (fixes opscode/chef-dk#242)" do
         run_cmd("gem -v").should match('2.4.4')
       end
+      it "ships with an empty $HOME/.chefdk directory" do
+        # because since RubyGems > 2.4.1 the ruby path in here is absolute!
+        Dir["#{CHEFDK_HOME}/gem/ruby/2.0.0/"].should be_empty
+      end
       it "has ChefDK verified to work via `chef verify`" do
         cmd_succeeds "chef verify"
       end
