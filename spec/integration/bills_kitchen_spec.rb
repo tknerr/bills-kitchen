@@ -6,8 +6,8 @@ describe "bills kitchen" do
   include Helpers
 
   describe "tools" do
-    it "installs ChefDK 0.3.5" do
-      run_cmd("chef -v").should match('Chef Development Kit Version: 0.3.5')
+    it "installs ChefDK 0.3.6" do
+      run_cmd("chef -v").should match('Chef Development Kit Version: 0.3.6')
     end
     it "installs Vagrant 1.7.2" do
       run_cmd("vagrant -v").should match('1.7.2')
@@ -86,17 +86,18 @@ describe "bills kitchen" do
     end
 
     describe "chefdk ruby" do
-      it "installs Chef 11.18.0.rc.1" do
-        run_cmd("knife -v").should match('Chef: 11.18.0.rc.1')
+      it "installs Chef 11.18.0" do
+        run_cmd("knife -v").should match('Chef: 11.18.0')
       end
-      it "uses the ChefDK embedded gemdir" do
-        run_cmd("#{CHEFDK_RUBY}/bin/gem environment gemdir").should match("#{CHEFDK_RUBY}/lib/ruby/gems/2.0.0")
+      it "has RubyGems > 2.4.1 installed (fixes opscode/chef-dk#242)" do
+        run_cmd("gem -v").should match('2.4.4')
       end
-      it "does NOT install gems into $HOME/.chefdk" do
-        gem_env = run_cmd("#{CHEFDK_RUBY}/bin/gem environment")
-        gem_env.should match('"update" => "--no-user-install"')
-        gem_env.should match('"install" => "--no-user-install"')
-        Dir["#{CHEFDK_HOME}/gem/ruby/2.0.0/"].should be_empty
+      it "uses $HOME/.chefdk as the gemdir" do
+        run_cmd("#{CHEFDK_RUBY}/bin/gem environment gemdir").should match("#{CHEFDK_HOME}/gem/ruby/2.0.0")
+      end
+      it "does not have any binaries in the $HOME/.chefdk gemdir preinstalled when we ship it" do
+        # because since RubyGems > 2.4.1 the ruby path in here is absolute!
+        Dir["#{CHEFDK_HOME}/gem/ruby/2.0.0/bin"].should be_empty
       end
       it "has ChefDK verified to work via `chef verify`" do
         cmd_succeeds "chef verify"
@@ -113,9 +114,6 @@ describe "bills kitchen" do
     end
 
     describe "vagrant ruby" do
-      it "uses the vagrant embedded gemdir" do
-        run_cmd("#{VAGRANT_RUBY}/bin/gem environment gemdir").should match("#{VAGRANT_RUBY}/lib/ruby/gems/2.0.0")
-      end
       it "has 'vagrant-toplevel-cookbooks (0.2.3)' plugin installed" do
         vagrant_plugin_installed "vagrant-toplevel-cookbooks", "0.2.3"
       end
@@ -127,6 +125,9 @@ describe "bills kitchen" do
       end
       it "has 'vagrant-berkshelf (4.0.2)' plugin installed" do
         vagrant_plugin_installed "vagrant-berkshelf", "4.0.2"
+      end
+      it "installed vagrant plugins $HOME/.vagrant.d" do
+        Dir.entries("#{VAGRANT_HOME}/gems/gems").should include('vagrant-toplevel-cookbooks-0.2.3')
       end
     end
   end

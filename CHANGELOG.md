@@ -1,7 +1,11 @@
 
 # 2.3 (unreleased)
 
- * ...
+ * tool updates:
+  * update to ChefDK 0.3.6
+ * improvements:
+  * mimic `chef shell-init` behaviour by setting env vars accordingly
+  * user installed gems will be installed to `$HOME/.chefdk` again (see [#71|https://github.com/tknerr/bills-kitchen/pull/71]) 
 
 # 2.2 (January 18, 2015)
 

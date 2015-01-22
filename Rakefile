@@ -101,7 +101,7 @@ def download_tools
     %w{ dl.bintray.com/mitchellh/terraform/terraform_0.3.6_windows_amd64.zip                                terraform },
     %w{ dl.bintray.com/mitchellh/packer/packer_0.7.5_windows_amd64.zip                                      packer },
     %w{ dl.bintray.com/mitchellh/consul/0.4.1_windows_386.zip                                               consul },
-    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.3.5-1.msi                  chef-dk }
+    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.3.6-1.msi                  chef-dk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')    
@@ -115,19 +115,14 @@ def move_chefdk
 end
 
 def fix_chefdk
-  Dir.glob("#{BUILD_DIR}/tools/chefdk/bin/*.bat").each do |file|
+  Dir.glob("#{BUILD_DIR}/tools/chefdk/embedded/bin/*.bat").each do |file|
     # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
-    File.write(file, File.read(file).gsub('@"ruby.exe" "%~dpn0"', '@"%~dp0\..\embedded\bin\ruby.exe" "%~dpn0"'))
-    # fix paths if chefdk is intalled anywhere other than c:\opscode, see opscode/chef-dk#68
-    file2 = file.sub(/\.bat$/, '')
-    File.write(file2, File.read(file2).gsub(/Kernel.load '(.*)'/, "Kernel.load \"\\1\""))
-    File.write(file2, File.read(file2).gsub('C:/opscode/chefdk', '#{File.expand_path(File.dirname(__FILE__))}/..'))
+    File.write(file, File.read(file).gsub('@"C:\opscode\chefdk\embedded\bin\ruby.exe" "%~dpn0" %*', '@"%~dp0ruby.exe" "%~dpn0" %*'))
   end
-
   # XXX: why are these .bat files even in there? -- the gem .bats should be in embedded/bin
   Dir.glob("#{BUILD_DIR}/tools/chefdk/embedded/lib/ruby/gems/2.0.0/bin/*.bat").each do |file|
     # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
-    File.write(file, File.read(file).gsub('@"%~dp0ruby.exe" "%~dpn0" %*', '@"%~dp0\..\..\..\..\..\bin\ruby.exe" "%~dpn0" %*'))
+    File.write(file, File.read(file).gsub('@"C:\opscode\chefdk\embedded\bin\ruby.exe" "%~dpn0" %*', '@"%~dp0\..\..\..\..\..\bin\ruby.exe" "%~dpn0" %*'))
   end
 end
 
@@ -160,6 +155,13 @@ def reset_git_user
   end
 end
 
+def pre_packaging_checks
+  chefdk_gem_bindir = "#{BUILD_DIR}/home/.chefdk/gem/ruby/2.0.0/bin"
+  if not Dir[chefdk_gem_bindir].empty?
+    raise "beware: gem binaries in '#{chefdk_gem_bindir}' might use an absolute path to ruby.exe!"
+  end 
+end
+
 def install_sublime_packagecontrol
   target_dir = "#{BUILD_DIR}/tools/sublimetext2/Data/Installed Packages"
   FileUtils.mkdir_p target_dir
@@ -169,6 +171,7 @@ def install_sublime_packagecontrol
 end
 
 def assemble_kitchen
+  pre_packaging_checks
   reset_git_user
   pack BUILD_DIR, "#{TARGET_DIR}/bills-kitchen-#{VERSION}.7z"
 end

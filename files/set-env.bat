@@ -20,6 +20,7 @@ set TERRAFORMDIR=%SCRIPT_DIR%tools\terraform
 set PACKERDIR=%SCRIPT_DIR%tools\packer
 set CONSULDIR=%SCRIPT_DIR%tools\consul
 set CHEFDKDIR=%SCRIPT_DIR%tools\chefdk
+set CHEFDKHOMEDIR=%SCRIPT_DIR%home\.chefdk
 
 :: inject clink into current cmd.exe
 :: call %CLINKDIR%\clink.bat inject
@@ -32,8 +33,14 @@ set GITDIR=%SCRIPT_DIR%tools\portablegit
 set HOME=%SCRIPT_DIR%home
 
 :: Chef-DK embedded Ruby is now the primary one!
-:: see http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
-set RUBYDIR=%CHEFDKDIR%\embedded
+:: see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
+:: see: `chef shell-init powershell`
+set GEM_ROOT=%CHEFDKDIR%\embedded\lib\ruby\gems\2.0.0
+set GEM_HOME=%CHEFDKHOMEDIR%\gem\ruby\2.0.0
+set GEM_PATH=%GEM_HOME%;%GEM_ROOT%
+:: that's how the PATH entries are generated for chef shell-init
+set CHEFDK_PATH_ENTRIES=%CHEFDKDIR%\bin;%CHEFDKHOMEDIR%\gem\ruby\2.0.0\bin;%CHEFDKDIR%\embedded\bin
+
 
 :: prompt for .gitconfig username/email
 FOR /F "usebackq tokens=*" %%a IN (`cmd /C %GITDIR%\cmd\git config --get user.name`) DO SET GIT_CONF_USERNAME=%%a
@@ -79,7 +86,10 @@ set CYGWIN=nodosfilewarning
 
 :: show the environment
 echo CHEFDKDIR=%CHEFDKDIR%
-echo RUBYDIR=%RUBYDIR%
+echo CHEFDKHOMEDIR=%CHEFDKHOMEDIR%
+echo GEM_ROOT=%GEM_ROOT%
+echo GEM_HOME=%GEM_HOME%
+echo GEM_PATH=%GEM_PATH%
 echo DEVKITDIR=%DEVKITDIR%
 echo VBOX_USER_HOME=%VBOX_USER_HOME%
 echo VBOX_INSTALL_PATH=%VBOX_INSTALL_PATH%
@@ -106,4 +116,4 @@ echo HTTP_PROXY=%HTTP_PROXY%
 @doskey vi=START "Sublime Text 2" sublime_text $*
 @doskey be=bundle exec $*
 
-set PATH=%CHEFDKDIR%\bin;%RUBYDIR%\bin;%CONSULDIR%;%PACKERDIR%;%TERRAFORMDIR%;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
+set PATH=%CHEFDK_PATH_ENTRIES%;%CONSULDIR%;%PACKERDIR%;%TERRAFORMDIR%;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
