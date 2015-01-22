@@ -92,11 +92,8 @@ describe "bills kitchen" do
       it "uses the ChefDK embedded gemdir" do
         run_cmd("#{CHEFDK_RUBY}/bin/gem environment gemdir").should match("#{CHEFDK_RUBY}/lib/ruby/gems/2.0.0")
       end
-      it "does NOT install gems into $HOME/.chefdk" do
-        gem_env = run_cmd("#{CHEFDK_RUBY}/bin/gem environment")
-        gem_env.should match('"update" => "--no-user-install"')
-        gem_env.should match('"install" => "--no-user-install"')
-        Dir["#{CHEFDK_HOME}/gem/ruby/2.0.0/"].should be_empty
+      it "has RubyGems > 2.4.1 installed (fixes opscode/chef-dk#242)" do
+        run_cmd("gem -v").should match('2.4.4')
       end
       it "has ChefDK verified to work via `chef verify`" do
         cmd_succeeds "chef verify"
