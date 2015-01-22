@@ -89,15 +89,15 @@ describe "bills kitchen" do
       it "installs Chef 11.18.0" do
         run_cmd("knife -v").should match('Chef: 11.18.0')
       end
-      it "uses the ChefDK embedded gemdir" do
-        run_cmd("#{CHEFDK_RUBY}/bin/gem environment gemdir").should match("#{CHEFDK_RUBY}/lib/ruby/gems/2.0.0")
-      end
       it "has RubyGems > 2.4.1 installed (fixes opscode/chef-dk#242)" do
         run_cmd("gem -v").should match('2.4.4')
       end
-      it "ships with an empty $HOME/.chefdk directory" do
+      it "uses $HOME/.chefdk as the gemdir" do
+        run_cmd("#{CHEFDK_RUBY}/bin/gem environment gemdir").should match("#{CHEFDK_HOME}/gem/ruby/2.0.0")
+      end
+      it "does not have any binaries in the $HOME/.chefdk gemdir preinstalled when we ship it" do
         # because since RubyGems > 2.4.1 the ruby path in here is absolute!
-        Dir["#{CHEFDK_HOME}/gem/ruby/2.0.0/"].should be_empty
+        Dir["#{CHEFDK_HOME}/gem/ruby/2.0.0/bin"].should be_empty
       end
       it "has ChefDK verified to work via `chef verify`" do
         cmd_succeeds "chef verify"
@@ -114,9 +114,6 @@ describe "bills kitchen" do
     end
 
     describe "vagrant ruby" do
-      it "uses the vagrant embedded gemdir" do
-        run_cmd("#{VAGRANT_RUBY}/bin/gem environment gemdir").should match("#{VAGRANT_RUBY}/lib/ruby/gems/2.0.0")
-      end
       it "has 'vagrant-toplevel-cookbooks (0.2.3)' plugin installed" do
         vagrant_plugin_installed "vagrant-toplevel-cookbooks", "0.2.3"
       end
@@ -128,6 +125,9 @@ describe "bills kitchen" do
       end
       it "has 'vagrant-berkshelf (4.0.2)' plugin installed" do
         vagrant_plugin_installed "vagrant-berkshelf", "4.0.2"
+      end
+      it "installed vagrant plugins $HOME/.vagrant.d" do
+        Dir.entries("#{VAGRANT_HOME}/gems/gems").should include('vagrant-toplevel-cookbooks-0.2.3')
       end
     end
   end
