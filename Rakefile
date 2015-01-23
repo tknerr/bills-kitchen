@@ -249,7 +249,7 @@ end
 
 def pack(target_dir, archive)
   puts "packing '#{target_dir}' into '#{archive}'"
-  system("\"#{ZIP_EXE}\" a -t7z -y \"#{archive}\" \"#{target_dir}\" 1> NUL")
+  system("cd #{target_dir} && \"#{ZIP_EXE}\" a -t7z -y \"#{archive}\" \".\" 1> NUL && cd ..")
 end
 
 def release?

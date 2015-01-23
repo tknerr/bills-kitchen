@@ -5,7 +5,8 @@
   * update to ChefDK 0.3.6
  * improvements:
   * mimic `chef shell-init` behaviour by setting env vars accordingly
-  * user installed gems will be installed to `$HOME/.chefdk` again (see [#71|https://github.com/tknerr/bills-kitchen/pull/71]) 
+  * user installed gems will be installed to `$HOME/.chefdk` again (see [#71](https://github.com/tknerr/bills-kitchen/pull/71))
+  * update packaging to that it does not include the intermediary build directory anymore ([#63](https://github.com/tknerr/bills-kitchen/issues/63))
 
 # 2.2 (January 18, 2015)
 
