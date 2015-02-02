@@ -117,3 +117,7 @@ echo HTTP_PROXY=%HTTP_PROXY%
 @doskey be=bundle exec $*
 
 set PATH=%CHEFDK_PATH_ENTRIES%;%CONSULDIR%;%PACKERDIR%;%TERRAFORMDIR%;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
+
+:: set the VirtualBox machinedir to be devpack-local
+vboxmanage setproperty machinefolder "%HOME%\VirtualBox VMs"
+:: vboxmanage list systemproperties
