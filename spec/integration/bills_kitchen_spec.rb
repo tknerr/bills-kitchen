@@ -6,8 +6,8 @@ describe "bills kitchen" do
   include Helpers
 
   describe "tools" do
-    it "installs ChefDK 0.3.6" do
-      run_cmd("chef -v").should match('Chef Development Kit Version: 0.3.6')
+    it "installs ChefDK 0.4.0" do
+      run_cmd("chef -v").should match('Chef Development Kit Version: 0.4.0')
     end
     it "installs Vagrant 1.7.2" do
       run_cmd("vagrant -v").should match('1.7.2')
@@ -86,8 +86,8 @@ describe "bills kitchen" do
     end
 
     describe "chefdk ruby" do
-      it "installs Chef 11.18.0" do
-        run_cmd("knife -v").should match('Chef: 11.18.0')
+      it "installs Chef 12.0.3" do
+        run_cmd("knife -v").should match('Chef: 12.0.3')
       end
       it "has RubyGems > 2.4.1 installed (fixes opscode/chef-dk#242)" do
         run_cmd("gem -v").should match('2.4.4')
@@ -102,8 +102,8 @@ describe "bills kitchen" do
       it "has ChefDK verified to work via `chef verify`" do
         cmd_succeeds "chef verify"
       end
-      it "has 'bundler (1.7.5)' gem installed" do
-        gem_installed "bundler", "1.7.5"
+      it "has 'bundler (1.7.12)' gem installed" do
+        gem_installed "bundler", "1.7.12"
       end
       it "has 'knife-audit (0.2.0)' plugin installed" do
         knife_plugin_installed "knife-audit", "0.2.0"
