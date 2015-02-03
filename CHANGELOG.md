@@ -1,7 +1,8 @@
 
 # 2.4 (unreleased)
 
- * ...
+ * tool updates:
+  * update to ChefDK 0.4.0
 
 # 2.3 (January 23, 2015)
 
