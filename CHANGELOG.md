@@ -3,6 +3,8 @@
 
  * tool updates:
   * update to ChefDK 0.4.0
+ * vagrant plugin updates:
+  * update to vagrant-toplevel-cookbooks 0.2.4
 
 # 2.3 (January 23, 2015)
 
