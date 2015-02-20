@@ -114,8 +114,8 @@ describe "bills kitchen" do
     end
 
     describe "vagrant ruby" do
-      it "has 'vagrant-toplevel-cookbooks (0.2.3)' plugin installed" do
-        vagrant_plugin_installed "vagrant-toplevel-cookbooks", "0.2.3"
+      it "has 'vagrant-toplevel-cookbooks (0.2.4)' plugin installed" do
+        vagrant_plugin_installed "vagrant-toplevel-cookbooks", "0.2.4"
       end
       it "has 'vagrant-omnibus (1.4.1)' plugin installed" do
         vagrant_plugin_installed "vagrant-omnibus", "1.4.1"
@@ -123,11 +123,11 @@ describe "bills kitchen" do
       it "has 'vagrant-cachier (1.2.0)' plugin installed" do
         vagrant_plugin_installed "vagrant-cachier", "1.2.0"
       end
-      it "has 'vagrant-berkshelf (4.0.2)' plugin installed" do
-        vagrant_plugin_installed "vagrant-berkshelf", "4.0.2"
+      it "has 'vagrant-berkshelf (4.0.3)' plugin installed" do
+        vagrant_plugin_installed "vagrant-berkshelf", "4.0.3"
       end
       it "installed vagrant plugins $HOME/.vagrant.d" do
-        Dir.entries("#{VAGRANT_HOME}/gems/gems").should include('vagrant-toplevel-cookbooks-0.2.3')
+        Dir.entries("#{VAGRANT_HOME}/gems/gems").should include('vagrant-toplevel-cookbooks-0.2.4')
       end
     end
   end
