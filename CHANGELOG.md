@@ -3,6 +3,7 @@
 
  * tool updates:
   * update to ChefDK 0.4.0
+  * update to Terraform 0.3.7
  * vagrant plugin updates:
   * update to vagrant-toplevel-cookbooks 0.2.4
   * update to vagrant-berkshelf 4.0.3
