@@ -39,8 +39,8 @@ describe "bills kitchen" do
         File.delete(marker_file) if File.exist?(marker_file)
       end
     end
-    it "installs clink 0.4.2" do
-      run_cmd("#{BUILD_DIR}/tools/clink/clink.bat version").should match('Clink v0.4.2')
+    it "installs clink 0.4.4" do
+      run_cmd("#{BUILD_DIR}/tools/clink/clink.bat version").should match('Clink v0.4.4')
     end
   end
 
