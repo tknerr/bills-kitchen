@@ -4,6 +4,7 @@
  * tool updates:
   * update to ChefDK 0.4.0
   * update to Terraform 0.3.7
+  * update to Consul 0.5.0
   * update to ConEmu 20150305
   * update to clink 0.4.4
  * vagrant plugin updates:
