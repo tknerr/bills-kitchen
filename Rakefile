@@ -2,6 +2,10 @@
   require file
 end
 
+# Immediately sync all stdout so that it's immediately visible, e.g. on appveyor
+$stdout.sync = true
+$stderr.sync = true
+
 VERSION = '2.4-SNAPSHOT'
 BASE_DIR = File.expand_path('.', File.dirname(__FILE__)) 
 TARGET_DIR  = "#{BASE_DIR}/target" 
