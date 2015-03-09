@@ -73,14 +73,25 @@ These repositories are used for acceptance-testing the [common usage scenarios](
 * A [sample-toplevel-cookbook](https://github.com/tknerr/sample-toplevel-cookbook) with all kinds cookbook tests: syntax check, style checks, linting, unit and integration tests
 * A [sample-infrastructure-repo](https://github.com/tknerr/sample-infrastructure-repo) which defines a sample server infrastructure with environments and databages via Vagrant / Chef Solo
 
-## Prerequisites
+## Installation and Usage
 
-The only requirement for using the devpack is a recent version of [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (couldn't make that one portable).
+As the only prerequisite you need to have a recent version of [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed (sorry, couldn't make that one portable).
+
+Using Bill's Kitchen itself is fairly simple. There is nothing to install, just unpack and go:
+
+1. Grab the latest `bills-kitchen-<version>.7z` package from the [releases page](https://github.com/tknerr/bills-kitchen/releases) and unzip
+1. Mount the kitchen to the `W:\` drive by double-clicking the `mount-drive.bat` file
+1. Click `W:\Launch ConEmu.lnk` to open a command prompt (which also runs `W:\set-env.bat` to set up the environment)
+1. Start hacking!
 
 
-## Installation
+## Building from Source (Development)
 
-As a prerequisite for building bill's kitchen you need 7zip installed in `C:\Program Files\7-Zip\7z.exe`.
+As a prerequisite for building bill's kitchen you need:
+
+* a Windows host
+* 7zip installed in `C:\Program Files\7-Zip\7z.exe`
+* a Ruby environment (if you don't have one, use [this Ruby DevPack](https://github.com/tknerr/ruby-devpack/releases))
 
 ### Building Bill's Kitchen
 
@@ -121,16 +132,6 @@ By default the Ruby DevPack will be mounted to the `W:\` drive. If you need to c
 
 * `mount-drive.cmd`
 * `unmount-drive.cmd`
-
-## Usage
-
-Make sure you have [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed, then:
-
-1. unzip the `target/bills-kitchen-<version>.7z` somewhere
-2. mount the kitchen to the `W:\` drive by double-clicking the `mount-drive.bat` file
-3. click `W:\Launch ConEmu.lnk` to open a command prompt
-4. in the command prompt run `W:\set-env.bat` to set up the environment
-5. start hacking!
 
 ## Acknowledgements & Licensing
 
