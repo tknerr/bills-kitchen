@@ -6,7 +6,7 @@ $env:KDIFF3DIR = Join-Path $pwd tools\kdiff3
 $env:CYGWINSSHDIR = Join-Path $pwd tools\cygwin-ssh
 $env:CYGWINRSYNCDIR = Join-Path $pwd tools\cygwin-rsync
 $env:CONEMUDIR = Join-Path $pwd tools\conemu
-$env:SUBLIMEDIR = Join-Path $pwd tools\sublimetext2
+$env:ATOMDIR = Join-Path $pwd tools\atom
 $env:PUTTYDIR = Join-Path $pwd tools\putty
 $env:CLINKDIR = Join-Path $pwd tools\clink
 $env:VAGRANTDIR = Join-Path $pwd tools\vagrant\HashiCorp\Vagrant
@@ -101,7 +101,7 @@ Write-Host "KDIFF3DIR=$env:KDIFF3DIR"
 Write-Host "CYGWINSSHDIR=$env:CYGWINSSHDIR"
 Write-Host "CYGWINRSYNCDIR=$env:CYGWINRSYNCDIR"
 Write-Host "CONEMUDIR=$env:CONEMUDIR"
-Write-Host "SUBLIMEDIR=$env:SUBLIMEDIR"
+Write-Host "ATOMDIR=$env:ATOMDIR"
 Write-Host "PUTTYDIR=$env:PUTTYDIR"
 Write-Host "CLINKDIR=$env:CLINKDIR"
 Write-Host "VAGRANTDIR=$env:VAGRANTDIR"
@@ -117,4 +117,4 @@ Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 set-alias vi "sublime_text";
 set-alias be "bundle exec"; 
 
-$env:Path = "$env:CHEFDK_PATH_ENTRIES;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:SUBLIMEDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
+$env:Path = "$env:CHEFDK_PATH_ENTRIES;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:ATOMDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"

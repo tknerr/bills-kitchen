@@ -95,7 +95,7 @@ def download_tools
   [
     %w{ github.com/Maximus5/ConEmu/releases/download/v15.03.05/ConEmuPack.150305.7z                         conemu },
     %w{ github.com/mridgers/clink/releases/download/0.4.4/clink_0.4.4_setup.exe                             clink },
-    %w{ c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2.zip                                              sublimetext2 },
+    %w{ github.com/atom/atom/releases/download/v0.186.0/atom-windows.zip                                    atom },
     %w{ github.com/msysgit/msysgit/releases/download/Git-1.9.5-preview20141217/PortableGit-1.9.5-preview20141217.7z   portablegit },
     %w{ cdn.rubyinstaller.org/archives/devkits/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe                devkit },
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe                       kdiff3
