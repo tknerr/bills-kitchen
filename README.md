@@ -5,7 +5,18 @@ A [DevPack](http://blog.tknerr.de/blog/2014/10/09/devpack-philosophy-aka-works-o
 
 ![Bill's Kitchen Screenshot](https://raw.github.com/tknerr/bills-kitchen/master/doc/bills_kitchen_screenshot.png) 
 
-## What's inside?
+## Installation and Usage
+
+As the only prerequisite you need to have a recent version of [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed (sorry, couldn't make that one portable).
+
+Using Bill's Kitchen itself is fairly simple. There is nothing to install, just unpack and go:
+
+1. Grab the latest `bills-kitchen-<version>.7z` package from the [releases page](https://github.com/tknerr/bills-kitchen/releases) and unpack it
+1. Mount the kitchen to the `W:\` drive by double-clicking the `mount-drive.bat` file
+1. Click `W:\Launch ConEmu.lnk` to open a command prompt (also runs `W:\set-env.bat` to set up the environment)
+1. Start hacking!
+
+## What's included?
 
 ### Main Tools
 
@@ -72,17 +83,6 @@ These repositories are used for acceptance-testing the [common usage scenarios](
 
 * A [sample-toplevel-cookbook](https://github.com/tknerr/sample-toplevel-cookbook) with all kinds cookbook tests: syntax check, style checks, linting, unit and integration tests
 * A [sample-infrastructure-repo](https://github.com/tknerr/sample-infrastructure-repo) which defines a sample server infrastructure with environments and databages via Vagrant / Chef Solo
-
-## Installation and Usage
-
-As the only prerequisite you need to have a recent version of [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed (sorry, couldn't make that one portable).
-
-Using Bill's Kitchen itself is fairly simple. There is nothing to install, just unpack and go:
-
-1. Grab the latest `bills-kitchen-<version>.7z` package from the [releases page](https://github.com/tknerr/bills-kitchen/releases) and unpack it
-1. Mount the kitchen to the `W:\` drive by double-clicking the `mount-drive.bat` file
-1. Click `W:\Launch ConEmu.lnk` to open a command prompt (also runs `W:\set-env.bat` to set up the environment)
-1. Start hacking!
 
 
 ## Building from Source (Development)
