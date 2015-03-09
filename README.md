@@ -79,9 +79,9 @@ As the only prerequisite you need to have a recent version of [VirtualBox](https
 
 Using Bill's Kitchen itself is fairly simple. There is nothing to install, just unpack and go:
 
-1. Grab the latest `bills-kitchen-<version>.7z` package from the [releases page](https://github.com/tknerr/bills-kitchen/releases) and unzip
+1. Grab the latest `bills-kitchen-<version>.7z` package from the [releases page](https://github.com/tknerr/bills-kitchen/releases) and unpack it
 1. Mount the kitchen to the `W:\` drive by double-clicking the `mount-drive.bat` file
-1. Click `W:\Launch ConEmu.lnk` to open a command prompt (which also runs `W:\set-env.bat` to set up the environment)
+1. Click `W:\Launch ConEmu.lnk` to open a command prompt (also runs `W:\set-env.bat` to set up the environment)
 1. Start hacking!
 
 
