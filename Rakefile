@@ -29,7 +29,6 @@ task :build do
   generate_docs
   install_knife_plugins
   install_vagrant_plugins
-  install_sublime_packagecontrol
   run_integration_tests
 end
 
@@ -164,14 +163,6 @@ def pre_packaging_checks
   if not Dir[chefdk_gem_bindir].empty?
     raise "beware: gem binaries in '#{chefdk_gem_bindir}' might use an absolute path to ruby.exe!"
   end 
-end
-
-def install_sublime_packagecontrol
-  target_dir = "#{BUILD_DIR}/tools/sublimetext2/Data/Installed Packages"
-  FileUtils.mkdir_p target_dir
-  # see also: files/tools/sublimetext2/Data/Packages/User/Package Control.sublime-settings
-  download "https://sublime.wbond.net/Package%20Control.sublime-package", 
-    "#{target_dir}/Package Control.sublime-package"
 end
 
 def assemble_kitchen
