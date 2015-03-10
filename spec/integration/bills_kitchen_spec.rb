@@ -42,6 +42,15 @@ describe "bills kitchen" do
     it "installs clink 0.4.4" do
       run_cmd("#{BUILD_DIR}/tools/clink/clink.bat version").should match('Clink v0.4.4')
     end
+    it "installs atom 0.186.0" do
+      # see https://github.com/atom/atom-shell/issues/683
+      # so we 1) ensure the atom.cmd is on the PATH and 2) it's the right version
+      cmd_succeeds "#{BUILD_DIR}/tools/atom/Atom/resources/cli/atom.cmd -v"
+      cmd_succeeds "grep '0.186.0' #{BUILD_DIR}/tools/atom/Atom/resources/app/package.json"
+    end
+    it "installs apm 0.142.0" do
+      run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('0.142.0')
+    end
   end
 
   describe "environment" do
@@ -69,8 +78,8 @@ describe "bills kitchen" do
     it "aliases `bundle exec` to `be`" do
       run_cmd("doskey /macros").should match('be=bundle exec $*')
     end
-    it "aliases `sublime_text` to `vi`" do
-      run_cmd("doskey /macros").should match('vi=START \"Sublime Text 2\" sublime_text $*')
+    it "aliases `atom` to `vi`" do
+      run_cmd("doskey /macros").should match('vi=atom.cmd $*')
     end
   end
 
