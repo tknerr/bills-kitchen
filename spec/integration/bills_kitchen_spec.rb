@@ -139,5 +139,26 @@ describe "bills kitchen" do
         Dir.entries("#{VAGRANT_HOME}/gems/gems").should include('vagrant-toplevel-cookbooks-0.2.4')
       end
     end
+
+    describe "atom plugins" do
+      it "has 'sublime-tabs' plugin installed" do
+        atom_plugin_installed "sublime-tabs"
+      end
+      it "has 'atom-beautify' plugin installed" do
+        atom_plugin_installed "atom-beautify"
+      end
+      it "has 'minimap' plugin installed" do
+        atom_plugin_installed "minimap"
+      end
+      it "has 'line-ending-converter' plugin installed" do
+        atom_plugin_installed "line-ending-converter"
+      end
+      it "has 'language-chef' plugin installed" do
+        atom_plugin_installed "language-chef"
+      end
+      it "has 'language-batchfile' plugin installed" do
+        atom_plugin_installed "language-batchfile"
+      end
+    end
   end
 end

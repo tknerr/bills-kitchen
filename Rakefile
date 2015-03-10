@@ -29,6 +29,7 @@ task :build do
   generate_docs
   install_knife_plugins
   install_vagrant_plugins
+  install_atom_plugins
   run_integration_tests
 end
 
@@ -146,6 +147,19 @@ def install_vagrant_plugins
     && vagrant plugin install vagrant-cachier --plugin-version 1.2.0 \
     && vagrant plugin install vagrant-berkshelf --plugin-version 4.0.3"
     fail "vagrant plugin installation failed" unless system(command)
+  end
+end
+
+def install_atom_plugins
+  Bundler.with_clean_env do
+    command = "#{BUILD_DIR}/set-env.bat \
+    && apm install sublime-tabs \
+    && apm install atom-beautify \
+    && apm install minimap \
+    && apm install line-ending-converter \
+    && apm install language-chef \
+    && apm install language-batchfile"
+    fail "atom plugins installation failed" unless system(command)
   end
 end
 
