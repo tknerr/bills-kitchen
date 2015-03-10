@@ -10,9 +10,16 @@
  * vagrant plugin updates:
   * update to vagrant-toplevel-cookbooks 0.2.4
   * update to vagrant-berkshelf 4.0.3
- * new and removed tools:
-  * remove SublimeText2 editor
-  * add atom editor 0.186.0
+ * SublimeText being replaced by Atom:
+  * remove SublimeText2 editor in favor of atom 0.186.0
+  * this removes the only licensed / non open source component!
+  * preinstalled some useful plugins:
+    * `sublime-tabs` - sublime like tab behaviour
+    * `atom-beautify` - multi-language beautifier framework (codestyle, indentation, etc.)
+    * `minimap` - sublime like minimap navigation
+    * `line-ending-converter` - convert between line ending styles
+    * `language-chef` - chef specific syntax highlighting and snippets
+    * `language-batchfile` - syntax higlighting for .bat files
 
 # 2.3 (January 23, 2015)
 
