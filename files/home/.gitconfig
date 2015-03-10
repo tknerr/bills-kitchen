@@ -1,5 +1,4 @@
 [core]
-	editor = atom.exe
 	autocrlf = input
 [push]
 	default = simple

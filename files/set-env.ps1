@@ -28,6 +28,9 @@ $env:HOME = Join-Path $pwd home
 ## set ATOM_HOME to make it devpack-local
 $env:ATOM_HOME = Join-Path $env:HOME .atom
 
+## set atom as the default EDITOR
+$env:EDITOR = "atom.sh --wait"
+
 ## Chef-DK embedded Ruby is now the primary one!
 ## see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 ## see: `chef shell-init powershell`

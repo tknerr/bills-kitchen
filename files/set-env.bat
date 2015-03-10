@@ -36,6 +36,9 @@ set HOME=%SCRIPT_DIR%home
 :: set ATOM_HOME to make it devpack-local
 set ATOM_HOME=%HOME%\.atom
 
+:: set atom as the default EDITOR
+set EDITOR=atom.sh --wait
+
 :: Chef-DK embedded Ruby is now the primary one!
 :: see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 :: see: `chef shell-init powershell`
