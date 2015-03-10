@@ -24,6 +24,9 @@ invoke-expression (Join-Path $env:DEVKITDIR devkitvars.bat)
 
 $env:HOME = Join-Path $pwd home
 
+## set ATOM_HOME to make it devpack-local
+$env:ATOM_HOME = Join-Path $env:HOME .atom
+
 ## Chef-DK embedded Ruby is now the primary one!
 ## see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 ## see: `chef shell-init powershell`
@@ -114,7 +117,7 @@ Write-Host "GIT_CONF_USERNAME=$env:GIT_CONF_USERNAME"
 Write-Host "GIT_CONF_EMAIL=$env:GIT_CONF_EMAIL"
 Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 
-set-alias vi "sublime_text";
+set-alias vi "atom";
 set-alias be "bundle exec"; 
 
 $env:Path = "$env:CHEFDK_PATH_ENTRIES;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:ATOMDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"

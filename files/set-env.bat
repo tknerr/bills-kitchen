@@ -32,6 +32,9 @@ call %DEVKITDIR%\devkitvars.bat
 set GITDIR=%SCRIPT_DIR%tools\portablegit
 set HOME=%SCRIPT_DIR%home
 
+:: set ATOM_HOME to make it devpack-local
+set ATOM_HOME=%HOME%\.atom
+
 :: Chef-DK embedded Ruby is now the primary one!
 :: see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 :: see: `chef shell-init powershell`
@@ -112,8 +115,8 @@ echo GIT_CONF_EMAIL=%GIT_CONF_EMAIL%
 echo HTTP_PROXY=%HTTP_PROXY%
 
 :: command aliases
-:: see https://stackoverflow.com/questions/10438508/error6-while-trying-to-use-sublime-text-to-msbuild
-@doskey vi=START "Sublime Text 2" sublime_text $*
+@doskey atom=START /B atom.exe $*
+@doskey vi=START /B atom.exe $*
 @doskey be=bundle exec $*
 
 set PATH=%CHEFDK_PATH_ENTRIES%;%CONSULDIR%;%PACKERDIR%;%TERRAFORMDIR%;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%ATOMDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
