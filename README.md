@@ -137,6 +137,7 @@ By default the Ruby DevPack will be mounted to the `W:\` drive. If you need to c
 
 Bill's Kitchen bundles lots of awesome Open Source software. The copyright owners of this software are mentioned here. For a full-text version of the licenses mentioned above please have a look in the `tools` directory where the respective software is installed.
 
+* Atom - Copyright (c) 2014 GitHub Inc. (MIT license)
 * Vagrant - Copyright (c) 2010-2014 Mitchell Hashimoto (MIT license)
 * Packer - Copyright (c) 2013-2014 Mitchell Hashimoto (MPL-2.0)
 * Terraform - Copyright (c) 2014-2015 HashiCorp (MPL-2.0)
