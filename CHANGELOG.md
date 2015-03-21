@@ -11,7 +11,7 @@
   * update to vagrant-toplevel-cookbooks 0.2.4
   * update to vagrant-berkshelf 4.0.3
  * SublimeText being replaced by Atom:
-  * remove SublimeText2 editor in favor of atom 0.186.0
+  * remove SublimeText2 editor in favor of atom 0.187.0
   * this removes the only licensed / non open source component!
   * preinstalled some useful plugins:
     * `sublime-tabs` - sublime like tab behaviour
