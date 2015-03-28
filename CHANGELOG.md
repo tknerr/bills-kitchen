@@ -10,16 +10,18 @@
  * vagrant plugin updates:
   * update to vagrant-toplevel-cookbooks 0.2.4
   * update to vagrant-berkshelf 4.0.3
- * SublimeText being replaced by Atom:
-  * remove SublimeText2 editor in favor of atom 0.187.0
-  * this removes the only licensed / non open source component!
-  * preinstalled some useful plugins:
-    * `sublime-tabs` - sublime like tab behaviour
-    * `atom-beautify` - multi-language beautifier framework (codestyle, indentation, etc.)
-    * `minimap` - sublime like minimap navigation
-    * `line-ending-converter` - convert between line ending styles
-    * `language-chef` - chef specific syntax highlighting and snippets
-    * `language-batchfile` - syntax higlighting for .bat files
+
+**Please note:** SublimeText has been replaced by [Atom](https://atom.io/) (see [#67](https://github.com/tknerr/bills-kitchen/issues/67)):
+
+ * remove SublimeText2 editor in favor of atom 0.187.0
+ * this removes the only licensed / non open source component!
+ * preinstalled some useful plugins:
+  * `sublime-tabs` - sublime like tab behaviour
+  * `atom-beautify` - multi-language beautifier framework (codestyle, indentation, etc.)
+  * `minimap` - sublime like minimap navigation
+  * `line-ending-converter` - convert between line ending styles
+  * `language-chef` - chef specific syntax highlighting and snippets
+  * `language-batchfile` - syntax higlighting for .bat files
 
 # 2.3 (January 23, 2015)
 
@@ -92,8 +94,8 @@
  * bugfixes:
   * re-enable vagrant-cachier in global Vagrantfile again, working around [fgrehm/vagrant-cachier#113](https://github.com/fgrehm/vagrant-cachier/issues/113)
 
-# 2.0.rc1 (July 17, 2014) 
- 
+# 2.0.rc1 (July 17, 2014)
+
  * tool updates:
   * add clink for command autocompletion ([#55](https://github.com/tknerr/bills-kitchen/issues/55)) (disabled)
   * remove separate Ruby and Omnibus Chef installations in favor of [Chef-DK](http://www.getchef.com/downloads/chef-dk/windows/)
@@ -158,10 +160,10 @@
   * updated PortableGit to 1.8.3
  * Vagrant plugin updates:
   * updated vagrant-cachier to 0.2.0
-  * updated vagrant-berkshelf to 1.3.3 
+  * updated vagrant-berkshelf to 1.3.3
 
 # 1.0.0.alpha1 (unpublished)
- 
+
  * switch to SemVer versioning scheme for bills-kitchen, target 1.0 release soon
  * updated to **Vagrant 1.2**, **Chef 11** and **Berkshelf** (see below for details)
  * updated to Vagrant 1.2.2 with the following plugins pre-installed:
@@ -172,7 +174,7 @@
   * [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) 0.8.0
   * [vagrant-plugin-bundler](https://github.com/tknerr/vagrant-plugin-bundler) 0.1.1
   * [vagrant-berkshelf](https://github.com/riotgames/vagrant-berkshelf) 1.2.0
- * updated [chef-tlc-workflow](https://github.com/tknerr/chef-tlc-workflow) to v0.3.0: 
+ * updated [chef-tlc-workflow](https://github.com/tknerr/chef-tlc-workflow) to v0.3.0:
   * supports Vagrant 1.2
   * supports Chef 11
   * replaces librarian-chef with [Berkshelf](http://berkshelf.com) (v2.0.4)
@@ -219,13 +221,13 @@
 
  * use patched Ruby 1.9.3 with >50% load time improvements from [thecodeshop](https://github.com/thecodeshop/ruby/wiki/Downloads)
  * gem updates:
-  * updatet test-kitchen to 0.7.0 release version 
+  * updatet test-kitchen to 0.7.0 release version
 
 # 0.8 (Dec 02, 2012)
 
  * prompt for .gitconfig username and email the first time `set-env` is called
  * re-enable vagrant-vbguest plugin with guest addition updates disabled by default
- * add powershell set-env.ps1 variant of set-env.bat (thanks @ilude) 
+ * add powershell set-env.ps1 variant of set-env.bat (thanks @ilude)
  * add http redirect handling for downloads (thanks @ilude)
  * gem updates:
   * added knife-solo_data_bag 0.3.0 (knife plugin for managing data bags with chef_solo)
@@ -240,8 +242,8 @@
 
 
 # 0.7 (Oct 08, 2012)
- 
- * GH-1: set up chef server from scratch (using knife-server) rather than having it in a pre-baked basebox, updated GETTING_STARTED guide 
+
+ * GH-1: set up chef server from scratch (using knife-server) rather than having it in a pre-baked basebox, updated GETTING_STARTED guide
  * update to latest Chef release 10.14.4
  * use latest bundler version 1.2.1
  * gem updates:
@@ -256,7 +258,7 @@
 
 
 # 0.6 (Aug 29, 2012)
- 
+
  * added COOKBOOK_DEVELOPMENT guide for test-driven cookbook development with foodritic, chefspec, fauxhai, vagrant, librarian, minitest-chef-handler and cucumber-nagios
  * added recent version of cygwin rsync.exe and ssh.exe
  * gem updates:
@@ -269,39 +271,39 @@
  	* updated vagrant to 1.0.3.1
  	* updated sahara to 0.0.13 (patches now merged in upstream version)
  	* updated knife-solo to latest version (now much faster using rsync.exe) 0.0.13.1
- 	* added faster_require gem for reducing startup times 
+ 	* added faster_require gem for reducing startup times
  * bugfixes:
    * GH-7: TERM=msys breaks vagrant ssh terminal
    * GH-6: "This build of Sublime Text 2 has expired..."
-   * GH-5: rake install fails due to missing gems 
+   * GH-5: rake install fails due to missing gems
 
 # 0.5.1 (July 16, 2012)
-  
+
  * added putty to tools
  * added knife-solo gem (patched for windows)
  * better http proxy support: updated librarian gem (proxy patch), setting proxy in .gitconfig
- 
+
 # 0.5 (June 27, 2012)
 
  * check out 'bills-kitchen-0.5_branch' after clone for dependent repositories
  * fixed devkitvars not being set causing problems with compiling native gems
  * renamed chef-devpack to bill's kitchen
 
-# 0.4 (June 08, 2012) 
- 
+# 0.4 (June 08, 2012)
+
  * switched to 7z packaging greatly reducing filesize
  * updated Vagrantfiles to use public basebox URLs
- * removed notepad++ as we don't need two editors 
+ * removed notepad++ as we don't need two editors
  * replaced p4merge with more lightweight kdiff3
  * added support for colored shell output in Console2 via `ansicon`
  * devpack is now built from source: https://github.com/tknerr/bills-kitchen
 
 # 0.3 (May 18, 2012)
 
- * added `my-baseboxes` project which builds our baseboxes using veewee 
+ * added `my-baseboxes` project which builds our baseboxes using veewee
  * updated baseboxes and docs for Ubuntu 12.04 and Chef 0.10.10
  * added `Gemfile` for managing the gems we need in the DevPack
- * added git submodules for `my-chef-repo`, cookbooks in `my-cookbooks` 
+ * added git submodules for `my-chef-repo`, cookbooks in `my-cookbooks`
  * added sublime text editor with chef code completion
 
 # 0.2 (May 11, 2012)
@@ -314,7 +316,7 @@
  * added `Console2` as an alternative to `cmd`
  * installed librarian gem to manage cookbook dependencies with `librarian-chef`
  * added `role[webserver]` to chef repository
- 
+
 # 0.1 (April 20, 2012)
 
 initial version, distributed as a manually packaged zip file
