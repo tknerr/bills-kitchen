@@ -7,15 +7,15 @@ $stdout.sync = true
 $stderr.sync = true
 
 VERSION = '2.4-SNAPSHOT'
-BASE_DIR = File.expand_path('.', File.dirname(__FILE__)) 
-TARGET_DIR  = "#{BASE_DIR}/target" 
+BASE_DIR = File.expand_path('.', File.dirname(__FILE__))
+TARGET_DIR  = "#{BASE_DIR}/target"
 BUILD_DIR   = "#{BASE_DIR}/target/build"
 CACHE_DIR   = "#{BASE_DIR}/target/cache"
 ZIP_EXE = 'C:\Program Files\7-Zip\7z.exe'
 
 
 desc 'cleans all output and cache directories'
-task :clean do 
+task :clean do
   FileUtils.rm_rf TARGET_DIR
 end
 
@@ -108,7 +108,7 @@ def download_tools
     %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.4.0-1.msi                  chef-dk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
-    download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')    
+    download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')
   end
 end
 
@@ -176,7 +176,7 @@ def pre_packaging_checks
   chefdk_gem_bindir = "#{BUILD_DIR}/home/.chefdk/gem/ruby/2.0.0/bin"
   if not Dir[chefdk_gem_bindir].empty?
     raise "beware: gem binaries in '#{chefdk_gem_bindir}' might use an absolute path to ruby.exe!"
-  end 
+  end
 end
 
 def assemble_kitchen
@@ -185,8 +185,8 @@ def assemble_kitchen
   pack BUILD_DIR, "#{TARGET_DIR}/bills-kitchen-#{VERSION}.7z"
 end
 
-def download_and_unpack(url, target_dir, includes = []) 
-  Dir.mktmpdir do |tmp_dir| 
+def download_and_unpack(url, target_dir, includes = [])
+  Dir.mktmpdir do |tmp_dir|
     outfile = "#{tmp_dir}/#{File.basename(url)}"
     download(url, outfile)
     unpack(outfile, target_dir, includes)
@@ -224,7 +224,7 @@ def download_no_cache(url, outfile, limit=5)
   if uri.port == 443
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     http.use_ssl = true
-  end 
+  end
 
   http.start do |agent|
     agent.request_get(uri.path + (uri.query ? "?#{uri.query}" : '')) do |response|
@@ -248,13 +248,13 @@ def download_no_cache(url, outfile, limit=5)
 end
 
 def unpack(archive, target_dir, includes = [])
-  puts "extracting '#{archive}' to '#{target_dir}'" 
+  puts "extracting '#{archive}' to '#{target_dir}'"
   case File.extname(archive)
   when '.zip', '.7z', '.exe'
     system("\"#{ZIP_EXE}\" x -o\"#{target_dir}\" -y \"#{archive}\" -r #{includes.join(' ')} 1> NUL")
   when '.msi'
     system("start /wait msiexec /a \"#{archive.gsub('/', '\\')}\" /qb TARGETDIR=\"#{target_dir.gsub('/', '\\')}\"")
-  else 
+  else
     raise "don't know how to unpack '#{archive}'"
   end
 end
