@@ -13,7 +13,7 @@
 
 **Please note:** SublimeText has been replaced by [Atom](https://atom.io/) (see [#67](https://github.com/tknerr/bills-kitchen/issues/67)):
 
- * remove SublimeText2 editor in favor of atom 0.187.0
+ * remove SublimeText2 editor in favor of atom 0.188.0
  * this removes the only licensed / non open source component!
  * preinstalled some useful plugins:
   * `sublime-tabs` - sublime like tab behaviour
