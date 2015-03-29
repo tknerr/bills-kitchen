@@ -7,6 +7,7 @@ Vagrant.configure("2") do |config|
     config.cache.scope = :box
 
     # cache bussers, but only if we detect a test-kitchen run
+    # see https://github.com/tknerr/bills-kitchen/pull/78
     if Dir.pwd.include? ".kitchen/kitchen-vagrant/"
       config.cache.enable :generic, {
         "busser" => { cache_dir: "/tmp/busser/gems" }
