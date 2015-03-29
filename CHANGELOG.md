@@ -20,7 +20,7 @@
   * `atom-beautify` - multi-language beautifier framework (codestyle, indentation, etc.)
   * `minimap` - sublime like minimap navigation
   * `line-ending-converter` - convert between line ending styles
-  * `language-chef` - chef specific syntax highlighting and snippets
+  * `language-chef` - chef specific syntax highlighting and snippets (see here [how to enable it](https://github.com/darron/language-chef/issues/3#issuecomment-87335835))
   * `language-batchfile` - syntax higlighting for .bat files
   * `autocomplete-plus` - for better auto-completion
   * `autocomplete-snippets` - to enable auto-completion for snippets
