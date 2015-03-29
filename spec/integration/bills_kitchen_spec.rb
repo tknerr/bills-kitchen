@@ -42,6 +42,15 @@ describe "bills kitchen" do
     it "installs clink 0.4.4" do
       run_cmd("#{BUILD_DIR}/tools/clink/clink.bat version").should match('Clink v0.4.4')
     end
+    it "installs atom 0.188.0" do
+      # see https://github.com/atom/atom-shell/issues/683
+      # so we 1) ensure the atom.cmd is on the PATH and 2) it's the right version
+      cmd_succeeds "#{BUILD_DIR}/tools/atom/Atom/resources/cli/atom.cmd -v"
+      cmd_succeeds "grep '0.188.0' #{BUILD_DIR}/tools/atom/Atom/resources/app/package.json"
+    end
+    it "installs apm 0.149.0" do
+      run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('0.149.0')
+    end
   end
 
   describe "environment" do
@@ -69,8 +78,8 @@ describe "bills kitchen" do
     it "aliases `bundle exec` to `be`" do
       run_cmd("doskey /macros").should match('be=bundle exec $*')
     end
-    it "aliases `sublime_text` to `vi`" do
-      run_cmd("doskey /macros").should match('vi=START \"Sublime Text 2\" sublime_text $*')
+    it "aliases `atom` to `vi`" do
+      run_cmd("doskey /macros").should match('vi=atom.cmd $*')
     end
   end
 
@@ -128,6 +137,33 @@ describe "bills kitchen" do
       end
       it "installed vagrant plugins $HOME/.vagrant.d" do
         Dir.entries("#{VAGRANT_HOME}/gems/gems").should include('vagrant-toplevel-cookbooks-0.2.4')
+      end
+    end
+
+    describe "atom plugins" do
+      it "has 'sublime-tabs' plugin installed" do
+        atom_plugin_installed "sublime-tabs"
+      end
+      it "has 'atom-beautify' plugin installed" do
+        atom_plugin_installed "atom-beautify"
+      end
+      it "has 'minimap' plugin installed" do
+        atom_plugin_installed "minimap"
+      end
+      it "has 'line-ending-converter' plugin installed" do
+        atom_plugin_installed "line-ending-converter"
+      end
+      it "has 'language-chef' plugin installed" do
+        atom_plugin_installed "language-chef"
+      end
+      it "has 'language-batchfile' plugin installed" do
+        atom_plugin_installed "language-batchfile"
+      end
+      it "has 'autocomplete-plus' plugin installed" do
+        atom_plugin_installed "autocomplete-plus"
+      end
+      it "has 'autocomplete-snippets' plugin installed" do
+        atom_plugin_installed "autocomplete-snippets"
       end
     end
   end

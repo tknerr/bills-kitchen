@@ -1,6 +1,7 @@
 [core]
-	editor = sublime_text.exe
 	autocrlf = input
+[push]
+	default = simple
 [diff]
 	tool = kdiff3
 [difftool]

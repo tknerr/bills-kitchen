@@ -18,6 +18,9 @@ module Helpers
   def run_cmd(cmd)
     `"#{BUILD_DIR}/set-env.bat" >NUL && #{cmd} 2>&1`
   end
+  def run_cmd_no_redirect(cmd)
+    `"#{BUILD_DIR}/set-env.bat" >NUL && #{cmd}`
+  end
   # similar to #run_cmd, but runs quietly and returns only the exit code
   def system_cmd(cmd)
     system "\"#{BUILD_DIR}/set-env.bat\" >NUL && #{cmd} >NUL"
@@ -42,8 +45,12 @@ module Helpers
   def knife_plugin_installed(name, version)
     gem_installed name, version
   end
-  # checks if the given gem is installed at version
+  # checks if the given vagrant plugin is installed at version
   def vagrant_plugin_installed(name, version)
     run_cmd("vagrant plugin list").should match("#{name} \\(#{version}\\)")
+  end
+  # checks if the given atom plugin is installed at version
+  def atom_plugin_installed(name, version = "")
+    run_cmd_no_redirect("apm list").should match("#{name}@#{version}")
   end
 end

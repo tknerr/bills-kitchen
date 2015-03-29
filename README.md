@@ -49,7 +49,7 @@ These plugins are pre-installed:
 Useful additions for a better cooking experience:
 
 * [ConEmu](https://code.google.com/p/conemu-maximus5/) - a better Windows console with colours, tabs, etc...
-* [SublimeText2](http://www.sublimetext.com/) - a better editor (trial version) with additional packages for [Chef](https://github.com/cabeca/SublimeChef) and [Cucumber](https://github.com/npverni/cucumber-sublime2-bundle) installed
+* [Atom](https://atom.io/) - a hackable text editor for the 21st Century
 * [PortableGit](https://code.google.com/p/msysgit/) - git client for Windows (preconfigured with [kdiff3](http://kdiff3.sourceforge.net/) as diff/merge tool)
 * [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) - the SSH client for Windows
 * [clink](http://mridgers.github.io/clink/) - command completion and Bash-like line editing for Windows
@@ -75,7 +75,7 @@ The following changes are applied to your environment by running `W:\set-env.bat
 Registered doskey aliases:
 
 * run `be <command>` for `bundle exec <command>`
-* run `vi <file_or_dir>` for `sublime_text <file_or_dir>` 
+* run `vi <file_or_dir>` for `atom <file_or_dir>` 
 
 ### Examples
 
@@ -137,6 +137,7 @@ By default the Ruby DevPack will be mounted to the `W:\` drive. If you need to c
 
 Bill's Kitchen bundles lots of awesome Open Source software. The copyright owners of this software are mentioned here. For a full-text version of the licenses mentioned above please have a look in the `tools` directory where the respective software is installed.
 
+* Atom - Copyright (c) 2014 GitHub Inc. (MIT license)
 * Vagrant - Copyright (c) 2010-2014 Mitchell Hashimoto (MIT license)
 * Packer - Copyright (c) 2013-2014 Mitchell Hashimoto (MPL-2.0)
 * Terraform - Copyright (c) 2014-2015 HashiCorp (MPL-2.0)
@@ -150,7 +151,5 @@ Bill's Kitchen bundles lots of awesome Open Source software. The copyright owner
 * putty - Copyright (c) 1997-2014 Simon Tatham (MIT license)
 * rsync - Copyright (c) 1996-2011 by Andrew Tridgell, Wayne Davison, and others. (GPLv3)
 * OpenSSH - multiple licenses and copyright holders (OpenSSH License, BSD-compatible)
-
-It also includes an evaluation copy of the awesome [Sublime Text 2](http://www.sublimetext.com/) editor. Please use it for evaluation purposes only (no commercial usage) or [buy a license](http://www.sublimetext.com/buy) if you like it! 
 
 Bill's Kitchen itself is published under the MIT license. It is not "derivative work" but rather ["mere aggregation"](https://www.gnu.org/licenses/gpl-faq.html#MereAggregation) of other software and thus does not need to be licensed under GPL itself.

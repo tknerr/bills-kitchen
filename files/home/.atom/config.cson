@@ -1,0 +1,16 @@
+"*":
+  editor:
+    fontFamily: "Consolas"
+    showInvisibles: true
+    fontSize: 17
+  core:
+    themes: [
+      "atom-dark-ui"
+      "atom-dark-syntax"
+    ]
+  "exception-reporting":
+    userId: "144b6ffc-0bdd-a5c5-1be9-e1b99b2bac93"
+  welcome:
+    showOnStartup: false
+  tabs:
+    showIcons: true

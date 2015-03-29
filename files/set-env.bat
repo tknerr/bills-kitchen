@@ -12,7 +12,8 @@ set KDIFF3DIR=%SCRIPT_DIR%tools\kdiff3
 set CYGWINSSHDIR=%SCRIPT_DIR%tools\cygwin-ssh
 set CYGWINRSYNCDIR=%SCRIPT_DIR%tools\cygwin-rsync
 set CONEMUDIR=%SCRIPT_DIR%tools\conemu
-set SUBLIMEDIR=%SCRIPT_DIR%tools\sublimetext2
+set ATOMDIR=%SCRIPT_DIR%tools\atom\Atom\resources\cli
+set APMDIR=%SCRIPT_DIR%tools\atom\Atom\resources\app\apm\bin
 set PUTTYDIR=%SCRIPT_DIR%tools\putty
 set CLINKDIR=%SCRIPT_DIR%tools\clink
 set VAGRANTDIR=%SCRIPT_DIR%tools\vagrant\HashiCorp\Vagrant
@@ -31,6 +32,12 @@ call %DEVKITDIR%\devkitvars.bat
 :: use portable git, looks for %HOME%\.gitconfig 
 set GITDIR=%SCRIPT_DIR%tools\portablegit
 set HOME=%SCRIPT_DIR%home
+
+:: set ATOM_HOME to make it devpack-local
+set ATOM_HOME=%HOME%\.atom
+
+:: set atom as the default EDITOR
+set EDITOR=atom.sh --wait
 
 :: Chef-DK embedded Ruby is now the primary one!
 :: see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
@@ -98,7 +105,8 @@ echo KDIFF3DIR=%KDIFF3DIR%
 echo CYGWINSSHDIR=%CYGWINSSHDIR%
 echo CYGWINRSYNCDIR=%CYGWINRSYNCDIR%
 echo CONEMUDIR=%CONEMUDIR%
-echo SUBLIMEDIR=%SUBLIMEDIR%
+echo ATOMDIR=%ATOMDIR%
+echo APMDIR=%APMDIR%
 echo PUTTYDIR=%PUTTYDIR%
 echo CLINKDIR=%CLINKDIR%
 echo VAGRANTDIR=%VAGRANTDIR%
@@ -112,8 +120,7 @@ echo GIT_CONF_EMAIL=%GIT_CONF_EMAIL%
 echo HTTP_PROXY=%HTTP_PROXY%
 
 :: command aliases
-:: see https://stackoverflow.com/questions/10438508/error6-while-trying-to-use-sublime-text-to-msbuild
-@doskey vi=START "Sublime Text 2" sublime_text $*
+@doskey vi=atom.cmd $*
 @doskey be=bundle exec $*
 
-set PATH=%CHEFDK_PATH_ENTRIES%;%CONSULDIR%;%PACKERDIR%;%TERRAFORMDIR%;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%SUBLIMEDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
+set PATH=%CHEFDK_PATH_ENTRIES%;%CONSULDIR%;%PACKERDIR%;%TERRAFORMDIR%;%VAGRANTDIR%\bin;%GITDIR%\cmd;%KDIFF3DIR%;%CYGWINRSYNCDIR%;%CYGWINSSHDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%ATOMDIR%;%APMDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
