@@ -32,3 +32,7 @@
 # need this too for fixing \ keybinding on german layout
 'atom-workspace atom-text-editor:not([mini])':
   'ctrl-alt-[': 'unset!'
+
+# autocomplete on enter
+'atom-text-editor:not(mini).autocomplete-active':
+  'enter': 'autocomplete-plus:confirm'
