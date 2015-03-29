@@ -28,3 +28,7 @@
 '.platform-win32 .editor':
   'ctrl-alt-q': 'unset!'
   'ctrl-alt-[': 'unset!'
+
+# need this too for fixing \ keybinding on german layout
+'atom-workspace atom-text-editor:not([mini])':
+  'ctrl-alt-[': 'unset!'
