@@ -158,7 +158,9 @@ def install_atom_plugins
     && apm install minimap \
     && apm install line-ending-converter \
     && apm install language-chef \
-    && apm install language-batchfile"
+    && apm install language-batchfile \
+    && apm install autocomplete-plus \
+    && apm install autocomplete-snippets"
     fail "atom plugins installation failed" unless system(command)
   end
 end

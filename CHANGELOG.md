@@ -22,6 +22,9 @@
   * `line-ending-converter` - convert between line ending styles
   * `language-chef` - chef specific syntax highlighting and snippets
   * `language-batchfile` - syntax higlighting for .bat files
+  * `autocomplete-plus` - for better auto-completion
+  * `autocomplete-snippets` - to enable auto-completion for snippets
+
 
 # 2.3 (January 23, 2015)
 

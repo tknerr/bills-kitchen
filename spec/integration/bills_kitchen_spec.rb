@@ -159,6 +159,12 @@ describe "bills kitchen" do
       it "has 'language-batchfile' plugin installed" do
         atom_plugin_installed "language-batchfile"
       end
+      it "has 'autocomplete-plus' plugin installed" do
+        atom_plugin_installed "autocomplete-plus"
+      end
+      it "has 'autocomplete-snippets' plugin installed" do
+        atom_plugin_installed "autocomplete-snippets"
+      end
     end
   end
 end
