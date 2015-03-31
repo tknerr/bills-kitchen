@@ -1,0 +1,5 @@
+---
+driver:
+  name: vagrant
+  # run provisioners when VM is created (e.g. from global Vagrantfile)
+  provision: true
