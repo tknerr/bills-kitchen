@@ -2,7 +2,7 @@
 # 2.4 (unreleased)
 
  * tool updates:
-  * update to ChefDK 0.4.0
+  * update to ChefDK 0.5.0-rc.2
   * update to Terraform 0.3.7
   * update to Consul 0.5.0
   * update to ConEmu 20150305
@@ -23,6 +23,8 @@
   * `language-chef` - chef specific syntax highlighting and snippets (see here [how to enable it](https://github.com/darron/language-chef/issues/3#issuecomment-87335835))
   * `language-batchfile` - syntax higlighting for .bat files
   * `autocomplete-plus` - for better auto-completion
+  * `autocomplete-snippets` - to enable auto-completion for snippets
+
   * `autocomplete-snippets` - to enable auto-completion for snippets
 
 
