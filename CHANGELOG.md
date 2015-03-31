@@ -2,7 +2,7 @@
 # 2.4 (unreleased)
 
  * tool updates:
-  * update to ChefDK 0.5.0-rc.2
+  * update to ChefDK 0.4.0
   * update to Terraform 0.3.7
   * update to Consul 0.5.0
   * update to ConEmu 20150305
@@ -10,6 +10,10 @@
  * vagrant plugin updates:
   * update to vagrant-toplevel-cookbooks 0.2.4
   * update to vagrant-berkshelf 4.0.3
+ * improvements:
+  * cache busser gems only during test-kitchen runs and add compatibility with test-kitchen 1.4 (see [#78](https://github.com/tknerr/bills-kitchen/pull/78))
+  * fix remaining hardcoded references to "C:\opscode\.." in ChefDK, allowing to use the ChefDK binaries from within `git-bash` (see [#87](https://github.com/tknerr/bills-kitchen/pull/87))
+  * add `git-bash.bat` to the PATH so it is easier accessible (see [#85](https://github.com/tknerr/bills-kitchen/issues/85), thanks @paul42 for the suggestion)
 
 **Please note:** SublimeText has been replaced by [Atom](https://atom.io/) (see [#67](https://github.com/tknerr/bills-kitchen/issues/67)):
 
@@ -24,9 +28,6 @@
   * `language-batchfile` - syntax higlighting for .bat files
   * `autocomplete-plus` - for better auto-completion
   * `autocomplete-snippets` - to enable auto-completion for snippets
-
-  * `autocomplete-snippets` - to enable auto-completion for snippets
-
 
 # 2.3 (January 23, 2015)
 

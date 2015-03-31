@@ -43,7 +43,7 @@ $env:CHEFDK_PATH_ENTRIES = "$env:CHEFDKDIR\bin;$env:CHEFDKHOMEDIR\gem\ruby\2.0.0
 
 if($env:GITDIR -eq $NULL) {
 	$env:GITDIR = Join-Path $pwd tools\portablegit
-	$env:Path = "$env:Path;$(Join-Path $env:GITDIR "cmd")"
+	$env:Path = "$env:Path;$(Join-Path $env:GITDIR "cmd");$env:GITDIR"
 }
 
 ## set git executable path
