@@ -16,7 +16,7 @@ ZIP_EXE = 'C:\Program Files\7-Zip\7z.exe'
 
 desc 'cleans all output and cache directories'
 task :clean do
-  FileUtils.rm_rf TARGET_DIR
+  FileUtils.rm_r TARGET_DIR, secure: true
 end
 
 desc 'downloads required resources and builds the devpack binary'
