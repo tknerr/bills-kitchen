@@ -72,7 +72,7 @@ def run_acceptance_tests
 end
 
 def recreate_dirs
-  FileUtils.rm_rf BUILD_DIR
+  FileUtils.rm_r BUILD_DIR, secure: true
   %w{ home repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
   end
