@@ -2,7 +2,7 @@
 # 2.4 (unreleased)
 
  * tool updates:
-  * update to ChefDK 0.4.0
+  * update to ChefDK 0.5.0-rc.2
   * update to Terraform 0.3.7
   * update to Consul 0.5.0
   * update to ConEmu 20150305

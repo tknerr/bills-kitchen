@@ -3,7 +3,7 @@
 
 A [DevPack](http://blog.tknerr.de/blog/2014/10/09/devpack-philosophy-aka-works-on-your-machine/) with all you (or Bill Gates would) need for cooking with Chef and Vagrant on Windows, shrink-wrapped in a portable package.
 
-![Bill's Kitchen Screenshot](https://raw.github.com/tknerr/bills-kitchen/master/doc/bills_kitchen_screenshot.png) 
+![Bill's Kitchen Screenshot](https://raw.github.com/tknerr/bills-kitchen/master/doc/bills_kitchen_screenshot.png)
 
 ## Installation and Usage
 
@@ -22,12 +22,12 @@ Using Bill's Kitchen itself is fairly simple. There is nothing to install, just 
 
 The main tools for cooking with Chef / Vagrant:
 
-* [Chef-DK](http://www.getchef.com/downloads/chef-dk/windows/) 0.4.0, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.0.0
+* [Chef-DK](http://www.getchef.com/downloads/chef-dk/windows/) 0.5.0, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.0.0
 * [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
 * [Vagrant](http://vagrantup.com/) 1.7.2
-* [Terraform](http://terraform.io/) 0.3.5
+* [Terraform](http://terraform.io/) 0.3.7
 * [Packer](http://packer.io/) 0.7.5
-* [Consul](http://consul.io/) 0.4.1
+* [Consul](http://consul.io/) 0.5.0
 
 ### Plugins
 
@@ -75,7 +75,7 @@ The following changes are applied to your environment by running `W:\set-env.bat
 Registered doskey aliases:
 
 * run `be <command>` for `bundle exec <command>`
-* run `vi <file_or_dir>` for `atom <file_or_dir>` 
+* run `vi <file_or_dir>` for `atom <file_or_dir>`
 
 ### Examples
 
