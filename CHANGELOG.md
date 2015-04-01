@@ -1,5 +1,9 @@
 
-# 2.4 (unreleased)
+# 3.0-rc1 (April 1, 2015)
+
+This is considered a major release mostly because it replaces SublimeText with
+Atom editor (see below). Apart from that breaking change there are quite a few
+tool updates and some minor improvements.
 
  * tool updates:
   * update to ChefDK 0.5.0-rc.2
