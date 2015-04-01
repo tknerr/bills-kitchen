@@ -1,4 +1,8 @@
 
+# 3.0-SNAPSHOT (unreleased)
+
+ * ...
+
 # 3.0-rc1 (April 1, 2015)
 
 This is considered a major release mostly because it replaces SublimeText with
