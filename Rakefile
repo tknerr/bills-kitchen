@@ -180,7 +180,7 @@ end
 def pre_packaging_checks
   chefdk_gem_bindir = "#{BUILD_DIR}/home/.chefdk/gem/ruby/2.0.0/bin"
   if not Dir[chefdk_gem_bindir].empty?
-    raise "beware: gem binaries in '#{chefdk_gem_bindir}' might use an absolute path to ruby.exe!"
+    raise "beware: gem binaries in '#{chefdk_gem_bindir}' might use an absolute path to ruby.exe! Use `gem pristine` to fix it."
   end
 end
 
