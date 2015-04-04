@@ -12,8 +12,8 @@ describe "bills kitchen" do
     it "installs Vagrant 1.7.2" do
       run_cmd("vagrant -v").should match('1.7.2')
     end
-    it "installs Terraform 0.3.7" do
-      run_cmd("terraform --version").should match('0.3.7')
+    it "installs Terraform 0.4.0" do
+      run_cmd("terraform --version").should match('0.4.0')
     end
     it "installs Packer 0.7.5" do
       run_cmd("packer version").should match('0.7.5')
