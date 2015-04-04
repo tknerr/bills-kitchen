@@ -4,6 +4,8 @@
  * tool updates:
   * update to ChefDK 0.5.0-rc.3
   * update to Ruby 2.1.5 (ships with ChefDK above)
+ * bug fixes:
+  * use plain HTTP for parallel downloading of bundled gems to circumvent [bundler/bundler#3545](https://github.com/bundler/bundler/issues/3545)
 
 # 3.0-rc1 (April 1, 2015)
 
