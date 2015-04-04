@@ -93,7 +93,7 @@ end
 
 def download_tools
   [
-    %w{ github.com/Maximus5/ConEmu/releases/download/v15.03.05/ConEmuPack.150305.7z                         conemu },
+    %w{ github.com/Maximus5/ConEmu/releases/download/v15.03.31/ConEmuPack.150331.7z                         conemu },
     %w{ github.com/mridgers/clink/releases/download/0.4.4/clink_0.4.4_setup.exe                             clink },
     %w{ github.com/atom/atom/releases/download/v0.188.0/atom-windows.zip                                    atom },
     %w{ github.com/msysgit/msysgit/releases/download/Git-1.9.5-preview20150319/PortableGit-1.9.5-preview20150319.7z   portablegit },
