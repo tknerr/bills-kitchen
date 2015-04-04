@@ -3,6 +3,7 @@
 
  * tool updates:
   * update to Terraform 0.4.0
+  * update to PortableGit 1.9.5-preview20150319
 
 # 3.0-rc1 (April 1, 2015)
 
