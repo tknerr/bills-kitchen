@@ -34,11 +34,11 @@ $env:EDITOR = "atom.sh --wait"
 ## Chef-DK embedded Ruby is now the primary one!
 ## see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 ## see: `chef shell-init powershell`
-$env:GEM_ROOT = Join-Path $env:CHEFDKDIR embedded\lib\ruby\gems\2.0.0
-$env:GEM_HOME = Join-Path $env:CHEFDKHOMEDIR gem\ruby\2.0.0
+$env:GEM_ROOT = Join-Path $env:CHEFDKDIR embedded\lib\ruby\gems\2.1.0
+$env:GEM_HOME = Join-Path $env:CHEFDKHOMEDIR gem\ruby\2.1.0
 $env:GEM_PATH = "$env:GEM_HOME;$env:GEM_ROOT"
 ## that's how the PATH entries are generated for chef shell-init
-$env:CHEFDK_PATH_ENTRIES = "$env:CHEFDKDIR\bin;$env:CHEFDKHOMEDIR\gem\ruby\2.0.0\bin;$env:CHEFDKDIR\embedded\bin"
+$env:CHEFDK_PATH_ENTRIES = "$env:CHEFDKDIR\bin;$env:CHEFDKHOMEDIR\gem\ruby\2.1.0\bin;$env:CHEFDKDIR\embedded\bin"
 
 
 if($env:GITDIR -eq $NULL) {
@@ -74,15 +74,15 @@ if($env:HTTP_PROXY -eq $NULL) {
 else {
   invoke-expression "$git config --global --replace http.proxy '$env:HTTP_PROXY'"
 }
- 
-## don't let VirtualBox use %HOME% instead of %USERPROFILE%, 
-## otherwise it would become confused when W:\ is unmounted 
+
+## don't let VirtualBox use %HOME% instead of %USERPROFILE%,
+## otherwise it would become confused when W:\ is unmounted
 $env:VBOX_USER_HOME = $env:USERPROFILE
 
 ## set VAGRANT_HOME explicitly, defaults to %USERPROFILE%
 $env:VAGRANT_HOME = Join-Path $env:HOME ".vagrant.d"
 
-## set proper TERM to not break `vagrant ssh` terminal, 
+## set proper TERM to not break `vagrant ssh` terminal,
 ## see https://github.com/tknerr/bills-kitchen/issues/64
 $env:TERM = "cygwin"
 
@@ -123,6 +123,6 @@ Write-Host "GIT_CONF_EMAIL=$env:GIT_CONF_EMAIL"
 Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 
 set-alias vi "atom.cmd";
-set-alias be "bundle exec"; 
+set-alias be "bundle exec";
 
 $env:Path = "$env:CHEFDK_PATH_ENTRIES;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:ATOMDIR;$env:APMDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"

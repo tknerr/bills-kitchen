@@ -29,7 +29,7 @@ set CHEFDKHOMEDIR=%SCRIPT_DIR%home\.chefdk
 :: set %RI_DEVKIT$ env var and add DEVKIT to the PATH
 call %DEVKITDIR%\devkitvars.bat
 
-:: use portable git, looks for %HOME%\.gitconfig 
+:: use portable git, looks for %HOME%\.gitconfig
 set GITDIR=%SCRIPT_DIR%tools\portablegit
 set HOME=%SCRIPT_DIR%home
 
@@ -42,11 +42,11 @@ set EDITOR=atom.sh --wait
 :: Chef-DK embedded Ruby is now the primary one!
 :: see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 :: see: `chef shell-init powershell`
-set GEM_ROOT=%CHEFDKDIR%\embedded\lib\ruby\gems\2.0.0
-set GEM_HOME=%CHEFDKHOMEDIR%\gem\ruby\2.0.0
+set GEM_ROOT=%CHEFDKDIR%\embedded\lib\ruby\gems\2.1.0
+set GEM_HOME=%CHEFDKHOMEDIR%\gem\ruby\2.1.0
 set GEM_PATH=%GEM_HOME%;%GEM_ROOT%
 :: that's how the PATH entries are generated for chef shell-init
-set CHEFDK_PATH_ENTRIES=%CHEFDKDIR%\bin;%CHEFDKHOMEDIR%\gem\ruby\2.0.0\bin;%CHEFDKDIR%\embedded\bin
+set CHEFDK_PATH_ENTRIES=%CHEFDKDIR%\bin;%CHEFDKHOMEDIR%\gem\ruby\2.1.0\bin;%CHEFDKDIR%\embedded\bin
 
 
 :: prompt for .gitconfig username/email
@@ -69,14 +69,14 @@ if "%HTTP_PROXY%"=="" (
   cmd /C %GITDIR%\cmd\git config --global --replace http.proxy %HTTP_PROXY%
 )
 
-:: don't let VirtualBox use %HOME% instead of %USERPROFILE%, 
-:: otherwise it would become confused when W:\ is unmounted 
+:: don't let VirtualBox use %HOME% instead of %USERPROFILE%,
+:: otherwise it would become confused when W:\ is unmounted
 set VBOX_USER_HOME=%USERPROFILE%
 
 :: set VAGRANT_HOME explicitly, defaults to %USERPROFILE%
 set VAGRANT_HOME=%HOME%\.vagrant.d
 
-:: set proper TERM to not break `vagrant ssh` terminal, 
+:: set proper TERM to not break `vagrant ssh` terminal,
 :: see https://github.com/tknerr/bills-kitchen/issues/64
 set TERM=cygwin
 

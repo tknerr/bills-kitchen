@@ -1,7 +1,9 @@
 
 # 3.0-SNAPSHOT (unreleased)
 
- * ...
+ * tool updates:
+  * update to ChefDK 0.5.0-rc.3
+  * update to Ruby 2.1.5 (ships with ChefDK above)
 
 # 3.0-rc1 (April 1, 2015)
 
