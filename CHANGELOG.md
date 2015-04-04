@@ -5,6 +5,7 @@
   * update to Terraform 0.4.0
   * update to PortableGit 1.9.5-preview20150319
   * update to ConEmu 20150331
+  * update to Atom 0.189.0
 
 # 3.0-rc1 (April 1, 2015)
 
