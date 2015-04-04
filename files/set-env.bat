@@ -92,6 +92,7 @@ set SSL_CERT_FILE=%HOME%\cacert.pem
 set CYGWIN=nodosfilewarning
 
 :: show the environment
+echo HOME=%HOME%
 echo CHEFDKDIR=%CHEFDKDIR%
 echo CHEFDKHOMEDIR=%CHEFDKHOMEDIR%
 echo GEM_ROOT=%GEM_ROOT%

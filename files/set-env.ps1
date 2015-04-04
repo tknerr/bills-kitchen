@@ -95,6 +95,7 @@ $env:ANSICON = "true"
 $env:SSL_CERT_FILE = Join-Path $env:HOME "cacert.pem"
 
 # show the environment
+Write-Host "HOME=$env:HOME"
 Write-Host "CHEFDKDIR=$env:CHEFDKDIR"
 Write-Host "RUBYDIR=$env:RUBYDIR"
 Write-Host "CHEFDKHOMEDIR=$env:CHEFDKHOMEDIR"

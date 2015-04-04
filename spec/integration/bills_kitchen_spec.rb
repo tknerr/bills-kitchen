@@ -12,8 +12,8 @@ describe "bills kitchen" do
     it "installs Vagrant 1.7.2" do
       run_cmd("vagrant -v").should match('1.7.2')
     end
-    it "installs Terraform 0.3.7" do
-      run_cmd("terraform --version").should match('0.3.7')
+    it "installs Terraform 0.4.0" do
+      run_cmd("terraform --version").should match('0.4.0')
     end
     it "installs Packer 0.7.5" do
       run_cmd("packer version").should match('0.7.5')
@@ -42,14 +42,14 @@ describe "bills kitchen" do
     it "installs clink 0.4.4" do
       run_cmd("#{BUILD_DIR}/tools/clink/clink.bat version").should match('Clink v0.4.4')
     end
-    it "installs atom 0.188.0" do
+    it "installs atom 0.189.0" do
       # see https://github.com/atom/atom-shell/issues/683
       # so we 1) ensure the atom.cmd is on the PATH and 2) it's the right version
       cmd_succeeds "#{BUILD_DIR}/tools/atom/Atom/resources/cli/atom.cmd -v"
-      cmd_succeeds "grep '0.188.0' #{BUILD_DIR}/tools/atom/Atom/resources/app/package.json"
+      cmd_succeeds "grep '0.189.0' #{BUILD_DIR}/tools/atom/Atom/resources/app/package.json"
     end
-    it "installs apm 0.149.0" do
-      run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('0.149.0')
+    it "installs apm 0.157.0" do
+      run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('0.157.0')
     end
   end
 
