@@ -29,7 +29,7 @@ set CHEFDKHOMEDIR=%SCRIPT_DIR%home\.chefdk
 :: set %RI_DEVKIT$ env var and add DEVKIT to the PATH
 call %DEVKITDIR%\devkitvars.bat
 
-:: use portable git, looks for %HOME%\.gitconfig 
+:: use portable git, looks for %HOME%\.gitconfig
 set GITDIR=%SCRIPT_DIR%tools\portablegit
 set HOME=%SCRIPT_DIR%home
 
@@ -69,14 +69,14 @@ if "%HTTP_PROXY%"=="" (
   cmd /C %GITDIR%\cmd\git config --global --replace http.proxy %HTTP_PROXY%
 )
 
-:: don't let VirtualBox use %HOME% instead of %USERPROFILE%, 
-:: otherwise it would become confused when W:\ is unmounted 
+:: don't let VirtualBox use %HOME% instead of %USERPROFILE%,
+:: otherwise it would become confused when W:\ is unmounted
 set VBOX_USER_HOME=%USERPROFILE%
 
 :: set VAGRANT_HOME explicitly, defaults to %USERPROFILE%
 set VAGRANT_HOME=%HOME%\.vagrant.d
 
-:: set proper TERM to not break `vagrant ssh` terminal, 
+:: set proper TERM to not break `vagrant ssh` terminal,
 :: see https://github.com/tknerr/bills-kitchen/issues/64
 set TERM=cygwin
 
@@ -92,6 +92,7 @@ set SSL_CERT_FILE=%HOME%\cacert.pem
 set CYGWIN=nodosfilewarning
 
 :: show the environment
+echo HOME=%HOME%
 echo CHEFDKDIR=%CHEFDKDIR%
 echo CHEFDKHOMEDIR=%CHEFDKHOMEDIR%
 echo GEM_ROOT=%GEM_ROOT%
