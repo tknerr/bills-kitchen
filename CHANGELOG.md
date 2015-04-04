@@ -1,7 +1,8 @@
 
 # 3.0-SNAPSHOT (unreleased)
 
- * ...
+ * tool updates:
+  * update to Terraform 0.4.0
 
 # 3.0-rc1 (April 1, 2015)
 
