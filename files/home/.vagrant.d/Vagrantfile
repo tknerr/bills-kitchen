@@ -2,6 +2,9 @@
 # global Vagrant configuration
 Vagrant.configure("2") do |config|
 
+  # workaround for mitchellh/vagrant#4073
+  ENV["VAGRANT_DETECTED_OS"] = ENV["VAGRANT_DETECTED_OS"].to_s + " cygwin"
+
   # enable cachier globally
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
