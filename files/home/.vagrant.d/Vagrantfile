@@ -2,9 +2,6 @@
 # global Vagrant configuration
 Vagrant.configure("2") do |config|
 
-  # workaround for mitchellh/vagrant#4073
-  ENV["VAGRANT_DETECTED_OS"] = ENV["VAGRANT_DETECTED_OS"].to_s + " cygwin"
-
   # enable cachier globally
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
@@ -20,7 +17,7 @@ Vagrant.configure("2") do |config|
         "verifier-gemcache" => { cache_dir: "/tmp/verifier/gems/cache" }
       }
 
-      # fix permissions 
+      # fix permissions
       # see https://github.com/mitchellh/vagrant/issues/2257
       # see https://github.com/test-kitchen/test-kitchen/issues/671
       config.vm.provision "shell", inline: <<-EOF

@@ -25,6 +25,7 @@ task :build do
   download_tools
   move_chefdk
   fix_chefdk
+  fix_vagrant
   copy_files
   generate_docs
   install_knife_plugins
@@ -132,6 +133,13 @@ def fix_chefdk
   Dir.glob("#{BUILD_DIR}/tools/chefdk/embedded/lib/ruby/gems/2.0.0/bin/*.bat").each do |file|
     File.write(file, File.read(file).gsub('@"C:\opscode\chefdk\embedded\bin\ruby.exe" "%~dpn0" %*', '@"%~dp0\..\..\..\..\..\bin\ruby.exe" "%~dpn0" %*'))
   end
+end
+
+# workaround for mitchellh/vagrant#4073
+def fix_vagrant
+  orig = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.2/plugins/synced_folders/rsync/helper.rb"
+  patched = File.read(orig).gsub('hostpath = Vagrant::Util', 'hostpath = "/cygdrive" + Vagrant::Util')
+  File.write(orig, patched)
 end
 
 def install_knife_plugins
