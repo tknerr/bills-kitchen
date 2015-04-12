@@ -8,7 +8,7 @@
   * update to Atom 0.189.0
   * remove the included cygwin-based ssh and rsync executables in favor or [cwRsync](https://www.itefix.net/content/cwrsync-free-edition)
  * bug fixes:
-  * make rsync-based synced folders work: use cwRsync and patch vagrant (see [#91](https://github.com/tknerr/bills-kitchen/issues/91), thanks @djmittens for reporting)
+  * make rsync-based synced folders work: use cwRsync and patch vagrant (see [#92](https://github.com/tknerr/bills-kitchen/issues/92), thanks @djmittens for reporting)
 
 # 3.0-rc1 (April 1, 2015)
 
