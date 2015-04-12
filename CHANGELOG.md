@@ -6,6 +6,7 @@
   * update to PortableGit 1.9.5-preview20150319
   * update to ConEmu 20150331
   * update to Atom 0.189.0
+  * remove the included cygwin-based ssh and rsync executables in favor or [cwRsync](https://www.itefix.net/content/cwrsync-free-edition)
 
 # 3.0-rc1 (April 1, 2015)
 
