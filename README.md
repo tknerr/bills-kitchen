@@ -53,7 +53,7 @@ Useful additions for a better cooking experience:
 * [PortableGit](https://code.google.com/p/msysgit/) - git client for Windows (preconfigured with [kdiff3](http://kdiff3.sourceforge.net/) as diff/merge tool)
 * [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) - the SSH client for Windows
 * [clink](http://mridgers.github.io/clink/) - command completion and Bash-like line editing for Windows
-* [Cygwin](http://www.cygwin.com/)-based `ssh.exe` and `rsync.exe` to make rsync-based Vagrant synced folders work on Windows
+* [cwRsync](https://www.itefix.net/content/cwrsync-free-edition) which includes `ssh.exe` and `rsync.exe` to make rsync-based Vagrant synced folders work on Windows
 
 ### Environmental Changes
 
@@ -149,7 +149,6 @@ Bill's Kitchen bundles lots of awesome Open Source software. The copyright owner
 * DevKit - Copyright (c), 2007-2014 RubyInstaller Team (BSD 3-Clause license)
 * kdiff3 - Copyright (c) 2002-2012 Joachim Eibl (GPLv2 license)
 * putty - Copyright (c) 1997-2014 Simon Tatham (MIT license)
-* rsync - Copyright (c) 1996-2011 by Andrew Tridgell, Wayne Davison, and others. (GPLv3)
-* OpenSSH - multiple licenses and copyright holders (OpenSSH License, BSD-compatible)
+* cwRsync - October 2014, provided by Itefix - https://www.itefix.net/cwrsync (BSD 2-Clause license)
 
 Bill's Kitchen itself is published under the MIT license. It is not "derivative work" but rather ["mere aggregation"](https://www.gnu.org/licenses/gpl-faq.html#MereAggregation) of other software and thus does not need to be licensed under GPL itself.

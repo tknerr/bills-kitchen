@@ -22,10 +22,10 @@ describe "bills kitchen" do
       run_cmd("consul --version").should match('0.5.0')
     end
     it "installs ssh.exe" do
-      run_cmd("ssh -V").should match('OpenSSH_6.0p1, OpenSSL 1.0.1c 10 May 2012')
+      run_cmd("ssh -V").should match('OpenSSH_6.7p1, OpenSSL 1.0.1i 6 Aug 2014')
     end
     it "installs rsync.exe" do
-      run_cmd("rsync --version").should match('rsync  version 3.0.9')
+      run_cmd("rsync --version").should match('rsync  version 3.1.1')
     end
     it "installs Git 1.9" do
       run_cmd("git --version").should match('git version 1.9.5')

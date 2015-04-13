@@ -3,8 +3,7 @@ $script:pwd = Split-Path $MyInvocation.MyCommand.Path
 
 $env:DEVKITDIR = Join-Path $pwd tools\devkit
 $env:KDIFF3DIR = Join-Path $pwd tools\kdiff3
-$env:CYGWINSSHDIR = Join-Path $pwd tools\cygwin-ssh
-$env:CYGWINRSYNCDIR = Join-Path $pwd tools\cygwin-rsync
+$env:CWRSYNCDIR = Join-Path $pwd tools\cwrsync\cwRsync_5.4.1_x86_Free
 $env:CONEMUDIR = Join-Path $pwd tools\conemu
 $env:ATOMDIR = Join-Path $pwd tools\atom\Atom\resources\cli
 $env:APMDIR = Join-Path $pwd tools\atom\Atom\resources\app\apm\bin
@@ -106,8 +105,7 @@ Write-Host "DEVKITDIR=$env:DEVKITDIR"
 Write-Host "VBOX_USER_HOME=$env:VBOX_USER_HOME"
 Write-Host "VBOX_INSTALL_PATH=$env:VBOX_INSTALL_PATH"
 Write-Host "KDIFF3DIR=$env:KDIFF3DIR"
-Write-Host "CYGWINSSHDIR=$env:CYGWINSSHDIR"
-Write-Host "CYGWINRSYNCDIR=$env:CYGWINRSYNCDIR"
+Write-Host "CWRSYNCDIR=$env:CWRSYNCDIR"
 Write-Host "CONEMUDIR=$env:CONEMUDIR"
 Write-Host "ATOMDIR=$env:ATOMDIR"
 Write-Host "APMDIR=$env:APMDIR"
@@ -126,4 +124,4 @@ Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 set-alias vi "atom.cmd";
 set-alias be "bundle exec";
 
-$env:Path = "$env:CHEFDK_PATH_ENTRIES;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CYGWINRSYNCDIR;$env:CYGWINSSHDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:ATOMDIR;$env:APMDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
+$env:Path = "$env:CHEFDK_PATH_ENTRIES;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CWRSYNCDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:ATOMDIR;$env:APMDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
