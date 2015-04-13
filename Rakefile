@@ -94,6 +94,8 @@ end
 
 def download_tools
   [
+    %w{ github.com/boot2docker/boot2docker-cli/releases/download/v1.5.0/boot2docker-v1.5.0-windows-amd64.exe  docker/boot2docker.exe },
+    %w{ master.dockerproject.com/windows/amd64/docker-1.5.0-dev.exe                                           docker/docker.exe },
     %w{ github.com/Maximus5/ConEmu/releases/download/v15.03.31/ConEmuPack.150331.7z                         conemu },
     %w{ github.com/mridgers/clink/releases/download/0.4.4/clink_0.4.4_setup.exe                             clink },
     %w{ github.com/atom/atom/releases/download/v0.189.0/atom-windows.zip                                    atom },
@@ -140,6 +142,11 @@ def fix_vagrant
   orig = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.2/plugins/synced_folders/rsync/helper.rb"
   patched = File.read(orig).gsub('hostpath = Vagrant::Util', 'hostpath = "/cygdrive" + Vagrant::Util')
   File.write(orig, patched)
+end
+
+# workaround until boot2docker/windows-installer#80 is released
+def fix_docker
+  system "sed -i -b #{BUILD_DIR}/tools/docker/docker.exe -e 's/1.19/1.17/g'"
 end
 
 def install_knife_plugins
@@ -203,7 +210,12 @@ def download_and_unpack(url, target_dir, includes = [])
   Dir.mktmpdir do |tmp_dir|
     outfile = "#{tmp_dir}/#{File.basename(url)}"
     download(url, outfile)
-    unpack(outfile, target_dir, includes)
+    if File.extname(target_dir)
+      FileUtils.mkdir_p File.dirname(target_dir)
+      FileUtils.cp outfile, target_dir
+    else
+      unpack(outfile, target_dir, includes)
+    end
   end
 end
 
