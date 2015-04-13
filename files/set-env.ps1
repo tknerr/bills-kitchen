@@ -1,6 +1,7 @@
 
 $script:pwd = Split-Path $MyInvocation.MyCommand.Path
 
+$env:DOCKERDIR = Join-Path $pwd tools\docker
 $env:DEVKITDIR = Join-Path $pwd tools\devkit
 $env:KDIFF3DIR = Join-Path $pwd tools\kdiff3
 $env:CWRSYNCDIR = Join-Path $pwd tools\cwrsync\cwRsync_5.4.1_x86_Free
@@ -101,6 +102,7 @@ Write-Host "CHEFDKHOMEDIR=$env:CHEFDKHOMEDIR"
 Write-Host "GEM_ROOT=$env:GEM_ROOT"
 Write-Host "GEM_HOME=$env:GEM_HOME"
 Write-Host "GEM_PATH=$env:GEM_PATH"
+Write-Host "DOCKERDIR=$env:DOCKERDIR"
 Write-Host "DEVKITDIR=$env:DEVKITDIR"
 Write-Host "VBOX_USER_HOME=$env:VBOX_USER_HOME"
 Write-Host "VBOX_INSTALL_PATH=$env:VBOX_INSTALL_PATH"
@@ -124,4 +126,4 @@ Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 set-alias vi "atom.cmd";
 set-alias be "bundle exec";
 
-$env:Path = "$env:CHEFDK_PATH_ENTRIES;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CWRSYNCDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:ATOMDIR;$env:APMDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
+$env:Path = "$env:DOCKERDIR;$env:CHEFDK_PATH_ENTRIES;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CWRSYNCDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:ATOMDIR;$env:APMDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
