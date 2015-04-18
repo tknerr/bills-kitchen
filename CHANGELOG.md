@@ -2,7 +2,7 @@
 # 3.0-SNAPSHOT (unreleased)
 
  * new tools:
-  * added boot2docker-cli and docker client for Windows
+  * added boot2docker-cli and docker client 1.6.0 for Windows
  * tool updates:
   * update to Terraform 0.4.1
   * update to PortableGit 1.9.5-preview20150319
