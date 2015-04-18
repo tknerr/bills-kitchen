@@ -7,7 +7,7 @@
  * tool updates:
   * update to Terraform 0.4.1
   * update to PortableGit 1.9.5-preview20150319
-  * update to ConEmu 20150331
+  * update to ConEmu 20150416
   * update to Atom 0.192.0
   * remove the included cygwin-based ssh and rsync executables in favor or [cwRsync](https://www.itefix.net/content/cwrsync-free-edition)
  * bug fixes:
