@@ -31,6 +31,9 @@ $env:ATOM_HOME = Join-Path $env:HOME .atom
 ## set atom as the default EDITOR
 $env:EDITOR = "atom.sh --wait"
 
+## set the home dir for boot2docker
+$env:BOOT2DOCKER_DIR = Join-Path $env:HOME .boot2docker
+
 ## Chef-DK embedded Ruby is now the primary one!
 ## see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 ## see: `chef shell-init powershell`
@@ -103,6 +106,7 @@ Write-Host "GEM_ROOT=$env:GEM_ROOT"
 Write-Host "GEM_HOME=$env:GEM_HOME"
 Write-Host "GEM_PATH=$env:GEM_PATH"
 Write-Host "DOCKERDIR=$env:DOCKERDIR"
+Write-Host "BOOT2DOCKER_DIR=$env:BOOT2DOCKER_DIR"
 Write-Host "DEVKITDIR=$env:DEVKITDIR"
 Write-Host "VBOX_USER_HOME=$env:VBOX_USER_HOME"
 Write-Host "VBOX_INSTALL_PATH=$env:VBOX_INSTALL_PATH"
