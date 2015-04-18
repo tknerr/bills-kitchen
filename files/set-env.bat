@@ -7,6 +7,7 @@
 set SCRIPT_DIR=%~dp0
 
 :: for these we need the bin dirs in PATH
+set DOCKERDIR=%SCRIPT_DIR%tools\docker
 set DEVKITDIR=%SCRIPT_DIR%tools\devkit
 set KDIFF3DIR=%SCRIPT_DIR%tools\kdiff3
 set CWRSYNCDIR=%SCRIPT_DIR%tools\cwrsync\cwRsync_5.4.1_x86_Free
@@ -37,6 +38,9 @@ set ATOM_HOME=%HOME%\.atom
 
 :: set atom as the default EDITOR
 set EDITOR=atom.sh --wait
+
+:: set the home dir for boot2docker
+set BOOT2DOCKER_DIR=%HOME%\.boot2docker
 
 :: Chef-DK embedded Ruby is now the primary one!
 :: see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
@@ -97,6 +101,8 @@ echo CHEFDKHOMEDIR=%CHEFDKHOMEDIR%
 echo GEM_ROOT=%GEM_ROOT%
 echo GEM_HOME=%GEM_HOME%
 echo GEM_PATH=%GEM_PATH%
+echo DOCKERDIR=%DOCKERDIR%
+echo BOOT2DOCKER_DIR=%BOOT2DOCKER_DIR%
 echo DEVKITDIR=%DEVKITDIR%
 echo VBOX_USER_HOME=%VBOX_USER_HOME%
 echo VBOX_INSTALL_PATH=%VBOX_INSTALL_PATH%
@@ -122,4 +128,4 @@ echo HTTP_PROXY=%HTTP_PROXY%
 @doskey vi=atom.cmd $*
 @doskey be=bundle exec $*
 
-set PATH=%CHEFDK_PATH_ENTRIES%;%CONSULDIR%;%PACKERDIR%;%TERRAFORMDIR%;%VAGRANTDIR%\bin;%GITDIR%\cmd;%GITDIR%;%KDIFF3DIR%;%CWRSYNCDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%ATOMDIR%;%APMDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
+set PATH=%DOCKERDIR%;%CHEFDK_PATH_ENTRIES%;%CONSULDIR%;%PACKERDIR%;%TERRAFORMDIR%;%VAGRANTDIR%\bin;%GITDIR%\cmd;%GITDIR%;%KDIFF3DIR%;%CWRSYNCDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%ATOMDIR%;%APMDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%

@@ -51,6 +51,12 @@ describe "bills kitchen" do
     it "installs apm 0.157.0" do
       run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('0.157.0')
     end
+    it "installs docker 1.6.0" do
+      run_cmd("docker -v").should match('Docker version 1.6.0')
+    end
+    it "installs boot2docker 1.6.0" do
+      run_cmd("boot2docker version").should match('Boot2Docker-cli version: v1.6.0')
+    end
   end
 
   describe "environment" do
@@ -71,6 +77,9 @@ describe "bills kitchen" do
     end
     it "sets SSL_CERT_FILE to W:/home/cacert.pem" do
       env_match "SSL_CERT_FILE=#{BUILD_DIR}/home/cacert.pem"
+    end
+    it "sets BOOT2DOCKER_DIR to W:/home/.boot2docker" do
+      env_match "BOOT2DOCKER_DIR=#{BUILD_DIR}/home/.boot2docker"
     end
   end
 
