@@ -146,7 +146,7 @@ end
 
 # workaround until boot2docker/windows-installer#80 is released
 def fix_docker
-  system "sed -i -b #{BUILD_DIR}/tools/docker/docker.exe -e 's/1.19/1.17/g'"
+  system "sed -i -b #{BUILD_DIR}/tools/docker/docker.exe -e 's/1\.19/1.17/g'"
 end
 
 def install_knife_plugins
