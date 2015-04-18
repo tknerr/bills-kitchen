@@ -8,4 +8,6 @@ boot2docker up
 :: see http://stackoverflow.com/a/29303930/2388971
 
 :: init the shell
-for /f "tokens=2" %%i in ('boot2docker shellinit') do set %%i
+set DOCKER_HOST=tcp://192.168.59.103:2376
+set DOCKER_CERT_PATH=%BOOT2DOCKER_DIR%\certs\boot2docker-vm
+set DOCKER_TLS_VERIFY=1
