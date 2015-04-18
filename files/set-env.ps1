@@ -125,6 +125,5 @@ Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 
 set-alias vi "atom.cmd";
 set-alias be "bundle exec";
-set-alias b2d "boot2docker init; boot2docker up; boot2docker shellinit | invoke-expression";
 
 $env:Path = "$env:DOCKERDIR;$env:CHEFDK_PATH_ENTRIES;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CWRSYNCDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:ATOMDIR;$env:APMDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
