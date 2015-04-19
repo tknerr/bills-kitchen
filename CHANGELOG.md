@@ -5,7 +5,7 @@
   * added boot2docker-cli 1.6.0
   * added docker client 1.6.0
  * tool updates:
-  * update to Terraform 0.4.1
+  * update to Terraform 0.4.2
   * update to PortableGit 1.9.5-preview20150319
   * update to ConEmu 20150416
   * update to Atom 0.192.0
