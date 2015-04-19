@@ -6,8 +6,8 @@ describe "bills kitchen" do
   include Helpers
 
   describe "tools" do
-    it "installs ChefDK 0.5.0.rc.3" do
-      run_cmd("chef -v").should match('Chef Development Kit Version: 0.5.0.rc.3')
+    it "installs ChefDK 0.5.0.rc.5" do
+      run_cmd("chef -v").should match('Chef Development Kit Version: 0.5.0.rc.5')
     end
     it "installs Vagrant 1.7.2" do
       run_cmd("vagrant -v").should match('1.7.2')
