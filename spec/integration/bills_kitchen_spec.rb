@@ -12,8 +12,8 @@ describe "bills kitchen" do
     it "installs Vagrant 1.7.2" do
       run_cmd("vagrant -v").should match('1.7.2')
     end
-    it "installs Terraform 0.4.1" do
-      run_cmd("terraform --version").should match('0.4.1')
+    it "installs Terraform 0.4.2" do
+      run_cmd("terraform --version").should match('0.4.2')
     end
     it "installs Packer 0.7.5" do
       run_cmd("packer version").should match('0.7.5')
@@ -22,10 +22,10 @@ describe "bills kitchen" do
       run_cmd("consul --version").should match('0.5.0')
     end
     it "installs ssh.exe" do
-      run_cmd("ssh -V").should match('OpenSSH_6.0p1, OpenSSL 1.0.1c 10 May 2012')
+      run_cmd("ssh -V").should match('OpenSSH_6.7p1, OpenSSL 1.0.1i 6 Aug 2014')
     end
     it "installs rsync.exe" do
-      run_cmd("rsync --version").should match('rsync  version 3.0.9')
+      run_cmd("rsync --version").should match('rsync  version 3.1.1')
     end
     it "installs Git 1.9" do
       run_cmd("git --version").should match('git version 1.9.5')
@@ -42,14 +42,20 @@ describe "bills kitchen" do
     it "installs clink 0.4.4" do
       run_cmd("#{BUILD_DIR}/tools/clink/clink.bat version").should match('Clink v0.4.4')
     end
-    it "installs atom 0.189.0" do
+    it "installs atom 0.192.0" do
       # see https://github.com/atom/atom-shell/issues/683
       # so we 1) ensure the atom.cmd is on the PATH and 2) it's the right version
       cmd_succeeds "#{BUILD_DIR}/tools/atom/Atom/resources/cli/atom.cmd -v"
-      cmd_succeeds "grep '0.189.0' #{BUILD_DIR}/tools/atom/Atom/resources/app/package.json"
+      cmd_succeeds "grep '0.192.0' #{BUILD_DIR}/tools/atom/Atom/resources/app/package.json"
     end
     it "installs apm 0.157.0" do
       run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('0.157.0')
+    end
+    it "installs docker 1.6.0" do
+      run_cmd("docker -v").should match('Docker version 1.6.0')
+    end
+    it "installs boot2docker 1.6.0" do
+      run_cmd("boot2docker version").should match('Boot2Docker-cli version: v1.6.0')
     end
   end
 
@@ -71,6 +77,9 @@ describe "bills kitchen" do
     end
     it "sets SSL_CERT_FILE to W:/home/cacert.pem" do
       env_match "SSL_CERT_FILE=#{BUILD_DIR}/home/cacert.pem"
+    end
+    it "sets BOOT2DOCKER_DIR to W:/home/.boot2docker" do
+      env_match "BOOT2DOCKER_DIR=#{BUILD_DIR}/home/.boot2docker"
     end
   end
 

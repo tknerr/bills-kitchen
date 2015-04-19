@@ -25,6 +25,7 @@ task :build do
   download_tools
   move_chefdk
   fix_chefdk
+  fix_vagrant
   copy_files
   generate_docs
   install_knife_plugins
@@ -93,16 +94,19 @@ end
 
 def download_tools
   [
-    %w{ github.com/Maximus5/ConEmu/releases/download/v15.03.31/ConEmuPack.150331.7z                         conemu },
+    %w{ github.com/boot2docker/boot2docker-cli/releases/download/v1.6.0/boot2docker-v1.6.0-windows-amd64.exe  docker/boot2docker.exe },
+    %w{ get.docker.com/builds/Windows/x86_64/docker-1.6.0.exe                                                 docker/docker.exe },
+    %w{ github.com/Maximus5/ConEmu/releases/download/v15.04.16/ConEmuPack.150416.7z                         conemu },
     %w{ github.com/mridgers/clink/releases/download/0.4.4/clink_0.4.4_setup.exe                             clink },
-    %w{ github.com/atom/atom/releases/download/v0.189.0/atom-windows.zip                                    atom },
+    %w{ github.com/atom/atom/releases/download/v0.192.0/atom-windows.zip                                    atom },
     %w{ github.com/msysgit/msysgit/releases/download/Git-1.9.5-preview20150319/PortableGit-1.9.5-preview20150319.7z   portablegit },
     %w{ cdn.rubyinstaller.org/archives/devkits/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe                devkit },
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe                       kdiff3
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
+    %w{ www.itefix.net/dl/cwRsync_5.4.1_x86_Free.zip                                                        cwrsync },
     %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2.msi                                                  vagrant },
-    %w{ dl.bintray.com/mitchellh/terraform/terraform_0.4.1_windows_amd64.zip                                terraform },
+    %w{ dl.bintray.com/mitchellh/terraform/terraform_0.4.2_windows_amd64.zip                                terraform },
     %w{ dl.bintray.com/mitchellh/packer/packer_0.7.5_windows_amd64.zip                                      packer },
     %w{ dl.bintray.com/mitchellh/consul/0.5.0_windows_386.zip                                               consul },
     %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.5.0-rc.3-1.msi             chef-dk }
@@ -131,6 +135,13 @@ def fix_chefdk
   Dir.glob("#{BUILD_DIR}/tools/chefdk/embedded/lib/ruby/gems/2.1.0/bin/*.bat").each do |file|
     File.write(file, File.read(file).gsub('@"C:\opscode\chefdk\embedded\bin\ruby.exe" "%~dpn0" %*', '@"%~dp0\..\..\..\..\..\bin\ruby.exe" "%~dpn0" %*'))
   end
+end
+
+# workaround for mitchellh/vagrant#4073
+def fix_vagrant
+  orig = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.2/plugins/synced_folders/rsync/helper.rb"
+  patched = File.read(orig).gsub('hostpath = Vagrant::Util', 'hostpath = "/cygdrive" + Vagrant::Util')
+  File.write(orig, patched)
 end
 
 def install_knife_plugins
@@ -194,7 +205,12 @@ def download_and_unpack(url, target_dir, includes = [])
   Dir.mktmpdir do |tmp_dir|
     outfile = "#{tmp_dir}/#{File.basename(url)}"
     download(url, outfile)
-    unpack(outfile, target_dir, includes)
+    if File.extname(target_dir).empty?
+      unpack(outfile, target_dir, includes)
+    else
+      FileUtils.mkdir_p File.dirname(target_dir)
+      FileUtils.cp outfile, target_dir
+    end
   end
 end
 
