@@ -1,4 +1,9 @@
 
+# 3.0-SNAPSHOT (unreleased)
+
+ * ...
+ 
+
 # 3.0-rc2 (April 20, 2015)
 
  * new tools:
