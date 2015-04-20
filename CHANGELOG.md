@@ -9,9 +9,14 @@
   * update to PortableGit 1.9.5-preview20150319
   * update to ConEmu 20150416
   * update to Atom 0.192.0
+  * update to ChefDK 0.5.0-rc.5
+  * update to Ruby 2.1.5 (ships with ChefDK above)
   * remove the included cygwin-based ssh and rsync executables in favor or [cwRsync](https://www.itefix.net/content/cwrsync-free-edition)
  * bug fixes:
+  * use plain HTTP for parallel downloading of bundled gems to circumvent [bundler/bundler#3545](https://github.com/bundler/bundler/issues/3545)
   * make rsync-based synced folders work: use cwRsync and patch vagrant (see [#92](https://github.com/tknerr/bills-kitchen/issues/92), thanks @djmittens for reporting)
+
+
 
 # 3.0-rc1 (April 1, 2015)
 

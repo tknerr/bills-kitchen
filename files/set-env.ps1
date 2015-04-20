@@ -37,11 +37,11 @@ $env:BOOT2DOCKER_DIR = Join-Path $env:HOME .boot2docker
 ## Chef-DK embedded Ruby is now the primary one!
 ## see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 ## see: `chef shell-init powershell`
-$env:GEM_ROOT = Join-Path $env:CHEFDKDIR embedded\lib\ruby\gems\2.0.0
-$env:GEM_HOME = Join-Path $env:CHEFDKHOMEDIR gem\ruby\2.0.0
+$env:GEM_ROOT = Join-Path $env:CHEFDKDIR embedded\lib\ruby\gems\2.1.0
+$env:GEM_HOME = Join-Path $env:CHEFDKHOMEDIR gem\ruby\2.1.0
 $env:GEM_PATH = "$env:GEM_HOME;$env:GEM_ROOT"
 ## that's how the PATH entries are generated for chef shell-init
-$env:CHEFDK_PATH_ENTRIES = "$env:CHEFDKDIR\bin;$env:CHEFDKHOMEDIR\gem\ruby\2.0.0\bin;$env:CHEFDKDIR\embedded\bin"
+$env:CHEFDK_PATH_ENTRIES = "$env:CHEFDKDIR\bin;$env:CHEFDKHOMEDIR\gem\ruby\2.1.0\bin;$env:CHEFDKDIR\embedded\bin"
 
 
 if($env:GITDIR -eq $NULL) {

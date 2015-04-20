@@ -45,11 +45,11 @@ set BOOT2DOCKER_DIR=%HOME%\.boot2docker
 :: Chef-DK embedded Ruby is now the primary one!
 :: see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 :: see: `chef shell-init powershell`
-set GEM_ROOT=%CHEFDKDIR%\embedded\lib\ruby\gems\2.0.0
-set GEM_HOME=%CHEFDKHOMEDIR%\gem\ruby\2.0.0
+set GEM_ROOT=%CHEFDKDIR%\embedded\lib\ruby\gems\2.1.0
+set GEM_HOME=%CHEFDKHOMEDIR%\gem\ruby\2.1.0
 set GEM_PATH=%GEM_HOME%;%GEM_ROOT%
 :: that's how the PATH entries are generated for chef shell-init
-set CHEFDK_PATH_ENTRIES=%CHEFDKDIR%\bin;%CHEFDKHOMEDIR%\gem\ruby\2.0.0\bin;%CHEFDKDIR%\embedded\bin
+set CHEFDK_PATH_ENTRIES=%CHEFDKDIR%\bin;%CHEFDKHOMEDIR%\gem\ruby\2.1.0\bin;%CHEFDKDIR%\embedded\bin
 
 
 :: prompt for .gitconfig username/email

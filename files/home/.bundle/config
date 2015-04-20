@@ -1,4 +1,5 @@
 ---
-BUNDLE_PATH: ~/.chefdk/gem/ruby/2.0.0
+BUNDLE_PATH: ~/.chefdk/gem/ruby/2.1.0
 BUNDLE_JOBS: 16
 BUNDLE_RETRY: 3
+BUNDLE_MIRROR__HTTPS://RUBYGEMS.ORG/: http://rubygems.org
