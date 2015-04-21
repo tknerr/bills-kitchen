@@ -129,6 +129,11 @@ def fix_chefdk
       File.write(file, File.read(file).gsub('#!C:/opscode/chefdk/embedded/bin/ruby.exe', '#!/usr/bin/env ruby'))
     end
   end
+  Dir.glob("#{BUILD_DIR}/tools/chefdk/embedded/bin/*").each do |file|
+    if File.extname(file).empty?  # do this only for the extensionless files
+      File.write(file, File.read(file).gsub('#!C:/opscode/chefdk/embedded/bin/ruby.exe', '#!/usr/bin/env ruby'))
+    end
+  end
   Dir.glob("#{BUILD_DIR}/tools/chefdk/embedded/bin/*.bat").each do |file|
     File.write(file, File.read(file).gsub('@"C:\opscode\chefdk\embedded\bin\ruby.exe" "%~dpn0" %*', '@"%~dp0ruby.exe" "%~dpn0" %*'))
   end

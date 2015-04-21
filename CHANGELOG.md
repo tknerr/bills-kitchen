@@ -3,7 +3,8 @@
 
  * improvements:
    * init the shell for docker in the `set-env` scripts rather than in `b2d-start.bat`
-
+ * bug fixes:
+   * make `bundle` and other gem binaries work in `git-bash` too [#97](https://github.com/tknerr/bills-kitchen/issues/97)
 
 # 3.0-rc2 (April 20, 2015)
 
