@@ -1,7 +1,8 @@
 
 # 3.0-SNAPSHOT (unreleased)
 
- * ...
+ * improvements:
+   * init the shell for docker in the `set-env` scripts rather than in `b2d-start.bat`
 
 
 # 3.0-rc2 (April 20, 2015)

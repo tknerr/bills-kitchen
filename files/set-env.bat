@@ -42,6 +42,11 @@ set EDITOR=atom.sh --wait
 :: set the home dir for boot2docker
 set BOOT2DOCKER_DIR=%HOME%\.boot2docker
 
+:: init the shell for boot2docker
+set DOCKER_HOST=tcp://192.168.59.103:2376
+set DOCKER_CERT_PATH=%BOOT2DOCKER_DIR%\certs\boot2docker-vm
+set DOCKER_TLS_VERIFY=1
+
 :: Chef-DK embedded Ruby is now the primary one!
 :: see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 :: see: `chef shell-init powershell`
