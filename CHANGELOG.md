@@ -3,12 +3,13 @@
 
  * improvements:
    * init the shell for docker in the `set-env` scripts rather than in `b2d-start.bat`
+   * add `GLOBAL_VAGRANT_CACHIER_DISABLED` env var to allow for disabling vagrant-cachier in the global Vagrantfile ([#98](https://github.com/tknerr/bills-kitchen/pull/98)) 
  * bug fixes:
    * make `bundle` and other gem binaries work in `git-bash` too [#97](https://github.com/tknerr/bills-kitchen/issues/97)
 
 # 3.0-rc2 (April 20, 2015)
 
- * new tools:
+ * new tools:h
   * added boot2docker-cli 1.6.0
   * added docker client 1.6.0
   * added `b2d-start.bat` and `b2d-stop.bat` for setting up the Docker environment (see [#95](https://github.com/tknerr/bills-kitchen/pull/95))

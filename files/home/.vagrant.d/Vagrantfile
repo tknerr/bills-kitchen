@@ -3,7 +3,7 @@
 Vagrant.configure("2") do |config|
 
   # enable cachier globally
-  if Vagrant.has_plugin?("vagrant-cachier")
+  if !ENV["GLOBAL_VAGRANT_CACHIER_DISABLED"] && Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
 
     # cache bussers, but only if we detect a test-kitchen run
