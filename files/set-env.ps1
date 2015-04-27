@@ -1,21 +1,22 @@
 
 $script:pwd = Split-Path $MyInvocation.MyCommand.Path
+$env:BK_ROOT = $pwd
 
-$env:DOCKERDIR = Join-Path $pwd tools\docker
-$env:DEVKITDIR = Join-Path $pwd tools\devkit
-$env:KDIFF3DIR = Join-Path $pwd tools\kdiff3
-$env:CWRSYNCDIR = Join-Path $pwd tools\cwrsync\cwRsync_5.4.1_x86_Free
-$env:CONEMUDIR = Join-Path $pwd tools\conemu
-$env:ATOMDIR = Join-Path $pwd tools\atom\Atom\resources\cli
-$env:APMDIR = Join-Path $pwd tools\atom\Atom\resources\app\apm\bin
-$env:PUTTYDIR = Join-Path $pwd tools\putty
-$env:CLINKDIR = Join-Path $pwd tools\clink
-$env:VAGRANTDIR = Join-Path $pwd tools\vagrant\HashiCorp\Vagrant
-$env:TERRAFORMDIR = Join-Path $pwd tools\terraform
-$env:PACKERDIR = Join-Path $pwd tools\packer
-$env:CONSULDIR = Join-Path $pwd tools\consul
-$env:CHEFDKDIR = Join-Path $pwd tools\chefdk
-$env:CHEFDKHOMEDIR = Join-Path $pwd home\.chefdk
+$env:DOCKERDIR = Join-Path $env:BK_ROOT tools\docker
+$env:DEVKITDIR = Join-Path $env:BK_ROOT tools\devkit
+$env:KDIFF3DIR = Join-Path $env:BK_ROOT tools\kdiff3
+$env:CWRSYNCDIR = Join-Path $env:BK_ROOT tools\cwrsync\cwRsync_5.4.1_x86_Free
+$env:CONEMUDIR = Join-Path $env:BK_ROOT tools\conemu
+$env:ATOMDIR = Join-Path $env:BK_ROOT tools\atom\Atom\resources\cli
+$env:APMDIR = Join-Path $env:BK_ROOT tools\atom\Atom\resources\app\apm\bin
+$env:PUTTYDIR = Join-Path $env:BK_ROOT tools\putty
+$env:CLINKDIR = Join-Path $env:BK_ROOT tools\clink
+$env:VAGRANTDIR = Join-Path $env:BK_ROOT tools\vagrant\HashiCorp\Vagrant
+$env:TERRAFORMDIR = Join-Path $env:BK_ROOT tools\terraform
+$env:PACKERDIR = Join-Path $env:BK_ROOT tools\packer
+$env:CONSULDIR = Join-Path $env:BK_ROOT tools\consul
+$env:CHEFDKDIR = Join-Path $env:BK_ROOT tools\chefdk
+$env:CHEFDKHOMEDIR = Join-Path $env:BK_ROOT home\.chefdk
 
 ## inject clink into current cmd.exe
 invoke-expression ((Join-Path $env:CLINKDIR clink.bat) inject)
@@ -23,7 +24,7 @@ invoke-expression ((Join-Path $env:CLINKDIR clink.bat) inject)
 ## set %RI_DEVKIT$ env var and add DEVKIT to the PATH
 invoke-expression (Join-Path $env:DEVKITDIR devkitvars.bat)
 
-$env:HOME = Join-Path $pwd home
+$env:HOME = Join-Path $env:BK_ROOT home
 
 ## set ATOM_HOME to make it devpack-local
 $env:ATOM_HOME = Join-Path $env:HOME .atom
@@ -50,7 +51,7 @@ $env:CHEFDK_PATH_ENTRIES = "$env:CHEFDKDIR\bin;$env:CHEFDKHOMEDIR\gem\ruby\2.1.0
 
 
 if($env:GITDIR -eq $NULL) {
-	$env:GITDIR = Join-Path $pwd tools\portablegit
+	$env:GITDIR = Join-Path $env:BK_ROOT tools\portablegit
 	$env:Path = "$env:Path;$(Join-Path $env:GITDIR "cmd");$env:GITDIR"
 }
 
@@ -103,6 +104,7 @@ $env:ANSICON = "true"
 $env:SSL_CERT_FILE = Join-Path $env:HOME "cacert.pem"
 
 # show the environment
+Write-Host "BK_ROOT=$env:BK_ROOT"
 Write-Host "HOME=$env:HOME"
 Write-Host "CHEFDKDIR=$env:CHEFDKDIR"
 Write-Host "RUBYDIR=$env:RUBYDIR"

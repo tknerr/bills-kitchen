@@ -5,23 +5,24 @@
 :: ########################################################
 
 set SCRIPT_DIR=%~dp0
+set BK_ROOT=%SCRIPT_DIR%
 
 :: for these we need the bin dirs in PATH
-set DOCKERDIR=%SCRIPT_DIR%tools\docker
-set DEVKITDIR=%SCRIPT_DIR%tools\devkit
-set KDIFF3DIR=%SCRIPT_DIR%tools\kdiff3
-set CWRSYNCDIR=%SCRIPT_DIR%tools\cwrsync\cwRsync_5.4.1_x86_Free
-set CONEMUDIR=%SCRIPT_DIR%tools\conemu
-set ATOMDIR=%SCRIPT_DIR%tools\atom\Atom\resources\cli
-set APMDIR=%SCRIPT_DIR%tools\atom\Atom\resources\app\apm\bin
-set PUTTYDIR=%SCRIPT_DIR%tools\putty
-set CLINKDIR=%SCRIPT_DIR%tools\clink
-set VAGRANTDIR=%SCRIPT_DIR%tools\vagrant\HashiCorp\Vagrant
-set TERRAFORMDIR=%SCRIPT_DIR%tools\terraform
-set PACKERDIR=%SCRIPT_DIR%tools\packer
-set CONSULDIR=%SCRIPT_DIR%tools\consul
-set CHEFDKDIR=%SCRIPT_DIR%tools\chefdk
-set CHEFDKHOMEDIR=%SCRIPT_DIR%home\.chefdk
+set DOCKERDIR=%BK_ROOT%tools\docker
+set DEVKITDIR=%BK_ROOT%tools\devkit
+set KDIFF3DIR=%BK_ROOT%tools\kdiff3
+set CWRSYNCDIR=%BK_ROOT%tools\cwrsync\cwRsync_5.4.1_x86_Free
+set CONEMUDIR=%BK_ROOT%tools\conemu
+set ATOMDIR=%BK_ROOT%tools\atom\Atom\resources\cli
+set APMDIR=%BK_ROOT%tools\atom\Atom\resources\app\apm\bin
+set PUTTYDIR=%BK_ROOT%tools\putty
+set CLINKDIR=%BK_ROOT%tools\clink
+set VAGRANTDIR=%BK_ROOT%tools\vagrant\HashiCorp\Vagrant
+set TERRAFORMDIR=%BK_ROOT%tools\terraform
+set PACKERDIR=%BK_ROOT%tools\packer
+set CONSULDIR=%BK_ROOT%tools\consul
+set CHEFDKDIR=%BK_ROOT%tools\chefdk
+set CHEFDKHOMEDIR=%BK_ROOT%home\.chefdk
 
 :: inject clink into current cmd.exe
 :: call %CLINKDIR%\clink.bat inject
@@ -30,8 +31,8 @@ set CHEFDKHOMEDIR=%SCRIPT_DIR%home\.chefdk
 call %DEVKITDIR%\devkitvars.bat
 
 :: use portable git, looks for %HOME%\.gitconfig
-set GITDIR=%SCRIPT_DIR%tools\portablegit
-set HOME=%SCRIPT_DIR%home
+set GITDIR=%BK_ROOT%tools\portablegit
+set HOME=%BK_ROOT%home
 
 :: set ATOM_HOME to make it devpack-local
 set ATOM_HOME=%HOME%\.atom
@@ -100,6 +101,7 @@ set SSL_CERT_FILE=%HOME%\cacert.pem
 set CYGWIN=nodosfilewarning
 
 :: show the environment
+echo BK_ROOT=%BK_ROOT%
 echo HOME=%HOME%
 echo CHEFDKDIR=%CHEFDKDIR%
 echo CHEFDKHOMEDIR=%CHEFDKHOMEDIR%

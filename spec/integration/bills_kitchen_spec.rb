@@ -60,6 +60,9 @@ describe "bills kitchen" do
   end
 
   describe "environment" do
+    it "sets BK_ROOT to W:/" do
+      env_match "BK_ROOT=#{BUILD_DIR}/"
+    end
     it "sets HOME to W:/home" do
       env_match "HOME=#{BUILD_DIR}/home"
     end

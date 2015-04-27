@@ -3,7 +3,7 @@
 
  * improvements:
    * init the shell for docker in the `set-env` scripts rather than in `b2d-start.bat`
-   * mount the bill's kitchen root directory under the same path into the boot2docker VM so that volume mounts work
+   * mount the bill's kitchen root directory (`%BK_ROOT%`) under the same path into the boot2docker VM so that docker volume mounts work
    * make the `b2d-start.bat` and `b2d-stop.bat` scripts more resilient
    * add `GLOBAL_VAGRANT_CACHIER_DISABLED` env var to allow for disabling vagrant-cachier in the global Vagrantfile ([#98](https://github.com/tknerr/bills-kitchen/pull/98))
  * bug fixes:
