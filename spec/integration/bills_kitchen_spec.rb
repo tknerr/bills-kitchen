@@ -93,6 +93,9 @@ describe "bills kitchen" do
     it "aliases `atom` to `vi`" do
       run_cmd("doskey /macros").should match('vi=atom.cmd $*')
     end
+    it "aliases `boot2docker` to `b2d`" do
+      run_cmd("doskey /macros").should match('b2d=boot2docker $*')
+    end
   end
 
   describe "ruby installations" do

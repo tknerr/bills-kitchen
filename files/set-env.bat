@@ -134,5 +134,6 @@ echo HTTP_PROXY=%HTTP_PROXY%
 :: command aliases
 @doskey vi=atom.cmd $*
 @doskey be=bundle exec $*
+@doskey b2d=boot2docker $*
 
 set PATH=%DOCKERDIR%;%CHEFDK_PATH_ENTRIES%;%CONSULDIR%;%PACKERDIR%;%TERRAFORMDIR%;%VAGRANTDIR%\bin;%GITDIR%\cmd;%GITDIR%;%KDIFF3DIR%;%CWRSYNCDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%ATOMDIR%;%APMDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%

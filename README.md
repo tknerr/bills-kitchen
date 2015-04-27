@@ -77,6 +77,7 @@ Registered doskey aliases:
 
 * run `be <command>` for `bundle exec <command>`
 * run `vi <file_or_dir>` for `atom <file_or_dir>`
+* run `b2d <args>` for `boot2docker <args>`
 
 ### Examples
 
