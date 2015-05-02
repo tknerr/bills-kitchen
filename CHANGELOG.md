@@ -1,6 +1,8 @@
 
 # 3.0-SNAPSHOT (unreleased)
 
+ * tool updates:
+   * update to ChefDK 0.5.0
  * improvements:
    * init the shell for docker in the `set-env` scripts rather than in `b2d-start.bat`
    * mount the bill's kitchen root directory (`%BK_ROOT%`) under the same path into the boot2docker VM so that docker volume mounts work
@@ -12,7 +14,7 @@
 
 # 3.0-rc2 (April 20, 2015)
 
- * new tools:h
+ * new tools:
   * added boot2docker-cli 1.6.0
   * added docker client 1.6.0
   * added `b2d-start.bat` and `b2d-stop.bat` for setting up the Docker environment (see [#95](https://github.com/tknerr/bills-kitchen/pull/95))
