@@ -124,8 +124,12 @@ module VagrantPlugins
       # rather than directly on our system. Docker needs to run in a VM
       # when we're not on Linux, or not on a Linux that supports Docker.
       def host_vm?
-        @machine.provider_config.force_host_vm ||
-          !Vagrant::Util::Platform.linux?
+        if ENV['VAGRANT_DOCKER_REMOTE_HOST_PATCH'] == "1"
+          false
+        else
+          @machine.provider_config.force_host_vm ||
+            !Vagrant::Util::Platform.linux?
+        end
       end
 
       # Returns the SSH info for accessing the Container.
@@ -140,10 +144,17 @@ module VagrantPlugins
         # here and we let Vagrant core deal with it ;)
         return nil if !ip
 
-        {
-          host: ip,
-          port: @machine.config.ssh.guest_port
-        }
+        if ENV['VAGRANT_DOCKER_REMOTE_HOST_PATCH'] == "1"
+          {
+            host: "192.168.59.103",
+            port: "2222"
+          }
+        else
+          {
+            host: ip,
+            port: @machine.config.ssh.guest_port
+          }
+        end
       end
 
       def state

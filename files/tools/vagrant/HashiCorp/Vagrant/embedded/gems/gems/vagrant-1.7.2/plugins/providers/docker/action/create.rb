@@ -141,6 +141,11 @@ module VagrantPlugins
           # Build the results
           result = random.map(&:to_s)
           result += mappings.values.map do |fp|
+
+            if ENV['VAGRANT_DOCKER_REMOTE_HOST_PATCH'] == "1"
+              fp[:host_ip] = "0.0.0.0"
+            end
+
             protocol = ""
             protocol = "/udp" if fp[:protocol].to_s == "udp"
             host_ip = ""
