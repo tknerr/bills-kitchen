@@ -45,4 +45,8 @@ boot2docker ssh -- sudo mount -t vboxsf billskitchen %BK_ROOT_CYGPATH%
 
 ENDLOCAL
 
+
+:: experimental: enable remote docker host patch in vagrant when b2d is started
+set VAGRANT_DOCKER_REMOTE_HOST_PATCH=1
+
 :end
