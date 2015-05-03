@@ -49,7 +49,7 @@ if "%HTTP_PROXY%" == "" (
   echo setting proxy in the boot2docker VM...
   boot2docker ssh "echo 'export HTTP_PROXY=%HTTP_PROXY%; export HTTPS_PROXY=%HTTPS_PROXY%; export NO_PROXY=%NO_PROXY%;' | sudo tee /var/lib/boot2docker/profile"
 )
-boot2docker ssh sudo /etc/init.d/docker restart
+boot2docker ssh "sudo /etc/init.d/docker restart > /dev/null"
 
 
 ENDLOCAL
