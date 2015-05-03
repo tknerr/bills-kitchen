@@ -1,6 +1,9 @@
 
 @echo off
 
+:: indicate that a proxy should be used
+set BK_USE_PROXY=1
+
 :: set the proxy on the host system
 set HTTP_PROXY=http://10.12.1.230:8083
 set HTTPS_PROXY=https://10.12.1.230:8083

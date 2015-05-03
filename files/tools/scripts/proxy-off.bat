@@ -1,6 +1,9 @@
 
 @echo off
 
+:: remove the indicator
+set BK_USE_PROXY=
+
 :: unset the proxy on the host system
 set HTTP_PROXY=
 set HTTPS_PROXY=

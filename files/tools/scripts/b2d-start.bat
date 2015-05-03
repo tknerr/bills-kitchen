@@ -42,12 +42,12 @@ boot2docker ssh -- sudo mount -t vboxsf billskitchen %BK_ROOT_CYGPATH%
 
 :: set / unset proxy in boot2docker VM
 :: for more on proxies, see http://stackoverflow.com/a/29303930/2388971
-if "%HTTP_PROXY%" == "" (
-  echo making sure no proxy is set in the boot2docker VM...
-  boot2docker ssh sudo rm -rf /var/lib/boot2docker/profile
-) else (
+if "%BK_USE_PROXY%" == "1" (
   echo setting proxy in the boot2docker VM...
   boot2docker ssh "echo 'export HTTP_PROXY=%HTTP_PROXY%; export HTTPS_PROXY=%HTTPS_PROXY%; export NO_PROXY=%NO_PROXY%;' | sudo tee /var/lib/boot2docker/profile"
+) else (
+  echo making sure no proxy is set in the boot2docker VM...
+  boot2docker ssh "sudo rm -rf /var/lib/boot2docker/profile"
 )
 boot2docker ssh "sudo /etc/init.d/docker restart > /dev/null"
 
