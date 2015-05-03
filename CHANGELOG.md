@@ -4,6 +4,9 @@
  * tool updates:
    * update to ChefDK 0.5.1
    * update to Atom 0.196.0
+ * new plugins and scripts:
+   * add the [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) plugin for configuring the proxy inside vagrant VMs (see [#102](https://github.com/tknerr/bills-kitchen/pull/102))
+   * add `proxy-on.bat` and `proxy-off.bat` convenience scripts for setting the proxy env vars (see [#102](https://github.com/tknerr/bills-kitchen/pull/102))
  * improvements:
    * init the shell for docker in the `set-env` scripts rather than in `b2d-start.bat`
    * mount the bill's kitchen root directory (`%BK_ROOT%`) under the same path into the boot2docker VM so that docker volume mounts work
@@ -11,8 +14,6 @@
    * add `b2d` shortcut doskey alias for `boot2docker`
    * add `GLOBAL_VAGRANT_CACHIER_DISABLED` env var to allow for disabling vagrant-cachier in the global Vagrantfile ([#98](https://github.com/tknerr/bills-kitchen/pull/98))
    * patch vagrant with remote docker host support; conditionally enable it `b2d-start` and disable it in `b2d-stop` (experimental, see [#100](https://github.com/tknerr/bills-kitchen/pull/100git))
-   * add `proxy-on.bat` and `proxy-off.bat` convenience scripts for setting the proxy env vars (see [#102](https://github.com/tknerr/bills-kitchen/pull/102))
-   * add the [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) plugin for configuring the proxy inside vagrant VMs (see [#102](https://github.com/tknerr/bills-kitchen/pull/102))
  * bug fixes:
    * make `bundle` and other gem binaries work in `git-bash` too [#97](https://github.com/tknerr/bills-kitchen/issues/97)
 
