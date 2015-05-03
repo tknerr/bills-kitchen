@@ -9,6 +9,7 @@
    * make the `b2d-start.bat` and `b2d-stop.bat` scripts more resilient
    * add `b2d` shortcut doskey alias for `boot2docker`
    * add `GLOBAL_VAGRANT_CACHIER_DISABLED` env var to allow for disabling vagrant-cachier in the global Vagrantfile ([#98](https://github.com/tknerr/bills-kitchen/pull/98))
+   * patch vagrant with remote docker host support; conditionally enable it `b2d-start` and disable it in `b2d-stop` (experimental, see [#100](https://github.com/tknerr/bills-kitchen/pull/100git)) 
  * bug fixes:
    * make `bundle` and other gem binaries work in `git-bash` too [#97](https://github.com/tknerr/bills-kitchen/issues/97)
 
