@@ -42,13 +42,13 @@ describe "bills kitchen" do
     it "installs clink 0.4.4" do
       run_cmd("#{BUILD_DIR}/tools/clink/clink.bat version").should match('Clink v0.4.4')
     end
-    it "installs atom 0.192.0" do
+    it "installs atom 0.196.0" do
       # see https://github.com/atom/atom-shell/issues/683
       # so we 1) ensure the atom.cmd is on the PATH and 2) it's the right version
       cmd_succeeds "#{BUILD_DIR}/tools/atom/Atom/resources/cli/atom.cmd -v"
-      cmd_succeeds "grep '0.192.0' #{BUILD_DIR}/tools/atom/Atom/resources/app/package.json"
+      cmd_succeeds "grep '0.196.0' #{BUILD_DIR}/tools/atom/Atom/resources/app/package.json"
     end
-    it "installs apm 0.157.0" do
+    it "installs apm 0.164.0" do
       run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('0.157.0')
     end
     it "installs docker 1.6.0" do

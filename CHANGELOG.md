@@ -3,6 +3,7 @@
 
  * tool updates:
    * update to ChefDK 0.5.1
+   * update to Atom 0.196.0
  * improvements:
    * init the shell for docker in the `set-env` scripts rather than in `b2d-start.bat`
    * mount the bill's kitchen root directory (`%BK_ROOT%`) under the same path into the boot2docker VM so that docker volume mounts work
