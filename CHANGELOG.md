@@ -9,7 +9,9 @@
    * make the `b2d-start.bat` and `b2d-stop.bat` scripts more resilient
    * add `b2d` shortcut doskey alias for `boot2docker`
    * add `GLOBAL_VAGRANT_CACHIER_DISABLED` env var to allow for disabling vagrant-cachier in the global Vagrantfile ([#98](https://github.com/tknerr/bills-kitchen/pull/98))
-   * patch vagrant with remote docker host support; conditionally enable it `b2d-start` and disable it in `b2d-stop` (experimental, see [#100](https://github.com/tknerr/bills-kitchen/pull/100git)) 
+   * patch vagrant with remote docker host support; conditionally enable it `b2d-start` and disable it in `b2d-stop` (experimental, see [#100](https://github.com/tknerr/bills-kitchen/pull/100git))
+   * add `proxy-on.bat` and `proxy-off.bat` convenience scripts for setting the proxy env vars (see [#102](https://github.com/tknerr/bills-kitchen/pull/102))
+   * add the [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) plugin for configuring the proxy inside vagrant VMs (see [#102](https://github.com/tknerr/bills-kitchen/pull/102))
  * bug fixes:
    * make `bundle` and other gem binaries work in `git-bash` too [#97](https://github.com/tknerr/bills-kitchen/issues/97)
 
