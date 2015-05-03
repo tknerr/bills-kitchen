@@ -4,6 +4,7 @@
 :: unset the proxy on the host system
 set HTTP_PROXY=
 set HTTPS_PROXY=
+set NO_PROXY=
 
 :: unset reusing the host proxy in vagrant VMs
 set VAGRANT_HTTP_PROXY=
