@@ -39,6 +39,7 @@ These plugins are pre-installed:
    * [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) - caches all kinds of packages you intsall in the vagrant VMs
    * [vagrant-berkshelf](https://github.com/berkshelf/vagrant-berkshelf) - berkshelf integration for vagrant
    * [vagrant-toplevel-cookbooks](https://github.com/tknerr/vagrant-toplevel-cookbooks) - support for one top-level cookbook per vagrant VM
+   * [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) - for configuring a proxy inside the VMs
    * ...use `vagrant install <plugin>` to install more
  * knife plugins (just as an example):
    * [knife-audit](https://github.com/jbz/knife-audit) - keeps track of which cookbooks are used by which node
