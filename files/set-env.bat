@@ -71,12 +71,6 @@ if "%GIT_CONF_EMAIL%"=="" (
 cmd /C %GITDIR%\cmd\git config --global --replace user.name "%GIT_CONF_USERNAME%"
 cmd /C %GITDIR%\cmd\git config --global --replace user.email "%GIT_CONF_EMAIL%"
 
-:: toggle proxy based on env var
-if "%HTTP_PROXY%"=="" (
-  cmd /C %GITDIR%\cmd\git config --global --unset http.proxy
-) else (
-  cmd /C %GITDIR%\cmd\git config --global --replace http.proxy %HTTP_PROXY%
-)
 
 :: don't let VirtualBox use %HOME% instead of %USERPROFILE%,
 :: otherwise it would become confused when W:\ is unmounted
