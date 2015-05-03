@@ -10,7 +10,3 @@ set NO_PROXY=localhost,127.0.0.1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
 set VAGRANT_HTTP_PROXY=%HTTP_PROXY%
 set VAGRANT_HTTPS_PROXY=%HTTPS_PROXY%
 set VAGRANT_NO_PROXY=%NO_PROXY%
-
-:: set git proxy
-cmd /C %GITDIR%\cmd\git config --global --replace http.proxy %HTTP_PROXY%
-cmd /C %GITDIR%\cmd\git config --global --replace https.proxy %HTTPS_PROXY%
