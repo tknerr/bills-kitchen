@@ -1,7 +1,7 @@
 
-$script:pwd = Split-Path $MyInvocation.MyCommand.Path
-$env:BK_ROOT = $pwd
+$env:BK_ROOT = Split-Path $MyInvocation.MyCommand.Path
 
+$env:SCRIPTSDIR = Join-Path $env:BK_ROOT tools\scripts
 $env:DOCKERDIR = Join-Path $env:BK_ROOT tools\docker
 $env:DEVKITDIR = Join-Path $env:BK_ROOT tools\devkit
 $env:KDIFF3DIR = Join-Path $env:BK_ROOT tools\kdiff3
@@ -106,6 +106,7 @@ $env:SSL_CERT_FILE = Join-Path $env:HOME "cacert.pem"
 # show the environment
 Write-Host "BK_ROOT=$env:BK_ROOT"
 Write-Host "HOME=$env:HOME"
+Write-Host "SCRIPTSDIR=$env:SCRIPTSDIR"
 Write-Host "CHEFDKDIR=$env:CHEFDKDIR"
 Write-Host "RUBYDIR=$env:RUBYDIR"
 Write-Host "CHEFDKHOMEDIR=$env:CHEFDKHOMEDIR"
@@ -138,4 +139,4 @@ set-alias vi "atom.cmd";
 set-alias be "bundle exec";
 set-alias b2d "boot2docker";
 
-$env:Path = "$env:DOCKERDIR;$env:CHEFDK_PATH_ENTRIES;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CWRSYNCDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:ATOMDIR;$env:APMDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"
+$env:Path = "$env:SCRIPTSDIR;$env:DOCKERDIR;$env:CHEFDK_PATH_ENTRIES;$env:CONSULDIR;$env:PACKERDIR;$env:TERRAFORMDIR;$env:VAGRANTDIR\bin;$env:KDIFF3DIR;$env:CWRSYNCDIR;$env:VAGRANTDIR\embedded\bin;$env:CONEMUDIR;$env:ATOMDIR;$env:APMDIR;$env:PUTTYDIR;$env:VBOX_INSTALL_PATH;$env:Path"

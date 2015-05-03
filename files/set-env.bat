@@ -4,10 +4,10 @@
 :: # Setting up Environment...
 :: ########################################################
 
-set SCRIPT_DIR=%~dp0
-set BK_ROOT=%SCRIPT_DIR%
+set BK_ROOT=%~dp0
 
 :: for these we need the bin dirs in PATH
+set SCRIPTSDIR=%BK_ROOT%tools\scripts
 set DOCKERDIR=%BK_ROOT%tools\docker
 set DEVKITDIR=%BK_ROOT%tools\devkit
 set KDIFF3DIR=%BK_ROOT%tools\kdiff3
@@ -71,12 +71,6 @@ if "%GIT_CONF_EMAIL%"=="" (
 cmd /C %GITDIR%\cmd\git config --global --replace user.name "%GIT_CONF_USERNAME%"
 cmd /C %GITDIR%\cmd\git config --global --replace user.email "%GIT_CONF_EMAIL%"
 
-:: toggle proxy based on env var
-if "%HTTP_PROXY%"=="" (
-  cmd /C %GITDIR%\cmd\git config --global --unset http.proxy
-) else (
-  cmd /C %GITDIR%\cmd\git config --global --replace http.proxy %HTTP_PROXY%
-)
 
 :: don't let VirtualBox use %HOME% instead of %USERPROFILE%,
 :: otherwise it would become confused when W:\ is unmounted
@@ -103,6 +97,7 @@ set CYGWIN=nodosfilewarning
 :: show the environment
 echo BK_ROOT=%BK_ROOT%
 echo HOME=%HOME%
+echo SCRIPTSDIR=%SCRIPTSDIR%
 echo CHEFDKDIR=%CHEFDKDIR%
 echo CHEFDKHOMEDIR=%CHEFDKHOMEDIR%
 echo GEM_ROOT=%GEM_ROOT%
@@ -136,4 +131,4 @@ echo HTTP_PROXY=%HTTP_PROXY%
 @doskey be=bundle exec $*
 @doskey b2d=boot2docker $*
 
-set PATH=%DOCKERDIR%;%CHEFDK_PATH_ENTRIES%;%CONSULDIR%;%PACKERDIR%;%TERRAFORMDIR%;%VAGRANTDIR%\bin;%GITDIR%\cmd;%GITDIR%;%KDIFF3DIR%;%CWRSYNCDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%ATOMDIR%;%APMDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
+set PATH=%SCRIPTSDIR%;%DOCKERDIR%;%CHEFDK_PATH_ENTRIES%;%CONSULDIR%;%PACKERDIR%;%TERRAFORMDIR%;%VAGRANTDIR%\bin;%GITDIR%\cmd;%GITDIR%;%KDIFF3DIR%;%CWRSYNCDIR%;%VAGRANTDIR%\embedded\bin;%CONEMUDIR%;%ATOMDIR%;%APMDIR%;%PUTTYDIR%;%VBOX_MSI_INSTALL_PATH%;%VBOX_INSTALL_PATH%;%PATH%
