@@ -73,11 +73,19 @@ def run_acceptance_tests
 end
 
 def recreate_dirs
+  uninstall_atom_plugins_with_insanely_long_path
   FileUtils.rm_r BUILD_DIR, secure: true
   %w{ home repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
   end
   FileUtils.mkdir_p CACHE_DIR
+end
+
+def uninstall_atom_plugins_with_insanely_long_path
+  Bundler.with_clean_env do
+    command = "#{BUILD_DIR}/set-env.bat && apm uninstall atom-beautify"
+    fail "uninstalling atom plugins with insanely long path failed!" unless system(command)
+  end
 end
 
 def copy_files
