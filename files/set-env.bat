@@ -124,7 +124,6 @@ echo VAGRANT_HOME=%VAGRANT_HOME%
 echo GITDIR=%GITDIR%
 echo GIT_CONF_USERNAME=%GIT_CONF_USERNAME%
 echo GIT_CONF_EMAIL=%GIT_CONF_EMAIL%
-echo HTTP_PROXY=%HTTP_PROXY%
 
 :: command aliases
 @doskey vi=atom.cmd $*

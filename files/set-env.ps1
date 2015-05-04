@@ -76,13 +76,6 @@ if(!$env:GIT_CONF_EMAIL) {
   }
 }
 
-## toggle proxy based on env var
-if($env:HTTP_PROXY -eq $NULL) {
-  invoke-expression "$git config --global --unset http.proxy"
-}
-else {
-  invoke-expression "$git config --global --replace http.proxy '$env:HTTP_PROXY'"
-}
 
 ## don't let VirtualBox use %HOME% instead of %USERPROFILE%,
 ## otherwise it would become confused when W:\ is unmounted
@@ -133,7 +126,6 @@ Write-Host "CONSULDIR=$env:CONSULDIR"
 Write-Host "GITDIR=$env:GITDIR"
 Write-Host "GIT_CONF_USERNAME=$env:GIT_CONF_USERNAME"
 Write-Host "GIT_CONF_EMAIL=$env:GIT_CONF_EMAIL"
-Write-Host "HTTP_PROXY=$env:HTTP_PROXY"
 
 set-alias vi "atom.cmd";
 set-alias be "bundle exec";
