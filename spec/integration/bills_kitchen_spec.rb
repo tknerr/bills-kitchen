@@ -49,7 +49,7 @@ describe "bills kitchen" do
       cmd_succeeds "grep '0.196.0' #{BUILD_DIR}/tools/atom/Atom/resources/app/package.json"
     end
     it "installs apm 0.164.0" do
-      run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('0.157.0')
+      run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('0.164.0')
     end
     it "installs docker 1.6.0" do
       run_cmd("docker -v").should match('Docker version 1.6.0')
