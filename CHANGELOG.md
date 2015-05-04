@@ -1,5 +1,5 @@
 
-# 3.0-SNAPSHOT (unreleased)
+# 3.0-rc3 (May 4, 2015)
 
  * tool updates:
    * update to ChefDK 0.5.1
