@@ -1,8 +1,9 @@
 
-# 3.0-SNAPSHOT (unreleased)
+# 3.0-rc4 (May 5, 2015)
 
  * bug fixes:
-   * fix several issues which essentially rendered the `b2d-start` script unusable (see [#104](https://github.com/tknerr/bills-kitchen/issues/104), thanks @alfertk for reporting!)
+   * fix several issues which essentially rendered the `b2d-start` script unusable (see [#104](https://github.com/tknerr/bills-kitchen/issues/104), thanks @alfert for reporting!)
+   * re-packaging as the git user was not correctly reset in 3.0-rc3 (see [#103](https://github.com/tknerr/bills-kitchen/issues/103), thanks @alfert for reporting!)
 
 # 3.0-rc3 (May 4, 2015)
 
