@@ -14,8 +14,12 @@ SETLOCAL
 echo Making sure the boot2docker VM is stopped...
 boot2docker halt
 
-:: get the BK_ROOT as windows path
-set BK_ROOT=%SCRIPT_DIR%
+:: check for existence of BK_ROOT env var
+if "%BK_ROOT%" == "" (
+  echo BK_ROOT env var not set, please make sure to run `set-env.bat` before! Exiting...
+  exit /b 1
+)
+
 :: replace backward with forward slashes
 set BK_ROOT_FWD_SLASH=%BK_ROOT:\=/%
 :: convert drive letter to cygwin style (try c, d, e, w)
