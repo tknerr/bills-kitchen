@@ -1,5 +1,18 @@
 @echo off
 
+:: check if "boot2docker-vm" exists already
+for /f "usebackq tokens=*" %%l in (`VBoxManage list --long vms`) do (
+  if "%%l" == "Name:            boot2docker-vm" (
+    echo Found existing boot2docker-vm in VirtualBox!
+    goto check
+  )
+)
+
+:init
+echo No existing boot2docker-vm found in VirtualBox, initializing...
+boot2docker init
+
+:check
 :: check if boot2docker is running
 for /f "usebackq tokens=*" %%s in (`boot2docker status`) do (
   if %%s == running (
@@ -35,9 +48,8 @@ set BK_ROOT_CYGPATH=%BK_ROOT_DRIVE%
 echo Adding shared folder "billskitchen" for hostpath %BK_ROOT%
 VBoxManage sharedfolder add "boot2docker-vm" --name "billskitchen" --hostpath %BK_ROOT%
 
-:: idempotently create the VM, bring it up
+:: bring it up
 echo Bringing up the boot2docker VM...
-boot2docker init
 boot2docker up
 
 :: mount drive inside vbox
