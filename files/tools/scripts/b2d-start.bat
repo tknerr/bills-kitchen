@@ -1,5 +1,11 @@
 @echo off
 
+:: check if we have the .iso file (if we don't have it, the VM won't start!)
+if not exist %HOME%\.boot2docker\boot2docker.iso (
+  echo boot2docker.iso not found in %HOME%\.boot2docker\, downloading it...
+  boot2docker download
+)
+
 :: check if "boot2docker-vm" exists already
 for /f "usebackq tokens=*" %%l in (`VBoxManage list --long vms`) do (
   if "%%l" == "Name:            boot2docker-vm" (
