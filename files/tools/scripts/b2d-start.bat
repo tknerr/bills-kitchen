@@ -42,6 +42,7 @@ boot2docker up
 
 :: mount drive inside vbox
 echo Mounting the shared folder inside the VM to %BK_ROOT_CYGPATH%
+boot2docker ssh -- sudo mkdir -p %BK_ROOT_CYGPATH%
 boot2docker ssh -- sudo mount -t vboxsf billskitchen %BK_ROOT_CYGPATH%
 
 :: set / unset proxy in boot2docker VM
