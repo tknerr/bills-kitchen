@@ -23,7 +23,7 @@ module VagrantPlugins
           guest_path = data[:guestpath]
 
           if ENV['VAGRANT_DOCKER_REMOTE_HOST_PATCH'] == "1"
-            machine.provider_config.volumes << "#{host_path.sub(/^C:\//, '/c/')}:#{guest_path}"
+            machine.provider_config.volumes << "#{host_path.sub(/^([A-Z]):\//) {|d| "/#{$1.downcase}/"} }:#{guest_path}"
           else
             machine.provider_config.volumes << "#{host_path}:#{guest_path}"
           end
