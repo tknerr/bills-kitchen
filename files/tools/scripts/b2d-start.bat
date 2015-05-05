@@ -1,5 +1,18 @@
 @echo off
 
+:: check if "boot2docker-vm" exists already
+for /f "usebackq tokens=*" %%l in (`VBoxManage list --long vms`) do (
+  if "%%l" == "Name:            boot2docker-vm" (
+    echo Found existing boot2docker-vm in VirtualBox!
+    goto check
+  )
+)
+
+:init
+echo No existing boot2docker-vm found in VirtualBox, initializing...
+boot2docker init
+
+:check
 :: check if boot2docker is running
 for /f "usebackq tokens=*" %%s in (`boot2docker status`) do (
   if %%s == running (
@@ -14,8 +27,12 @@ SETLOCAL
 echo Making sure the boot2docker VM is stopped...
 boot2docker halt
 
-:: get the BK_ROOT as windows path
-set BK_ROOT=%SCRIPT_DIR%
+:: check for existence of BK_ROOT env var
+if "%BK_ROOT%" == "" (
+  echo BK_ROOT env var not set, please make sure to run `set-env.bat` before! Exiting...
+  exit /b 1
+)
+
 :: replace backward with forward slashes
 set BK_ROOT_FWD_SLASH=%BK_ROOT:\=/%
 :: convert drive letter to cygwin style (try c, d, e, w)
@@ -31,13 +48,13 @@ set BK_ROOT_CYGPATH=%BK_ROOT_DRIVE%
 echo Adding shared folder "billskitchen" for hostpath %BK_ROOT%
 VBoxManage sharedfolder add "boot2docker-vm" --name "billskitchen" --hostpath %BK_ROOT%
 
-:: idempotently create the VM, bring it up
+:: bring it up
 echo Bringing up the boot2docker VM...
-boot2docker init
 boot2docker up
 
 :: mount drive inside vbox
 echo Mounting the shared folder inside the VM to %BK_ROOT_CYGPATH%
+boot2docker ssh -- sudo mkdir -p %BK_ROOT_CYGPATH%
 boot2docker ssh -- sudo mount -t vboxsf billskitchen %BK_ROOT_CYGPATH%
 
 :: set / unset proxy in boot2docker VM
