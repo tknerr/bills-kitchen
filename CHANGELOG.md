@@ -1,4 +1,8 @@
 
+# 3.0-SNAPSHOT (unreleased)
+
+ * ...
+
 # 3.0-rc4 (May 5, 2015)
 
  * bug fixes:
