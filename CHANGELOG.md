@@ -1,7 +1,8 @@
 
 # 3.0-SNAPSHOT (unreleased)
 
- * ...
+ * bug fixes:
+   * fix docker volume mounts when using remote docker hosts in Vagrant (see [#107](https://github.com/tknerr/bills-kitchen/pull/107))
 
 # 3.0-rc4 (May 5, 2015)
 
