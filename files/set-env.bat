@@ -83,11 +83,11 @@ set VAGRANT_HOME=%HOME%\.vagrant.d
 :: see https://github.com/tknerr/bills-kitchen/issues/64
 set TERM=cygwin
 
-:: trick vagrant to detect colored output for windows, see here:
+:: trick vagrant to detect colored output for Windows, see here:
 :: https://github.com/mitchellh/vagrant/blob/7ef6c5d9d7d4753a219d3ab35afae0d475430cae/lib/vagrant/util/platform.rb#L89
 set ANSICON=true
 
-:: add recent root certificates to prevent SSL errors on Windos, see:
+:: add recent root certificates to prevent SSL errors on Windows, see:
 :: https://gist.github.com/fnichol/867550
 set SSL_CERT_FILE=%HOME%\cacert.pem
 
