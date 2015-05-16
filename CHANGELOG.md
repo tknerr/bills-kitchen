@@ -3,6 +3,7 @@
 
  * tool updates:
    * update to Terraform 0.5.2
+   * update to Consul 0.5.1
    * update to ChefDK 0.6.0
  * bug fixes:
    * fix docker volume mounts when using remote docker hosts in Vagrant (see [#107](https://github.com/tknerr/bills-kitchen/pull/107))
