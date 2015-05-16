@@ -7,6 +7,7 @@
    * update to ChefDK 0.6.0
    * update to Docker 1.6.2
    * update to boot2docker-cli 1.6.2
+   * update to Atom 0.199.0 (which [now bundles autocomplete-plus](http://blog.atom.io/2015/05/15/new-autocomplete.html))
  * bug fixes:
    * fix docker volume mounts when using remote docker hosts in Vagrant (see [#107](https://github.com/tknerr/bills-kitchen/pull/107))
 
