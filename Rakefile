@@ -82,9 +82,11 @@ def recreate_dirs
 end
 
 def uninstall_atom_plugins_with_insanely_long_path
-  Bundler.with_clean_env do
-    command = "#{BUILD_DIR}/set-env.bat && apm uninstall atom-beautify"
-    fail "uninstalling atom plugins with insanely long path failed!" unless system(command)
+  if File.exist? "#{BUILD_DIR}/home/.atom/packages/"
+    Bundler.with_clean_env do
+      command = "#{BUILD_DIR}/set-env.bat && apm uninstall atom-beautify"
+      fail "uninstalling atom plugins with insanely long path failed!" unless system(command)
+    end
   end
 end
 
