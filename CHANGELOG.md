@@ -12,6 +12,9 @@
    * update vagrant-berkshelf to 4.0.4
  * bug fixes:
    * fix docker volume mounts when using remote docker hosts in Vagrant (see [#107](https://github.com/tknerr/bills-kitchen/pull/107))
+   * fix build process error that occurs when `rake[recreate_dirs]` is run initially with an empty build directory (see [9ea200d](https://github.com/tknerr/bills-kitchen/commit/9ea200d75c22c405af9352e08b898fe31602ccb1), thanks @aderenbach for reporting)
+ * improvements:
+   * fix spelling errors in set-env.bat comments (see [#108](https://github.com/tknerr/bills-kitchen/pull/108), thanks @xBytez)
 
 # 3.0-rc4 (May 5, 2015)
 
