@@ -5,6 +5,8 @@
    * update to Terraform 0.5.2
    * update to Consul 0.5.1
    * update to ChefDK 0.6.0
+   * update to Docker 1.6.2
+   * update to boot2docker-cli 1.6.2
  * bug fixes:
    * fix docker volume mounts when using remote docker hosts in Vagrant (see [#107](https://github.com/tknerr/bills-kitchen/pull/107))
 
