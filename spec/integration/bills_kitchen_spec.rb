@@ -150,8 +150,8 @@ describe "bills kitchen" do
       it "has 'vagrant-proxyconf (1.5.0)' plugin installed" do
         vagrant_plugin_installed "vagrant-proxyconf", "1.5.0"
       end
-      it "has 'vagrant-berkshelf (4.0.3)' plugin installed" do
-        vagrant_plugin_installed "vagrant-berkshelf", "4.0.3"
+      it "has 'vagrant-berkshelf (4.0.4)' plugin installed" do
+        vagrant_plugin_installed "vagrant-berkshelf", "4.0.4"
       end
       it "installed vagrant plugins $HOME/.vagrant.d" do
         Dir.entries("#{VAGRANT_HOME}/gems/gems").should include('vagrant-toplevel-cookbooks-0.2.4')
