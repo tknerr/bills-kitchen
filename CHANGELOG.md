@@ -10,6 +10,7 @@
    * update to Atom 0.199.0 (which [now bundles autocomplete-plus](http://blog.atom.io/2015/05/15/new-autocomplete.html))
  * plugin updates:
    * update vagrant-berkshelf to 4.0.4
+   * added new vagrant plugin: vagrant-winrm 0.7.0 (useful when setting up windows boxes)
  * bug fixes:
    * fix docker volume mounts when using remote docker hosts in Vagrant (see [#107](https://github.com/tknerr/bills-kitchen/pull/107))
    * fix build process error that occurs when `rake[recreate_dirs]` is run initially with an empty build directory (see [9ea200d](https://github.com/tknerr/bills-kitchen/commit/9ea200d75c22c405af9352e08b898fe31602ccb1), thanks @aderenbach for reporting)

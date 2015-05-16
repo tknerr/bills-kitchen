@@ -175,7 +175,8 @@ def install_vagrant_plugins
     && vagrant plugin install vagrant-omnibus --plugin-version 1.4.1 \
     && vagrant plugin install vagrant-cachier --plugin-version 1.2.0 \
     && vagrant plugin install vagrant-proxyconf --plugin-version 1.5.0 \
-    && vagrant plugin install vagrant-berkshelf --plugin-version 4.0.4"
+    && vagrant plugin install vagrant-berkshelf --plugin-version 4.0.4 \
+    && vagrant plugin install vagrant-winrm --plugin-version 0.7.0"
     fail "vagrant plugin installation failed" unless system(command)
   end
 end
