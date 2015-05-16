@@ -114,7 +114,7 @@ def download_tools
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
     %w{ www.itefix.net/dl/cwRsync_5.4.1_x86_Free.zip                                                        cwrsync },
     %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2.msi                                                  vagrant },
-    %w{ dl.bintray.com/mitchellh/terraform/terraform_0.4.2_windows_amd64.zip                                terraform },
+    %w{ dl.bintray.com/mitchellh/terraform/terraform_0.5.1_windows_amd64.zip                                terraform },
     %w{ dl.bintray.com/mitchellh/packer/packer_0.7.5_windows_amd64.zip                                      packer },
     %w{ dl.bintray.com/mitchellh/consul/0.5.0_windows_386.zip                                               consul },
     %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.5.1-1.msi                  chef-dk }
