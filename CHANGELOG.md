@@ -2,7 +2,7 @@
 # 3.0-SNAPSHOT (unreleased)
 
  * tool updates:
-   * update to Terraform 0.5.1 
+   * update to Terraform 0.5.2 
  * bug fixes:
    * fix docker volume mounts when using remote docker hosts in Vagrant (see [#107](https://github.com/tknerr/bills-kitchen/pull/107))
 
