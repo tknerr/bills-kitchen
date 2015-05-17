@@ -14,6 +14,7 @@
  * bug fixes:
    * fix docker volume mounts when using remote docker hosts in Vagrant (see [#107](https://github.com/tknerr/bills-kitchen/pull/107))
    * fix build process error that occurs when `rake[recreate_dirs]` is run initially with an empty build directory (see [9ea200d](https://github.com/tknerr/bills-kitchen/commit/9ea200d75c22c405af9352e08b898fe31602ccb1), thanks @aderenbach for reporting)
+   * fix remote docker host support in multi-machine setups (see [#110](https://github.com/tknerr/bills-kitchen/pull/110))
  * improvements:
    * fix spelling errors in set-env.bat comments (see [#108](https://github.com/tknerr/bills-kitchen/pull/108), thanks @xBytez)
 
@@ -37,7 +38,7 @@
    * make the `b2d-start.bat` and `b2d-stop.bat` scripts more resilient
    * add `b2d` shortcut doskey alias for `boot2docker`
    * add `GLOBAL_VAGRANT_CACHIER_DISABLED` env var to allow for disabling vagrant-cachier in the global Vagrantfile ([#98](https://github.com/tknerr/bills-kitchen/pull/98))
-   * patch vagrant with remote docker host support; conditionally enable it `b2d-start` and disable it in `b2d-stop` (experimental, see [#100](https://github.com/tknerr/bills-kitchen/pull/100git))
+   * patch vagrant with remote docker host support; conditionally enable it `b2d-start` and disable it in `b2d-stop` (experimental, see [#100](https://github.com/tknerr/bills-kitchen/pull/100))
  * bug fixes:
    * make `bundle` and other gem binaries work in `git-bash` too [#97](https://github.com/tknerr/bills-kitchen/issues/97)
 
