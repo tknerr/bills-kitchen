@@ -132,6 +132,18 @@ module VagrantPlugins
         end
       end
 
+      # Returns the forwarded SSH port on the host. If no port forwarding
+      # for "ssh" is found we return nil
+      def forwarded_ssh_host_port
+        @machine.config.vm.networks.each do |type, options|
+          if type == :forwarded_port && options[:id] == "ssh"
+            return options[:host]
+          end
+        end
+        # ssh portforwarding disabled?!?
+        raise "ssh port not forwarded!"
+      end
+
       # Returns the SSH info for accessing the Container.
       def ssh_info
         # If the container isn't running, we can't SSH into it
@@ -147,7 +159,7 @@ module VagrantPlugins
         if ENV['VAGRANT_DOCKER_REMOTE_HOST_PATCH'] == "1"
           {
             host: "192.168.59.103",
-            port: "2222"
+            port: forwarded_ssh_host_port
           }
         else
           {
