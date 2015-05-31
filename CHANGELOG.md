@@ -2,7 +2,9 @@
 # 3.0-SNAPSHOT (unreleased)
 
  * bug fixes:
-   * ensure that the vagrant remote docker host patch is always enabled (see [#114](https://github.com/tknerr/bills-kitchen/issues/114)) 
+   * ensure that the vagrant remote docker host patch is always enabled (see [#114](https://github.com/tknerr/bills-kitchen/issues/114))
+ * improvements:
+   * allow to run acceptance tests using either virtualbox or docker provider
 
 
 # 3.0-rc5 (May 17, 2015)

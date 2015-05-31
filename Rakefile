@@ -40,8 +40,9 @@ task :test do
 end
 
 desc 'run acceptance tests (WARNING: will download stuff, install gems, etc..)'
-task :acceptance do
-  run_acceptance_tests
+task :acceptance, [:provider] do |t, args|
+  args.with_defaults :provider => 'virtualbox'
+  run_acceptance_tests(args[:provider])
 end
 
 desc 'assemble `target/build` into a .7z package'
@@ -60,15 +61,26 @@ def run_integration_tests
   end
 end
 
-def run_acceptance_tests
+def run_acceptance_tests(provider)
   Bundler.with_clean_env do
     FileUtils.rm_rf "#{BUILD_DIR}/repo/vagrant-workflow-tests"
     command = "#{BUILD_DIR}/set-env.bat \
         && cd #{BUILD_DIR}/repo \
         && git clone https://github.com/tknerr/vagrant-workflow-tests \
         && cd vagrant-workflow-tests \
-        && rspec"
+        && #{acceptance_test_run_cmd(provider)}"
     fail "running acceptance tests failed" unless system(command)
+  end
+end
+
+def acceptance_test_run_cmd(provider)
+  case provider
+  when 'virtualbox'
+    "rspec"
+  when 'docker'
+    "b2d-start&& set VAGRANT_DEFAULT_PROVIDER=docker&& set KITCHEN_LOCAL_YAML=.kitchen.docker.yml&& rspec&& b2d-stop"
+  else
+    fail "unsupported provider for running the acceptance tests: #{provider}"
   end
 end
 
