@@ -35,10 +35,13 @@ $env:EDITOR = "atom.sh --wait"
 ## set the home dir for boot2docker
 $env:BOOT2DOCKER_DIR = Join-Path $env:HOME .boot2docker
 
-:: init the shell for boot2docker
+## init the shell for boot2docker
 $env:DOCKER_HOST = "tcp://192.168.59.103:2376"
 $env:DOCKER_CERT_PATH = Join-Path $env:BOOT2DOCKER_DIR certs\boot2docker-vm
 $env:DOCKER_TLS_VERIFY = "1"
+
+## experimental: enable remote docker host patch in vagrant
+$env:VAGRANT_DOCKER_REMOTE_HOST_PATCH = "1"
 
 ## Chef-DK embedded Ruby is now the primary one!
 ## see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/

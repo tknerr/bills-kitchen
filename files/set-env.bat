@@ -48,6 +48,9 @@ set DOCKER_HOST=tcp://192.168.59.103:2376
 set DOCKER_CERT_PATH=%BOOT2DOCKER_DIR%\certs\boot2docker-vm
 set DOCKER_TLS_VERIFY=1
 
+:: experimental: enable remote docker host patch in vagrant
+set VAGRANT_DOCKER_REMOTE_HOST_PATCH=1
+
 :: Chef-DK embedded Ruby is now the primary one!
 :: see: http://jtimberman.housepub.org/blog/2014/04/30/chefdk-and-ruby/
 :: see: `chef shell-init powershell`

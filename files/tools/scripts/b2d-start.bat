@@ -77,8 +77,4 @@ boot2docker ssh "sudo /etc/init.d/docker restart > /dev/null"
 
 ENDLOCAL
 
-
-:: experimental: enable remote docker host patch in vagrant when b2d is started
-set VAGRANT_DOCKER_REMOTE_HOST_PATCH=1
-
 :end

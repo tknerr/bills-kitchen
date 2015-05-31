@@ -16,8 +16,4 @@ boot2docker down 2>NUL || boot2docker down
 echo Removing shared folder "billskitchen"
 VBoxManage sharedfolder remove "boot2docker-vm" --name "billskitchen"
 
-
-:: disable experimental remote docker host patch when b2d is stopped
-set VAGRANT_DOCKER_REMOTE_HOST_PATCH=0
-
 :end
