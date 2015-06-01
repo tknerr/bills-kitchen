@@ -25,7 +25,7 @@ The main tools for cooking with Chef / Vagrant:
 * [ChefDK](http://www.getchef.com/downloads/chef-dk/windows/) 0.6.0, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.1.5
 * [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
 * [Vagrant](http://vagrantup.com/) 1.7.2
-* [Terraform](http://terraform.io/) 0.5.2
+* [Terraform](http://terraform.io/) 0.5.3
 * [Packer](http://packer.io/) 0.7.5
 * [Consul](http://consul.io/) 0.5.2
 * [Docker](http://docker.io/) 1.6.2 (using boot2docker)
