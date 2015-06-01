@@ -118,9 +118,9 @@ def download_tools
   [
     %w{ github.com/boot2docker/boot2docker-cli/releases/download/v1.6.2/boot2docker-v1.6.2-windows-amd64.exe  docker/boot2docker.exe },
     %w{ get.docker.com/builds/Windows/x86_64/docker-1.6.2.exe                                                 docker/docker.exe },
-    %w{ github.com/Maximus5/ConEmu/releases/download/v15.04.16/ConEmuPack.150416.7z                         conemu },
+    %w{ github.com/Maximus5/ConEmu/releases/download/v15.05.13/ConEmuPack.150513.7z                         conemu },
     %w{ github.com/mridgers/clink/releases/download/0.4.4/clink_0.4.4_setup.exe                             clink },
-    %w{ github.com/atom/atom/releases/download/v0.199.0/atom-windows.zip                                    atom },
+    %w{ github.com/atom/atom/releases/download/v0.204.0/atom-windows.zip                                    atom },
     %w{ github.com/msysgit/msysgit/releases/download/Git-1.9.5-preview20150319/PortableGit-1.9.5-preview20150319.7z   portablegit },
     %w{ cdn.rubyinstaller.org/archives/devkits/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe                devkit },
     %w{ switch.dl.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe                       kdiff3
@@ -130,7 +130,7 @@ def download_tools
     %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2.msi                                                  vagrant },
     %w{ dl.bintray.com/mitchellh/terraform/terraform_0.5.1_windows_amd64.zip                                terraform },
     %w{ dl.bintray.com/mitchellh/packer/packer_0.7.5_windows_amd64.zip                                      packer },
-    %w{ dl.bintray.com/mitchellh/consul/0.5.1_windows_386.zip                                               consul },
+    %w{ dl.bintray.com/mitchellh/consul/0.5.2_windows_386.zip                                               consul },
     %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.6.0-1.msi                  chef-dk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
