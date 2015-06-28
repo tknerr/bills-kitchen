@@ -86,7 +86,7 @@ end
 
 def recreate_dirs
   uninstall_atom_plugins_with_insanely_long_path
-  FileUtils.rm_r BUILD_DIR, secure: true
+  FileUtils.rm_rf BUILD_DIR, secure: true
   %w{ home repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
   end
