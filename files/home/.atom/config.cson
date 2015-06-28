@@ -15,3 +15,4 @@
     showOnStartup: false
   tabs:
     showIcons: true
+    usePreviewTabs: true
