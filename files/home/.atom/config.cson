@@ -3,6 +3,7 @@
     fontFamily: "Consolas"
     showInvisibles: true
     fontSize: 17
+    lineHeight: 1.2
   core:
     themes: [
       "atom-dark-ui"
@@ -14,3 +15,4 @@
     showOnStartup: false
   tabs:
     showIcons: true
+    usePreviewTabs: true
