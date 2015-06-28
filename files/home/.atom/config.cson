@@ -3,6 +3,7 @@
     fontFamily: "Consolas"
     showInvisibles: true
     fontSize: 17
+    lineHeight: 1.3
   core:
     themes: [
       "atom-dark-ui"
