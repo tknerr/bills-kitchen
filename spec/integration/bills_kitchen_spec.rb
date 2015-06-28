@@ -162,9 +162,6 @@ describe "bills kitchen" do
     end
 
     describe "atom plugins" do
-      it "has 'sublime-tabs' plugin installed" do
-        atom_plugin_installed "sublime-tabs"
-      end
       it "has 'atom-beautify' plugin installed" do
         atom_plugin_installed "atom-beautify"
       end

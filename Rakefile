@@ -196,7 +196,6 @@ end
 def install_atom_plugins
   Bundler.with_clean_env do
     command = "#{BUILD_DIR}/set-env.bat \
-    && apm install sublime-tabs \
     && apm install atom-beautify \
     && apm install minimap \
     && apm install line-ending-converter \
