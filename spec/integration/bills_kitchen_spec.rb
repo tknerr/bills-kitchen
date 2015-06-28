@@ -51,11 +51,11 @@ describe "bills kitchen" do
     it "installs apm 1.0.1" do
       run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('1.0.1')
     end
-    it "installs docker 1.6.2" do
-      run_cmd("docker -v").should match('Docker version 1.6.2')
+    it "installs docker 1.7.0" do
+      run_cmd("docker -v").should match('Docker version 1.7.0')
     end
-    it "installs boot2docker-cli 1.6.2" do
-      run_cmd("boot2docker version").should match('Boot2Docker-cli version: v1.6.2')
+    it "installs boot2docker-cli 1.7.0" do
+      run_cmd("boot2docker version").should match('Boot2Docker-cli version: v1.7.0')
     end
   end
 
