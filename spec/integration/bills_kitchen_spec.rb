@@ -16,7 +16,7 @@ describe "bills kitchen" do
       run_cmd("terraform --version").should match('0.5.3')
     end
     it "installs Packer 0.8.0" do
-      run_cmd("packer version").should match('0.8.0')
+      run_cmd("packer --version").should match('0.8.0')
     end
     it "installs Consul 0.5.2" do
       run_cmd("consul --version").should match('0.5.2')
