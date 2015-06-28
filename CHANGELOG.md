@@ -2,7 +2,7 @@
 # 3.0-SNAPSHOT (unreleased)
 
  * tool updates:
-   * update to ConEmu 20150513
+   * update to ConEmu 20150621
    * update to Atom 1.0.0
    * update to Consul 0.5.2
    * update to Terraform 0.5.3
