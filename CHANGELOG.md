@@ -3,7 +3,7 @@
 
  * tool updates:
    * update to ConEmu 20150513
-   * update to Atom 0.204.0
+   * update to Atom 1.0.1
    * update to Consul 0.5.2
    * update to Terraform 0.5.3
  * bug fixes:
