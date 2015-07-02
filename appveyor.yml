@@ -2,13 +2,9 @@ version: '{build}-{branch}'
 os: Windows Server 2012
 platform: x64
 install:
-  - set PATH=C:\Ruby22-x64\bin;%PATH%
   - ruby --version
   - gem --version
   - bundler --version
   - bundle install
-cache:
-  - C:\Ruby22-x64\lib\ruby\gems\2.2.0
-  - C:\Ruby22-x64\bin
 build_script:
   - rake build
