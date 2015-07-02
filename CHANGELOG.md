@@ -5,7 +5,7 @@
    * update to ConEmu 20150621
    * update to Atom 1.0.0
    * update to Consul 0.5.2
-   * update to Terraform 0.5.3
+   * update to Terraform 0.6.0
    * update to Packer 0.8.1
  * bug fixes:
    * ensure that the vagrant remote docker host patch is always enabled (see [#114](https://github.com/tknerr/bills-kitchen/issues/114))
