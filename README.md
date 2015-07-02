@@ -1,6 +1,8 @@
 
 # Bill's Kitchen
 
+[![Build status](https://ci.appveyor.com/api/projects/status/pl0vwkbyeavs9036/branch/master?svg=true)](https://ci.appveyor.com/project/tknerr/bills-kitchen/branch/master)
+
 A [DevPack](http://blog.tknerr.de/blog/2014/10/09/devpack-philosophy-aka-works-on-your-machine/) with all you (or Bill Gates would) need for cooking with Chef, Vagrant and Docker on Windows, shrink-wrapped in a portable package.
 
 ![Bill's Kitchen Screenshot](https://raw.github.com/tknerr/bills-kitchen/master/doc/bills_kitchen_screenshot.png)

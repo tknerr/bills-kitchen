@@ -1,0 +1,13 @@
+version: '{build}-{branch}'
+os: Windows Server 2012 R2
+platform: x64
+install:
+  - ruby --version
+  - gem install bundler --quiet --no-ri --no-rdoc
+  - bundle install
+cache:
+  - C:\Ruby193\lib\ruby\gems\1.9.1
+  - C:\Ruby193\bin
+build_script:
+  - rake build
+test: off
