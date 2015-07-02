@@ -1,5 +1,5 @@
 version: '{build}-{branch}'
-os: Windows Server 2012 R2
+os: Windows Server 2012
 platform: x64
 install:
   - set PATH=C:\Ruby22-x64\bin;%PATH%
@@ -12,5 +12,3 @@ cache:
   - C:\Ruby22-x64\bin
 build_script:
   - rake build
-test_script:
-  - rake acceptance[docker]
