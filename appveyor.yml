@@ -1,22 +1,11 @@
 version: '{build}-{branch}'
 os: Windows Server 2012 R2
 platform: x64
-init:
-- ps: |
-    mkdir C:\downloads | Out-Null
-    cd C:\downloads
-    Start-FileDownload "http://download.virtualbox.org/virtualbox/4.3.12/VirtualBox-4.3.12-93733-Win.exe"
-    Start-Process -FilePath "VirtualBox-4.3.12-93733-Win.exe" -ArgumentList "-silent -logging -msiparams INSTALLDIR=C:\VBox-4.3.12" -Wait
-    cd $env:APPVEYOR_BUILD_FOLDER
-- ps: |
-    While ((Test-NetConnection google.com -Port 80 -InformationLevel Quiet) -ne "True") {
-        echo "waiting for network..."
-        Start-Sleep 1
-    }
 install:
-  - set PATH=C:\VBox-4.3.12;C:\Ruby22-x64\bin;%PATH%
-  - VBoxManage -v
+  - set PATH=C:\Ruby22-x64\bin;%PATH%
   - ruby --version
+  - gem --version
+  - bundler --version
   - bundle install
 cache:
   - C:\Ruby22-x64\lib\ruby\gems\2.2.0
