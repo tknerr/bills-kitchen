@@ -20,9 +20,6 @@ install:
   - gem --version
   - bundler --version
   - bundle install
-#cache:
-#  - C:\Ruby22-x64\lib\ruby\gems\2.2.0
-#  - C:\Ruby22-x64\bin
 build_script:
   - rake build
 test_script:
