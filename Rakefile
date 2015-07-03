@@ -185,7 +185,7 @@ def install_vagrant_plugins
     command = "#{BUILD_DIR}/set-env.bat \
     && vagrant plugin install vagrant-toplevel-cookbooks --plugin-version 0.2.4 \
     && vagrant plugin install vagrant-omnibus --plugin-version 1.4.1 \
-    && vagrant plugin install vagrant-cachier --plugin-version 1.2.0 \
+    && vagrant plugin install vagrant-cachier --plugin-version 1.2.1 \
     && vagrant plugin install vagrant-proxyconf --plugin-version 1.5.0 \
     && vagrant plugin install vagrant-berkshelf --plugin-version 4.0.4 \
     && vagrant plugin install vagrant-winrm --plugin-version 0.7.0"

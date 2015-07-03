@@ -7,6 +7,8 @@
    * update to Consul 0.5.2
    * update to Terraform 0.5.3
    * update to Packer 0.8.1
+ * plugin updates:
+   * update to vagrant-cachier 1.2.1 (with chef-zero support)
  * bug fixes:
    * ensure that the vagrant remote docker host patch is always enabled (see [#114](https://github.com/tknerr/bills-kitchen/issues/114))
  * improvements:
