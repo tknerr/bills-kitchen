@@ -24,3 +24,5 @@ build_script:
   - rake build
 test_script:
   - rake acceptance[docker]
+artifacts:
+  - path: %APPVEYOR_BUILD_FOLDER%\target\build\repo\vagrant-workflow-tests\acceptance.log
