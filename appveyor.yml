@@ -1,6 +1,8 @@
 version: '{build}-{branch}'
 os: Windows Server 2012 R2
 platform: x64
+environment:
+  VBOX_MSI_INSTALL_PATH: C:\VBox-4.3.12\
 init:
 - ps: |
    mkdir C:\downloads | Out-Null
