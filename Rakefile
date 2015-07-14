@@ -78,7 +78,7 @@ def acceptance_test_run_cmd(provider)
   when 'virtualbox'
     "rspec"
   when 'docker'
-    "b2d-start&& set VAGRANT_DEFAULT_PROVIDER=docker&& set KITCHEN_LOCAL_YAML=.kitchen.docker.yml&& rspec&& b2d-stop"
+    "b2d-start&& boot2docker config&& set VAGRANT_DEFAULT_PROVIDER=docker&& set KITCHEN_LOCAL_YAML=.kitchen.docker.yml&& rspec&& b2d-stop"z
   else
     fail "unsupported provider for running the acceptance tests: #{provider}"
   end
