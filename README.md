@@ -38,7 +38,7 @@ These plugins are pre-installed:
 
  * vagrant plugins:
    * [vagrant-omnibus](https://github.com/schisamo/vagrant-omnibus) - installs omnibus chef in a vagrant VM
-   * [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) - caches all kinds of packages you intsall in the vagrant VMs
+   * [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) - caches all kinds of packages you install in the vagrant VMs
    * [vagrant-berkshelf](https://github.com/berkshelf/vagrant-berkshelf) - berkshelf integration for vagrant
    * [vagrant-toplevel-cookbooks](https://github.com/tknerr/vagrant-toplevel-cookbooks) - support for one top-level cookbook per vagrant VM
    * [vagrant-proxyconf](https://github.com/tmatilai/vagrant-proxyconf) - for configuring a proxy inside the VMs
@@ -46,7 +46,7 @@ These plugins are pre-installed:
    * ...use `vagrant install <plugin>` to install more
  * knife plugins (just as an example):
    * [knife-audit](https://github.com/jbz/knife-audit) - keeps track of which cookbooks are used by which node
-   * [knife-server](https://github.com/fnichol/knife-server) - sets up and backs uo a chef server
+   * [knife-server](https://github.com/fnichol/knife-server) - sets up and backs up a chef server
    * ...use `chef gem install <plugin>` to install more
 
 ### Supporting Tools
