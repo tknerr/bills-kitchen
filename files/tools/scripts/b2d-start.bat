@@ -59,7 +59,7 @@ boot2docker config
 
 :: bring it up
 echo Bringing up the boot2docker VM...
-boot2docker up
+boot2docker up --memory=512 --verbose=true
 
 :: mount drive inside vbox
 echo Mounting the shared folder inside the VM to %BK_ROOT_CYGPATH%
