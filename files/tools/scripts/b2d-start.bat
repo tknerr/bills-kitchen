@@ -54,6 +54,9 @@ set BK_ROOT_CYGPATH=%BK_ROOT_DRIVE%
 echo Adding shared folder "billskitchen" for hostpath %BK_ROOT%
 VBoxManage sharedfolder add "boot2docker-vm" --name "billskitchen" --hostpath %BK_ROOT%
 
+:: echo the config for debugging
+boot2docker config
+
 :: bring it up
 echo Bringing up the boot2docker VM...
 boot2docker up
