@@ -78,6 +78,7 @@ if "%BK_USE_PROXY%" == "1" (
 boot2docker ssh "sudo /etc/init.d/docker restart > /dev/null"
 boot2docker ssh "sudo /etc/init.d/docker status"
 
+
 ENDLOCAL
 
 
@@ -86,5 +87,12 @@ ENDLOCAL
 for /f "usebackq tokens=*" %%s in (`boot2docker ip`) do set b2d_ip=%%s
 echo updating DOCKER_HOST env var to "tcp://%b2d_ip%:2376"...
 set DOCKER_HOST=tcp://%b2d_ip%:2376
+
+:: echo the boot2docker / docker client versions
+echo boot2docker version:
+boot2docker ssh "docker -v"
+echo docker client version:
+docker -v
+
 
 :end
