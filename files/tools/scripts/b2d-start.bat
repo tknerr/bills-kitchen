@@ -76,6 +76,7 @@ if "%BK_USE_PROXY%" == "1" (
   boot2docker ssh "sudo rm -rf /var/lib/boot2docker/profile"
 )
 boot2docker ssh "sudo /etc/init.d/docker restart > /dev/null"
+boot2docker ssh "sudo /etc/init.d/docker status"
 
 
 ENDLOCAL
