@@ -16,7 +16,7 @@ for /f "usebackq tokens=*" %%l in (`VBoxManage list --long vms`) do (
 
 :init
 echo No existing boot2docker-vm found in VirtualBox, initializing...
-boot2docker init
+boot2docker init --memory=512
 
 :check
 :: check if boot2docker is running
@@ -59,7 +59,7 @@ boot2docker config
 
 :: bring it up
 echo Bringing up the boot2docker VM...
-boot2docker up --memory=512 --verbose=true
+boot2docker up
 
 :: mount drive inside vbox
 echo Mounting the shared folder inside the VM to %BK_ROOT_CYGPATH%
