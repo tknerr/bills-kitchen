@@ -116,8 +116,8 @@ end
 
 def download_tools
   [
-    %w{ github.com/boot2docker/boot2docker-cli/releases/download/v1.7.0/boot2docker-v1.7.0-windows-amd64.exe  docker/boot2docker.exe },
-    %w{ get.docker.com/builds/Windows/x86_64/docker-1.7.0.exe                                                 docker/docker.exe },
+    %w{ github.com/boot2docker/boot2docker-cli/releases/download/v1.7.1/boot2docker-v1.7.1-windows-amd64.exe  docker/boot2docker.exe },
+    %w{ get.docker.com/builds/Windows/x86_64/docker-1.7.1.exe                                                 docker/docker.exe },
     %w{ github.com/Maximus5/ConEmu/releases/download/v15.07.28/ConEmuPack.150728.7z                         conemu },
     %w{ github.com/mridgers/clink/releases/download/0.4.4/clink_0.4.4_setup.exe                             clink },
     %w{ github.com/atom/atom/releases/download/v1.0.4/atom-windows.zip                                      atom },
