@@ -8,7 +8,8 @@
    * update to Terraform 0.6.1
    * update to Packer 0.8.2
    * update to Docker 1.7.1
-   * update to Vagrant 1.7.4
+   * update to Vagrant 1.7.4   
+   * update to ChefDK 0.7.0
  * plugin updates:
    * update to vagrant-cachier 1.2.1 (with chef-zero support)
    * update to vagrant-proxyconf 1.5.1
