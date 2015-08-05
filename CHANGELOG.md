@@ -9,6 +9,7 @@
    * update to Packer 0.8.1
  * plugin updates:
    * update to vagrant-cachier 1.2.1 (with chef-zero support)
+   * update to vagrant-proxyconf 1.5.1
  * bug fixes:
    * ensure that the vagrant remote docker host patch is always enabled (see [#114](https://github.com/tknerr/bills-kitchen/issues/114))
  * improvements:
