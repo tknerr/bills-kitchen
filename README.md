@@ -68,6 +68,7 @@ The following changes are applied to your environment by running `W:\set-env.bat
 * Constraining as much as possible to the `W:\` drive:
  * `%HOME%` points to `W:\home`
  * `%VAGRANT_HOME%` points to `W:\home\.vagrant.d`
+ * `%CHEFDK_HOME%` points to `W:\home\.chefdk`
  * `%PATH%` is preprended with the bin dirs of the tools in `W:\tools\`
  * **exception**: `%VBOX_USER_HOME%` points to `%USERPROFILE%`, i.e. VirtualBox VMs are still stored under `%USERPROFILE%`
 * Fixing annoyances:

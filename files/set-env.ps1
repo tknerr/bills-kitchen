@@ -52,6 +52,8 @@ $env:GEM_PATH = "$env:GEM_HOME;$env:GEM_ROOT"
 ## that's how the PATH entries are generated for chef shell-init
 $env:CHEFDK_PATH_ENTRIES = "$env:CHEFDKDIR\bin;$env:CHEFDKHOMEDIR\gem\ruby\2.1.0\bin;$env:CHEFDKDIR\embedded\bin"
 
+## also set the newly introduced (as of ChefDK 0.7.0) CHEFDK_HOME environment
+$env:CHEFDK_HOME=$env:CHEFDKHOMEDIR
 
 if($env:GITDIR -eq $NULL) {
 	$env:GITDIR = Join-Path $env:BK_ROOT tools\portablegit

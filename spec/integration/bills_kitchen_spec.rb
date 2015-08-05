@@ -69,6 +69,9 @@ describe "bills kitchen" do
     it "sets VAGRANT_HOME to W:/home/.vagrant.d" do
       env_match "VAGRANT_HOME=#{BUILD_DIR}/home/.vagrant.d"
     end
+    it "sets CHEFDK_HOME to W:/home/.chefdk" do
+      env_match "CHEFDK_HOME=#{BUILD_DIR}/home/.chefdk"
+    end
     it "sets VBOX_USER_HOME to %USERPROFILE%" do
       env_match "VBOX_USER_HOME=#{ENV['USERPROFILE']}"
     end

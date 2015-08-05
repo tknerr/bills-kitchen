@@ -60,6 +60,9 @@ set GEM_PATH=%GEM_HOME%;%GEM_ROOT%
 :: that's how the PATH entries are generated for chef shell-init
 set CHEFDK_PATH_ENTRIES=%CHEFDKDIR%\bin;%CHEFDKHOMEDIR%\gem\ruby\2.1.0\bin;%CHEFDKDIR%\embedded\bin
 
+:: also set the newly introduced (as of ChefDK 0.7.0) CHEFDK_HOME environment
+set CHEFDK_HOME=%CHEFDKHOMEDIR%
+
 
 :: prompt for .gitconfig username/email
 FOR /F "usebackq tokens=*" %%a IN (`cmd /C %GITDIR%\cmd\git config --get user.name`) DO SET GIT_CONF_USERNAME=%%a
