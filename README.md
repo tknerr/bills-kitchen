@@ -29,7 +29,7 @@ The main tools for cooking with Chef / Vagrant:
 * [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
 * [Vagrant](http://vagrantup.com/) 1.7.2
 * [Terraform](http://terraform.io/) 0.6.1
-* [Packer](http://packer.io/) 0.8.1
+* [Packer](http://packer.io/) 0.8.2
 * [Consul](http://consul.io/) 0.5.2
 * [Docker](http://docker.io/) 1.6.2 (using boot2docker)
 
