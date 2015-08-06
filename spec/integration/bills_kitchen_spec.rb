@@ -42,11 +42,11 @@ describe "bills kitchen" do
     it "installs clink 0.4.4" do
       run_cmd("#{BUILD_DIR}/tools/clink/clink.bat version").should match('Clink v0.4.4')
     end
-    it "installs atom 1.0.0" do
+    it "installs atom 1.0.4" do
       # see https://github.com/atom/atom-shell/issues/683
       # so we 1) ensure the atom.cmd is on the PATH and 2) it's the right version
       cmd_succeeds "#{BUILD_DIR}/tools/atom/Atom/resources/cli/atom.cmd -v"
-      cmd_succeeds "grep 'Package: atom@1.0.0' #{BUILD_DIR}/tools/atom/Atom/resources/LICENSE.md"
+      cmd_succeeds "grep 'Package: atom@1.0.4' #{BUILD_DIR}/tools/atom/Atom/resources/LICENSE.md"
     end
     it "installs apm 1.0.1" do
       run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('1.0.1')
