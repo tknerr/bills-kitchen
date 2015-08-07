@@ -1,6 +1,7 @@
 require "digest/md5"
 require "fileutils"
 require "thread"
+require "uri"
 
 require "log4r"
 
@@ -134,6 +135,17 @@ module VagrantPlugins
           @machine.provider_config.force_host_vm ||
             !Vagrant::Util::Platform.linux?
         end
+      end
+
+      # This checks whether the host system is configured to talk to a remote
+      # docker host by inspecting the `DOCKER_HOST` env var.
+      def remote_docker_host?
+        !ENV['DOCKER_HOST'].to_s.strip.empty?
+      end
+
+      # Returns the host part from the `DOCKER_HOST` env var
+      def remote_docker_host
+        URI.parse(ENV['DOCKER_HOST']).host
       end
 
       # Returns the forwarded SSH port on the host. If no port forwarding
