@@ -16,7 +16,7 @@ for /f "usebackq tokens=*" %%l in (`VBoxManage list --long vms`) do (
 
 :init
 echo No existing boot2docker-vm found in VirtualBox, initializing...
-boot2docker init --memory=512
+boot2docker init --memory=2048
 
 :check
 :: check if boot2docker is running
@@ -55,7 +55,7 @@ echo Adding shared folder "billskitchen" for hostpath %BK_ROOT%
 VBoxManage sharedfolder add "boot2docker-vm" --name "billskitchen" --hostpath %BK_ROOT%
 
 :: echo the config for debugging
-boot2docker config
+::boot2docker config
 
 :: bring it up
 echo Bringing up the boot2docker VM...
