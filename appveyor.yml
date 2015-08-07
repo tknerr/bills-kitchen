@@ -1,8 +1,6 @@
 version: '{build}-{branch}'
 os: Windows Server 2012 R2
 platform: x64
-environment:
-  VBOX_MSI_INSTALL_PATH: C:\VBox-4.3.12\
 init:
 install:
   - set PATH=C:\Ruby22-x64\bin;%PATH%
@@ -12,5 +10,3 @@ install:
   - bundle install
 build_script:
   - rake build
-artifacts:
-  - path: target\build\repo\vagrant-workflow-tests\acceptance.log
