@@ -2,8 +2,8 @@
 
 :: check if we have the .iso file (if we don't have it, the VM won't start!)
 if not exist %HOME%\.boot2docker\boot2docker.iso (
-  echo boot2docker.iso not found in %HOME%\.boot2docker\, downloading it...
-  boot2docker download
+  echo boot2docker.iso not found in %HOME%\.boot2docker\, downloading version 1.7.1...
+  curl -L -o %HOME%\.boot2docker\boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v1.7.1/boot2docker.iso
 )
 
 :: check if "boot2docker-vm" exists already
@@ -16,7 +16,7 @@ for /f "usebackq tokens=*" %%l in (`VBoxManage list --long vms`) do (
 
 :init
 echo No existing boot2docker-vm found in VirtualBox, initializing...
-boot2docker init
+boot2docker init --memory=2048
 
 :check
 :: check if boot2docker is running
@@ -54,6 +54,9 @@ set BK_ROOT_CYGPATH=%BK_ROOT_DRIVE%
 echo Adding shared folder "billskitchen" for hostpath %BK_ROOT%
 VBoxManage sharedfolder add "boot2docker-vm" --name "billskitchen" --hostpath %BK_ROOT%
 
+:: echo the config for debugging
+::boot2docker config
+
 :: bring it up
 echo Bringing up the boot2docker VM...
 boot2docker up
@@ -73,8 +76,23 @@ if "%BK_USE_PROXY%" == "1" (
   boot2docker ssh "sudo rm -rf /var/lib/boot2docker/profile"
 )
 boot2docker ssh "sudo /etc/init.d/docker restart > /dev/null"
+boot2docker ssh "sudo /etc/init.d/docker status"
 
 
 ENDLOCAL
+
+
+
+:: update the DOCKER_HOST as the ip address might change
+for /f "usebackq tokens=*" %%s in (`boot2docker ip`) do set b2d_ip=%%s
+echo updating DOCKER_HOST env var to "tcp://%b2d_ip%:2376"...
+set DOCKER_HOST=tcp://%b2d_ip%:2376
+
+:: echo the boot2docker / docker client versions
+echo boot2docker version:
+boot2docker ssh "docker -v"
+echo docker client version:
+docker -v
+
 
 :end

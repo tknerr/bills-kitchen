@@ -7,6 +7,7 @@
    * update to Consul 0.5.2
    * update to Terraform 0.6.1
    * update to Packer 0.8.2
+   * update to Docker 1.7.1
  * plugin updates:
    * update to vagrant-cachier 1.2.1 (with chef-zero support)
    * update to vagrant-proxyconf 1.5.1
