@@ -166,7 +166,7 @@ end
 
 # workaround for mitchellh/vagrant#4073
 def fix_vagrant
-  orig = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.2/plugins/synced_folders/rsync/helper.rb"
+  orig = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.4/plugins/synced_folders/rsync/helper.rb"
   patched = File.read(orig).gsub('hostpath = Vagrant::Util', 'hostpath = "/cygdrive" + Vagrant::Util')
   File.write(orig, patched)
 end
