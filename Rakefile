@@ -127,7 +127,7 @@ def download_tools
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
     %w{ www.itefix.net/dl/cwRsync_5.4.1_x86_Free.zip                                                        cwrsync },
-    %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2.msi                                                  vagrant },
+    %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4.msi                                                  vagrant },
     %w{ dl.bintray.com/mitchellh/terraform/terraform_0.6.1_windows_amd64.zip                                terraform },
     %w{ dl.bintray.com/mitchellh/packer/packer_0.8.2_windows_amd64.zip                                      packer },
     %w{ dl.bintray.com/mitchellh/consul/0.5.2_windows_386.zip                                               consul },
@@ -166,7 +166,7 @@ end
 
 # workaround for mitchellh/vagrant#4073
 def fix_vagrant
-  orig = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.2/plugins/synced_folders/rsync/helper.rb"
+  orig = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.4/plugins/synced_folders/rsync/helper.rb"
   patched = File.read(orig).gsub('hostpath = Vagrant::Util', 'hostpath = "/cygdrive" + Vagrant::Util')
   File.write(orig, patched)
 end
