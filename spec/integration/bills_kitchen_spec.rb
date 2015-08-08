@@ -113,7 +113,7 @@ describe "bills kitchen" do
       it "does have it's environment properly set" do
         # TODO: test for https://github.com/chef/chef-dk/pull/423
         chef_env = run_cmd("chef env")
-        chef_env.should match("ChefDK Home: \"#{BUILD_DIR}/home/.chefdk\""))
+        chef_env.should match("ChefDK Home: \"#{BUILD_DIR}/home/.chefdk\"")
       end
     end
 
