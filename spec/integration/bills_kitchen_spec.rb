@@ -111,15 +111,18 @@ describe "bills kitchen" do
         run_cmd("which gem").should match(convert_slashes("#{CHEFDK_RUBY}/bin/gem"))
       end
       it "does have it's environment properly set" do
-        # TODO: test for https://github.com/chef/chef-dk/pull/423
         chef_env = run_cmd("chef env")
-        chef_env.should match("ChefDK Home: \"#{BUILD_DIR}/home/.chefdk\"")
+        chef_env.should match("ChefDK Home: #{convert_slashes(BUILD_DIR + '/home/.chefdk')}")
+        chef_env.should match("ChefDK Install Directory: #{BUILD_DIR}/tools/chefdk")
+        chef_env.should match("Ruby Executable: #{BUILD_DIR}/tools/chefdk/embedded/bin/ruby.exe")
+        chef_env.should match("GEM ROOT: #{BUILD_DIR}/tools/chefdk/embedded/lib/ruby/gems/2.1.0")
+        chef_env.should match("GEM HOME: #{convert_slashes(BUILD_DIR + '/home/.chefdk')}/gem/ruby/2.1.0")
       end
     end
 
     describe "chefdk ruby" do
-      it "installs Chef 12.3.0" do
-        run_cmd("knife -v").should match('Chef: 12.3.0')
+      it "installs Chef 12.4.1" do
+        run_cmd("knife -v").should match('Chef: 12.4.1')
       end
       it "has RubyGems > 2.4.1 installed (fixes opscode/chef-dk#242)" do
         run_cmd("gem -v").should match('2.4.4')
@@ -134,8 +137,8 @@ describe "bills kitchen" do
       it "has ChefDK verified to work via `chef verify`" do
         cmd_succeeds "chef verify"
       end
-      it "has 'bundler (1.7.12)' gem installed" do
-        gem_installed "bundler", "1.7.12"
+      it "has 'bundler (1.10.0)' gem installed" do
+        gem_installed "bundler", "1.10.0"
       end
       it "has 'knife-audit (0.2.0)' plugin installed" do
         knife_plugin_installed "knife-audit", "0.2.0"
