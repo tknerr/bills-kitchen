@@ -132,15 +132,18 @@ describe "bills kitchen" do
       end
       it "does not have any binaries in the $HOME/.chefdk gemdir preinstalled when we ship it" do
         # because since RubyGems > 2.4.1 the ruby path in here is absolute!
-        Dir["#{CHEFDK_HOME}/gem/ruby/2.1.0/bin"].should be_empty
+        gem_binaries = Dir.glob("#{CHEFDK_HOME}/gem/ruby/2.1.0/bin/*")
+        # XXX: keep until chef/omnibus-chef#464 is shipped
+        gem_binaries.reject{|f| File.basename(f).start_with? 'bundle'}.should be_empty
       end
       it "has ChefDK verified to work via `chef verify`" do
         # XXX: skip verification of chef-provisioning until chef/chef-dk#470 is fixed
         components = %w{berkshelf test-kitchen chef-client chef-dk chefspec rubocop fauxhai knife-spork kitchen-vagrant package installation openssl}
         cmd_succeeds "chef verify #{components.join(',')}"
       end
-      it "has 'bundler (1.10.0)' gem installed" do
-        gem_installed "bundler", "1.10.0"
+      it "has 'bundler (1.10.6)' gem installed" do
+        # XXX: keep until chef/omnibus-chef#464 is shipped
+        gem_installed "bundler", "1.10.6, 1.10.0"
       end
       it "has 'knife-audit (0.2.0)' plugin installed" do
         knife_plugin_installed "knife-audit", "0.2.0"

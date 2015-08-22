@@ -27,6 +27,7 @@ task :build do
   fix_chefdk
   fix_vagrant
   copy_files
+  fix_bundler
   generate_docs
   install_knife_plugins
   install_vagrant_plugins
@@ -169,6 +170,15 @@ def fix_vagrant
   orig = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.4/plugins/synced_folders/rsync/helper.rb"
   patched = File.read(orig).gsub('hostpath = Vagrant::Util', 'hostpath = "/cygdrive" + Vagrant::Util')
   File.write(orig, patched)
+end
+
+def fix_bundler
+  # manually restore a good bundler version until chef/omnibus-chef#464 is fixed
+  Bundler.with_clean_env do
+    command = "#{BUILD_DIR}/set-env.bat \
+    && chef gem install bundler -v 1.10.6 --no-ri --no-rdoc"
+    fail "updating bundler to 1.10.6 failed" unless system(command)
+  end
 end
 
 def install_knife_plugins
