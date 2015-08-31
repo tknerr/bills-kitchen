@@ -179,6 +179,11 @@ def fix_bundler
     && chef gem install bundler -v 1.10.6 --no-ri --no-rdoc"
     fail "updating bundler to 1.10.6 failed" unless system(command)
   end
+  # also temporarily patch vagrant until test-kitchen/kitchen-vagrant#190 is fixed
+  gemspec = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.4/vagrant.gemspec"
+  gemspec2 = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/specifications/vagrant-1.7.4.gemspec"
+  File.write(gemspec, File.read(gemspec).gsub('1.10.5', '1.10.6'))
+  File.write(gemspec2, File.read(gemspec2).gsub('1.10.5', '1.10.6'))
 end
 
 def install_knife_plugins
