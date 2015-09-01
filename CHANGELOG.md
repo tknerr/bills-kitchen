@@ -5,7 +5,7 @@
    * update to ConEmu 20150728
    * update to Atom 1.0.4
    * update to Consul 0.5.2
-   * update to Terraform 0.6.1
+   * update to Terraform 0.6.3
    * update to Packer 0.8.6
    * update to Docker 1.7.1
    * update to Vagrant 1.7.4
