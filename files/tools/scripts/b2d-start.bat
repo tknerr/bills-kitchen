@@ -3,6 +3,7 @@
 :: check if we have the .iso file (if we don't have it, the VM won't start!)
 if not exist %HOME%\.boot2docker\boot2docker.iso (
   echo boot2docker.iso not found in %HOME%\.boot2docker\, downloading version 1.7.1...
+  if not exist "%HOME%\.boot2docker" mkdir %HOME%\.boot2docker
   curl -L -o %HOME%\.boot2docker\boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v1.7.1/boot2docker.iso
 )
 
