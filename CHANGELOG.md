@@ -10,6 +10,7 @@
    * update to Docker 1.7.1
    * update to Vagrant 1.7.4
    * update to ChefDK 0.7.0
+   * update to PortableGit 2.5.0 (aka "Git for Windows")
  * plugin updates:
    * update to vagrant-cachier 1.2.1 (with chef-zero support)
    * update to vagrant-proxyconf 1.5.1
