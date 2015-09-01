@@ -25,7 +25,7 @@ Using Bill's Kitchen itself is fairly simple. There is nothing to install, just 
 
 The main tools for cooking with Chef / Vagrant:
 
-* [ChefDK](http://www.getchef.com/downloads/chef-dk/windows/) 0.6.0, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.1.5
+* [ChefDK](http://www.getchef.com/downloads/chef-dk/windows/) 0.7.0, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.1.5
 * [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
 * [Vagrant](http://vagrantup.com/) 1.7.4
 * [Terraform](http://terraform.io/) 0.6.1
@@ -68,6 +68,7 @@ The following changes are applied to your environment by running `W:\set-env.bat
 * Constraining as much as possible to the `W:\` drive:
  * `%HOME%` points to `W:\home`
  * `%VAGRANT_HOME%` points to `W:\home\.vagrant.d`
+ * `%CHEFDK_HOME%` points to `W:\home\.chefdk`
  * `%PATH%` is preprended with the bin dirs of the tools in `W:\tools\`
  * **exception**: `%VBOX_USER_HOME%` points to `%USERPROFILE%`, i.e. VirtualBox VMs are still stored under `%USERPROFILE%`
 * Fixing annoyances:

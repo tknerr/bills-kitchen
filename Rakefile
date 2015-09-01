@@ -27,6 +27,7 @@ task :build do
   fix_chefdk
   fix_vagrant
   copy_files
+  fix_bundler
   generate_docs
   install_knife_plugins
   install_vagrant_plugins
@@ -131,7 +132,7 @@ def download_tools
     %w{ dl.bintray.com/mitchellh/terraform/terraform_0.6.1_windows_amd64.zip                                terraform },
     %w{ dl.bintray.com/mitchellh/packer/packer_0.8.2_windows_amd64.zip                                      packer },
     %w{ dl.bintray.com/mitchellh/consul/0.5.2_windows_386.zip                                               consul },
-    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.6.0-1.msi                  chef-dk }
+    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.7.0-1.msi                  chef-dk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')
@@ -169,6 +170,20 @@ def fix_vagrant
   orig = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.4/plugins/synced_folders/rsync/helper.rb"
   patched = File.read(orig).gsub('hostpath = Vagrant::Util', 'hostpath = "/cygdrive" + Vagrant::Util')
   File.write(orig, patched)
+end
+
+def fix_bundler
+  # manually restore a good bundler version until chef/omnibus-chef#464 is fixed
+  Bundler.with_clean_env do
+    command = "#{BUILD_DIR}/set-env.bat \
+    && chef gem install bundler -v 1.10.6 --no-ri --no-rdoc"
+    fail "updating bundler to 1.10.6 failed" unless system(command)
+  end
+  # also temporarily patch vagrant until test-kitchen/kitchen-vagrant#190 is fixed
+  gemspec = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.4/vagrant.gemspec"
+  gemspec2 = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/specifications/vagrant-1.7.4.gemspec"
+  File.write(gemspec, File.read(gemspec).gsub('1.10.5', '1.10.6'))
+  File.write(gemspec2, File.read(gemspec2).gsub('1.10.5', '1.10.6'))
 end
 
 def install_knife_plugins

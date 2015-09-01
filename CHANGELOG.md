@@ -9,6 +9,7 @@
    * update to Packer 0.8.2
    * update to Docker 1.7.1
    * update to Vagrant 1.7.4
+   * update to ChefDK 0.7.0
  * plugin updates:
    * update to vagrant-cachier 1.2.1 (with chef-zero support)
    * update to vagrant-proxyconf 1.5.1
@@ -16,6 +17,8 @@
    * ensure that the vagrant remote docker host patch is always enabled (see [#114](https://github.com/tknerr/bills-kitchen/issues/114))
  * improvements:
    * allow to run acceptance tests using either virtualbox or docker provider
+ * patches:
+   * update the ChefDK included bundler to 1.10.6 (and [temporarily patched Vagrant](https://github.com/test-kitchen/kitchen-vagrant/issues/190#ref-commit-1176eca)) so we can benefit from the [bugfix](https://github.com/bundler/bundler/issues/3799) which makes parallel downloading work again
 
 
 # 3.0-rc5 (May 17, 2015)

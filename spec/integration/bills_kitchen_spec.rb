@@ -6,8 +6,8 @@ describe "bills kitchen" do
   include Helpers
 
   describe "tools" do
-    it "installs ChefDK 0.6.0" do
-      run_cmd("chef -v").should match('Chef Development Kit Version: 0.6.0')
+    it "installs ChefDK 0.7.0" do
+      run_cmd("chef -v").should match('Chef Development Kit Version: 0.7.0')
     end
     it "installs Vagrant 1.7.4" do
       run_cmd("vagrant -v").should match('1.7.4')
@@ -69,6 +69,9 @@ describe "bills kitchen" do
     it "sets VAGRANT_HOME to W:/home/.vagrant.d" do
       env_match "VAGRANT_HOME=#{BUILD_DIR}/home/.vagrant.d"
     end
+    it "sets CHEFDK_HOME to W:/home/.chefdk" do
+      env_match "CHEFDK_HOME=#{BUILD_DIR}/home/.chefdk"
+    end
     it "sets VBOX_USER_HOME to %USERPROFILE%" do
       env_match "VBOX_USER_HOME=#{ENV['USERPROFILE']}"
     end
@@ -107,11 +110,19 @@ describe "bills kitchen" do
       it "provides the default `gem` command" do
         run_cmd("which gem").should match(convert_slashes("#{CHEFDK_RUBY}/bin/gem"))
       end
+      it "does have it's environment properly set" do
+        chef_env = run_cmd("chef env")
+        chef_env.should match("ChefDK Home: #{convert_slashes(BUILD_DIR + '/home/.chefdk')}")
+        chef_env.should match("ChefDK Install Directory: #{BUILD_DIR}/tools/chefdk")
+        chef_env.should match("Ruby Executable: #{BUILD_DIR}/tools/chefdk/embedded/bin/ruby.exe")
+        chef_env.should match("GEM ROOT: #{BUILD_DIR}/tools/chefdk/embedded/lib/ruby/gems/2.1.0")
+        chef_env.should match("GEM HOME: #{convert_slashes(BUILD_DIR + '/home/.chefdk')}/gem/ruby/2.1.0")
+      end
     end
 
     describe "chefdk ruby" do
-      it "installs Chef 12.3.0" do
-        run_cmd("knife -v").should match('Chef: 12.3.0')
+      it "installs Chef 12.4.1" do
+        run_cmd("knife -v").should match('Chef: 12.4.1')
       end
       it "has RubyGems > 2.4.1 installed (fixes opscode/chef-dk#242)" do
         run_cmd("gem -v").should match('2.4.4')
@@ -121,13 +132,18 @@ describe "bills kitchen" do
       end
       it "does not have any binaries in the $HOME/.chefdk gemdir preinstalled when we ship it" do
         # because since RubyGems > 2.4.1 the ruby path in here is absolute!
-        Dir["#{CHEFDK_HOME}/gem/ruby/2.1.0/bin"].should be_empty
+        gem_binaries = Dir.glob("#{CHEFDK_HOME}/gem/ruby/2.1.0/bin/*")
+        # XXX: keep until chef/omnibus-chef#464 is shipped
+        gem_binaries.reject{|f| File.basename(f).start_with? 'bundle'}.should be_empty
       end
       it "has ChefDK verified to work via `chef verify`" do
-        cmd_succeeds "chef verify"
+        # XXX: skip verification of chef-provisioning until chef/chef-dk#470 is fixed
+        components = %w{berkshelf test-kitchen chef-client chef-dk chefspec rubocop fauxhai knife-spork kitchen-vagrant package installation openssl}
+        cmd_succeeds "chef verify #{components.join(',')}"
       end
-      it "has 'bundler (1.7.12)' gem installed" do
-        gem_installed "bundler", "1.7.12"
+      it "has 'bundler (1.10.6)' gem installed" do
+        # XXX: keep until chef/omnibus-chef#464 is shipped
+        gem_installed "bundler", "1.10.6, 1.10.0"
       end
       it "has 'knife-audit (0.2.0)' plugin installed" do
         knife_plugin_installed "knife-audit", "0.2.0"
