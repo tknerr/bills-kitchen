@@ -28,8 +28,8 @@ The main tools for cooking with Chef / Vagrant:
 * [ChefDK](http://www.getchef.com/downloads/chef-dk/windows/) 0.7.0, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.1.5
 * [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
 * [Vagrant](http://vagrantup.com/) 1.7.4
-* [Terraform](http://terraform.io/) 0.6.1
-* [Packer](http://packer.io/) 0.8.2
+* [Terraform](http://terraform.io/) 0.6.3
+* [Packer](http://packer.io/) 0.8.6
 * [Consul](http://consul.io/) 0.5.2
 * [Docker](http://docker.io/) 1.7.1 (using boot2docker)
 
@@ -56,7 +56,7 @@ Useful additions for a better cooking experience:
 
 * [ConEmu](https://code.google.com/p/conemu-maximus5/) - a better Windows console with colours, tabs, etc...
 * [Atom](https://atom.io/) - a hackable text editor for the 21st Century
-* [PortableGit](https://code.google.com/p/msysgit/) - git client for Windows (preconfigured with [kdiff3](http://kdiff3.sourceforge.net/) as diff/merge tool)
+* [PortableGit](https://git-for-windows.github.io/) - git client for Windows (preconfigured with [kdiff3](http://kdiff3.sourceforge.net/) as diff/merge tool)
 * [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) - the SSH client for Windows
 * [clink](http://mridgers.github.io/clink/) - command completion and Bash-like line editing for Windows
 * [cwRsync](https://www.itefix.net/content/cwrsync-free-edition) which includes `ssh.exe` and `rsync.exe` to make rsync-based Vagrant synced folders work on Windows

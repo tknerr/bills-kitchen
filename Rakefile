@@ -121,16 +121,16 @@ def download_tools
     %w{ get.docker.com/builds/Windows/x86_64/docker-1.7.1.exe                                                 docker/docker.exe },
     %w{ github.com/Maximus5/ConEmu/releases/download/v15.07.28/ConEmuPack.150728.7z                         conemu },
     %w{ github.com/mridgers/clink/releases/download/0.4.4/clink_0.4.4_setup.exe                             clink },
-    %w{ github.com/atom/atom/releases/download/v1.0.4/atom-windows.zip                                      atom },
-    %w{ github.com/msysgit/msysgit/releases/download/Git-1.9.5-preview20150319/PortableGit-1.9.5-preview20150319.7z   portablegit },
+    %w{ github.com/atom/atom/releases/download/v1.0.9/atom-windows.zip                                      atom },
+    %w{ github.com/git-for-windows/git/releases/download/v2.5.0.windows.1/PortableGit-2.5.0-64-bit.7z.exe   portablegit },
     %w{ cdn.rubyinstaller.org/archives/devkits/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe                devkit },
     %w{ downloads.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe                       kdiff3
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
     %w{ www.itefix.net/dl/cwRsync_5.4.1_x86_Free.zip                                                        cwrsync },
     %w{ dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4.msi                                                  vagrant },
-    %w{ dl.bintray.com/mitchellh/terraform/terraform_0.6.1_windows_amd64.zip                                terraform },
-    %w{ dl.bintray.com/mitchellh/packer/packer_0.8.2_windows_amd64.zip                                      packer },
+    %w{ dl.bintray.com/mitchellh/terraform/terraform_0.6.3_windows_amd64.zip                                terraform },
+    %w{ dl.bintray.com/mitchellh/packer/packer_0.8.6_windows_amd64.zip                                      packer },
     %w{ dl.bintray.com/mitchellh/consul/0.5.2_windows_386.zip                                               consul },
     %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.7.0-1.msi                  chef-dk }
   ]

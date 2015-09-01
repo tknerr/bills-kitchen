@@ -12,11 +12,11 @@ describe "bills kitchen" do
     it "installs Vagrant 1.7.4" do
       run_cmd("vagrant -v").should match('1.7.4')
     end
-    it "installs Terraform 0.6.1" do
-      run_cmd("terraform --version").should match('0.6.1')
+    it "installs Terraform 0.6.3" do
+      run_cmd("terraform --version").should match('0.6.3')
     end
-    it "installs Packer 0.8.2" do
-      run_cmd("packer --version").should match('0.8.2')
+    it "installs Packer 0.8.6" do
+      run_cmd("packer --version").should match('0.8.6')
     end
     it "installs Consul 0.5.2" do
       run_cmd("consul --version").should match('0.5.2')
@@ -27,8 +27,8 @@ describe "bills kitchen" do
     it "installs rsync.exe" do
       run_cmd("rsync --version").should match('rsync  version 3.1.1')
     end
-    it "installs Git 1.9" do
-      run_cmd("git --version").should match('git version 1.9.5')
+    it "installs Git 2.5.0" do
+      run_cmd("git --version").should match('git version 2.5.0')
     end
     it "installs kdiff3" do
       marker_file = "#{BUILD_DIR}/merged.md"
@@ -42,14 +42,14 @@ describe "bills kitchen" do
     it "installs clink 0.4.4" do
       run_cmd("#{BUILD_DIR}/tools/clink/clink.bat version").should match('Clink v0.4.4')
     end
-    it "installs atom 1.0.4" do
+    it "installs atom 1.0.9" do
       # see https://github.com/atom/atom-shell/issues/683
       # so we 1) ensure the atom.cmd is on the PATH and 2) it's the right version
       cmd_succeeds "#{BUILD_DIR}/tools/atom/Atom/resources/cli/atom.cmd -v"
-      cmd_succeeds "grep 'Package: atom@1.0.4' #{BUILD_DIR}/tools/atom/Atom/resources/LICENSE.md"
+      cmd_succeeds "grep 'Package: atom@1.0.9' #{BUILD_DIR}/tools/atom/Atom/resources/LICENSE.md"
     end
-    it "installs apm 1.0.1" do
-      run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('1.0.1')
+    it "installs apm 1.0.4" do
+      run_cmd("#{BUILD_DIR}/tools/atom/Atom/resources/app/apm/bin/apm.cmd -v").should match('1.0.4')
     end
     it "installs docker 1.7.1" do
       run_cmd("docker -v").should match('Docker version 1.7.1')
