@@ -294,7 +294,7 @@ def download_no_cache(url, outfile, limit=5)
       redirect_url = response['location']
       if(redirect_url)
         unless redirect_url.start_with? "http"
-          redirect_url = ""#{uri.scheme}://#{uri.host}:#{uri.port}#{redirect_url}"
+          redirect_url = "#{uri.scheme}://#{uri.host}:#{uri.port}#{redirect_url}"
         end
         puts "redirecting to #{redirect_url}"
         download_no_cache(redirect_url, outfile, limit - 1)
