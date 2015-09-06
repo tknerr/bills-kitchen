@@ -16,6 +16,8 @@
    * update to vagrant-proxyconf 1.5.1
  * bug fixes:
    * ensure that the vagrant remote docker host patch is always enabled (see [#114](https://github.com/tknerr/bills-kitchen/issues/114))
+   * get the actual remote docker host ip address from the `DOCKER_HOST` env var instead of using a hard coded default (see [#130](https://github.com/tknerr/bills-kitchen/pull/130))
+   * fix detection of the forwarded ssh port when multiple remote docker containers are started (see [#130](https://github.com/tknerr/bills-kitchen/pull/130))
  * improvements:
    * allow to run acceptance tests using either virtualbox or docker provider
  * patches:
