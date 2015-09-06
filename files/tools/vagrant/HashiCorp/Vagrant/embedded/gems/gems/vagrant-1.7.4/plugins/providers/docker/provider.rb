@@ -136,16 +136,25 @@ module VagrantPlugins
         end
       end
 
-      # Returns the forwarded SSH port on the host. If no port forwarding
-      # for "ssh" is found we return nil
+      # Returns the real forwarded SSH port on the host. If no port forwarding
+      # for "22/tcp" is found we raise an exception
       def forwarded_ssh_host_port
-        @machine.config.vm.networks.each do |type, options|
-          if type == :forwarded_port && options[:id] == "ssh"
-            return options[:host]
-          end
+        network = driver.inspect_container(@machine.id)['NetworkSettings']
+        forwarded_ssh_ports = network['Ports']['22/tcp']
+
+        if forwarded_ssh_ports.nil? || forwarded_ssh_ports.empty?
+          raise "ssh port not forwarded from container!"
         end
-        # ssh portforwarding disabled?!?
-        raise "ssh port not forwarded!"
+
+        # return the first forwarded host port for 22/tcp we find
+        forwarded_ssh_ports[0]['HostPort']
+      end
+
+      # Returns the remote docker host by parsing the `DOCKER_HOST` env var
+      def remote_docker_host
+        docker_host_uri = ENV.fetch('DOCKER_HOST', 'tcp://192.168.59.103:2376')
+        docker_host = URI.parse(docker_host_uri).host
+        docker_host
       end
 
       # Returns the SSH info for accessing the Container.
@@ -162,7 +171,7 @@ module VagrantPlugins
 
         if ENV['VAGRANT_DOCKER_REMOTE_HOST_PATCH'] == "1"
           {
-            host: "192.168.59.103",
+            host: remote_docker_host,
             port: forwarded_ssh_host_port
           }
         else
