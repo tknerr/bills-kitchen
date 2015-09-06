@@ -150,15 +150,11 @@ module VagrantPlugins
         forwarded_ssh_ports[0]['HostPort']
       end
 
-      # Returns the IP reported by `boot2docker ip`, falling back
-      # to 192.168.59.103 if the command execution fails.
-      def boot2docker_ip
-        @boot2docker_ip ||= begin
-            `boot2docker ip`.strip
-          rescue
-            '192.168.59.103'
-          end
-        @boot2docker_ip
+      # Returns the remote docker host by parsing the `DOCKER_HOST` env var
+      def remote_docker_host
+        docker_host_uri = ENV.fetch('DOCKER_HOST', 'tcp://192.168.59.103:2376')
+        docker_host = URI.parse(docker_host_uri).host
+        docker_host
       end
 
       # Returns the SSH info for accessing the Container.
@@ -175,7 +171,7 @@ module VagrantPlugins
 
         if ENV['VAGRANT_DOCKER_REMOTE_HOST_PATCH'] == "1"
           {
-            host: boot2docker_ip,
+            host: remote_docker_host,
             port: forwarded_ssh_host_port
           }
         else
