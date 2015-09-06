@@ -148,6 +148,17 @@ module VagrantPlugins
         raise "ssh port not forwarded!"
       end
 
+      # Returns the IP reported by `boot2docker ip`, falling back
+      # to 192.168.59.103 if the command execution fails.
+      def boot2docker_ip
+        @boot2docker_ip ||= begin
+            `boot2docker ip`.strip
+          rescue
+            '192.168.59.103'
+          end
+        @boot2docker_ip
+      end
+
       # Returns the SSH info for accessing the Container.
       def ssh_info
         # If the container isn't running, we can't SSH into it
@@ -162,7 +173,7 @@ module VagrantPlugins
 
         if ENV['VAGRANT_DOCKER_REMOTE_HOST_PATCH'] == "1"
           {
-            host: "192.168.59.103",
+            host: boot2docker_ip,
             port: forwarded_ssh_host_port
           }
         else
