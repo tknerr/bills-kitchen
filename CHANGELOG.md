@@ -1,4 +1,9 @@
 
+# 3.0-SNAPSHOT (unreleased)
+
+ * ...
+
+
 # 3.0-rc6 (Sept 7, 2015)
 
  * tool updates:
