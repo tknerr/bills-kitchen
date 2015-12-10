@@ -1,7 +1,9 @@
 
 # 3.0-SNAPSHOT (unreleased)
 
- * ...
+ * improvements:
+   * make sure the chef omnibus installer is cached during test-kitchen runs
+   * make sure the chef `file_cache_path` is cached during test-kitchen runs 
 
 
 # 3.0-rc6 (Sept 7, 2015)
