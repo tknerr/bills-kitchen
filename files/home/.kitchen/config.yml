@@ -3,3 +3,6 @@ driver:
   name: vagrant
   # run provisioners when VM is created (e.g. from global Vagrantfile)
   provision: true
+
+provisioner:
+  chef_omnibus_install_options: -d /tmp/vagrant-cache/vagrant_omnibus
