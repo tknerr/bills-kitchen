@@ -6,3 +6,11 @@ driver:
 
 provisioner:
   chef_omnibus_install_options: -d /tmp/vagrant-cache/vagrant_omnibus
+  # Make sure that the lockfile is not created on a shared filesystem when
+  # we cache `file_cache_path` via vagrant-cachier and using test-kitchen
+  # in parallel mode...
+  # See also here: https://github.com/fgrehm/vagrant-cachier/issues/28
+  client_rb:
+    lockfile: "#{File.join(Dir.tmpdir, 'chef-client-running.pid')}"
+  solo_rb:
+    lockfile: "#{File.join(Dir.tmpdir, 'chef-client-running.pid')}"

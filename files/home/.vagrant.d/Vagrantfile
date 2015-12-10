@@ -14,7 +14,10 @@ Vagrant.configure("2") do |config|
         # for test-kitchen =< 1.3
         "busser-gemcache" => { cache_dir: "/tmp/busser/gems/cache" },
         # for test-kitchen >= 1.4
-        "verifier-gemcache" => { cache_dir: "/tmp/verifier/gems/cache" }
+        "verifier-gemcache" => { cache_dir: "/tmp/verifier/gems/cache" },
+        # chef_file_cache is not auto-detected as there is no chef provisioner
+        # in the test-kitchen generated Vagrantfile, so we add it here
+        "chef" => { cache_dir: "/tmp/kitchen/cache" }
       }
 
       # fix permissions
@@ -23,6 +26,7 @@ Vagrant.configure("2") do |config|
       config.vm.provision "shell", inline: <<-EOF
         chown -R vagrant:vagrant /tmp/busser
         chown -R vagrant:vagrant /tmp/verifier
+        chown -R vagrant:vagrant /tmp/kitchen
       EOF
     end
   end
