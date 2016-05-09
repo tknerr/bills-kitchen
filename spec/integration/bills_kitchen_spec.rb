@@ -6,8 +6,8 @@ describe "bills kitchen" do
   include Helpers
 
   describe "tools" do
-    it "installs ChefDK 0.7.0" do
-      run_cmd("chef -v").should match('Chef Development Kit Version: 0.7.0')
+    it "installs ChefDK 0.13.21" do
+      run_cmd("chef -v").should match('Chef Development Kit Version: 0.13.21')
     end
     it "installs Vagrant 1.8.1" do
       run_cmd("vagrant -v").should match('1.8.1')
@@ -121,11 +121,14 @@ describe "bills kitchen" do
     end
 
     describe "chefdk ruby" do
-      it "installs Chef 12.4.1" do
-        run_cmd("knife -v").should match('Chef: 12.4.1')
+      it "installs Chef 12.9.41" do
+        run_cmd("knife -v").should match('Chef: 12.9.41')
       end
       it "has RubyGems > 2.4.1 installed (fixes opscode/chef-dk#242)" do
-        run_cmd("gem -v").should match('2.4.4')
+        run_cmd("gem -v").should match('2.6.3')
+      end
+      it "has bundler >= 1.10.6 installed (fixes chef/omnibus-chef#464)" do
+        gem_installed "bundler", "1.11.2"
       end
       it "uses $HOME/.chefdk as the gemdir" do
         run_cmd("#{CHEFDK_RUBY}/bin/gem environment gemdir").should match("#{CHEFDK_HOME}/gem/ruby/2.1.0")
@@ -133,17 +136,11 @@ describe "bills kitchen" do
       it "does not have any binaries in the $HOME/.chefdk gemdir preinstalled when we ship it" do
         # because since RubyGems > 2.4.1 the ruby path in here is absolute!
         gem_binaries = Dir.glob("#{CHEFDK_HOME}/gem/ruby/2.1.0/bin/*")
-        # XXX: keep until chef/omnibus-chef#464 is shipped
-        gem_binaries.reject{|f| File.basename(f).start_with? 'bundle'}.should be_empty
       end
       it "has ChefDK verified to work via `chef verify`" do
         # XXX: skip verification of chef-provisioning until chef/chef-dk#470 is fixed
-        components = %w{berkshelf test-kitchen chef-client chef-dk chefspec rubocop fauxhai knife-spork kitchen-vagrant package installation openssl}
-        cmd_succeeds "chef verify #{components.join(',')}"
-      end
-      it "has 'bundler (1.10.6)' gem installed" do
-        # XXX: keep until chef/omnibus-chef#464 is shipped
-        gem_installed "bundler", "1.10.6, 1.10.0"
+        components = %w{berkshelf tk-policyfile-provisioner test-kitchen chef-client chef-dk chefspec generated-cookbooks-pass-chefspec rubocop fauxhai knife-spork kitchen-vagrant package\ installation openssl inspec}
+        cmd_succeeds "chef verify #{components.join(' ')}"
       end
       it "has 'knife-audit (0.2.0)' plugin installed" do
         knife_plugin_installed "knife-audit", "0.2.0"
