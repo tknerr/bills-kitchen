@@ -26,7 +26,6 @@ task :build do
   move_chefdk
   fix_chefdk
   copy_files
-  fix_bundler
   generate_docs
   install_knife_plugins
   install_vagrant_plugins
@@ -164,29 +163,6 @@ def fix_chefdk
   end
 end
 
-def fix_bundler
-  # manually restore a good bundler version until chef/omnibus-chef#464 is fixed
-  Bundler.with_clean_env do
-    command = "#{BUILD_DIR}/set-env.bat \
-    && chef gem install bundler -v 1.10.6 --no-ri --no-rdoc"
-    fail "updating bundler to 1.10.6 failed" unless system(command)
-  end
-  # also temporarily patch vagrant until test-kitchen/kitchen-vagrant#190 is fixed
-  gemspec = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.4/vagrant.gemspec"
-  gemspec2 = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/specifications/vagrant-1.7.4.gemspec"
-  File.write(gemspec, File.read(gemspec).gsub('1.10.5', '1.10.6'))
-  File.write(gemspec2, File.read(gemspec2).gsub('1.10.5', '1.10.6'))
-  # fix the paths to relative ones to make it portable
-  Dir.glob("#{BUILD_DIR}/home/.chefdk/gem/ruby/2.1.0/bin/bundle*").each do |file|
-    if File.extname(file).empty?  # do this only for the extensionless files
-      File.write(file, File.read(file).gsub(/^(.*tools\/chefdk\/embedded\/bin\/ruby.exe)$/, '#!/usr/bin/env ruby'))
-    end
-  end
-  Dir.glob("#{BUILD_DIR}/home/.chefdk/gem/ruby/2.1.0/bin/bundle*.bat").each do |file|
-    File.write(file, File.read(file).gsub(/^(.*tools\\chefdk\\embedded\\bin\\ruby\.exe" "%~dpn0" %\*)$/, '@"%~dp0\\..\\..\\..\\..\\..\\..\\tools\\chefdk\\embedded\\bin\\ruby.exe" "%~dpn0" %*'))
-  end
-end
-
 def install_knife_plugins
   Bundler.with_clean_env do
     command = "#{BUILD_DIR}/set-env.bat \
@@ -232,7 +208,7 @@ end
 
 def pre_packaging_checks
   chefdk_gem_bindir = "#{BUILD_DIR}/home/.chefdk/gem/ruby/2.1.0/bin"
-  unless Dir.glob("#{chefdk_gem_bindir}/*").reject{|d| d.include? 'bundle'}.empty?
+  unless Dir.glob("#{chefdk_gem_bindir}/*").empty?
     raise "beware: gem binaries in '#{chefdk_gem_bindir}' might use an absolute path to ruby.exe! Use `gem pristine` to fix it."
   end
 end
