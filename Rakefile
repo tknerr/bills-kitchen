@@ -148,12 +148,12 @@ end
 # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
 def fix_chefdk
   Dir.glob("#{BUILD_DIR}/tools/chefdk/bin/*").each do |file|
-    if File.extname(file).empty?  # do this only for the extensionless files
+    if File.extname(file).empty? && File.exist?("#{file}.bat")  # do this only for the extensionless .bat counterparts
       File.write(file, File.read(file).gsub('#!C:/opscode/chefdk/embedded/bin/ruby.exe', '#!/usr/bin/env ruby'))
     end
   end
   Dir.glob("#{BUILD_DIR}/tools/chefdk/embedded/bin/*").each do |file|
-    if File.extname(file).empty?  # do this only for the extensionless files
+    if File.extname(file).empty? && File.exist?("#{file}.bat")  # do this only for the extensionless .bat counterparts
       File.write(file, File.read(file).gsub('#!C:/opscode/chefdk/embedded/bin/ruby.exe', '#!/usr/bin/env ruby'))
     end
   end
