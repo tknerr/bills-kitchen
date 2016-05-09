@@ -3,7 +3,9 @@
 
  * improvements:
    * make sure the chef omnibus installer is cached during test-kitchen runs
-   * make sure the chef `file_cache_path` is cached during test-kitchen runs 
+   * make sure the chef `file_cache_path` is cached during test-kitchen runs
+   * add new alias `git graph` to show the commit graph / branches on the CLI
+   * adopt the new Git 2.0 push behaviour (`push.default = simple`)
 
 
 # 3.0-rc6 (Sept 7, 2015)
