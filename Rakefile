@@ -130,7 +130,7 @@ def download_tools
     %w{ releases.hashicorp.com/terraform/0.6.3/terraform_0.6.3_windows_amd64.zip                            terraform },
     %w{ releases.hashicorp.com/packer/0.8.6/packer_0.8.6_windows_amd64.zip                                  packer },
     %w{ releases.hashicorp.com/consul/0.5.2/consul_0.5.2_windows_386.zip                                    consul },
-    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.7.0-1.msi                  chef-dk }
+    %w{ packages.chef.io/stable/windows/2008r2/chefdk-0.13.21-1-x86.msi                                     cdk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')
@@ -139,8 +139,10 @@ end
 
 # move chef-dk to a shorter path to reduce the likeliness that a gem fails to install due to max path length
 def move_chefdk
-  FileUtils.mv "#{BUILD_DIR}/tools/chef-dk/opscode/chefdk", "#{BUILD_DIR}/tools/chefdk"
-  FileUtils.rm_rf "#{BUILD_DIR}/tools/chef-dk"
+  FileUtils.mv "#{BUILD_DIR}/tools/cdk/opscode/chefdk", "#{BUILD_DIR}/tools/chefdk"
+  # chefdk requires a two step install
+  unpack "#{BUILD_DIR}/tools/cdk/opscode/chefdk.zip", "#{BUILD_DIR}/tools/chefdk"
+  FileUtils.rm_rf "#{BUILD_DIR}/tools/cdk"
 end
 
 # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
