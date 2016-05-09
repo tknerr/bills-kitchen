@@ -54,7 +54,7 @@ These plugins are pre-installed:
 
 Useful additions for a better cooking experience:
 
-* [ConEmu](https://code.google.com/p/conemu-maximus5/) - a better Windows console with colours, tabs, etc...
+* [ConEmu](https://conemu.github.io/) - a better Windows console with colours, tabs, etc...
 * [Atom](https://atom.io/) - a hackable text editor for the 21st Century
 * [PortableGit](https://git-for-windows.github.io/) - git client for Windows (preconfigured with [kdiff3](http://kdiff3.sourceforge.net/) as diff/merge tool)
 * [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) - the SSH client for Windows
