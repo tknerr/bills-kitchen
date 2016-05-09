@@ -24,9 +24,12 @@
 	st = status
 	unstage = reset HEAD --
 	slog = log --pretty=oneline --abbrev-commit
+	graph = log --all --oneline --graph --decorate
 [http]
 	sslVerify = false
 	# proxy = http://your.proxy.org:8080
+[push]
+	default = simple
 [user]
 	name = dummy
 	email = dummy
