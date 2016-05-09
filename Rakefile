@@ -128,7 +128,7 @@ def download_tools
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
     %w{ www.itefix.net/dl/cwRsync_5.4.1_x86_Free.zip                                                        cwrsync },
-    %w{ releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.msi                                              vagrant },
+    %w{ releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.msi                                              vagrant },
     %w{ releases.hashicorp.com/terraform/0.6.3/terraform_0.6.3_windows_amd64.zip                            terraform },
     %w{ releases.hashicorp.com/packer/0.8.6/packer_0.8.6_windows_amd64.zip                                  packer },
     %w{ releases.hashicorp.com/consul/0.5.2/consul_0.5.2_windows_386.zip                                    consul },

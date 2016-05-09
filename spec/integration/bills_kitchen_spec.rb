@@ -9,8 +9,8 @@ describe "bills kitchen" do
     it "installs ChefDK 0.7.0" do
       run_cmd("chef -v").should match('Chef Development Kit Version: 0.7.0')
     end
-    it "installs Vagrant 1.7.4" do
-      run_cmd("vagrant -v").should match('1.7.4')
+    it "installs Vagrant 1.8.1" do
+      run_cmd("vagrant -v").should match('1.8.1')
     end
     it "installs Terraform 0.6.3" do
       run_cmd("terraform --version").should match('0.6.3')
