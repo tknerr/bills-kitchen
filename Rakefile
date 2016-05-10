@@ -27,7 +27,7 @@ task :wipe do
 end
 
 desc 'downloads required resources and builds the devpack binary'
-task :build do
+task :build => :clean do
   recreate_dirs
   download_tools
   move_chefdk
@@ -91,8 +91,6 @@ def acceptance_test_run_cmd(provider)
 end
 
 def recreate_dirs
-  purge_atom_plugins_with_insanely_long_path
-  FileUtils.rm_rf BUILD_DIR, secure: true
   %w{ home repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
   end
