@@ -27,8 +27,8 @@ describe "bills kitchen" do
     it "installs rsync.exe" do
       run_cmd("rsync --version").should match('rsync  version 3.1.1')
     end
-    it "installs Git 2.5.0" do
-      run_cmd("git --version").should match('git version 2.5.0')
+    it "installs Git 2.8.2" do
+      run_cmd("git --version").should match('git version 2.8.2')
     end
     it "installs kdiff3" do
       marker_file = "#{BUILD_DIR}/merged.md"
