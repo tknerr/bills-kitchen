@@ -10,6 +10,9 @@
    * update to ConEmu 2016031
    * update to Git for Windows 2.8.2
    * update to Atom Editor 1.7.3
+ * plugin updates:
+   * update to vagrant-proxyconf 1.5.2
+   * update to vagrant-berkshelf 4.1.0
  * improvements:
    * make sure the chef omnibus installer is cached during test-kitchen runs
    * make sure the chef `file_cache_path` is cached during test-kitchen runs
