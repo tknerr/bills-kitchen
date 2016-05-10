@@ -160,11 +160,11 @@ describe "bills kitchen" do
       it "has 'vagrant-cachier (1.2.1)' plugin installed" do
         vagrant_plugin_installed "vagrant-cachier", "1.2.1"
       end
-      it "has 'vagrant-proxyconf (1.5.1)' plugin installed" do
-        vagrant_plugin_installed "vagrant-proxyconf", "1.5.1"
+      it "has 'vagrant-proxyconf (1.5.2)' plugin installed" do
+        vagrant_plugin_installed "vagrant-proxyconf", "1.5.2"
       end
-      it "has 'vagrant-berkshelf (4.0.4)' plugin installed" do
-        vagrant_plugin_installed "vagrant-berkshelf", "4.0.4"
+      it "has 'vagrant-berkshelf (4.1.0)' plugin installed" do
+        vagrant_plugin_installed "vagrant-berkshelf", "4.1.0"
       end
       it "has 'vagrant-winrm (0.7.0)' plugin installed" do
         vagrant_plugin_installed "vagrant-winrm", "0.7.0"
