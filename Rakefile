@@ -14,13 +14,20 @@ CACHE_DIR   = "#{BASE_DIR}/target/cache"
 ZIP_EXE = 'C:\Program Files\7-Zip\7z.exe'
 
 
-desc 'cleans all output and cache directories'
+desc 'cleans the build output directory'
 task :clean do
-  FileUtils.rm_r TARGET_DIR, secure: true
+  purge_atom_plugins_with_insanely_long_path
+  FileUtils.rm_rf BUILD_DIR, secure: true
+end
+
+desc 'wipes all output and cache directories'
+task :wipe do
+  purge_atom_plugins_with_insanely_long_path
+  FileUtils.rm_rf TARGET_DIR, secure: true
 end
 
 desc 'downloads required resources and builds the devpack binary'
-task :build do
+task :build => :clean do
   recreate_dirs
   download_tools
   move_chefdk
@@ -84,20 +91,21 @@ def acceptance_test_run_cmd(provider)
 end
 
 def recreate_dirs
-  uninstall_atom_plugins_with_insanely_long_path
-  FileUtils.rm_rf BUILD_DIR, secure: true
   %w{ home repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
   end
   FileUtils.mkdir_p CACHE_DIR
 end
 
-def uninstall_atom_plugins_with_insanely_long_path
-  if File.exist? "#{BUILD_DIR}/home/.atom/packages/"
-    Bundler.with_clean_env do
-      command = "#{BUILD_DIR}/set-env.bat && apm uninstall atom-beautify"
-      fail "uninstalling atom plugins with insanely long path failed!" unless system(command)
-    end
+# use Windows builtin robocopy command to purge overly long paths,
+# see https://blog.bertvanlangen.com/articles/path-too-long-use-robocopy/
+def purge_atom_plugins_with_insanely_long_path
+  empty_dir = "#{TARGET_DIR}/empty"
+  atom_packages_dir = "#{BUILD_DIR}/home/.atom/packages"
+  if File.exist?(atom_packages_dir)
+    FileUtils.rm_rf empty_dir
+    FileUtils.mkdir_p empty_dir
+    sh "robocopy #{empty_dir} #{atom_packages_dir} /purge > NUL"
   end
 end
 
@@ -117,7 +125,7 @@ def download_tools
   [
     %w{ github.com/boot2docker/boot2docker-cli/releases/download/v1.7.1/boot2docker-v1.7.1-windows-amd64.exe  docker/boot2docker.exe },
     %w{ get.docker.com/builds/Windows/x86_64/docker-1.7.1.exe                                                 docker/docker.exe },
-    %w{ github.com/Maximus5/ConEmu/releases/download/v15.07.28/ConEmuPack.150728.7z                         conemu },
+    %w{ github.com/Maximus5/ConEmu/releases/download/v16.03.01/ConEmuPack.160301.7z                         conemu },
     %w{ github.com/mridgers/clink/releases/download/0.4.4/clink_0.4.4_setup.exe                             clink },
     %w{ github.com/atom/atom/releases/download/v1.0.9/atom-windows.zip                                      atom },
     %w{ github.com/git-for-windows/git/releases/download/v2.5.0.windows.1/PortableGit-2.5.0-64-bit.7z.exe   portablegit },
