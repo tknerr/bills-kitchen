@@ -14,9 +14,16 @@ CACHE_DIR   = "#{BASE_DIR}/target/cache"
 ZIP_EXE = 'C:\Program Files\7-Zip\7z.exe'
 
 
-desc 'cleans all output and cache directories'
+desc 'cleans the build output directory'
 task :clean do
-  FileUtils.rm_r TARGET_DIR, secure: true
+  purge_atom_plugins_with_insanely_long_path
+  FileUtils.rm_rf BUILD_DIR, secure: true
+end
+
+desc 'wipes all output and cache directories'
+task :wipe do
+  purge_atom_plugins_with_insanely_long_path
+  FileUtils.rm_rf TARGET_DIR, secure: true
 end
 
 desc 'downloads required resources and builds the devpack binary'
