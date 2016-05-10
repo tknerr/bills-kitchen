@@ -127,7 +127,7 @@ def download_tools
     %w{ get.docker.com/builds/Windows/x86_64/docker-1.7.1.exe                                                 docker/docker.exe },
     %w{ github.com/Maximus5/ConEmu/releases/download/v16.03.01/ConEmuPack.160301.7z                         conemu },
     %w{ github.com/mridgers/clink/releases/download/0.4.4/clink_0.4.4_setup.exe                             clink },
-    %w{ github.com/atom/atom/releases/download/v1.0.9/atom-windows.zip                                      atom },
+    %w{ github.com/atom/atom/releases/download/v1.7.3/atom-windows.zip                                      atom },
     %w{ github.com/git-for-windows/git/releases/download/v2.8.2.windows.1/PortableGit-2.8.2-64-bit.7z.exe   portablegit },
     %w{ cdn.rubyinstaller.org/archives/devkits/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe                devkit },
     %w{ downloads.sourceforge.net/project/kdiff3/kdiff3/0.9.96/KDiff3Setup_0.9.96.exe                       kdiff3

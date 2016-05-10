@@ -9,6 +9,7 @@
    * update to Consul 0.6.4
    * update to ConEmu 2016031
    * update to Git for Windows 2.8.2
+   * update to Atom Editor 1.7.3
  * improvements:
    * make sure the chef omnibus installer is cached during test-kitchen runs
    * make sure the chef `file_cache_path` is cached during test-kitchen runs
