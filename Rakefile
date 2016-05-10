@@ -84,7 +84,7 @@ def acceptance_test_run_cmd(provider)
 end
 
 def recreate_dirs
-  uninstall_atom_plugins_with_insanely_long_path
+  purge_atom_plugins_with_insanely_long_path
   FileUtils.rm_rf BUILD_DIR, secure: true
   %w{ home repo tools }.each do |dir|
     FileUtils.mkdir_p "#{BUILD_DIR}/#{dir}"
@@ -92,12 +92,15 @@ def recreate_dirs
   FileUtils.mkdir_p CACHE_DIR
 end
 
-def uninstall_atom_plugins_with_insanely_long_path
-  if File.exist? "#{BUILD_DIR}/home/.atom/packages/"
-    Bundler.with_clean_env do
-      command = "#{BUILD_DIR}/set-env.bat && apm uninstall atom-beautify"
-      fail "uninstalling atom plugins with insanely long path failed!" unless system(command)
-    end
+# use Windows builtin robocopy command to purge overly long paths,
+# see https://blog.bertvanlangen.com/articles/path-too-long-use-robocopy/
+def purge_atom_plugins_with_insanely_long_path
+  empty_dir = "#{TARGET_DIR}/empty"
+  atom_packages_dir = "#{BUILD_DIR}/home/.atom/packages"
+  if File.exist?(atom_packages_dir)
+    FileUtils.rm_rf empty_dir
+    FileUtils.mkdir_p empty_dir
+    sh "robocopy #{empty_dir} #{atom_packages_dir} /purge > NUL"
   end
 end
 
