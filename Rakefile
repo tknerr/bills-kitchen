@@ -310,7 +310,9 @@ end
 
 def pack(target_dir, archive)
   puts "packing '#{target_dir}' into '#{archive}'"
-  system("pushd #{target_dir} && \"#{ZIP_EXE}\" a -t7z -y \"#{archive}\" \".\" 1> NUL && popd")
+  Dir.chdir(target_dir) do
+    system("\"#{ZIP_EXE}\" a -t7z -y \"#{archive}\" \".\" 1> NUL")
+  end
 end
 
 def release?
