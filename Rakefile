@@ -25,9 +25,7 @@ task :build do
   download_tools
   move_chefdk
   fix_chefdk
-  fix_vagrant
   copy_files
-  fix_bundler
   generate_docs
   install_knife_plugins
   install_vagrant_plugins
@@ -128,11 +126,11 @@ def download_tools
         kdiff3.exe },
     %w{ the.earth.li/~sgtatham/putty/0.63/x86/putty.zip                                                     putty },
     %w{ www.itefix.net/dl/cwRsync_5.4.1_x86_Free.zip                                                        cwrsync },
-    %w{ releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.msi                                              vagrant },
+    %w{ releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.msi                                              vagrant },
     %w{ releases.hashicorp.com/terraform/0.6.3/terraform_0.6.3_windows_amd64.zip                            terraform },
     %w{ releases.hashicorp.com/packer/0.8.6/packer_0.8.6_windows_amd64.zip                                  packer },
     %w{ releases.hashicorp.com/consul/0.5.2/consul_0.5.2_windows_386.zip                                    consul },
-    %w{ opscode-omnibus-packages.s3.amazonaws.com/windows/2008r2/x86_64/chefdk-0.7.0-1.msi                  chef-dk }
+    %w{ packages.chef.io/stable/windows/2008r2/chefdk-0.13.21-1-x86.msi                                     cdk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
     download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')
@@ -141,19 +139,21 @@ end
 
 # move chef-dk to a shorter path to reduce the likeliness that a gem fails to install due to max path length
 def move_chefdk
-  FileUtils.mv "#{BUILD_DIR}/tools/chef-dk/opscode/chefdk", "#{BUILD_DIR}/tools/chefdk"
-  FileUtils.rm_rf "#{BUILD_DIR}/tools/chef-dk"
+  FileUtils.mv "#{BUILD_DIR}/tools/cdk/opscode/chefdk", "#{BUILD_DIR}/tools/chefdk"
+  # chefdk requires a two step install
+  unpack "#{BUILD_DIR}/tools/cdk/opscode/chefdk.zip", "#{BUILD_DIR}/tools/chefdk"
+  FileUtils.rm_rf "#{BUILD_DIR}/tools/cdk"
 end
 
 # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
 def fix_chefdk
   Dir.glob("#{BUILD_DIR}/tools/chefdk/bin/*").each do |file|
-    if File.extname(file).empty?  # do this only for the extensionless files
+    if File.extname(file).empty? && File.exist?("#{file}.bat")  # do this only for the extensionless .bat counterparts
       File.write(file, File.read(file).gsub('#!C:/opscode/chefdk/embedded/bin/ruby.exe', '#!/usr/bin/env ruby'))
     end
   end
   Dir.glob("#{BUILD_DIR}/tools/chefdk/embedded/bin/*").each do |file|
-    if File.extname(file).empty?  # do this only for the extensionless files
+    if File.extname(file).empty? && File.exist?("#{file}.bat")  # do this only for the extensionless .bat counterparts
       File.write(file, File.read(file).gsub('#!C:/opscode/chefdk/embedded/bin/ruby.exe', '#!/usr/bin/env ruby'))
     end
   end
@@ -162,36 +162,6 @@ def fix_chefdk
   end
   Dir.glob("#{BUILD_DIR}/tools/chefdk/embedded/lib/ruby/gems/2.1.0/bin/*.bat").each do |file|
     File.write(file, File.read(file).gsub('@"C:\opscode\chefdk\embedded\bin\ruby.exe" "%~dpn0" %*', '@"%~dp0\..\..\..\..\..\bin\ruby.exe" "%~dpn0" %*'))
-  end
-end
-
-# workaround for mitchellh/vagrant#4073
-def fix_vagrant
-  orig = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.4/plugins/synced_folders/rsync/helper.rb"
-  patched = File.read(orig).gsub('hostpath = Vagrant::Util', 'hostpath = "/cygdrive" + Vagrant::Util')
-  File.write(orig, patched)
-end
-
-def fix_bundler
-  # manually restore a good bundler version until chef/omnibus-chef#464 is fixed
-  Bundler.with_clean_env do
-    command = "#{BUILD_DIR}/set-env.bat \
-    && chef gem install bundler -v 1.10.6 --no-ri --no-rdoc"
-    fail "updating bundler to 1.10.6 failed" unless system(command)
-  end
-  # also temporarily patch vagrant until test-kitchen/kitchen-vagrant#190 is fixed
-  gemspec = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/gems/vagrant-1.7.4/vagrant.gemspec"
-  gemspec2 = "#{BUILD_DIR}/tools/vagrant/HashiCorp/Vagrant/embedded/gems/specifications/vagrant-1.7.4.gemspec"
-  File.write(gemspec, File.read(gemspec).gsub('1.10.5', '1.10.6'))
-  File.write(gemspec2, File.read(gemspec2).gsub('1.10.5', '1.10.6'))
-  # fix the paths to relative ones to make it portable
-  Dir.glob("#{BUILD_DIR}/home/.chefdk/gem/ruby/2.1.0/bin/bundle*").each do |file|
-    if File.extname(file).empty?  # do this only for the extensionless files
-      File.write(file, File.read(file).gsub(/^(.*tools\/chefdk\/embedded\/bin\/ruby.exe)$/, '#!/usr/bin/env ruby'))
-    end
-  end
-  Dir.glob("#{BUILD_DIR}/home/.chefdk/gem/ruby/2.1.0/bin/bundle*.bat").each do |file|
-    File.write(file, File.read(file).gsub(/^(.*tools\\chefdk\\embedded\\bin\\ruby\.exe" "%~dpn0" %\*)$/, '@"%~dp0\\..\\..\\..\\..\\..\\..\\tools\\chefdk\\embedded\\bin\\ruby.exe" "%~dpn0" %*'))
   end
 end
 
@@ -240,7 +210,7 @@ end
 
 def pre_packaging_checks
   chefdk_gem_bindir = "#{BUILD_DIR}/home/.chefdk/gem/ruby/2.1.0/bin"
-  unless Dir.glob("#{chefdk_gem_bindir}/*").reject{|d| d.include? 'bundle'}.empty?
+  unless Dir.glob("#{chefdk_gem_bindir}/*").empty?
     raise "beware: gem binaries in '#{chefdk_gem_bindir}' might use an absolute path to ruby.exe! Use `gem pristine` to fix it."
   end
 end
@@ -332,7 +302,7 @@ end
 
 def pack(target_dir, archive)
   puts "packing '#{target_dir}' into '#{archive}'"
-  system("cd #{target_dir} && \"#{ZIP_EXE}\" a -t7z -y \"#{archive}\" \".\" 1> NUL && cd ..")
+  system("pushd #{target_dir} && \"#{ZIP_EXE}\" a -t7z -y \"#{archive}\" \".\" 1> NUL && popd")
 end
 
 def release?

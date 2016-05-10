@@ -1,6 +1,9 @@
 
 # 3.0-SNAPSHOT (unreleased)
 
+ * tool updates:
+   * update to ChefDK 0.13.21
+   * update to Vagrant 1.8.1
  * improvements:
    * make sure the chef omnibus installer is cached during test-kitchen runs
    * make sure the chef `file_cache_path` is cached during test-kitchen runs

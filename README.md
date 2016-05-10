@@ -25,9 +25,9 @@ Using Bill's Kitchen itself is fairly simple. There is nothing to install, just 
 
 The main tools for cooking with Chef / Vagrant:
 
-* [ChefDK](http://www.getchef.com/downloads/chef-dk/windows/) 0.7.0, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.1.5
+* [ChefDK](http://www.getchef.com/downloads/chef-dk/windows/) 0.13.21, with embedded [Ruby](http://rubyinstaller.org/downloads/) 2.1.8
 * [DevKit](http://rubyinstaller.org/add-ons/devkit/) 4.7.2
-* [Vagrant](http://vagrantup.com/) 1.7.4
+* [Vagrant](http://vagrantup.com/) 1.8.1
 * [Terraform](http://terraform.io/) 0.6.3
 * [Packer](http://packer.io/) 0.8.6
 * [Consul](http://consul.io/) 0.5.2
