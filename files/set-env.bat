@@ -43,6 +43,19 @@ set EDITOR=atom.sh --wait
 :: set the home dir for boot2docker
 set BOOT2DOCKER_DIR=%HOME%\.boot2docker
 
+:: set the home dir for docker-machine
+set MACHINE_STORAGE_PATH=%HOME%\.docker\machine
+
+:: set virtualbox driver options for docker-machine
+:: see https://github.com/docker/machine/blob/master/docs/drivers/virtualbox.md
+set VIRTUALBOX_MEMORY_SIZE=2048
+set VIRTUALBOX_CPU_COUNT=2
+set VIRTUALBOX_DISK_SIZE=20000
+set VIRTUALBOX_BOOT2DOCKER_URL=https://github.com/boot2docker/boot2docker/releases/download/v1.7.1/boot2docker.iso
+
+:: see https://github.com/docker/machine/issues/1573#issuecomment-127667308
+set VIRTUALBOX_HOSTONLY_CIDR=192.168.99.100/24
+
 :: init the shell for boot2docker
 set DOCKER_HOST=tcp://192.168.59.103:2376
 set DOCKER_CERT_PATH=%BOOT2DOCKER_DIR%\certs\boot2docker-vm

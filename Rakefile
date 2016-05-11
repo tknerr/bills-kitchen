@@ -124,6 +124,7 @@ end
 def download_tools
   [
     %w{ github.com/boot2docker/boot2docker-cli/releases/download/v1.7.1/boot2docker-v1.7.1-windows-amd64.exe  docker/boot2docker.exe },
+    %w{ github.com/docker/machine/releases/download/v0.4.0-rc2/docker-machine_windows-amd64.exe               docker/docker-machine.exe },
     %w{ get.docker.com/builds/Windows/x86_64/docker-1.7.1.exe                                                 docker/docker.exe },
     %w{ github.com/Maximus5/ConEmu/releases/download/v16.03.01/ConEmuPack.160301.7z                         conemu },
     %w{ github.com/mridgers/clink/releases/download/0.4.4/clink_0.4.4_setup.exe                             clink },
@@ -141,7 +142,10 @@ def download_tools
     %w{ packages.chef.io/stable/windows/2008r2/chefdk-0.13.21-1-x86.msi                                     cdk }
   ]
   .each do |host_and_path, target_dir, includes = ''|
-    download_and_unpack "http://#{host_and_path}", "#{BUILD_DIR}/tools/#{target_dir}", includes.split('|')
+    target = "#{BUILD_DIR}/tools/#{target_dir}"
+    if !File.exist? target
+      download_and_unpack "http://#{host_and_path}", target, includes.split('|')
+    end
   end
 end
 
