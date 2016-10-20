@@ -8,11 +8,11 @@ clink:
 atom:
   url: "https://github.com/atom/atom/releases/download/v1.11.2/atom-windows.zip"
   plugins: 
-  - atom-beautify: ""
-  - minimap
-  - line-ending-converter
-  - language-chef
-  - language-batchfile
+    atom-beautify: ""
+    minimap: ""
+    line-ending-converter: ""
+    language-chef: ""
+    language-batchfile: ""
 boot2docker:
   url: "https://github.com/boot2docker/boot2docker-cli/releases/download/v1.8.0/boot2docker-v1.8.0-windows-amd64.exe"
 docker:
@@ -28,12 +28,12 @@ cwrsync:
 vagrant:
   url: "https://releases.hashicorp.com/vagrant/1.8.6/vagrant_1.8.6.msi"
   plugins:
-  - vagrant-toplevel-cookbooks: "0.2.4"
-  - vagrant-omnibus: "1.4.1"
-  - vagrant-cachier: "1.2.1"
-  - vagrant-proxyconf: "1.5.2"
-  - vagrant-berkshelf: "4.1.0"
-  - vagrant-winrm: "0.7.0"
+    vagrant-toplevel-cookbooks: "0.2.4"
+    vagrant-omnibus: "1.4.1"
+    vagrant-cachier: "1.2.1"
+    vagrant-proxyconf: "1.5.2"
+    vagrant-berkshelf: "4.1.0"
+    vagrant-winrm: "0.7.0"
 terraform:
   url: "https://releases.hashicorp.com/terraform/0.7.7/terraform_0.7.7_windows_amd64.zip"
 packer:
@@ -43,6 +43,6 @@ consul:
 chefdk:
   url: "https://packages.chef.io/stable/windows/2008r2/chefdk-0.18.30-1-x86.msi"
   plugins: 
-  - knife-audit: "0.2.0"
-  - knife-server: "1.1.0"
+    knife-audit: "0.2.0"
+    knife-server: "1.1.0"
    
