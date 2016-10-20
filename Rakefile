@@ -54,17 +54,25 @@ end
 desc 'downloads required resources and builds the devpack binary'
 task :build => :clean do
   tools_config=YAML.load(File.read("#{base_dir}/config/tools.yaml"))
-  p tools_config
   recreate_dirs
   download_tools(tools_config)
-  # move_chefdk
-  # fix_chefdk
-  # copy_files
-  # generate_docs
-  # install_knife_plugins
-  # install_vagrant_plugins
-  # install_atom_plugins
-  # run_integration_tests
+  if tools_config.keys.include?("chefdk")
+    move_chefdk
+    fix_chefdk
+  end
+  copy_files
+  generate_docs
+  if tools_config.keys.include?("chefdk")
+    install_knife_plugins
+  end
+  if tools_config.keys.include?("atom")
+    atom_config=tools_config.fetch("atom",{})
+    install_atom_plugins(atom_config)
+  end
+  if tools_config.keys.include?("vagrant")
+    install_vagrant_plugins
+  end
+  run_integration_tests
 end
 
 desc 'run integration tests'
@@ -156,10 +164,11 @@ end
 
 # move chef-dk to a shorter path to reduce the likeliness that a gem fails to install due to max path length
 def move_chefdk
-  FileUtils.mv "#{build_dir}/tools/cdk/opscode/chefdk", "#{build_dir}/tools/chefdk"
-  # chefdk requires a two step install
-  unpack "#{build_dir}/tools/cdk/opscode/chefdk.zip", "#{build_dir}/tools/chefdk"
-  FileUtils.rm_rf "#{build_dir}/tools/cdk"
+  #chefdk install package contains a zip file
+  extra_pkg="#{target_dir}/chefdk/opscode/chefdk.zip"
+  tgt_dir="#{target_dir}/chefdk/opscode/"
+  unpack(extra_pkg, tgt_dir, includes = [])
+  FileUtils.mv "#{target_dir}/chefdk/opscode/", "#{build_dir}/tools/chefdk"
 end
 
 # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
@@ -182,36 +191,35 @@ def fix_chefdk
   end
 end
 
-def install_knife_plugins
+def install_knife_plugins tool_config
+  commands=["#{build_dir}/set-env.bat"]
+  tool_config.fetch("plugins",{}).each do |plug,ver|
+   commands<<"chef gem install #{plug} -v #{ver} --no-ri --no-rdoc"
+  end
   Bundler.with_clean_env do
-    command = "#{build_dir}/set-env.bat \
-    && chef gem install knife-audit -v 0.2.0 --no-ri --no-rdoc \
-    && chef gem install knife-server -v 1.1.0 --no-ri --no-rdoc"
+    command = commands.join(" && ")
     fail "knife plugin installation failed" unless system(command)
   end
 end
 
-def install_vagrant_plugins
+def install_vagrant_plugins tool_config
+  commands=["#{build_dir}/set-env.bat"]
+  tool_config.fetch("plugins",{}).each do |plug,ver|
+   commands<<"vagrant plugin install #{plug} --plugin-version#{ver}"
+  end
   Bundler.with_clean_env do
-    command = "#{build_dir}/set-env.bat \
-    && vagrant plugin install vagrant-toplevel-cookbooks --plugin-version 0.2.4 \
-    && vagrant plugin install vagrant-omnibus --plugin-version 1.4.1 \
-    && vagrant plugin install vagrant-cachier --plugin-version 1.2.1 \
-    && vagrant plugin install vagrant-proxyconf --plugin-version 1.5.2 \
-    && vagrant plugin install vagrant-berkshelf --plugin-version 4.1.0 \
-    && vagrant plugin install vagrant-winrm --plugin-version 0.7.0"
+    command = commands.join(" && ")
     fail "vagrant plugin installation failed" unless system(command)
   end
 end
 
-def install_atom_plugins
+def install_atom_plugins tool_config
+  commands=["#{build_dir}/set-env.bat"]
+  commands+=tool_config.fetch("plugins",{}).keys.map do |plug|
+    "apm install #{plug}"
+  end
   Bundler.with_clean_env do
-    command = "#{build_dir}/set-env.bat \
-    && apm install atom-beautify \
-    && apm install minimap \
-    && apm install line-ending-converter \
-    && apm install language-chef \
-    && apm install language-batchfile"
+    command = commands.join(" && ")
     fail "atom plugins installation failed" unless system(command)
   end
 end
