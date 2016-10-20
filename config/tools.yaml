@@ -1,0 +1,45 @@
+---
+git:
+  url: ps://github.com/git-for-windows/git/releases/download/v2.10.1.windows.1/PortableGit-2.10.1-64-bit.7z.exe"
+conemu:
+  url: ps://github.com/Maximus5/ConEmu/releases/download/v16.10.09a/ConEmuPack.161009a.7z"
+clink:
+  url: ps://github.com/mridgers/clink/releases/download/0.4.8/clink_0.4.8.zip"
+atom:
+  url: ps://github.com/atom/atom/releases/download/v1.11.2/atom-windows.zip"
+  plugins: 
+  - atom-beautify
+  - minimap
+  - line-ending-converter
+  - language-chef
+  - language-batchfile
+boot2docker:
+  url: ps://github.com/boot2docker/boot2docker-cli/releases/download/v1.8.0/boot2docker-v1.8.0-windows-amd64.exe"
+docker: :
+  url: ps://download.docker.com/win/stable/InstallDocker.msi"
+ruby-devkit:
+  url: p://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe"
+kdiff3:
+  url: p://downloads.sourceforge.net/project/kdiff3/kdiff3/0.9.98/KDiff3-64bit-Setup_0.9.98-2.exe"
+putty:
+  url: ps://the.earth.li/~sgtatham/putty/latest/x86/putty.zip"
+cwrsync:
+  url: ps://www.itefix.net/dl/cwRsync_5.5.0_x86_Free.zip"
+vagrant:
+  url: ps://releases.hashicorp.com/vagrant/1.8.6/vagrant_1.8.6.msi"
+  plugins:
+  - vagrant-toplevel-cookbooks
+  - vagrant-omnibus
+  - vagrant-cachier
+  - vagrant-proxyconf
+  - vagrant-berkshelf
+  - vagrant-winrm
+terraform:
+  url: ps://releases.hashicorp.com/terraform/0.7.7/terraform_0.7.7_windows_amd64.zip"
+packer:
+  url: ps://releases.hashicorp.com/packer/0.10.2/packer_0.10.2_windows_amd64.zip"
+consul:
+  url: ps://releases.hashicorp.com/consul/0.7.0/consul_0.7.0_windows_amd64.zip"
+chefdk:
+  url: ps://packages.chef.io/stable/windows/2008r2/chefdk-0.18.30-1-x86.msi"
+   
