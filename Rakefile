@@ -63,14 +63,13 @@ task :build => :clean do
   copy_files
   generate_docs
   if tools_config.keys.include?("chefdk")
-    install_knife_plugins
+    install_knife_plugins(tools_config.fetch("chefdk",{}))
   end
   if tools_config.keys.include?("atom")
-    atom_config=tools_config.fetch("atom",{})
-    install_atom_plugins(atom_config)
+    install_atom_plugins(tools_config.fetch("atom",{}))
   end
   if tools_config.keys.include?("vagrant")
-    install_vagrant_plugins
+    install_vagrant_plugins(tools_config.fetch("vagrant",{}))
   end
   run_integration_tests
 end
