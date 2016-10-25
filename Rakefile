@@ -22,12 +22,12 @@ module EnvironmentOptions
   end
   def build_dir
     ddir=ENV["BUILD_DIR"]
-    ddir||=File.join(base_dir,"build")
+    ddir||=File.join(target_dir,"build")
     File.expand_path(ddir)
   end
   def cache_dir
     ddir=ENV["CACHE_DIR"]
-    ddir||=File.join(base_dir,"cache")
+    ddir||=File.join(target_dir,"cache")
     File.expand_path(ddir)
   end
   def zip_exe
@@ -157,17 +157,16 @@ end
 
 def download_tools tools_config
   tools_config.each do |tname,cfg|
-    download_and_unpack(cfg["url"], File.join(target_dir,tname), [])
+    download_and_unpack(cfg["url"], File.join(build_dir,'tools',tname), [])
   end
 end
 
 # move chef-dk to a shorter path to reduce the likeliness that a gem fails to install due to max path length
 def move_chefdk
+  FileUtils.mv "#{build_dir}/tools/chef_dk/opscode/chefdk", "#{build_dir}/tools/chefdk"
   #chefdk install package contains a zip file
-  extra_pkg="#{target_dir}/chefdk/opscode/chefdk.zip"
-  tgt_dir="#{target_dir}/chefdk/opscode/"
-  unpack(extra_pkg, tgt_dir, includes = [])
-  FileUtils.mv "#{target_dir}/chefdk/opscode/", "#{build_dir}/tools/chefdk"
+  unpack("#{build_dir}/tools/chef_dk/opscode/chefdk.zip", "#{build_dir}/tools/chefdk")
+  FileUtils.rm_rf "#{build_dir}/tools/chef_dk"
 end
 
 # ensure omnibus / chef-dk use the embedded ruby, see opscode/chef#1512
