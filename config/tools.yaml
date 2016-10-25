@@ -1,5 +1,5 @@
 ---
-git:
+portablegit:
   url: "https://github.com/git-for-windows/git/releases/download/v2.10.1.windows.1/PortableGit-2.10.1-64-bit.7z.exe"
 conemu:
   url: "https://github.com/Maximus5/ConEmu/releases/download/v16.10.09a/ConEmuPack.161009a.7z"
@@ -17,7 +17,7 @@ boot2docker:
   url: "https://github.com/boot2docker/boot2docker-cli/releases/download/v1.8.0/boot2docker-v1.8.0-windows-amd64.exe"
 docker:
   url: "https://download.docker.com/win/stable/InstallDocker.msi"
-ruby-devkit:
+devkit:
   url: "http://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe"
 kdiff3:
   url: "http://downloads.sourceforge.net/project/kdiff3/kdiff3/0.9.98/KDiff3-64bit-Setup_0.9.98-2.exe"
