@@ -203,7 +203,7 @@ end
 def install_vagrant_plugins tool_config
   commands=["#{build_dir}/set-env.bat"]
   tool_config.fetch("plugins",{}).each do |plug,ver|
-   commands<<"vagrant plugin install #{plug} --plugin-version#{ver}"
+   commands<<"vagrant plugin install #{plug} --plugin-version #{ver}"
   end
   Bundler.with_clean_env do
     command = commands.join(" && ")
