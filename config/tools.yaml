@@ -40,7 +40,7 @@ packer:
   url: "https://releases.hashicorp.com/packer/0.10.2/packer_0.10.2_windows_amd64.zip"
 consul:
   url: "https://releases.hashicorp.com/consul/0.7.0/consul_0.7.0_windows_amd64.zip"
-chefdk:
+chef_dk:
   url: "https://packages.chef.io/stable/windows/2008r2/chefdk-0.18.30-1-x86.msi"
   plugins: 
     knife-audit: "0.2.0"
